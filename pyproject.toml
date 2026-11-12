@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "westfall-optimization"
+version = "0.1.0"
+description = "Exact weighted linear ordering with Block-Localized Exclusion (BLX 2.0) and exact optimality certificates"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [{ name = "Caleb Westfall" }]
+dependencies = ["numpy>=1.24", "scipy>=1.11"]
+classifiers = ["Programming Language :: Python :: 3", "Topic :: Scientific/Engineering :: Mathematics", "Development Status :: 3 - Alpha"]
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[project.scripts]
+westfall-opt = "westfall_optimization.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

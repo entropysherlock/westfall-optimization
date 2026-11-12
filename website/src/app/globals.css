@@ -1,0 +1,55 @@
+@import "@fontsource-variable/inter";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "katex/dist/katex.min.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: dark; }
+html { background: #04060c; }
+body {
+  @apply bg-ink-950 text-fog-100 antialiased;
+  font-feature-settings: "ss01", "cv11";
+}
+::selection { background: rgba(56, 189, 248, 0.3); }
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(56, 189, 248, 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(56, 189, 248, 0.045) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+.glow { box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.25), 0 20px 60px -30px rgba(56, 189, 248, 0.35); }
+.card { @apply rounded-2xl border border-line bg-ink-900/80 backdrop-blur-sm; }
+.kicker { @apply font-mono text-[11px] uppercase tracking-[0.2em] text-cyan-400; }
+.h-display { @apply font-semibold tracking-tight text-fog-100; }
+.prose-research { @apply text-fog-300 leading-relaxed; }
+.prose-research h1 { @apply mt-10 mb-4 text-3xl font-semibold text-fog-100; }
+.prose-research h2 { @apply mt-12 mb-4 border-b border-line pb-2 text-2xl font-semibold text-fog-100; }
+.prose-research h3 { @apply mt-8 mb-3 text-lg font-semibold text-fog-100; }
+.prose-research p { @apply my-4; }
+.prose-research ul { @apply my-4 list-disc pl-6; }
+.prose-research ol { @apply my-4 list-decimal pl-6; }
+.prose-research li { @apply my-1; }
+.prose-research a { @apply text-cyan-300 underline decoration-cyan-500/40 underline-offset-2 hover:decoration-cyan-300; }
+.prose-research strong { @apply text-fog-100; }
+.prose-research code { @apply rounded bg-ink-800 px-1.5 py-0.5 font-mono text-[0.85em] text-cyan-300; }
+.prose-research pre { @apply my-4 overflow-x-auto rounded-xl border border-line bg-ink-900 p-4 text-sm; }
+.prose-research pre code { @apply bg-transparent p-0 text-fog-300; }
+.prose-research table { @apply my-6 w-full border-collapse text-sm; }
+.prose-research th { @apply border-b border-line px-3 py-2 text-left font-semibold text-fog-100; }
+.prose-research td { @apply border-b border-line/60 px-3 py-2 align-top; }
+.prose-research hr { @apply my-10 border-line; }
+.prose-research blockquote { @apply border-l-2 border-cyan-500/50 pl-4 italic text-fog-400; }
+.katex { font-size: 1.04em; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 0.25rem 0; }
+:focus-visible { outline: 2px solid #38bdf8; outline-offset: 2px; border-radius: 6px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; transition-duration: 0.001ms !important; scroll-behavior: auto !important; }
+}
+
+/* mobile overflow guards */
+.card { min-width: 0; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; }
+.prose-research table { display: block; max-width: 100%; overflow-x: auto; }
+select { max-width: 100%; }
+@media (max-width: 640px) { .card .katex { font-size: 1em; white-space: normal; } }

@@ -1,0 +1,15 @@
+cff-version: 1.2.0
+message: "If you refer to this software or manuscript, please cite it as below. The manuscript is not peer-reviewed."
+title: "Westfall Optimization: block-localized exclusion dynamic programming for the weighted linear ordering problem"
+authors:
+  - family-names: Westfall
+    given-names: Caleb
+type: software
+version: 0.1.0
+repository-code: "https://github.com/entropysherlock/westfall-optimization"
+keywords:
+  - linear ordering problem
+  - feedback arc set in tournaments
+  - exact algorithms
+  - parameterized complexity
+  - optimality certificates
