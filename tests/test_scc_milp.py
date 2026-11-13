@@ -48,7 +48,7 @@ def test_structural_decomposition_and_portfolio_route():
     assert [len(c) for c in _scc_partition(A)] == [3, 3, 3]
     r = solve(A, mode="scc_milp", milp_time_limit=30)
     assert r["status"] == "PROVED_OPTIMAL"
-    assert r["component_sizes"] == [3, 3, 3]
+    assert r["scc"]["component_sizes"] == [3, 3, 3]
     assert abs(score(A, r["order"]) - r["OPT"]) < 1e-8
 
 
