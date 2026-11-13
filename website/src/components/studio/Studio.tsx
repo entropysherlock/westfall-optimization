@@ -34,9 +34,9 @@ type JobState = "idle" | "running" | "completed" | "failed" | "cancelled";
 interface Job { state: JobState; solver: SolverId; startedAt: number; finishedAt?: number; progress: { fraction: number; note: string } | null; error?: string; problem: Problem; maxStates: number }
 
 const VIEWS: { id: View; label: string; key: string; hint: string }[] = [
-  { id: "problem", label: "Problem", key: "1", hint: "Input, editing, import, generation, validation" },
-  { id: "solver", label: "Solver", key: "2", hint: "Profile, recommendation, configuration" },
-  { id: "results", label: "Results", key: "3", hint: "Ordering, objective, bounds, statistics" },
+  { id: "problem", label: "Problem", key: "1", hint: "Upload or edit your problem" },
+  { id: "solver", label: "Solver", key: "2", hint: "Optional solver settings" },
+  { id: "results", label: "Results", key: "3", hint: "Your optimized ordering and proof status" },
   { id: "analysis", label: "Analysis", key: "4", hint: "Matrix explorer and ordering diagnostics" },
   { id: "verification", label: "Verification", key: "5", hint: "Evidence, certificates, independent checks" },
   { id: "compare", label: "Compare", key: "6", hint: "Run several solvers on the same instance" },
@@ -86,7 +86,7 @@ export default function Studio() {
   // ------------------------------------------------------------------ shell
   const [view, setView] = useState<View>("problem");
   const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const [inspector, setInspector] = useState(true);
+  const [inspector, setInspector] = useState(false);
   const [inspectorW, setInspectorW] = useState(340);
   const [sessions, setSessions] = useState<SessionEntry[]>([]);
   const [sessionNote, setSessionNote] = useState<string | null>(null);
@@ -296,7 +296,7 @@ export default function Studio() {
       <header className="sticky top-0 z-30 border-b px-3 py-2.5 sm:px-5" style={{ borderColor: "var(--ws-line)", background: "color-mix(in srgb, var(--ws-bg) 92%, transparent)", backdropFilter: "blur(8px)" }}>
         <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
           <div className="min-w-0 flex-1">
-            <h1 className="text-[15px] font-semibold tracking-[-.01em] ws-text">Optimization Studio</h1>
+            <h1 className="text-[15px] font-semibold tracking-[-.01em] ws-text">WESTFALL Studio</h1>
             <p className="truncate text-[12px] ws-muted">
               <span className="ws-text">{title}</span>
               {p && <> · <span className="num">{p.n}</span> items · {p.interpretation} · <span className="num" title="Instance fingerprint (FNV-1a of the exact instance)">{fp.slice(0, 8)}</span></>}
@@ -335,13 +335,13 @@ export default function Studio() {
               ? <button type="button" className="ws-btn" onClick={cancel} data-testid="cancel">Cancel</button>
               : null}
             <button type="button" className="ws-btn ws-btn-primary" onClick={run} disabled={!p || !solverOk || running} data-testid="run" title="Run (Ctrl/⌘ + Enter)">
-              {running ? "Running…" : "Run optimization"}
+              {running ? "Optimizing…" : "Optimize"}
             </button>
             <button type="button" className="ws-btn ws-btn-ghost px-2" onClick={() => { const t = theme === "dark" ? "light" : "dark"; setTheme(t); try { kv()?.setItem(THEME_KEY, t); } catch { /* storage disabled */ } }} aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`} title="Theme">
               {theme === "dark" ? <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden><circle cx="8" cy="8" r="3.2" fill="none" stroke="currentColor" strokeWidth="1.5" /><path d="M8 1v2M8 13v2M1 8h2M13 8h2M3 3l1.4 1.4M11.6 11.6 13 13M3 13l1.4-1.4M11.6 4.4 13 3" stroke="currentColor" strokeWidth="1.5" /></svg>
                 : <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5Z" fill="none" stroke="currentColor" strokeWidth="1.5" /></svg>}
             </button>
-            <button type="button" className="ws-btn ws-btn-ghost hidden px-2 lg:inline-flex" onClick={() => setInspector((v) => !v)} aria-pressed={inspector} aria-label={inspector ? "Hide inspector" : "Show inspector"} title="Inspector">
+            <button type="button" className="ws-btn ws-btn-ghost px-2" onClick={() => setInspector((v) => !v)} aria-pressed={inspector} aria-label={inspector ? "Hide inspector" : "Show inspector"} title="Inspector">
               <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden><rect x="1.5" y="2.5" width="13" height="11" rx="1.5" fill="none" stroke="currentColor" strokeWidth="1.4" /><path d="M10 2.5v11" stroke="currentColor" strokeWidth="1.4" /></svg>
             </button>
           </div>
@@ -367,12 +367,7 @@ export default function Studio() {
               );
             })}
           </ul>
-          <div className="mt-6 hidden space-y-1 text-[11.5px] ws-faint lg:block">
-            <p>Ctrl/⌘ + Enter runs</p><p>Alt + 1…6 switches</p><p>Esc cancels a run</p>
-            <p className="pt-3"><Link className="hover:underline" href="/docs/">Documentation</Link></p>
-            <p><Link className="hover:underline" href="/docs/#statuses">What the statuses mean</Link></p>
-            <p><Link className="hover:underline" href="/verify/">Verification center</Link></p>
-          </div>
+          <div className="mt-5 hidden text-[12px] ws-faint lg:block"><Link className="hover:underline" href="/docs/">Help &amp; documentation</Link></div>
         </nav>
 
         {/* ------------------------------------------------------------ workspace */}
@@ -403,7 +398,7 @@ export default function Studio() {
         </main>
 
         {/* ------------------------------------------------------------ inspector (right column on large screens, below on small) */}
-        <aside aria-label="Inspector" className={`ws-noprint relative shrink-0 border-t lg:w-[280px] lg:border-l lg:border-t-0 xl:w-[var(--insp)] ${inspector ? "" : "lg:hidden"}`}
+        <aside aria-label="Inspector" className={`ws-noprint relative shrink-0 border-t lg:w-[280px] lg:border-l lg:border-t-0 xl:w-[var(--insp)] ${inspector ? "" : "hidden"}`}
           style={{ borderColor: "var(--ws-line)", ["--insp" as string]: `${inspectorW}px` } as React.CSSProperties}>
           <div role="separator" aria-orientation="vertical" aria-label="Resize inspector (arrow keys)" aria-valuenow={inspectorW} aria-valuemin={280} aria-valuemax={560} tabIndex={0}
             className="absolute left-0 top-0 z-10 hidden h-full w-1.5 -translate-x-1/2 cursor-col-resize hover:bg-[var(--ws-line-strong)] focus:bg-[var(--ws-line-strong)] xl:block"
@@ -426,7 +421,7 @@ function InspectorBody({ p, profile, job, live, elapsed, result, stale, setView 
     <div className="space-y-5">
       <section aria-labelledby="insp-run">
         <h3 id="insp-run" className="text-[13px] font-semibold ws-text">Run</h3>
-        {!job && <p className="ws-sub mt-1">No run yet. Press Run optimization (or Ctrl/⌘ + Enter).</p>}
+        {!job && <p className="ws-sub mt-1">Ready to optimize.</p>}
         {job && (
           <div className="mt-2 space-y-2" role="status" aria-live="polite" data-testid="job-status">
             <div className="flex items-center justify-between gap-2 text-[12.5px]">
@@ -435,8 +430,8 @@ function InspectorBody({ p, profile, job, live, elapsed, result, stale, setView 
             </div>
             {job.state === "running" && <RunMonitor p={job.problem} live={live} solver={job.solver} maxStates={job.maxStates} elapsed={elapsed} progress={job.progress} />}
             {job.error && <p className="text-[12.5px] ws-back" data-testid="job-error">{job.error}</p>}
-            {job.state === "failed" && <p className="ws-sub">Nothing was lost: your problem and settings are unchanged. Increase the time limit or state budget, or choose the heuristic, then run again.</p>}
-            {job.state === "cancelled" && <p className="ws-sub">Cancelled: the solver worker was terminated. No partial result is reported.</p>}
+            {job.state === "failed" && <p className="ws-sub">Try a longer time limit or a different solver.</p>}
+            {job.state === "cancelled" && <p className="ws-sub">Run cancelled. No partial result saved.</p>}
             {job.state === "completed" && result && !stale && <button type="button" className="ws-btn w-full" onClick={() => setView("results")}>Open results</button>}
           </div>
         )}
@@ -475,8 +470,8 @@ function NoResult({ running, onSolver }: { running: boolean; onSolver: () => voi
   return (
     <div className="ws-panel flex min-h-[360px] flex-col items-center justify-center gap-2 p-8 text-center">
       <p className="ws-h">{running ? "Solving…" : "No result yet"}</p>
-      <p className="ws-sub max-w-md">{running ? "Live measurements appear in the inspector. The page stays responsive; you can keep exploring the problem." : "Run a solver to see the optimized ordering, its objective, any proven bound and the search statistics. Everything runs in your browser."}</p>
-      {!running && <button type="button" className="ws-btn mt-2" onClick={onSolver}>Choose a solver</button>}
+      <p className="ws-sub max-w-md">{running ? "Optimization in progress. Open the inspector for details." : "Click Optimize to see your result."}</p>
+      {!running && <button type="button" className="ws-btn mt-2" onClick={onSolver}>Solver settings</button>}
     </div>
   );
 }
