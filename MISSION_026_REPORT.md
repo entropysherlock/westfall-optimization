@@ -1,6 +1,6 @@
 # Mission 026 — Website reconstruction and Optimization Studio
 
-**Branch:** `product/westfall-studio` (based on `main` at `ecc15c5`). **Pull request:** #5.
+**Branch:** `product/westfall-studio` (based on `main` at `ecc15c5`). **Pull request:** [#5](https://github.com/entropysherlock/westfall-optimization/pull/5), merged as `84b2962`.
 The Lean research branch `formal/westfall-theorem` was not modified.
 
 ## 1. Architecture decisions
@@ -124,13 +124,25 @@ The Lean research branch `formal/westfall-theorem` was not modified.
 
 ## 7. Deployment status
 
-See the final summary for the merge commit, the Pages workflow run and the live verification. The website is deployed by
-the existing Pages workflow on push to `main`.
+| Item | Evidence |
+|---|---|
+| PR #5 merged into `main` | merge commit [`84b2962`](https://github.com/entropysherlock/westfall-optimization/commit/84b296280a608a15ba85b46f9c57c9fae3f1cf3d) |
+| CI on the final PR head `3cabbcb` | [run 43427128963](https://github.com/entropysherlock/westfall-optimization/actions/runs/43427128963): website (typecheck, lint, unit tests, link check, build, **21 Playwright tests**), service (**16**), Python 3.11 and 3.13 (**19** each), all success |
+| CI on the merge commit | [run 43427472938](https://github.com/entropysherlock/westfall-optimization/actions/runs/43427472938): success |
+| GitHub Pages deployment of the merge commit | [run 43427472977](https://github.com/entropysherlock/westfall-optimization/actions/runs/43427472977): build and deploy success |
+| Dependency security audit | [run 43427473007](https://github.com/entropysherlock/westfall-optimization/actions/runs/43427473007): success (artifact; 0 high, 0 critical) |
+| Live site serves the new application | The live pages `/studio/` and `/formal-verification/` were fetched after deployment. They contain the Studio panels, examples and solvers, and the eight-declaration table with its qualification callouts. |
+| Production build behaves correctly | The merge commit was rebuilt locally with `NEXT_PUBLIC_BASE_PATH=/westfall-optimization` (the Pages configuration) and driven in Chrome. AutoCut and subset DP each returned optimum 15 (“Optimality established”); the heuristic returned 15 (“Feasible solution only”); `/lab/` redirected; there were no console errors and no failed requests. |
 
-**The job service is not deployed.** It requires the owner to choose a hosting account and billing, then set
-`STUDIO_API_URL`. Until then, the Studio states that no remote service is configured.
+**Limits of the live verification.** This workspace cannot open `github.io` in a browser: its network allowlist blocks
+it, and it also blocks downloading the Pages artifact. The live check therefore confirms the served content, and the
+solver behaviour was confirmed on an identical-source build under the production base path, not by clicking through
+the live site. A one-minute manual check on the live site is recommended.
 
-**The contact form is not connected.** It requires a form-delivery endpoint registered by the owner (`CONTACT_ENDPOINT`).
+**Not deployed.**
+- The job service needs a hosting account and billing decision by the owner, then the `STUDIO_API_URL` repository
+  variable. Until then, the Studio states that no remote service is configured.
+- The contact form needs a form-delivery endpoint registered by the owner (`CONTACT_ENDPOINT`).
 
 ## 8. Commercial readiness
 
