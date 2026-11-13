@@ -3,7 +3,7 @@ import { ButtonLink, Callout, EvidenceTag, PageHeader, Section } from "@/compone
 import { Tex } from "@/components/Tex";
 import { blob, leanBlob } from "@/lib/site";
 
-export const metadata = { title: "Westfall Structural Optimization Theorem", description: "Statements, supporting lemmas, proof outline and verification status of the structural theorem for exact weighted linear ordering." };
+export const metadata = { title: "Structural decomposition theorem", description: "Statements, supporting lemmas, proof outline and verification status of the structural theorem for exact weighted linear ordering." };
 
 const results: [string, string, string, string, "lean" | "proved" | "provisional"][] = [
   ["Theorem 1", "Optimal-prefix localization", "Every prefix S of every optimal ordering satisfies cut_A(S) ≤ λ(A), where cut_A counts weak-majority arcs entering S.", "optimal_prefix_width_bound", "lean"],
@@ -19,7 +19,7 @@ const results: [string, string, string, string, "lean" | "proved" | "provisional
 export default function Theorem() {
   return (
     <>
-      <PageHeader kicker="Westfall Structural Optimization Theorem" title="Automatic structural decomposition for exact weighted linear ordering">
+      <PageHeader kicker="Structural decomposition theorem · Lean-checked · not peer reviewed" title="Automatic structural decomposition for exact weighted linear ordering">
         The theorem identifies an intrinsic parameter λ(A) of a weighted ordering instance and gives an algorithm that recovers a partition attaining it and solves the instance exactly, in time subexponential in √λ. Its correctness and its operation-count bound are kernel-checked in Lean. The original manuscript is published in full. Novelty and significance have not been externally reviewed.
         <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="lean" /><EvidenceTag kind="provisional" /></div>
         <div className="mt-6 flex flex-wrap gap-3">

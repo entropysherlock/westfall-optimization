@@ -1,5 +1,6 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import type { CertificateLike, Verdict } from "@/lib/studio/certverify";
 import { parseCertificate, Reject, verifyCertificate, type Certificate } from "@/lib/verify";
 import { asset } from "@/lib/site";
 import { StatusBadge, type Status } from "./ui";
@@ -94,6 +95,8 @@ export default function VerifyCenter({ items }: { items: Item[] }) {
         </button>
       </div>
 
+      <AtlasUpload />
+
       <div className="lg:col-span-2" aria-live="polite">
         {out && (
           <div className={`card p-6 ${out.status === "CERTIFICATE_REJECTED" ? "border-signal-red/50" : "border-signal-green/40"}`}>
@@ -102,6 +105,72 @@ export default function VerifyCenter({ items }: { items: Item[] }) {
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+/** ATLAS-032 certificates (Studio export or verify_certificate.py format), checked by the independent
+ *  in-browser verifier in its own worker. Several certificates in one file are checked in turn. */
+function AtlasUpload() {
+  const [items, setItems] = useState<[string, CertificateLike][] | null>(null);
+  const [note, setNote] = useState<string | null>(null);
+  const [res, setRes] = useState<{ name: string; v: Verdict }[]>([]);
+  const [busy, setBusy] = useState(false);
+  const wref = useRef<Worker | null>(null);
+  useEffect(() => () => wref.current?.terminate(), []);
+  const onFile = async (f: File | undefined) => {
+    setRes([]); setItems(null); setNote(null);
+    if (!f) return;
+    if (f.size > 20e6) { setNote("file larger than 20 MB"); return; }
+    try {
+      const d = JSON.parse(await f.text());
+      const list: [string, CertificateLike][] = d && Array.isArray(d.A) ? [[f.name, d]] : Object.entries(d ?? {}).filter(([, v]) => v && Array.isArray((v as CertificateLike).A)) as [string, CertificateLike][];
+      if (!list.length) { setNote("no ATLAS-032 certificate found in this file"); return; }
+      setItems(list); setNote(`${list.length} certificate${list.length > 1 ? "s" : ""} loaded from ${f.name}`);
+    } catch { setNote("the file is not valid JSON"); }
+  };
+  const run = () => {
+    if (!items) return;
+    setBusy(true); setRes([]);
+    const queue = items.slice();
+    const next = () => {
+      const it = queue.shift();
+      if (!it) { setBusy(false); wref.current?.terminate(); wref.current = null; return; }
+      const w = new Worker(new URL("../lib/studio/verify.worker.ts", import.meta.url));
+      wref.current = w;
+      w.onmessage = (ev: MessageEvent<{ type: string; verdict?: Verdict; message?: string }>) => {
+        w.terminate();
+        const v: Verdict = ev.data.verdict ?? { verdict: "REJECTED", reason: ev.data.message ?? "verifier error", components: [], F: null, beta: null, ms: 0 };
+        setRes((r) => [...r, { name: it[0], v }]);
+        next();
+      };
+      w.onerror = (e) => { w.terminate(); setRes((r) => [...r, { name: it[0], v: { verdict: "UNDECIDED", reason: e.message || "verifier crashed (possibly out of memory)", components: [], F: null, beta: null, ms: 0 } }]); next(); };
+      w.postMessage({ cert: it[1], maxStates: 2_000_000 });
+    };
+    next();
+  };
+  const cancel = () => { wref.current?.terminate(); wref.current = null; setBusy(false); };
+  const st = (v: Verdict["verdict"]): Status => (v === "ACCEPTED" ? "PROVED_OPTIMAL" : v === "REJECTED" ? "CERTIFICATE_REJECTED" : "UNRESOLVED");
+  return (
+    <div className="card p-6 lg:col-span-2" data-testid="atlas-upload">
+      <p className="kicker mb-3">ATLAS-032 optimality certificate</p>
+      <p className="text-sm text-fog-400">Certificates exported from the Studio&apos;s Certificate tab, or files in the format of <code className="text-cyan-300">benchmarks/atlas-032/verify_certificate.py</code>. They are checked by a separate verifier that imports no solver code and uses exact integer arithmetic; it is a computational check, not a formal proof. Files never leave your browser.</p>
+      <div className="mt-4 flex flex-wrap items-end gap-3">
+        <label className="block text-xs text-fog-500">Certificate JSON
+          <input type="file" accept=".json,application/json" onChange={(e) => onFile(e.target.files?.[0])} className="mt-1 block w-full text-sm text-fog-300 file:mr-3 file:rounded-lg file:border-0 file:bg-ink-700 file:px-3 file:py-1.5 file:text-fog-100" />
+        </label>
+        <button disabled={!items || busy} onClick={run} className="rounded-lg bg-ink-700 px-4 py-2 text-sm text-fog-100 hover:bg-ink-600 disabled:opacity-40">{busy ? "Verifying…" : "Verify"}</button>
+        {busy && <button onClick={cancel} className="text-sm text-cyan-300 underline">Cancel</button>}
+      </div>
+      {note && <p className="mt-2 text-xs text-fog-500" role="status">{note}</p>}
+      {res.length > 0 && (
+        <ul className="mt-4 space-y-2" aria-live="polite">
+          {res.map(({ name, v }) => (
+            <li key={name} className="flex flex-wrap items-center gap-3 text-sm"><StatusBadge status={st(v.verdict)} label={v.verdict} /><span className="font-medium text-fog-100">{name}</span>
+              <span className="text-fog-400">{v.reason}{v.F ? ` · F = ${v.F}, β = ${v.beta}` : ""}</span><span className="font-mono text-xs text-fog-500">{v.ms.toFixed(0)} ms</span></li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 }

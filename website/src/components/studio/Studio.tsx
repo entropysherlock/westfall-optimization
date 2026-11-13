@@ -1,11 +1,14 @@
 "use client";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { parseInput, LIMITS, type Interpretation, type ParseError } from "@/lib/studio/parse";
 import { buildProblem, maximises, pairContributions, type Problem } from "@/lib/studio/model";
 import { SOLVERS, type SolverId } from "@/lib/studio/solvers";
-import { backwardReduction, improvement, instanceJson, resultCsv, resultJson, resultMarkdown, STUDIO_VERSION, type SolveResult } from "@/lib/studio/report";
-import { fromWire, type WireJob, type WireResult } from "@/lib/studio/runner";
+import { STATUS_LABEL, backwardReduction, improvement, instanceJson, resultCsv, resultJson, resultMarkdown, STUDIO_VERSION, type SolveResult } from "@/lib/studio/report";
+import { ATLAS_DEFAULTS, fromWire, type AtlasSettings, type WireJob, type WireResult } from "@/lib/studio/runner";
+import { recommendSolver, type Recommendation } from "@/lib/studio/select";
+import { parseQ } from "@/lib/studio/rational";
+import type { Verdict } from "@/lib/studio/certverify";
 import { EXAMPLES, largeExample, type Example } from "@/lib/studio/examples";
 import { ArcDiagram, GraphView, MatrixHeatmap } from "./Viz";
 import RemotePanel from "./RemotePanel";
@@ -39,6 +42,19 @@ const fmtQ = (q: { toDecimal: (d?: number) => string; toString: () => string }) 
 
 let jobCounter = 0;
 
+type Tab = "ordering" | "matrix" | "graph" | "pairs" | "structure" | "search" | "certificate";
+
+/** One run on the current instance, for the comparison table (same input, the settings shown). */
+interface RunRecord { solver: string; status: string; objective: string; bound: string | null; gap: string | null; ms: number; states: string; certificate: boolean; bound_kind: string }
+function runRecord(r: SolveResult): RunRecord {
+  const states = r.details["exact states (all components)"] ?? r.details["prefix states"] ?? r.details["prefix states generated"] ?? r.details["reachable cuts"] ?? "—";
+  return { solver: r.solverLabel, status: r.status, objective: r.objective.toDecimal(4), bound: r.atlas?.objectiveBound ? parseQ(r.atlas.objectiveBound)!.toDecimal(4) : null,
+    gap: r.atlas?.gap ? parseQ(r.atlas.gap)!.toDecimal(4) : r.status === "OPTIMAL" ? "0" : null, ms: r.runtimeMs, states: String(states), certificate: !!r.atlas?.certificate,
+    bound_kind: r.atlas ? `${r.atlas.settings.bound}${r.atlas.settings.strict ? ", strict" : ""}${r.atlas.settings.decompose ? "" : ", no decomposition"}` : "—" };
+}
+
+
+
 export default function Studio() {
   const [text, setText] = useState(EXAMPLES[0].text);
   const [format, setFormat] = useState<Format>(EXAMPLES[0].format);
@@ -47,13 +63,17 @@ export default function Studio() {
   const [fileNote, setFileNote] = useState<string | null>(null);
   const [nameEdits, setNameEdits] = useState<Record<number, string>>({});
   const [initialOverride, setInitialOverride] = useState<number[] | null>(null);
-  const [solver, setSolver] = useState<SolverId>("autocut");
+  const [manualSolver, setManualSolver] = useState<SolverId>("atlas");
+  // follow the recommendation until the user picks a solver by hand; reset when new data is loaded
+  const [followRec, setFollowRec] = useState(true);
+  const [atlasCfg, setAtlasCfg] = useState<Required<Omit<AtlasSettings, "incumbentMs">> & { incumbentMs: number | null }>({ ...ATLAS_DEFAULTS });
+  const [history, setHistory] = useState<{ key: string; runs: RunRecord[] }>({ key: "", runs: [] });
   const [timeLimit, setTimeLimit] = useState(30);
   const [seed, setSeed] = useState(1);
   const [bfCheck, setBfCheck] = useState(true);
   const [job, setJob] = useState<Job | null>(null);
   const [result, setResult] = useState<{ problem: Problem; r: SolveResult } | null>(null);
-  const [tab, setTab] = useState<"ordering" | "matrix" | "graph" | "pairs" | "structure">("ordering");
+  const [tab, setTab] = useState<Tab>("ordering");
   const [now, setNow] = useState(0);
   const workerRef = useRef<Worker | null>(null);
   const resultsRef = useRef<HTMLDivElement | null>(null);
@@ -74,16 +94,12 @@ export default function Studio() {
   }, [text, format, interp, nameEdits, initialOverride]);
   const p = built.problem;
 
+  const rec = useMemo(() => (p ? recommendSolver(p) : null), [p]);
+  // the active solver is derived: the recommendation while following it, otherwise the user's choice
+  const solver: SolverId = followRec && rec ? rec.solver : manualSolver;
+  const instanceKey = useMemo(() => (p ? JSON.stringify(instanceJson(p)) : ""), [p]);
   const solverInfo = SOLVERS.find((s) => s.id === solver)!;
   const solverOk = p ? p.n <= solverInfo.maxN : false;
-
-  // choose a sensible solver when the size changes
-  const pickSolver = useCallback((n: number) => {
-    if (n <= 9) return "autocut" as const;
-    if (n <= 18) return "subset-dp" as const;
-    if (n <= 24) return "exclusion" as const;
-    return "heuristic" as const;
-  }, []);
 
   const loadExample = (ex: Example) => {
     setText(ex.text);
@@ -93,8 +109,7 @@ export default function Studio() {
     setNameEdits({});
     setInitialOverride(null);
     setFileNote(null);
-    const parsed = parseInput(ex.text, ex.format);
-    if (parsed.ok) setSolver(pickSolver(parsed.value.names.length));
+    setFollowRec(true);
   };
 
   const onFile = async (f: File | undefined) => {
@@ -112,8 +127,7 @@ export default function Studio() {
     setNameEdits({});
     setInitialOverride(null);
     setFileNote(`Loaded “${f.name}” (${f.size.toLocaleString("en-US")} bytes).`);
-    const parsed = parseInput(t, isJson ? "json" : "auto");
-    if (parsed.ok) setSolver(pickSolver(parsed.value.names.length));
+    setFollowRec(true);
   };
 
   // ---------- jobs ----------
@@ -140,13 +154,16 @@ export default function Studio() {
     setNow(startedAt);
     setJob({ id, state: "running", startedAt, progress: null, solver });
     const msg: WireJob = { id: jobCounter, instance: instanceJson(snapshot), interpretation: snapshot.interpretation, solver,
-      config: { timeLimitMs: timeLimit * 1000, seed, bruteForceCheck: bfCheck } };
+      config: { timeLimitMs: timeLimit * 1000, seed, bruteForceCheck: bfCheck, atlas: solver === "atlas" ? atlasCfg : undefined } };
     w.onmessage = (ev: MessageEvent<{ type: string; fraction?: number; note?: string; result?: WireResult; message?: string }>) => {
       const d = ev.data;
       if (d.type === "progress") setJob((j) => (j && j.id === id ? { ...j, progress: { fraction: d.fraction!, note: d.note! } } : j));
       else if (d.type === "done") {
         stopWorker();
-        setResult({ problem: snapshot, r: fromWire(d.result!) });
+        const rr = fromWire(d.result!);
+        setResult({ problem: snapshot, r: rr });
+        const key = JSON.stringify(instanceJson(snapshot));
+        setHistory((h) => ({ key, runs: [...(h.key === key ? h.runs : []), runRecord(rr)].slice(-8) }));
         setJob((j) => (j && j.id === id ? { ...j, state: "completed", finishedAt: performance.now() } : j));
         setTab(d.result!.structure ? "structure" : "ordering");
         // bring the results into view (they may be off-screen after scrolling to the Run button)
@@ -237,11 +254,12 @@ export default function Studio() {
         <Panel step="3" title="Solve">
           <fieldset disabled={running} className="space-y-3">
             <legend className="sr-only">Solver selection</legend>
+            {rec && <Recommended rec={rec} current={solver} use={() => setFollowRec(true)} />}
             {SOLVERS.map((s) => {
               const tooBig = p ? p.n > s.maxN : false;
               return (
                 <label key={s.id} className={`flex cursor-pointer gap-3 rounded-md border p-3 ${solver === s.id ? "border-navy-700/50 bg-ink-900" : "border-line"} ${tooBig ? "opacity-50" : ""}`}>
-                  <input type="radio" name="solver" value={s.id} checked={solver === s.id} onChange={() => setSolver(s.id)} className="mt-1 accent-[#0f766e]" />
+                  <input type="radio" name="solver" value={s.id} checked={solver === s.id} onChange={() => { setManualSolver(s.id); setFollowRec(false); }} className="mt-1 accent-[#0f766e]" />
                   <span>
                     <span className="flex flex-wrap items-center gap-2 text-sm font-semibold text-fog-100">
                       {s.label}
@@ -269,6 +287,7 @@ export default function Studio() {
               <input type="checkbox" checked={bfCheck} onChange={(e) => setBfCheck(e.target.checked)} className="accent-[#0f766e]" />
               Independent exhaustive check when n ≤ 9
             </label>
+            {solver === "atlas" && <AtlasSettingsPanel cfg={atlasCfg} setCfg={setAtlasCfg} />}
           </fieldset>
           <div className="mt-4 flex flex-wrap items-center gap-3">
             <button type="button" className="btn-primary" onClick={run} disabled={!p || !solverOk || running} data-testid="run">
@@ -287,7 +306,8 @@ export default function Studio() {
       <div className="min-w-0 scroll-mt-20" ref={resultsRef}>
         {result ? (
           <Results problem={result.problem} r={result.r} tab={tab} setTab={setTab}
-            useAsInitial={() => { setInitialOverride(result.r.order.slice()); }} />
+            useAsInitial={() => { setInitialOverride(result.r.order.slice()); }}
+            runs={history.key === instanceKey ? history.runs : []} />
         ) : (
           <div className="card flex min-h-[420px] flex-col items-center justify-center p-10 text-center">
             <p className="kicker">Results</p>
@@ -415,7 +435,7 @@ function JobStatus({ job, elapsed }: { job: Job; elapsed: number }) {
   );
 }
 
-function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Problem; r: SolveResult; tab: string; setTab: (t: "ordering" | "matrix" | "graph" | "pairs" | "structure") => void; useAsInitial: () => void }) {
+function Results({ problem: p, r, tab, setTab, useAsInitial, runs }: { problem: Problem; r: SolveResult; tab: Tab; setTab: (t: Tab) => void; useAsInitial: () => void; runs: RunRecord[] }) {
   const imp = improvement(p, r.initialObjective, r.objective);
   const bred = backwardReduction(r.backwardInitial, r.backwardFinal);
   const v = r.verification;
@@ -432,7 +452,7 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
         <div className="flex flex-wrap items-center gap-2">
           <span data-testid="status-badge" className={`inline-flex items-center gap-2 rounded-full border px-3 py-1 text-sm font-semibold ${optimal ? "border-signal-green/30 bg-signal-green/5 text-signal-green" : "border-signal-amber/30 bg-signal-amber/5 text-signal-amber"}`}>
             <span className="h-2 w-2 rounded-full bg-current" aria-hidden />
-            {optimal ? "Optimality established" : "Feasible solution only"}
+            {STATUS_LABEL[r.status] ?? r.status}
           </span>
           {verified && <span data-testid="verified-badge" className="inline-flex rounded-full border border-navy-700/25 bg-ink-900 px-3 py-1 text-sm font-semibold text-navy-800">Verification passed</span>}
           <span className="inline-flex rounded-full border border-line px-3 py-1 text-xs text-fog-500">Browser solver · not the Lean-verified executable</span>
@@ -459,6 +479,7 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
             </ul>
           </div>
         </div>
+        {r.atlas && <BoundsRow p={p} r={r} />}
         <div className="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
           <button type="button" className="btn-secondary py-2" data-testid="export-json" onClick={() => download(`${base}.json`, JSON.stringify(resultJson(p, r), null, 2), "application/json")}>Export JSON</button>
           <button type="button" className="btn-secondary py-2" data-testid="export-csv" onClick={() => download(`${base}-order.csv`, resultCsv(p, r), "text/csv")}>Export CSV</button>
@@ -470,7 +491,7 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
 
       <section className="card p-6">
         <div className="flex flex-wrap gap-1 rounded-lg bg-ink-850 p-1" role="tablist" aria-label="Result views">
-          {([["ordering", "Ordering"], ["matrix", "Matrix"], ["graph", "Graph"], ["pairs", "Pairwise contributions"], ["structure", "Structure"]] as const).map(([id, label]) => (
+          {([["ordering", "Ordering"], ["matrix", "Matrix"], ["graph", "Graph"], ["pairs", "Pairwise contributions"], ["structure", "Structure"], ["search", "Search"], ["certificate", "Certificate"]] as const).map(([id, label]) => (
             <button key={id} role="tab" aria-selected={tab === id} type="button" className={`tab ${tab === id ? "tab-active" : ""}`} onClick={() => setTab(id)}>{label}</button>
           ))}
         </div>
@@ -504,6 +525,8 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
           )}
           {tab === "graph" && <GraphView M={p.M} order={r.order} names={p.names} />}
           {tab === "pairs" && <Pairs p={p} contributions={contributions} />}
+          {tab === "search" && <SearchView r={r} />}
+          {tab === "certificate" && <CertificateView p={p} r={r} base={base} />}
           {tab === "structure" && (r.structure ? (
             <div className="space-y-4 text-sm">
               <div className="grid gap-3 sm:grid-cols-4">
@@ -536,6 +559,7 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
           <div className="flex justify-between gap-4 border-b border-line py-1"><dt className="text-fog-500">Finished</dt><dd className="font-mono text-fog-100">{r.finishedAt.slice(0, 19).replace("T", " ")} UTC</dd></div>
         </dl>
       </section>
+      {runs.length > 1 && <RunsTable runs={runs} />}
     </div>
   );
 }
@@ -588,5 +612,172 @@ function Check({ ok, children }: { ok: boolean; children: React.ReactNode }) {
       <span aria-hidden className={ok ? "text-signal-green" : "text-signal-red"}>{ok ? "✓" : "✗"}</span>
       <span>{children}</span>
     </li>
+  );
+}
+
+
+/* ------------------------------ Mission 038 components ------------------------------ */
+
+function Recommended({ rec, current, use }: { rec: Recommendation; current: SolverId; use: () => void }) {
+  const label = SOLVERS.find((s) => s.id === rec.solver)?.label ?? rec.solver;
+  return (
+    <div className="rounded-md border border-navy-700/25 bg-ink-900 p-3 text-sm" data-testid="recommendation">
+      <div className="flex flex-wrap items-center justify-between gap-2">
+        <p className="font-semibold text-fog-100">Recommended: {label}</p>
+        {current !== rec.solver && <button type="button" className="btn-ghost px-2 py-1 text-xs" onClick={use}>Use recommended</button>}
+      </div>
+      <ul className="mt-1.5 list-disc space-y-0.5 pl-5 text-xs leading-relaxed text-fog-400">{rec.reasons.map((x) => <li key={x}>{x}</li>)}</ul>
+      {rec.warnings.length > 0 && <ul className="mt-1.5 list-disc space-y-0.5 pl-5 text-xs leading-relaxed text-signal-amber">{rec.warnings.map((x) => <li key={x}>{x}</li>)}</ul>}
+      <p className="mt-1.5 text-[11px] text-fog-500">
+        {rec.profile.components} strong component{rec.profile.components === 1 ? "" : "s"} · largest {rec.profile.largest} · density {(rec.profile.density * 100).toFixed(0)}% · {rec.profile.zeroPairs} tied pairs · {rec.profile.integral ? "exact integers" : "floating point"}
+      </p>
+    </div>
+  );
+}
+
+type AtlasCfg = Required<Omit<AtlasSettings, "incumbentMs">> & { incumbentMs: number | null };
+function AtlasSettingsPanel({ cfg, setCfg }: { cfg: AtlasCfg; setCfg: (f: (c: AtlasCfg) => AtlasCfg) => void }) {
+  const set = <K extends keyof AtlasCfg>(k: K, v: AtlasCfg[K]) => setCfg((c) => ({ ...c, [k]: v }));
+  return (
+    <details className="rounded-md border border-line p-3 text-sm" data-testid="atlas-settings">
+      <summary className="cursor-pointer font-medium text-fog-100">ATLAS-032 advanced settings</summary>
+      <div className="mt-3 grid gap-3">
+        <div>
+          <label className="label" htmlFor="atlas-bound">Residual lower bound L(V∖S)</label>
+          <select id="atlas-bound" className="field mt-1.5" value={cfg.bound} onChange={(e) => set("bound", e.target.value as AtlasCfg["bound"])}>
+            <option value="cycles">Fractional triangles + longer cycles (default)</option>
+            <option value="fractional">Fractional triangle packing</option>
+            <option value="greedy">Greedy triangle packing</option>
+            <option value="none">None (ATLAS-031 rule)</option>
+          </select>
+        </div>
+        <div className="grid grid-cols-2 gap-3">
+          <div>
+            <label className="label" htmlFor="atlas-states">State budget per component</label>
+            <input id="atlas-states" type="number" min={1000} max={4_000_000} step={1000} className="field mt-1.5" value={cfg.maxStates}
+              onChange={(e) => set("maxStates", Math.max(1000, Math.min(4_000_000, Math.round(Number(e.target.value) || 1000))))} />
+          </div>
+          <div>
+            <label className="label" htmlFor="atlas-inc">Local search per component (ms)</label>
+            <input id="atlas-inc" type="number" min={0} max={10_000} placeholder="automatic" className="field mt-1.5" value={cfg.incumbentMs ?? ""}
+              onChange={(e) => set("incumbentMs", e.target.value === "" ? null : Math.max(0, Math.min(10_000, Math.round(Number(e.target.value)))))} />
+          </div>
+        </div>
+        <label className="flex items-center gap-2 text-fog-300"><input type="checkbox" className="accent-[#0f766e]" checked={cfg.strict} onChange={(e) => set("strict", e.target.checked)} />Strict incumbent proving (prune at β ≥ incumbent; integral input only)</label>
+        <label className="flex items-center gap-2 text-fog-300"><input type="checkbox" className="accent-[#0f766e]" checked={cfg.decompose} onChange={(e) => set("decompose", e.target.checked)} />Strong-component decomposition</label>
+        <label className="flex items-center gap-2 text-fog-300"><input type="checkbox" className="accent-[#0f766e]" checked={cfg.certificate} onChange={(e) => set("certificate", e.target.checked)} />Generate an optimality certificate</label>
+        <p className="text-xs leading-relaxed text-fog-500">Bounds and certificates apply only to exact integer models. The state budget caps memory: a component that exceeds it is reported as interrupted with its best ordering and a rigorous gap. <Link className="text-accent-600 underline" href="/docs/#atlas">What these settings do</Link>.</p>
+        <button type="button" className="btn-ghost w-fit px-2 py-1 text-xs" onClick={() => setCfg(() => ({ ...ATLAS_DEFAULTS }))}>Restore defaults</button>
+      </div>
+    </details>
+  );
+}
+
+function BoundsRow({ p, r }: { p: Problem; r: SolveResult }) {
+  const a = r.atlas!;
+  const maxi = maximises(p);
+  if (!a.objectiveBound) return <p className="mt-3 text-xs text-fog-500">No rigorous bound: the model is not in exact integer arithmetic.</p>;
+  const gap = parseQ(a.gap!)!;
+  return (
+    <div className="mt-3 grid gap-3 sm:grid-cols-3" data-testid="bounds">
+      <Metric label={maxi ? "Rigorous upper bound" : "Rigorous lower bound"} value={fmtQ(parseQ(a.objectiveBound)!)} hint="No ordering can do better. Derived from β* ≥ Σ component bounds (cycle packing, PROOFS.md Lemmas 1–5)." testId="objective-bound" />
+      <Metric label="Optimality gap" value={gap.isZero() ? "0 (proved)" : fmtQ(gap)} hint={a.gapPercent !== null ? `${a.gapPercent.toFixed(3)}% of |objective|` : undefined} testId="gap" />
+      <Metric label="Lower bound on β*" value={fmtQ(parseQ(a.lowerBoundBeta!)!)} hint={`returned ordering: β = ${r.backwardFinal.toDecimal(4)}`} />
+    </div>
+  );
+}
+
+function SearchView({ r }: { r: SolveResult }) {
+  if (!r.atlas) return <p className="text-sm text-fog-400">Per-component search statistics are reported by the ATLAS-032 solver. The run details below list what this solver measures.</p>;
+  const a = r.atlas;
+  return (
+    <div className="space-y-4 text-sm" data-testid="search-view">
+      <p className="text-fog-400">Settings: bound <span className="font-mono">{a.settings.bound}</span>, strict {a.settings.strict ? "on" : "off"}, decomposition {a.settings.decompose ? "on" : "off"}, state budget {a.settings.maxStates.toLocaleString("en-US")} per component.</p>
+      <div className="max-h-[420px] overflow-auto rounded-lg border border-line">
+        <table className="table-clean">
+          <thead><tr><th>#</th><th>Size</th><th>Method</th><th>Proved</th><th>States</th><th>Pruned</th><th>Root bound</th><th>Time</th></tr></thead>
+          <tbody>{a.components.map((c, i) => (
+            <tr key={i}><td className="font-mono">{i + 1}</td><td className="font-mono">{c.size}</td><td>{c.method}</td>
+              <td className={c.optimal ? "text-signal-green" : "text-signal-amber"}>{c.optimal ? "yes" : "no"}</td>
+              <td className="font-mono">{c.states.toLocaleString("en-US")}</td><td className="font-mono">{c.pruned?.toLocaleString("en-US") ?? "—"}</td>
+              <td className="font-mono">{c.rootLB !== null ? c.rootLB.toFixed(2) : "—"}</td><td className="font-mono">{c.ms} ms</td></tr>
+          ))}</tbody>
+        </table>
+      </div>
+      <p className="text-xs text-fog-500">Root bound: the packing lower bound on the component&apos;s backward weight before search (units of the scaled integer matrix). States: prefix sets kept by the cut-bounded DP (or 2^size for the subset DP).</p>
+    </div>
+  );
+}
+
+function CertificateView({ p, r, base }: { p: Problem; r: SolveResult; base: string }) {
+  const a = r.atlas;
+  const [state, setState] = useState<{ running: boolean; verdict: Verdict | null; error: string | null }>({ running: false, verdict: null, error: null });
+  const wref = useRef<Worker | null>(null);
+  useEffect(() => () => wref.current?.terminate(), []);
+  if (!a) return <p className="text-sm text-fog-400">Exportable optimality certificates are produced by the ATLAS-032 solver for proved results on exact integer models. Other solvers report their own checks under Verification.</p>;
+  const cert = a.certificate;
+  if (!cert) return <p className="text-sm text-fog-400" data-testid="no-certificate">No certificate for this run: {a.certificateNote}.</p>;
+  const packed = cert.components.filter((c) => c.packing).length;
+  const verify = () => {
+    wref.current?.terminate();
+    const w = new Worker(new URL("../../lib/studio/verify.worker.ts", import.meta.url));
+    wref.current = w;
+    setState({ running: true, verdict: null, error: null });
+    w.onmessage = (ev: MessageEvent<{ type: string; verdict?: Verdict; message?: string }>) => {
+      w.terminate(); wref.current = null;
+      setState({ running: false, verdict: ev.data.verdict ?? null, error: ev.data.message ?? null });
+    };
+    w.onerror = (e) => { w.terminate(); wref.current = null; setState({ running: false, verdict: null, error: e.message || "the verifier worker crashed (possibly out of memory)" }); };
+    w.postMessage({ cert, maxStates: 2_000_000 });
+  };
+  const cancelVerify = () => { wref.current?.terminate(); wref.current = null; setState({ running: false, verdict: null, error: "verification cancelled; no verdict" }); };
+  const v = state.verdict;
+  return (
+    <div className="space-y-4 text-sm" data-testid="certificate-view">
+      <p className="text-fog-400">This certificate claims that the ordering below is optimal for the integer matrix M = {cert.scale} · A, with backward weight β = {cert.claimedBeta} and F<sub>M</sub> = {cert.claimedFA}. It lists the strong components in a topological order and, for each, its ordering, β and the cycle packing used as a lower bound.</p>
+      <dl className="grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+        <div className="flex justify-between gap-4 border-b border-line py-1"><dt className="text-fog-500">Claimed objective ({p.interpretation})</dt><dd className="font-mono text-fog-100">{r.objective.toDecimal(4)}</dd></div>
+        <div className="flex justify-between gap-4 border-b border-line py-1"><dt className="text-fog-500">Components · with packings</dt><dd className="font-mono text-fog-100">{cert.components.length} · {packed}</dd></div>
+        <div className="flex justify-between gap-4 border-b border-line py-1"><dt className="text-fog-500">Packing lower bound (Σ components)</dt><dd className="font-mono text-fog-100">{a.components.reduce((s, c) => s + (c.rootLB ?? 0), 0).toFixed(2)}</dd></div>
+        <div className="flex justify-between gap-4 border-b border-line py-1"><dt className="text-fog-500">Exact methods used</dt><dd className="text-right text-fog-100">{[...new Set(a.components.map((c) => c.method))].join("; ")}</dd></div>
+      </dl>
+      <div className="flex flex-wrap gap-2">
+        <button type="button" className="btn-primary py-2" onClick={verify} disabled={state.running} data-testid="verify-certificate">{state.running ? "Verifying…" : "Verify independently in this browser"}</button>
+        {state.running && <button type="button" className="btn-secondary py-2" onClick={cancelVerify}>Cancel</button>}
+        <button type="button" className="btn-secondary py-2" data-testid="export-certificate"
+          onClick={() => download(`${base}-certificate.json`, JSON.stringify({ [p.title ?? base]: cert }, null, 1), "application/json")}>Export certificate (JSON)</button>
+      </div>
+      {v && (
+        <div className={`rounded-md border px-3 py-2 ${v.verdict === "ACCEPTED" ? "border-signal-green/30 bg-signal-green/5 text-signal-green" : v.verdict === "REJECTED" ? "border-signal-red/30 bg-signal-red/5 text-signal-red" : "border-signal-amber/30 bg-signal-amber/5 text-signal-amber"}`} role="status" data-testid="verdict">
+          <p className="font-semibold">{v.verdict} · {v.ms.toFixed(0)} ms</p>
+          <p className="mt-0.5 text-xs">{v.reason}</p>
+          {v.components.length > 0 && <ul className="mt-1 list-disc pl-5 text-xs">{v.components.filter((c) => c.size > 1).map((c, i) => <li key={i}>component of {c.size}: {c.how}{c.states ? ` (${c.states.toLocaleString("en-US")} states)` : ""}</li>)}</ul>}
+        </div>
+      )}
+      {state.error && <p className="text-xs text-signal-red" role="alert">{state.error}</p>}
+      <p className="text-xs leading-relaxed text-fog-500">
+        The browser verifier is a separate implementation (<span className="font-mono">certverify.ts</span>) that imports no solver code and works in exact BigInt arithmetic. For a check outside this website, run the independent Python verifier on the exported file:{" "}
+        <span className="font-mono">python3 benchmarks/atlas-032/verify_certificate.py certificate.json</span>. Both are computational checks, not Lean proofs.
+      </p>
+    </div>
+  );
+}
+
+function RunsTable({ runs }: { runs: RunRecord[] }) {
+  return (
+    <section className="card p-6 text-sm" data-testid="runs-table">
+      <h3 className="font-semibold text-fog-100">Runs on this instance</h3>
+      <p className="mt-1 text-xs text-fog-500">Same input for every row; each run used its own solver, settings and time limit as shown. Objectives are in your units.</p>
+      <div className="mt-3 overflow-x-auto">
+        <table className="table-clean">
+          <thead><tr><th>#</th><th>Solver</th><th>Status</th><th>Objective</th><th>Bound</th><th>Gap</th><th>Time</th><th>States</th><th>Bound mode</th><th>Certificate</th></tr></thead>
+          <tbody>{runs.map((x, i) => (
+            <tr key={i}><td className="font-mono">{i + 1}</td><td>{x.solver}</td><td className={x.status === "OPTIMAL" ? "text-signal-green" : "text-signal-amber"}>{STATUS_LABEL[x.status] ?? x.status}</td>
+              <td className="font-mono">{x.objective}</td><td className="font-mono">{x.bound ?? "—"}</td><td className="font-mono">{x.gap ?? "—"}</td>
+              <td className="font-mono">{x.ms < 1000 ? `${x.ms.toFixed(0)} ms` : `${(x.ms / 1000).toFixed(2)} s`}</td><td className="font-mono">{x.states}</td><td>{x.bound_kind}</td><td>{x.certificate ? "yes" : "—"}</td></tr>
+          ))}</tbody>
+        </table>
+      </div>
+    </section>
   );
 }

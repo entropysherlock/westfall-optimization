@@ -29,6 +29,14 @@ export interface AtlasResult {
   crossValue: number;
   totalStates: number;
   certificates: ComponentCertificate[];
+  /**
+   * Rigorous lower bound on the optimal backward weight β* of the whole instance (units of M):
+   * Σ over components of β (if solved exactly) or ⌈packing bound⌉ (if not; Lemmas 1–2, PROOFS.md),
+   * using OPT_β(V) = Σ OPT_β(C_i) from the decomposition theorem. Null for non-integral M.
+   */
+  lowerBoundBeta: number | null;
+  /** β of the returned ordering (units of M). */
+  beta: number;
 }
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
@@ -59,7 +67,7 @@ export interface ComponentCertificate { vertices: number[]; order: number[]; bet
 export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult {
   const n = M.length;
   const subsetMax = opts.subsetMax ?? 13;
-  if (n === 0) return { order: [], value: 0, optimal: true, interruptedReason: null, components: [], crossValue: 0, totalStates: 0, certificates: [] };
+  if (n === 0) return { order: [], value: 0, optimal: true, interruptedReason: null, components: [], crossValue: 0, totalStates: 0, certificates: [], lowerBoundBeta: 0, beta: 0 };
   const dec = opts.noDecompose ? { components: [[...Array(n).keys()]], crossValue: 0 } : strongComponents(M);
   const order: number[] = [];
   const reports: ComponentReport[] = [];
@@ -67,6 +75,8 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
   let interruptedReason: string | null = null;
   let totalStates = 0;
   const certificates: ComponentCertificate[] = [];
+  let betaTotal = 0, lbTotal = 0;
+  const integralM = M.every((row) => row.every((x) => Number.isInteger(x)));
   const boundKind = opts.bound ?? "cycles";
   const strict = opts.strict ?? true;
   for (const comp of dec.components) {
@@ -77,6 +87,7 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
     const expired = () => opts.deadline !== undefined && now() > opts.deadline;
     let local: number[] | null = null;
     let compPacking: ComponentCertificate["packing"] = null;
+    let compRootLB = 0; // ⌈packing bound⌉ for this component, kept even if the exact search is interrupted
     let rep: ComponentReport;
     if (s <= subsetMax && !expired()) {
       const r = subsetDPExact(sub);
@@ -96,6 +107,7 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
               if (boundKind === "cycles") packing = withLongerCycles(sub, packing);
             } catch { packing = null; }
           }
+          if (packing) compRootLB = Math.ceil(packing.total / packing.D);
           const r = cutBoundedDP(sub, inc.order, { maxStates: opts.maxStates ?? 1_500_000, deadline: opts.deadline, packing, strict });
           local = r.order;
           const label = `cut-bounded DP${packing ? ` + ${boundKind} triangle bound` : ""}${strict && integral ? " (strict)" : ""}`;
@@ -126,6 +138,9 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
     let cb = 0;
     for (let r = 0; r < s; r++) for (let t = r + 1; t < s; t++) cb += Math.max(sub[local![t]][local![r]], 0);
     certificates.push({ vertices: comp, order: local!.map((i) => comp[i]), beta: cb, packing: compPacking, verifiable: rep.optimal });
+    betaTotal += cb;
+    lbTotal += rep.optimal ? cb : compRootLB;
   }
-  return { order, value: scoreOf(M, order), optimal, interruptedReason, components: reports, crossValue: dec.crossValue, totalStates, certificates };
+  return { order, value: scoreOf(M, order), optimal, interruptedReason, components: reports, crossValue: dec.crossValue, totalStates, certificates,
+    lowerBoundBeta: integralM ? lbTotal : null, beta: betaTotal };
 }

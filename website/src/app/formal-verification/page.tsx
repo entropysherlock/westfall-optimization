@@ -1,4 +1,5 @@
 import { ButtonLink, Callout, EvidenceTag, PageHeader, Section } from "@/components/ui";
+import { ResearchStatusTable } from "@/components/ResearchStatus";
 import { Tex } from "@/components/Tex";
 import { leanBlob, leanTree, RESEARCH_BRANCH, RESEARCH_CI, RESEARCH_COMMIT } from "@/lib/site";
 
@@ -34,7 +35,12 @@ export default function FormalVerification() {
         </div>
       </PageHeader>
 
-      <Section kicker="Flagship declarations" title="Theorem-to-source correspondence"
+      <Section id="status" kicker="Status of every result" title="What is kernel-checked, what is proved by hand, and what is open"
+        intro="One table for the whole program. Only rows marked Lean kernel-checked are machine-verified; ATLAS-032 and the semicomplete and hyperbola-partition work are not.">
+        <ResearchStatusTable />
+      </Section>
+
+      <Section muted kicker="Flagship declarations" title="Theorem-to-source correspondence"
         intro={<>All links point to the verified commit <span className="font-mono text-base">{RESEARCH_COMMIT.slice(0, 12)}</span> on branch <span className="font-mono text-base">{RESEARCH_BRANCH}</span>. The research branch is separate from this website&apos;s branch.</>}>
         <div className="overflow-x-auto rounded-xl border border-line bg-white">
           <table className="table-clean">
@@ -54,7 +60,7 @@ export default function FormalVerification() {
         <p className="mt-4 text-sm text-fog-500">Hypotheses: rational weights, skew-symmetric input (<span className="font-mono">IsSkew A</span>) where the manuscript uses it. Ordered partitions are modelled as block-index functions. The equivalence with genuine ordered partitions, and the other modelling choices, are documented in <a className="text-accent-600 underline" href={leanBlob("FORMALIZATION_STATUS.md")}>FORMALIZATION_STATUS.md</a> and <a className="text-accent-600 underline" href={leanBlob("SEMANTIC_AUDIT_023.md")}>the semantic audit</a>.</p>
       </Section>
 
-      <Section muted kicker="The eighth theorem" title="The running-time bound and its computation model">
+      <Section kicker="The eighth theorem" title="The running-time bound and its computation model">
         <div className="grid gap-6 lg:grid-cols-2">
           <div className="card p-7">
             <p className="text-sm text-fog-400">For every skew-symmetric rational matrix <Tex>{"A"}</Tex> on <Tex>{"n"}</Tex> items, the costed program&apos;s counted cost satisfies</p>
@@ -69,7 +75,7 @@ export default function FormalVerification() {
         </div>
       </Section>
 
-      <Section kicker="Mandatory qualifications" title="What kernel verification does not establish">
+      <Section muted kicker="Mandatory qualifications" title="What kernel verification does not establish">
         <div className="grid gap-4 md:grid-cols-2">
           <Callout tone="warn" title="Sharper runtime: not established">The expression <Tex>{"\\operatorname{poly}(n)\\,P(6\\lambda)^2"}</Tex> from the manuscript has not been formally established. The proved exponent comes from linear-scan tables and the closed-form abort bound.</Callout>
           <Callout tone="warn" title="Bit complexity: not established">All arithmetic is counted at unit cost. No bound on the bit length of rational intermediate values is formalized.</Callout>
@@ -80,7 +86,7 @@ export default function FormalVerification() {
         </div>
       </Section>
 
-      <Section muted kicker="Evidence" title="Kernel build and axiom audit">
+      <Section kicker="Evidence" title="Kernel build and axiom audit">
         <div className="grid gap-4 md:grid-cols-3">
           <div className="card p-6"><h3 className="font-semibold">GitHub Actions</h3><p className="mt-2 text-sm leading-relaxed text-fog-400">The <em>Lean Foundations</em> workflow builds the full development on a clean runner from the pinned toolchain and Mathlib cache. <a className="text-accent-600 underline" href={RESEARCH_CI}>Run 43419080867</a> on commit {RESEARCH_COMMIT.slice(0, 7)} succeeded.</p></div>
           <div className="card p-6"><h3 className="font-semibold">Standard axioms only</h3><p className="mt-2 text-sm leading-relaxed text-fog-400">The workflow&apos;s axiom audit covered 963 declarations under <span className="font-mono">Westfall022</span>, all within <span className="font-mono">propext</span>, <span className="font-mono">Classical.choice</span>, <span className="font-mono">Quot.sound</span>. There is no <span className="font-mono">sorry</span>, <span className="font-mono">admit</span>, <span className="font-mono">native_decide</span> or user axiom.</p></div>

@@ -19,7 +19,7 @@ parameterizations that permit exact optimal solutions and independent
 certification on favorable instances.
 
 Discovery 019 establishes a provisional square-root bound when an ordered
-block partition is provided. The **Westfall Structural Optimization Theorem**
+block partition is provided. The **structural decomposition theorem**
 (Discovery 022) proposes an intrinsic parameter
 
 \[

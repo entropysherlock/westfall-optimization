@@ -7,6 +7,8 @@ import type { Problem } from "./model";
 import { buildProblem } from "./model";
 import { parseJsonText, type Interpretation } from "./parse";
 import { parseQ, Q } from "./rational";
+import { totalWeight, userFromFA, maximises } from "./model";
+import type { AtlasCertificate, AtlasInfo } from "./report";
 import { instanceJson, makeResult, type SolveResult } from "./report";
 import { bruteForce, exclusionExact, Interrupted, localSearch, SOLVERS, subsetDPExact, type Hooks, type SolverId } from "./solvers";
 
@@ -15,7 +17,23 @@ export interface SolveConfig {
   seed: number;
   /** Run exhaustive enumeration as an independent check when n ≤ 9 (default true). */
   bruteForceCheck?: boolean;
+  /** ATLAS-032 settings (only used by the "atlas" solver). Every option is honoured by solveAtlas. */
+  atlas?: AtlasSettings;
 }
+
+export interface AtlasSettings {
+  bound?: "none" | "greedy" | "fractional" | "cycles";
+  strict?: boolean;
+  maxStates?: number;
+  /** Local-search time per component in ms (null/undefined = size-dependent default). */
+  incumbentMs?: number | null;
+  decompose?: boolean;
+  certificate?: boolean;
+}
+
+export const ATLAS_DEFAULTS: Required<Omit<AtlasSettings, "incumbentMs">> & { incumbentMs: number | null } = {
+  bound: "cycles", strict: true, maxStates: 1_500_000, incumbentMs: null, decompose: true, certificate: true,
+};
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -42,17 +60,23 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
           details: { "prefix states generated": r.generated, "retained": r.retained, "excluded": r.excluded, "incumbent restarts": inc.starts } });
       } catch (e) {
         if (!(e instanceof Interrupted)) throw e;
-        res = makeResult(p, { ...base, status: "FEASIBLE", statusNote: `exact search interrupted (${e.message}); the local-search incumbent is returned and optimality is NOT established`,
+        res = makeResult(p, { ...base, status: "INTERRUPTED", statusNote: `exact search interrupted (${e.message}); the local-search incumbent is returned and optimality is NOT established`,
           order: inc.order, runtimeMs: now() - t0, details: { "incumbent restarts": inc.starts } });
       }
     } else if (solver === "atlas") {
-      const r = solveAtlas(p.M, { deadline, seed: config.seed });
+      const st = { ...ATLAS_DEFAULTS, ...(config.atlas ?? {}) };
+      const r = solveAtlas(p.M, {
+        deadline, seed: config.seed, bound: st.bound, strict: st.strict, maxStates: st.maxStates,
+        incumbentMs: st.incumbentMs ?? undefined, noDecompose: !st.decompose,
+      });
       const sizes = r.components.map((c) => c.size);
       const details: Record<string, string | number> = {
         "strong components": r.components.length,
         "largest component": Math.max(...sizes, 0),
         "exact states (all components)": r.totalStates,
+        "states pruned": r.components.reduce((a, c) => a + (c.pruned ?? 0), 0),
         "methods": [...new Set(r.components.map((c) => c.method))].join(", "),
+        "residual bound": st.bound + (st.strict ? ", strict" : ""),
       };
       if (r.optimal) {
         res = makeResult(p, { ...base, status: p.exact ? "OPTIMAL" : "FEASIBLE", statusNote: p.exact
@@ -62,6 +86,7 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
         res = makeResult(p, { ...base, status: "INTERRUPTED", statusNote: `exact search stopped without proof (${r.interruptedReason}); the best ordering found is returned and global optimality is NOT established`,
           order: r.order, runtimeMs: now() - t0, details });
       }
+      res.atlas = atlasInfo(p, r, st, res.objective, res.status === "OPTIMAL");
     } else if (solver === "autocut") {
       if (p.n > AUTOCUT_MAX_N) throw new Error(`AutoCut supports at most ${AUTOCUT_MAX_N} items`);
       const r = autoCut(p.A, { progress: hooks.progress, deadline });
@@ -101,6 +126,36 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
     }
   }
   return res;
+}
+
+/** Exact bound, gap and certificate for an ATLAS run. Bounds are reported only for exact integral models. */
+function atlasInfo(p: Problem, r: ReturnType<typeof solveAtlas>, st: typeof ATLAS_DEFAULTS, objective: Q, proved: boolean): AtlasInfo {
+  let lowerBoundBeta: string | null = null, objectiveBound: string | null = null, gap: string | null = null, gapPercent: number | null = null;
+  if (p.exact && r.lowerBoundBeta !== null) {
+    const lbA = Q.of(BigInt(r.lowerBoundBeta), p.scale);
+    const faBound = totalWeight(p).sub(lbA.mul(Q.of(2n))); // F_A ≤ W − 2β*
+    const ob = userFromFA(p, faBound);
+    const g = maximises(p) ? ob.sub(objective) : objective.sub(ob);
+    if (g.sign() < 0) throw new Error("internal check failed: the rigorous bound is violated by a feasible ordering");
+    if (proved && !g.isZero()) throw new Error("internal check failed: proved optimum differs from the rigorous bound");
+    lowerBoundBeta = lbA.toString(); objectiveBound = ob.toString(); gap = g.toString();
+    gapPercent = objective.isZero() ? null : Number(g.toDecimal(12)) / Math.abs(Number(objective.toDecimal(12))) * 100;
+  }
+  let certificate: AtlasCertificate | null = null;
+  let certificateNote: string;
+  if (!st.certificate) certificateNote = "certificate generation was switched off for this run";
+  else if (!p.exact) certificateNote = "no certificate: the model is not in exact integer arithmetic";
+  else if (!proved) certificateNote = "no certificate: optimality was not proved (an interrupted search has nothing to certify)";
+  else {
+    certificate = { format: "westfall-atlas-032-certificate/1", A: p.M, scale: p.scale.toString(), order: r.order, components: r.certificates,
+      claimedBeta: r.beta, claimedFA: r.value };
+    certificateNote = "optimality certificate for the integer matrix M = scale · A; check it with the independent verifier (browser or Python)";
+  }
+  return {
+    settings: { bound: st.bound, strict: st.strict, maxStates: st.maxStates, incumbentMs: st.incumbentMs, decompose: st.decompose },
+    components: r.components.map((c) => ({ size: c.size, method: c.method, optimal: c.optimal, states: c.states, pruned: c.pruned ?? null, rootLB: c.rootLB ?? null, ms: Math.round(c.ms), note: c.note ?? null })),
+    lowerBoundBeta, objectiveBound, gap, gapPercent, certificate, certificateNote,
+  };
 }
 
 /* ---------- wire format (postMessage-safe: no class instances) ---------- */

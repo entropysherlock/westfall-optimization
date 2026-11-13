@@ -142,7 +142,7 @@ function scaledCaps(M: number[][], D: number): boolean {
 }
 
 /** Greedy integral packing: repeatedly take y_T = min residual capacity, triangles in a fixed order. */
-export function greedyPacking(M: number[][], opts: { orderSeed?: number } = {}): TrianglePacking {
+export function greedyPacking(M: number[][]): TrianglePacking {
   const t0 = now();
   const n = M.length;
   const D = 1;

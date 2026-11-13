@@ -1,8 +1,10 @@
-# WESTFALL Mission 032 — ATLAS-032: Breaking the Dense-Instance Barrier
+# ATLAS-032: residual lower bounds for dense linear-ordering instances
 Caleb J. Westfall (with AI assistance) · 2026-11-13 · branch `research/atlas-032-dense-barrier`
 
-## 1. Executive verdict
-**The barrier moved decisively. The engineering and research success criteria are met; breakthrough success is not.**
+*Wording revised after the original report to remove promotional language; every result, number and limitation is unchanged.*
+
+## 1. Summary
+**On this benchmark suite ATLAS-032 proves substantially more instances than ATLAS-031, using standard techniques. It is an engineering improvement, not a new mathematical result.**
 
 On 88 identical instances (30 s, one thread, exact optimality only):
 
@@ -12,7 +14,7 @@ On 88 identical instances (30 s, one thread, exact optimality only):
 | **ATLAS-032 (E)** | **85** |
 | HiGHS 1.16 MILP, exact gap | 83 |
 
-- **First milestone met.** All six dense random and tie-heavy n = 24 instances that ATLAS-031 failed are now proved in 0.2–0.5 s with 100–1 700× fewer states. All six are independently certified.
+- **The n = 24 cases.** All six dense random and tie-heavy n = 24 instances that ATLAS-031 failed are now proved in 0.2–0.5 s with 100–1 700× fewer states. All six are independently certified.
 - **Beyond n = 24.** Every dense n = 30 instance is proved (HiGHS: 4/6). At n = 35, 3 of 6 are proved (HiGHS: 3/6). All 50 real-world LOLIB input-output instances are proved (ATLAS-031: 27/50).
 - **Not new mathematics.** The bounds used are standard; see §2 and NOVELTY.md. The contribution is a correct, native, certified implementation, plus a diagnosis that pinpointed what was missing.
 
@@ -101,7 +103,7 @@ Full table in RESULTS.md. Raw data: `results.json` (A, S, B, C), `results_E.json
 - LOLIB matrices are **not committed** (third-party data). `fetch_lolib_io.py` regenerates them from github.com/IGARDS/RPLib.
 
 ## 9. Next research frontier
-The strongest remaining limitation is that **the residual bound is static**: one global packing, restricted. The 3-dicycle LP gap at n ≥ 35 shows that restriction alone cannot close the barrier.
+The strongest remaining limitation is that **the residual bound is static**: one global packing, restricted. The 3-dicycle LP gap at n ≥ 35 shows that restriction alone cannot close the remaining gap.
 
 The precise open engineering-mathematics question: can a packing be **re-optimised incrementally along the prefix layers**, re-using the capacity freed by removed vertices, at amortised cost per state well below one packing solve, with a provable monotone guarantee? That question would also connect ATLAS to Lagrangean B&B (Charon–Hudry), which does this per node at higher cost.
 

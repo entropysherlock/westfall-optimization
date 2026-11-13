@@ -19,7 +19,7 @@ export default function Home() {
             <p className="kicker-light">Structural algorithms · Exact optimization · Verifiable results</p>
             <h1 className="mt-6 text-[42px] font-semibold leading-[1.04] tracking-[-.035em] sm:text-[56px]">The mathematics of better decisions.</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
-              Westfall Optimization builds software for ordering problems: sequencing, ranking and prioritization driven by pairwise costs or preferences. We combine structural mathematics, exact algorithms and machine-checked proofs to produce results you can examine independently.
+              Westfall Optimization builds software for ordering problems: sequencing, ranking and prioritization driven by pairwise costs or preferences. We combine structural mathematics and exact algorithms, and publish evidence you can examine independently: exact recomputation, optimality certificates, and machine-checked proofs where they exist.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/studio/" className="btn bg-white text-navy-900 hover:bg-slate-100">Open the Optimization Studio</Link>
@@ -85,11 +85,11 @@ export default function Home() {
       </Section>
 
       <Section kicker="Product" title="Westfall Optimization Studio"
-        intro="Upload a CSV or JSON file, an edge list or a pasted matrix. Inspect the model, choose a solver and get an ordering with an honest status: optimality established, or feasible solution only.">
+        intro="Upload a CSV or JSON file, an edge list or a pasted matrix. Inspect the model, take the recommended solver or choose one, and get an ordering with an honest status: proven optimal, feasible, or interrupted with a rigorous gap.">
         <div className="grid gap-4 md:grid-cols-3">
           <FeatureCard kicker="Input" title="Your data, validated">CSV, TSV, JSON and edge lists, with line-level error messages, item naming and an explicit choice of how the numbers are read.</FeatureCard>
-          <FeatureCard kicker="Solve" title="Exact or heuristic, clearly labelled">Subset DP (n ≤ 20), exclusion DP (n ≤ 26), the AutoCut structural solver (n ≤ 9) and local search up to 400 items, with cancellation and time limits.</FeatureCard>
-          <FeatureCard kicker="Verify & export" title="Results you can check">Exact objective recomputation and exhaustive cross-checks on small instances, plus CSV, JSON and report exports that re-import.</FeatureCard>
+          <FeatureCard kicker="Solve" title="Exact or heuristic, clearly labelled">ATLAS-032, the adaptive exact solver (strong components, cut-bounded DP, cycle-packing bounds, up to 400 items), plus subset DP, exclusion DP, AutoCut (n ≤ 9) and local search, with a recommendation that explains itself, cancellation and time limits.</FeatureCard>
+          <FeatureCard kicker="Verify & export" title="Results you can check">Exact objective recomputation, exhaustive cross-checks on small instances, and optimality certificates checked by an independent verifier in the browser or in Python. Exports re-import.</FeatureCard>
         </div>
         <div className="mt-8 flex flex-wrap gap-3"><ButtonLink href="/studio/" primary>Open the Studio</ButtonLink><ButtonLink href="/docs/">Read the documentation</ButtonLink></div>
       </Section>
