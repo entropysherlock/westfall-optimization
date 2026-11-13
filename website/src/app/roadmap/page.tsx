@@ -1,5 +1,5 @@
 import { ButtonLink, PageHeader, Section } from "@/components/ui";
-import { blob, REPO } from "@/lib/site";
+import { REPO } from "@/lib/site";
 
 export const metadata = { title: "Research agenda" };
 const phases = [

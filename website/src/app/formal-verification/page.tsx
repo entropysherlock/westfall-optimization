@@ -35,7 +35,7 @@ export default function FormalVerification() {
     </Section>
     <Section kicker="Reproducibility" title="Source, statements, and independent scrutiny">
       <div className="grid gap-4 md:grid-cols-3">
-        <div className="card p-6"><h3 className="font-semibold">Kernel checking</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Pinned Lean and Mathlib builds check proof terms and standard axiom dependencies. The research branch is separate from the public site's main branch.</p></div>
+        <div className="card p-6"><h3 className="font-semibold">Kernel checking</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Pinned Lean and Mathlib builds check proof terms and standard axiom dependencies. The research branch is separate from the public site&apos;s main branch.</p></div>
         <div className="card p-6"><h3 className="font-semibold">Specification correspondence</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Documented audits compare formal types and definitions against the manuscript. External mathematical review remains necessary.</p></div>
         <div className="card p-6"><h3 className="font-semibold">Computational complexity</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Correctness of an executable algorithm does not certify its running time. Arithmetic costs, rational bit lengths, and data-structure overhead must be proved separately.</p></div>
       </div>
