@@ -78,6 +78,8 @@ export default function LabApp({ presets }: { presets: Preset[] }) {
   }, []);
 
   useEffect(() => {
+    // Existing preset sync intentionally updates multiple coupled state values.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (source === "preset") loadMatrix(preset.matrix, preset.reference.blocks);
   }, [presetId, source]); // eslint-disable-line react-hooks/exhaustive-deps
 
