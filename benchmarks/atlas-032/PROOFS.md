@@ -24,8 +24,8 @@ If π lists S first and then R = V∖S, then
 - A crossing pair {u∈R, v∈S} always has v before u. Its backward contribution is therefore P_uv, which is 0 if A_uv ≤ 0.
 - Summing the crossing contributions gives cut(S). ∎
 
-## Lemma 1 (triangle-packing bound)
-Let y ≥ 0 be a packing of the directed 3-cycles 𝒯 of the strict preference digraph, meaning Σ_{T∋e} y_T ≤ P_e for every arc e. Then Σ_T y_T ≤ β(π) for every ordering π.
+## Lemma 1 (cycle-packing bound)
+Let y ≥ 0 be a packing of a family 𝒯 of directed cycles of the strict preference digraph (triangles or longer; ATLAS-032 uses both), meaning Σ_{T∋e} y_T ≤ P_e for every arc e. Then Σ_T y_T ≤ β(π) for every ordering π.
 
 *Proof.*
 
