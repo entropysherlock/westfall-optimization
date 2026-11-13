@@ -1,6 +1,7 @@
 /**
  * Solve orchestration shared by the Web Worker and the tests.
  */
+import { solveAtlas } from "./atlas";
 import { autoCut, AUTOCUT_MAX_N } from "./autocut";
 import type { Problem } from "./model";
 import { buildProblem } from "./model";
@@ -43,6 +44,23 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
         if (!(e instanceof Interrupted)) throw e;
         res = makeResult(p, { ...base, status: "FEASIBLE", statusNote: `exact search interrupted (${e.message}); the local-search incumbent is returned and optimality is NOT established`,
           order: inc.order, runtimeMs: now() - t0, details: { "incumbent restarts": inc.starts } });
+      }
+    } else if (solver === "atlas") {
+      const r = solveAtlas(p.M, { deadline, seed: config.seed });
+      const sizes = r.components.map((c) => c.size);
+      const details: Record<string, string | number> = {
+        "strong components": r.components.length,
+        "largest component": Math.max(...sizes, 0),
+        "exact states (all components)": r.totalStates,
+        "methods": [...new Set(r.components.map((c) => c.method))].join(", "),
+      };
+      if (r.optimal) {
+        res = makeResult(p, { ...base, status: p.exact ? "OPTIMAL" : "FEASIBLE", statusNote: p.exact
+          ? "every strongly connected component was solved by a completed exact method and the decomposition is exact; optimality is established (exact integer arithmetic)"
+          : exactNote, order: r.order, runtimeMs: now() - t0, details });
+      } else {
+        res = makeResult(p, { ...base, status: "INTERRUPTED", statusNote: `exact search stopped without proof (${r.interruptedReason}); the best ordering found is returned and global optimality is NOT established`,
+          order: r.order, runtimeMs: now() - t0, details });
       }
     } else if (solver === "autocut") {
       if (p.n > AUTOCUT_MAX_N) throw new Error(`AutoCut supports at most ${AUTOCUT_MAX_N} items`);

@@ -1,0 +1,437 @@
+[
+ {
+  "n": 16,
+  "seed": 1,
+  "cutwidth": 4,
+  "ms": 1,
+  "ref": 4,
+  "refMs": 20,
+  "decisions": [
+   {
+    "k": 2,
+    "feasible": false,
+    "states": 16,
+    "capUsed": false
+   },
+   {
+    "k": 3,
+    "feasible": false,
+    "states": 28,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 28,
+   "capUsed": false,
+   "withoutCap": 28
+  }
+ },
+ {
+  "n": 16,
+  "seed": 2,
+  "cutwidth": 2,
+  "ms": 0,
+  "ref": 2,
+  "refMs": 18,
+  "decisions": [
+   {
+    "k": 1,
+    "feasible": false,
+    "states": 19,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 19,
+   "capUsed": false,
+   "withoutCap": 19
+  }
+ },
+ {
+  "n": 16,
+  "seed": 3,
+  "cutwidth": 2,
+  "ms": 0,
+  "ref": 2,
+  "refMs": 15,
+  "decisions": [
+   {
+    "k": 1,
+    "feasible": false,
+    "states": 21,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 21,
+   "capUsed": false,
+   "withoutCap": 21
+  }
+ },
+ {
+  "n": 20,
+  "seed": 1,
+  "cutwidth": 2,
+  "ms": 0,
+  "ref": 2,
+  "refMs": 306,
+  "decisions": [
+   {
+    "k": 1,
+    "feasible": false,
+    "states": 15,
+    "capUsed": false
+   },
+   {
+    "k": 2,
+    "feasible": true,
+    "states": 48,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 15,
+   "capUsed": false,
+   "withoutCap": 15
+  }
+ },
+ {
+  "n": 20,
+  "seed": 2,
+  "cutwidth": 1,
+  "ms": 0,
+  "ref": 1,
+  "refMs": 302,
+  "decisions": [
+   {
+    "k": 0,
+    "feasible": false,
+    "states": 14,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 14,
+   "capUsed": false,
+   "withoutCap": 14
+  }
+ },
+ {
+  "n": 20,
+  "seed": 3,
+  "cutwidth": 4,
+  "ms": 0,
+  "ref": 4,
+  "refMs": 288,
+  "decisions": [
+   {
+    "k": 2,
+    "feasible": false,
+    "states": 18,
+    "capUsed": false
+   },
+   {
+    "k": 3,
+    "feasible": false,
+    "states": 31,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 31,
+   "capUsed": false,
+   "withoutCap": 31
+  }
+ },
+ {
+  "n": 40,
+  "seed": 1,
+  "cutwidth": 4,
+  "ms": 2,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 2,
+    "feasible": false,
+    "states": 8,
+    "capUsed": false
+   },
+   {
+    "k": 3,
+    "feasible": false,
+    "states": 14,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 14,
+   "capUsed": false,
+   "withoutCap": 14
+  }
+ },
+ {
+  "n": 40,
+  "seed": 2,
+  "cutwidth": 6,
+  "ms": 1,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 3,
+    "feasible": false,
+    "states": 35,
+    "capUsed": false
+   },
+   {
+    "k": 5,
+    "feasible": false,
+    "states": 102,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 102,
+   "capUsed": false,
+   "withoutCap": 102
+  }
+ },
+ {
+  "n": 40,
+  "seed": 3,
+  "cutwidth": 10,
+  "ms": 3,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 5,
+    "feasible": false,
+    "states": 63,
+    "capUsed": false
+   },
+   {
+    "k": 8,
+    "feasible": false,
+    "states": 240,
+    "capUsed": false
+   },
+   {
+    "k": 9,
+    "feasible": false,
+    "states": 351,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 351,
+   "capUsed": false,
+   "withoutCap": 351
+  }
+ },
+ {
+  "n": 80,
+  "seed": 1,
+  "cutwidth": 8,
+  "ms": 8,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 4,
+    "feasible": false,
+    "states": 59,
+    "capUsed": false
+   },
+   {
+    "k": 6,
+    "feasible": false,
+    "states": 264,
+    "capUsed": false
+   },
+   {
+    "k": 7,
+    "feasible": false,
+    "states": 425,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 425,
+   "capUsed": false,
+   "withoutCap": 425
+  }
+ },
+ {
+  "n": 80,
+  "seed": 2,
+  "cutwidth": 13,
+  "ms": 32,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 7,
+    "feasible": false,
+    "states": 174,
+    "capUsed": false
+   },
+   {
+    "k": 11,
+    "feasible": false,
+    "states": 867,
+    "capUsed": false
+   },
+   {
+    "k": 13,
+    "feasible": true,
+    "states": 3252,
+    "capUsed": false
+   },
+   {
+    "k": 12,
+    "feasible": false,
+    "states": 1197,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 1197,
+   "capUsed": false,
+   "withoutCap": 1197
+  }
+ },
+ {
+  "n": 80,
+  "seed": 3,
+  "cutwidth": 9,
+  "ms": 3,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 4,
+    "feasible": false,
+    "states": 31,
+    "capUsed": false
+   },
+   {
+    "k": 7,
+    "feasible": false,
+    "states": 162,
+    "capUsed": false
+   },
+   {
+    "k": 8,
+    "feasible": false,
+    "states": 250,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 250,
+   "capUsed": false,
+   "withoutCap": 250
+  }
+ },
+ {
+  "n": 150,
+  "seed": 1,
+  "cutwidth": 10,
+  "ms": 22,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 5,
+    "feasible": false,
+    "states": 154,
+    "capUsed": false
+   },
+   {
+    "k": 8,
+    "feasible": false,
+    "states": 735,
+    "capUsed": false
+   },
+   {
+    "k": 9,
+    "feasible": false,
+    "states": 1141,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 1141,
+   "capUsed": false,
+   "withoutCap": 1141
+  }
+ },
+ {
+  "n": 150,
+  "seed": 2,
+  "cutwidth": 14,
+  "ms": 50,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 7,
+    "feasible": false,
+    "states": 316,
+    "capUsed": false
+   },
+   {
+    "k": 11,
+    "feasible": false,
+    "states": 1926,
+    "capUsed": false
+   },
+   {
+    "k": 13,
+    "feasible": false,
+    "states": 4145,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 4145,
+   "capUsed": false,
+   "withoutCap": 4145
+  }
+ },
+ {
+  "n": 150,
+  "seed": 3,
+  "cutwidth": 10,
+  "ms": 17,
+  "ref": null,
+  "refMs": null,
+  "decisions": [
+   {
+    "k": 5,
+    "feasible": false,
+    "states": 59,
+    "capUsed": false
+   },
+   {
+    "k": 8,
+    "feasible": false,
+    "states": 329,
+    "capUsed": false
+   },
+   {
+    "k": 9,
+    "feasible": false,
+    "states": 574,
+    "capUsed": false
+   }
+  ],
+  "noSide": {
+   "withCap": 574,
+   "capUsed": false,
+   "withoutCap": 574
+  }
+ }
+]
