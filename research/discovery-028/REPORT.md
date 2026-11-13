@@ -138,7 +138,8 @@ theorem kcut_hyperbola (adj : Fin n → Fin n → Prop) [DecidableRel adj] (hsc 
 ```
 
 Axioms: `propext, Classical.choice, Quot.sound` only; no `sorry`, `admit`, `native_decide`, or new axioms. Checked
-locally with Lean 4.32.0 / Mathlib v4.32.0; CI evidence below. Existing formal proofs on other branches were not
+locally with Lean 4.32.0 / Mathlib v4.32.0, and in CI: GitHub Actions run 43447279818 (Lean Foundations, success; built
+`Westfall022.HyperbolaCut` with the axiom audit). Existing formal proofs on other branches were not
 touched.
 
 Taking t = (position of the i-th non-member u_i) + 1 in `kcut_hyperbola`, the first factor is i and the second is
