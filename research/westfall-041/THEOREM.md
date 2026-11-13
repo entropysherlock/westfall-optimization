@@ -1,5 +1,8 @@
 # Mission 041 — Statements
 
+> **Mission 042 sharper addendum (research branch only; paper proof, not yet Lean checked):** The profile count satisfies R_h(K) ≤ binomial(2h,h) H(K) ≤ 4^h H(K), by splitting each row length into (λ_i−h)_+ and min(λ_i,h). Thus Theorem C also implies N_k ≤ (n+1)4^h H(c+k)². See ../westfall-042/MANUSCRIPT_ADDENDUM.md and H_DEPENDENCE.md. Original Mission 041 Lean-verified statements below remain unchanged.
+
+
 Conventions are those of Mission 040 (Fomin–Pilipczuk, ESA 2013). D = (V, A) is a digraph on n vertices, and
 antiparallel arcs are allowed. For X ⊆ V, back(X) is the number of arcs from V∖X into X. A **k-cut** is a set X
 with back(X) ≤ k, and N_k(D) is the number of k-cuts. A **reference ordering** σ has width ≤ c if every prefix P
