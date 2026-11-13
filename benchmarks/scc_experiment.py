@@ -29,7 +29,7 @@ def make_instance(n, family, seed=28028, block=4):
 def main():
     for n in (16, 24, 32):
         for family in ("block", "random"):
-            A = make_instance(n, family)
+            A = make_instance(n, family, seed=(28028 - n if n <= 32 else 28028))
             results = {}
             for name, fn in (("SCC + HiGHS", scc_milp_solve), ("HiGHS", milp_solve)):
                 t0 = time.perf_counter()

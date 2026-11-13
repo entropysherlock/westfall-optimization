@@ -19,6 +19,15 @@ Environment: SciPy 1.17.0, NumPy 2.3.5, same Python process; each solver's total
 | 32 | planted directional blocks | 0.0066 | 0.0648 |
 | 32 | dense random | 4.8448 | 4.6541 |
 
+Additional exploratory synthetic block-family runs at the original LOLIB-size range, with deterministic seed `28028+n` and four-vertex blocks, returned matching optimal objectives:
+
+| n | SCC + HiGHS (s) | HiGHS (s) | Observed ratio |
+|--:|---:|---:|---:|
+| 44 | 0.01333 | 0.19872 | 14.9× |
+| 60 | 0.01210 | 0.33455 | 27.6× |
+
+These are **planted synthetic blocks, not original LOLIB inputs**. The larger gains illustrate only this classical preprocessing opportunity, not a Westfall algorithm beating HiGHS on difficult real instances.
+
 These figures show the expected selective benefit: strong decomposability helps; dense strongly connected instances often slightly regress. There are no external LOLIB, Gurobi or specialized branch-and-cut results here. The new `benchmarks/scc_experiment.py` prints machine-readable results and reruns objective checks.
 
 ## Correctness validation
