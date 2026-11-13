@@ -16,3 +16,9 @@ Barbero–Paul–Pilipczuk (ICALP 2017), https://drops.dagstuhl.de/entities/docu
 
 ## Outstanding
 Literature coverage is NOT exhaustive, particularly later research, theses, independent refinements, and the new deletion-distance theorem proposed here. An undirected Cutwidth parameterized by vertex cover result (Cygan et al., Algorithmica, https://link.springer.com/article/10.1007/s00453-012-9707-6) is not the same parameter as vertex cover of the NON-ADJACENCY graph of a directed input. Do not conflate them. Novelty is provisional; no expert review.
+
+## Exact historical open-problem statement confirmed
+Fomin–Pilipczuk, 2013 preprint arXiv:1301.7314, Section 5, page 10, explicitly asks whether an n-vertex semicomplete digraph of cutwidth at most k has at most 2^{O(sqrt(k))} n^{O(1)} k-cuts; a positive answer would remove the sqrt(log k) loss. Full PDF: https://arxiv.org/pdf/1301.7314 . This historical open question is real; it is not evidence by itself that it remained unresolved through 2026.
+
+## Newly sharpened 041 bound
+An independent paper proof on the 042 branch yields R_h(K) <= binomial(2h,h)H(K) <= 4^h H(K), thereby improving the 041 cut count to (n+1)4^h H(c+k)^2 and conditional algorithmic running times 2^{O(sqrt(k)+h)}poly(n) and 2^{O(k^(1/3)+h)}poly(n). See H_DEPENDENCE.md; unformalized, novelty unconfirmed.
