@@ -8,7 +8,7 @@ import { blob } from "@/lib/site";
 
 export const metadata = {
   title: "Westfall Structural Optimization Theorem — Full research manuscript",
-  description: "Original research manuscript, preserved verbatim as an archival record. Consult the formal verification page for the current proof status.",
+  description: "Research manuscript with internal self-ratings removed; technical statements retained. Consult the formal verification page for the current proof status.",
 };
 
 export default function WestfallManuscript() {
@@ -16,11 +16,11 @@ export default function WestfallManuscript() {
     .replace(/^# .*\n/, "");
   return <>
     <PageHeader kicker="Original research report · November 12, 2026" title="The Westfall Structural Optimization Theorem">
-      <p>Automatic Structural Decomposition for Exact Weighted Linear Ordering. The report below is published in full, as originally authored. The partition-discovery result is now called the <strong>Westfall Partition Recovery Theorem.</strong></p>
+      <p>Automatic Structural Decomposition for Exact Weighted Linear Ordering. The research report below retains its technical claims, with internal self-ratings removed. The partition-discovery result is now called the <strong>Westfall Partition Recovery Theorem.</strong></p>
       <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /></div>
-      <p className="mt-3 text-sm">This is a complete <em>written</em> research report, not a peer-reviewed manuscript or a completed Lean verification. Its historical status notes describe the original local branch; the source document is now publicly archived.</p>
+      <p className="mt-3 text-sm">This is a complete <em>written</em> research report, not a peer-reviewed manuscript or a completed Lean verification. Its historical status notes describe the original local branch; internal self-ratings have been removed from the public version.</p>
       <div className="mt-5 flex flex-wrap gap-3">
-        <ButtonLink href={blob("research/discovery-022/WESTFALL_Discovery_022_Report.md")} external primary>Original Markdown source ↗</ButtonLink>
+        <ButtonLink href={blob("research/discovery-022/WESTFALL_Discovery_022_Report.md")} external primary>Research Markdown source ↗</ButtonLink>
         <ButtonLink href="/research/theorem/">Theorem overview</ButtonLink>
         <ButtonLink href="/formal-verification/">Proof verification status</ButtonLink>
       </div>
