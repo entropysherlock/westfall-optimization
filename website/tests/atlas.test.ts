@@ -81,14 +81,14 @@ describe("ATLAS-031 exact pipeline vs independent exact methods", () => {
   }, 300_000);
   it("reports INTERRUPTED (never OPTIMAL) when the budget is exhausted, and keeps a valid incumbent", () => {
     const M = generate("random-int", 40, 5);
-    const r = solveAtlas(M, { maxStates: 1000, incumbentMs: 20 });
+    const r = solveAtlas(M, { maxStates: 1000, incumbentMs: 20, bound: "none", strict: false }); // ATLAS-031 configuration (ATLAS-032 proves this instance)
     expect(r.optimal).toBe(false);
     expect(r.interruptedReason).toMatch(/state budget/);
     expect(isPerm(r.order, 40)).toBe(true);
   });
   it("honours an expired deadline", () => {
     const M = generate("random-int", 30, 9);
-    const r = solveAtlas(M, { deadline: 0, incumbentMs: 5 });
+    const r = solveAtlas(M, { deadline: 0, incumbentMs: 5, bound: "none" });
     expect(r.optimal).toBe(false);
     expect(isPerm(r.order, 30)).toBe(true);
   });
