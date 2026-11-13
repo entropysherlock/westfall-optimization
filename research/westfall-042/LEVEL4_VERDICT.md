@@ -1,9 +1,15 @@
-# Mission 042: provisional verdict
+# Mission 042: evidence-based provisional verdict (updated)
 
-**B (significant candidate result) conditional on full independent novelty review; not Level 4.** Core structural mathematics is reported Lean checked and the 040 and 041 counting bounds have paper proofs. I inspected Nagamochi's full author-hosted 2012 technical report and found an XP-style n^{O(k)} cutwidth method, not the WESTFALL subexponential FPT bound. Fomin–Pilipczuk's published 2019 semicomplete algorithm still has a sqrt(log k) loss in the exponent; a correctly proved 040 algorithm would improve that specific published bound.
+**B — SIGNIFICANT CANDIDATE RESULT, NOT YET LEVEL 4.**
 
-This does not show no other paper improved it after 2019 or that the h-semicomplete algorithm is fully verified. Neither the 040/041 analytic estimates nor algorithmic complexity are machine checked. Independent human review is still needed.
+## Established within this audit
+1. Located and examined Nagamochi 2012 full author-hosted paper. Its relevant complexity is XP-style n^{O(k)} for generic directed linear layouts, not WESTFALL's proposed subexponential FPT bound.
+2. Independently reviewed Fomin–Pilipczuk published 2019 bound as 2^{O(sqrt(k log k))} n^2 cutwidth and 2^{O(k^(1/3) sqrt(log k))} n^2 OLA.
+3. **NEW:** A short complete paper proof shows R_h(K) <= binomial(2h,h) H(K) <= 4^h H(K). Combined with Mission 041's reported Lean-checked counting theorem and Mission 040's paper analytic H bound, the h-semicomplete algorithms improve to CW 2^{O(sqrt(k)+h)} poly(n) and OLA 2^{O(k^(1/3)+h)} poly(n). This resolves the specific h log k upper-bound gap. Independently tested all 180 parameter pairs h<=8,K<=19 with zero violations; finite tests are not the proof.
+4. Another short complete paper proof gives N_k <= 2^b(n-b+1)H(c+k) for distance-b deletion to semicomplete (nonadjacency vertex cover b), plus corresponding FPT algorithms; exhaustive 4096 digraphs n=4, five k values each, no violations.
 
-A further deletion-distance-to-semicomplete counting theorem, proved in GENERALIZATION.md, extends the 040 technique to a parameter different from h. It is a simple corollary and does not by itself establish Level 4.
+## Not established
+The new theorems are NOT Lean checked; the full algorithms and asymptotic H estimate are NOT Lean formalized. No full independent pinned Lean rebuild performed. No exhaustive post-2019 novelty determination or human refereeing. The improved h bound is a simple combinatorial decomposition and may be previously known in another language; avoid claiming a fully original research breakthrough without checking.
 
-**No merge or public novelty announcement recommended yet.**
+## Next decision
+Formalize R_h <= binomial(2h,h)*H in Lean, independently validate the H estimate and the executable polynomial-delay enumeration, check published literature deeply, and get an expert review. Keep PRs draft and the production Studio unchanged.
