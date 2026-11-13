@@ -206,23 +206,41 @@ export default function Studio() {
     setLive(emptyLive());
     setJob({ state: "running", solver, startedAt, progress: null, problem: snapshot, maxStates: atlasCfg.maxStates });
     setAnnounce(`Running ${solverInfo.label}`);
+    const finish = (r: SolveResult) => {
+      jobRef.current = null;
+      setResult({ problem: snapshot, r, fp: snapFp, settings: settingsSnap });
+      setHistory((h) => ({ fp: snapFp, runs: [...(h.fp === snapFp ? h.runs : []), runRecord(r)].slice(-12) }));
+      setJob((j) => (j ? { ...j, state: "completed", finishedAt: performance.now() } : j));
+      setVs({ running: false, verdict: null, error: null });
+      setView("results");
+      setAnnounce(`Finished: ${STATUS_UI[r.status as StatusKind]?.label ?? r.status}`);
+      if (autoVerify && r.atlas?.certificate) verifyCert(r);
+    };
+    const fail = (message: string) => {
+      jobRef.current = null;
+      setJob((j) => (j ? { ...j, state: "failed", error: message, finishedAt: performance.now() } : j));
+      setAnnounce(`Run failed: ${message}`);
+    };
     jobRef.current = startSolve(snapshot, solver, { timeLimitMs: timeLimit * 1000, seed, bruteForceCheck: bfCheck, atlas: solver === "atlas" ? atlasCfg : undefined }, {
       onProgress: (fraction, note) => setJob((j) => (j && j.state === "running" ? { ...j, progress: { fraction, note } } : j)),
       onTelemetry: (events) => setLive((s) => reduceLive(s, events, performance.now() - startedAt)),
-      onDone: (r) => {
-        jobRef.current = null;
-        setResult({ problem: snapshot, r, fp: snapFp, settings: settingsSnap });
-        setHistory((h) => ({ fp: snapFp, runs: [...(h.fp === snapFp ? h.runs : []), runRecord(r)].slice(-12) }));
-        setJob((j) => (j ? { ...j, state: "completed", finishedAt: performance.now() } : j));
-        setVs({ running: false, verdict: null, error: null });
-        setView("results");
-        setAnnounce(`Finished: ${STATUS_UI[r.status as StatusKind]?.label ?? r.status}`);
-        if (autoVerify && r.atlas?.certificate) verifyCert(r);
-      },
+      onDone: finish,
       onError: (message) => {
-        jobRef.current = null;
-        setJob((j) => (j ? { ...j, state: "failed", error: message, finishedAt: performance.now() } : j));
-        setAnnounce(`Run failed: ${message}`);
+        // A watchdog can terminate ATLAS before its interrupted result is posted.
+        // Recover a fresh feasible solution instead of leaving the user with nothing.
+        if (solver === "atlas" && /time limit|deadline exceeded/i.test(message)) {
+          setJob((j) => j ? { ...j, solver: "heuristic", startedAt: performance.now(), progress: null, error: undefined } : j);
+          setLive(emptyLive());
+          setAnnounce("Exact search timed out. Finding a feasible ordering with local search.");
+          jobRef.current = startSolve(snapshot, "heuristic", { timeLimitMs: 8000, seed, bruteForceCheck: false }, {
+            onProgress: (fraction, note) => setJob((j) => (j && j.state === "running" ? { ...j, progress: { fraction, note } } : j)),
+            onTelemetry: (events) => setLive((s) => reduceLive(s, events, performance.now())),
+            onDone: finish,
+            onError: (fallbackMessage) => fail(`Exact search timed out; fallback also failed: ${fallbackMessage}`),
+          });
+          return;
+        }
+        fail(message);
       },
     });
   };
