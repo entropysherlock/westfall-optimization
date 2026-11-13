@@ -13,7 +13,7 @@ rev = "v4.32.0"
 [[lean_lib]]
 name = "Tests"
 srcDir = "."
-roots = ["tests.ExecHarness", "tests.ExecHarness2", "tests.ExecHarness3", "tests.MemoHarness", "tests.UnmemoHarness"]
+roots = ["tests.ExecHarness", "tests.ExecHarness2", "tests.ExecHarness3", "tests.MemoHarness", "tests.UnmemoHarness", "tests.CostedHarness"]
 
 [[lean_exe]]
 name = "westfall-exec-tests"
@@ -34,3 +34,7 @@ root = "tests.MemoHarness"
 [[lean_exe]]
 name = "westfall-unmemo-bench"
 root = "tests.UnmemoHarness"
+
+[[lean_exe]]
+name = "westfall-costed-bench"
+root = "tests.CostedHarness"

@@ -1,5 +1,29 @@
 # Discovery 021–022 Lean formalization: status and correspondence
 
+> **Mission 025 update: `autoCut_complexity` is proved in an explicit cost model** (unit-cost
+> rational arithmetic; see the caveats below). New, all kernel-checked (68 audited declarations,
+> standard axioms only):
+> - `CostModel.lean`: the cost monad `Cost` (value + step count) and costed collection operations. Every element visit is charged, deduplication is charged quadratically, table lookups are linear scans, and single-subset leaf operations have explicit polynomial charges.
+> - `CostedAutoCut.lean`: the costed program `autoCutCosted`. The executable `autoCutC := (autoCutCosted A).val` is the program whose cost is counted. `autoCutC_eq : autoCutC A = autoCutM A` holds for every matrix, so `autoCutC A = autoCutX A`.
+> - `CostBounds.lean`: a cost bound for every component, and `recognizeC_cost_le`, which covers one round whether it aborts, rejects or accepts.
+> - `Complexity.lean`: **`autoCut_complexity`**. For every skew `A`:
+>   - `autoCutC A = autoCutX A`;
+>   - cost ≤ 1000·(n+1)⁹·(U(n, max 1 (2λ))+1)³;
+>   - cost ≤ 1 728 000·(n+1)¹⁸·2^{45(⌊√λ⌋+1)}, i.e. poly(n)·2^{O(√λ(A))}.
+>
+> **Not verified:**
+> - the manuscript's sharper poly(n)·P(6λ)². The implementation's linear-scan tables give the *cube* of the state bound, and aborted rounds are charged through the closed form U(n,k).
+> - rational **bit** complexity;
+> - a formal memory model.
+>
+> - Benchmark (measured; 3600 s limit; the same 119 inputs as Mission 024):
+>   - `autoCutC` completed 103 of 119, and all 103 pass the exhaustive exact oracle.
+>   - Its outputs are identical to `autoCutM` (83 shared) and `autoCutX` (60 shared).
+>   - Every counted cost is below the proved bound.
+>   - On shared instances it runs 4–105× faster than `autoCutM`.
+>
+> See `MISSION_025_REPORT.md`.
+>
 > **Mission 024 update.** New, all kernel-checked (55 audited declarations, standard axioms only):
 > - `PartitionGrowth.lean`: **p(M) ≤ e^{3√M}** and **P(M) ≤ (M+1)·e^{3√M}**, with every analytic step proved, plus the closed forms p(M) ≤ 2^{5(⌊√M⌋+1)}.
 > - `MemoizedAutoCut.lean`: bottom-up DP and shortest-path tables, each memoised value proved equal to the verified recursion.
@@ -16,7 +40,7 @@
 
 **Toolchain:** Lean 4.32.0, Mathlib `v4.32.0` (pinned in `lean-toolchain` / `lakefile.toml`).
 **Entry point:** `import Westfall022.Main`. Root module `Westfall022.lean` imports `Foundations` and `Main`.
-**Integrity (Mission 024: 55 audited declarations):** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 55 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
+**Integrity (Mission 025: 68 audited declarations):** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 68 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
 
 **Independent checks.**
 - A local kernel build was run against a source-built slice of Mathlib.
@@ -33,7 +57,7 @@
 | `partition_recovery_complete` | **proved** | Thm 3, completeness: λ(A) ≤ k ⇒ the procedure accepts (including the Stage 1 abort rule). |
 | `partition_recovery_minimal` | **proved** | Thm 3: the returned partition attains the global minimum, λ(𝓑̂) = λ(A). |
 | `autoCut_correct` | **proved** | Thm 4, correctness: AutoCut returns OPT(A), an ordering attaining it, a partition attaining λ(A), and a threshold k with λ(A) ≤ k and (k = 1 or k < 2λ(A)). |
-| `autoCut_complexity` | **BLOCKED — not present** | Thm 4 running time poly(n)·P(6λ)² ≤ poly(n)·2^{O(√λ)}; Thm 3 time O(n⁶√k·N²). |
+| `autoCut_complexity` | **proved (Mission 025), in the unit-cost arithmetic model of `CostModel.lean`** | Thm 4 running time ⇒ poly(n)·2^{O(√λ)}: cost ≤ 1 728 000·(n+1)¹⁸·2^{45(⌊√λ⌋+1)} for the executable `autoCutC = autoCutX`. **Not proved:** the sharper poly(n)·P(6λ)², Thm 3's O(n⁶√k·N²), or any bit-complexity bound. |
 
 ## Mission 023: executable implementation and refinement
 
@@ -59,7 +83,20 @@
 | `autoCutM_correct` | all guarantees of `autoCutX_correct` for the memoised algorithm |
 | `dpTab_card_le`, `distTab_card_le` | each state is stored once (table size ≤ layer size; ≤ \|𝒩\| + 1) |
 
-## Why `autoCut_complexity` is blocked
+## Mission 025: cost semantics and the running-time theorem
+
+| Lean name | Statement |
+|---|---|
+| `Cost`, `bind_cost`, `cFilter`, `cImage`, `cBiUnion`, `cUnion`, `cSup`, `cInf`, `cLookupTop/Bot`, `cSelMinSet`, `cSelMaxV` | cost semantics (`CostModel.lean`) |
+| `autoCutCosted`, `autoCutC` | costed AutoCut; the executable is its value projection |
+| `autoCutC_eq`, `autoCutC_eq_X` | `autoCutC A = autoCutM A = autoCutX A` for every `A` |
+| `recognizeC_cost_le` | one round costs ≤ 400·(n+1)⁸·V³ whenever `abortBound n k + 1 ≤ V` and `k+1 ≤ 2(n+1)²`, whether the round aborts, rejects or accepts |
+| `firstAcceptC_cost_le` | the doubling loop is paid for every attempted round up to the accepted one |
+| `autoCutCosted_cost_le` | cost ≤ 1000·(n+1)⁹·(U(n, max 1 (2λ))+1)³ |
+| `abortBound_K_le` | U(n, max 1 (2λ)) + 1 ≤ 12(n+1)³·2^{15(⌊√λ⌋+1)} |
+| `autoCut_complexity` | the conjunction above, plus cost ≤ 1 728 000·(n+1)¹⁸·2^{45(⌊√λ⌋+1)} |
+
+## Historical: why `autoCut_complexity` was blocked before Mission 025
 
 0. *(Resolved structurally in Mission 024.)* The memoised implementation (`autoCutM`) removes the chain explosion and provably equals `autoCutX`. But its helper sets (`reachable`, `nodes`, `preds`) are recomputed per query: polynomial overhead, not formally bounded.
 0′. **Original Mission 023 finding:** the executable does not have the claimed running time. `dist` and `cutDP` are evaluated as plain recursions without memoisation, so evaluation cost grows with the number of chains in the node DAG, not with the number of nodes. A faithful complexity theorem needs a memoised, layer-by-layer implementation with its own refinement proof.
@@ -102,6 +139,9 @@
 | `CutDP.lean` | restricted cut DP; `cutDP_exact` |
 | `Recovery.lean`, `RecoveryThm.lean` | Theorem 3 procedure and its three theorems |
 | `AutoCut.lean` | Theorem 4 procedure, `autoCut_correct`, `autoCut_state_bounds` |
+| `Exec.lean`, `MemoizedAutoCut.lean`, `PartitionCountDP.lean` | executable and memoised AutoCut, refinements (Missions 023–024) |
+| `PartitionGrowth.lean` | p(M) ≤ e^{3√M} and closed forms (Mission 024) |
+| `CostModel.lean`, `CostedAutoCut.lean`, `CostBounds.lean`, `Complexity.lean` | cost semantics, costed AutoCut, refinement, `autoCut_complexity` (Mission 025) |
 | `Main.lean` | entry point and axiom audit |
 | `tests/model_checks.py` | exact small-instance checks of the modelling choices |
 

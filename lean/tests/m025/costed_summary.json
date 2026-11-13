@@ -1,0 +1,131 @@
+{
+ "instances": 119,
+ "completed": 103,
+ "passed": 103,
+ "failed": 0,
+ "failed_ids": [],
+ "not_completed": [
+  [
+   103,
+   "uniform",
+   7
+  ],
+  [
+   104,
+   "ties_zeros",
+   7
+  ],
+  [
+   105,
+   "near_transitive",
+   7
+  ],
+  [
+   106,
+   "planted",
+   7
+  ],
+  [
+   107,
+   "blocks",
+   7
+  ],
+  [
+   108,
+   "equal_thresholds",
+   7
+  ],
+  [
+   109,
+   "uniform",
+   7
+  ],
+  [
+   110,
+   "ties_zeros",
+   7
+  ],
+  [
+   111,
+   "near_transitive",
+   7
+  ],
+  [
+   112,
+   "planted",
+   7
+  ],
+  [
+   113,
+   "blocks",
+   7
+  ],
+  [
+   114,
+   "equal_thresholds",
+   7
+  ],
+  [
+   115,
+   "all_zero_max_cuts",
+   7
+  ],
+  [
+   116,
+   "band",
+   7
+  ],
+  [
+   117,
+   "H_p",
+   6
+  ],
+  [
+   118,
+   "H_p",
+   7
+  ]
+ ],
+ "memo_completed_on_same_instances": 83,
+ "identical_to_memo": 83,
+ "unmemoX_completed_on_same_instances": 60,
+ "identical_to_unmemoX": 60,
+ "memo_completed_total": 83,
+ "max_ms_costed_by_n": {
+  "1": 0,
+  "2": null,
+  "3": 60,
+  "4": 2499,
+  "5": 16960,
+  "6": 267251,
+  "7": 1409500
+ },
+ "max_ms_memo_by_n": {
+  "1": 0,
+  "2": null,
+  "3": 258,
+  "4": 16038,
+  "5": 195432,
+  "6": 1113757,
+  "7": null
+ },
+ "max_cost_by_n": {
+  "1": 1194,
+  "2": null,
+  "3": 330609,
+  "4": 5894496,
+  "5": 37937038,
+  "6": 458691092,
+  "7": 2513695681
+ },
+ "max_reachable_by_n": {
+  "1": 2,
+  "2": null,
+  "3": 8,
+  "4": 16,
+  "5": 32,
+  "6": 64,
+  "7": 128
+ },
+ "max_log2_cost_minus_log2_bound1": -65.18
+}

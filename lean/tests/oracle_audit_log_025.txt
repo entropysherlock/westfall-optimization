@@ -1,0 +1,8 @@
+Westfall022.autoCutX: 1725 constants in definition closure, 48 in Westfall022; forbidden reachable: [Westfall022.Pcum,
+Westfall022.recognizeX: 1663 constants in definition closure, 33 in Westfall022; forbidden reachable: [Westfall022.Pcum,
+Westfall022.recognize: 1590 constants in definition closure, 29 in Westfall022; forbidden reachable: [Westfall022.recognize,
+Westfall022.autoCutM: 1425 constants in definition closure, 54 in Westfall022; forbidden reachable: []
+Westfall022.recognizeM: 1359 constants in definition closure, 38 in Westfall022; forbidden reachable: []
+Westfall022.autoCutCosted: 1466 constants in definition closure, 69 in Westfall022; forbidden reachable: []
+Westfall022.autoCutC: 1467 constants in definition closure, 70 in Westfall022; forbidden reachable: []
+Westfall022.recognizeC: 1399 constants in definition closure, 51 in Westfall022; forbidden reachable: []

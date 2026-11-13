@@ -1,0 +1,4 @@
+status=stopped at time limit 3600s
+wall_s=3600.1
+peak_rss_mb=65.5
+cpu_s=3554.9

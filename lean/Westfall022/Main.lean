@@ -19,7 +19,7 @@ user axioms; the axiom audit below reports only Lean's standard `propext`,
 | `partition_recovery_complete`  | proved | 022 Theorem 3, completeness |
 | `partition_recovery_minimal`   | proved | 022 Theorem 3, returns a partition attaining `λ(A)` |
 | `autoCut_correct`              | proved | 022 Theorem 4, correctness part |
-| `autoCut_complexity`           | **NOT PRESENT — blocked** (see `Complexity.lean`, `lean/FORMALIZATION_STATUS.md`) |
+| `autoCut_complexity`           | proved (Mission 025) | 022 Theorem 4, running time `poly(n)·2^{O(√λ)}` in the cost model of `CostModel.lean`. Not the sharper `poly(n)·P(6λ)²`; unit-cost arithmetic |
 
 Mission 023 additions (the seven proofs above are unchanged from commit `4c6103b`):
 * `Exec.lean` — deterministic, executable `recognizeX` / `autoCutX` (no `Classical.choose`,
@@ -38,7 +38,15 @@ Mission 024 additions:
 * `PartitionCountDP.lean` — closed-form, capped abort test (never evaluates `P(3k)`),
   `recognizeM_eq : recognizeM = recognizeX`, `autoCutM_eq : autoCutM = autoCutX`,
   `autoCutM_correct`.
-`autoCut_complexity` is still absent: there is no operational cost semantics and no bit-size bound.
+
+Mission 025 additions:
+* `CostModel.lean` — the cost monad `Cost`, costed collection operations (per-element charges,
+  quadratic deduplication, linear-scan lookups) and their bound lemmas.
+* `CostedAutoCut.lean` — the costed program `autoCutCosted`, the executable
+  `autoCutC := (autoCutCosted A).val`, and `autoCutC_eq : autoCutC = autoCutM`.
+* `CostBounds.lean` — a cost bound for every component and for one full round
+  (`recognizeC_cost_le`), covering aborted, rejected and accepted rounds.
+* `Complexity.lean` — `autoCut_complexity`.
 
 `autoCut_state_bounds` proves the state-count facts the running-time claim rests on; it is
 deliberately not named `autoCut_complexity`.
@@ -108,5 +116,19 @@ namespace Westfall022
 #print axioms autoCutM_correct
 #print axioms dpTab_card_le
 #print axioms distTab_card_le
+-- Mission 025
+#print axioms autoCutC_eq
+#print axioms autoCutC_eq_X
+#print axioms recognizeC_val
+#print axioms capLayersC_cost_le
+#print axioms distTabC_cost_le
+#print axioms extractC_cost_le
+#print axioms dpTabC_cost_le
+#print axioms dpOrderC_cost_le
+#print axioms recognizeC_cost_le
+#print axioms firstAcceptC_cost_le
+#print axioms autoCutCosted_cost_le
+#print axioms abortBound_K_le
+#print axioms autoCut_complexity
 
 end Westfall022

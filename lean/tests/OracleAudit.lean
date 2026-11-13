@@ -36,3 +36,6 @@ elab "#oracle_audit " root:ident : command => do
 
 #oracle_audit Westfall022.autoCutM
 #oracle_audit Westfall022.recognizeM
+#oracle_audit Westfall022.autoCutCosted
+#oracle_audit Westfall022.autoCutC
+#oracle_audit Westfall022.recognizeC
