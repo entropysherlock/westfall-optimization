@@ -1,0 +1,137 @@
+{
+ "digraphs": 94666,
+ "theorem_checks": 689191,
+ "rectangle_checks": 12778946,
+ "violations": [],
+ "max_ratio": 1.0,
+ "max_ratio_case": {
+  "family": "exhaustive semicomplete n=1",
+  "n": 1,
+  "k": 0,
+  "ctw": 0,
+  "N_k": 2,
+  "bound": 2
+ },
+ "mixed_convention_failures": 0,
+ "mixed_first_failure": null,
+ "nonsemicomplete_failures": 7,
+ "nonsemicomplete_first_failure": {
+  "n": 2,
+  "arcs": [],
+  "k": 0,
+  "ctw": 0,
+  "N_0": 4,
+  "bound": 3
+ },
+ "families": {
+  "exhaustive semicomplete n=1": {
+   "digraphs": 1,
+   "max_n": 1,
+   "max_ctw": 0
+  },
+  "exhaustive semicomplete n=2": {
+   "digraphs": 3,
+   "max_n": 2,
+   "max_ctw": 1
+  },
+  "exhaustive semicomplete n=3": {
+   "digraphs": 27,
+   "max_n": 3,
+   "max_ctw": 2
+  },
+  "exhaustive semicomplete n=4": {
+   "digraphs": 729,
+   "max_n": 4,
+   "max_ctw": 4
+  },
+  "exhaustive semicomplete n=5": {
+   "digraphs": 59049,
+   "max_n": 5,
+   "max_ctw": 6
+  },
+  "exhaustive tournaments n=6": {
+   "digraphs": 32768,
+   "max_n": 6,
+   "max_ctw": 3
+  },
+  "random semicomplete": {
+   "digraphs": 1036,
+   "max_n": 12,
+   "max_ctw": 25
+  },
+  "near-transitive (+bidirected)": {
+   "digraphs": 1036,
+   "max_n": 12,
+   "max_ctw": 11
+  },
+  "cyclic tournaments": {
+   "digraphs": 7,
+   "max_n": 12,
+   "max_ctw": 15
+  },
+  "complete bidirected": {
+   "digraphs": 7,
+   "max_n": 12,
+   "max_ctw": 36
+  },
+  "Paley tournaments": {
+   "digraphs": 3,
+   "max_n": 11,
+   "max_ctw": 15
+  }
+ },
+ "H_check": {
+  "dp_vs_bruteforce": "K <= 24",
+  "estimate_checked_up_to": 20000,
+  "max log H / (2 pi sqrt K)": 0.9165553617498646,
+  "H_values": {
+   "0": 1,
+   "1": 2,
+   "2": 5,
+   "3": 10,
+   "4": 26,
+   "5": 42,
+   "10": 1442,
+   "20": 300326,
+   "50": 47123173958,
+   "100": 112833264795077406
+  }
+ },
+ "max_box_ratio_n4": 1.0,
+ "max_box_ratio_case": {
+  "family": "exhaustive semicomplete n=4",
+  "n": 4,
+  "k": 0,
+  "ctw": 0,
+  "N_k": 5,
+  "box_bound": 5,
+  "arcs": [
+   [
+    0,
+    1
+   ],
+   [
+    0,
+    2
+   ],
+   [
+    0,
+    3
+   ],
+   [
+    1,
+    2
+   ],
+   [
+    1,
+    3
+   ],
+   [
+    2,
+    3
+   ]
+  ]
+ },
+ "seconds": 78.8,
+ "mode": "full"
+}
