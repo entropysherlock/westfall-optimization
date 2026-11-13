@@ -28,7 +28,7 @@ export default function Research() {
         </div>
       </PageHeader>
 
-      <Section kicker="Main result" title="Westfall Structural Optimization Theorem">
+      <Section kicker="Main result (Lean-checked; not peer reviewed)" title="Structural decomposition theorem for weighted linear ordering">
         <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
           <div className="card p-7 text-[15px] leading-relaxed text-fog-300">
             <p className="font-semibold text-fog-100">Theorem (informal statement of the verified form).</p>

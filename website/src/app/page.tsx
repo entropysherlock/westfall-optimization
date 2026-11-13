@@ -19,7 +19,7 @@ export default function Home() {
             <p className="kicker-light">Structural algorithms · Exact optimization · Verifiable results</p>
             <h1 className="mt-6 text-[42px] font-semibold leading-[1.04] tracking-[-.035em] sm:text-[56px]">The mathematics of better decisions.</h1>
             <p className="mt-6 max-w-xl text-lg leading-relaxed text-slate-300">
-              Westfall Optimization builds software for ordering problems: sequencing, ranking and prioritization driven by pairwise costs or preferences. We combine structural mathematics, exact algorithms and machine-checked proofs to produce results you can examine independently.
+              Westfall Optimization builds software for ordering problems: sequencing, ranking and prioritization driven by pairwise costs or preferences. We combine structural mathematics and exact algorithms, and publish evidence you can examine independently: exact recomputation, optimality certificates, and machine-checked proofs where they exist.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/studio/" className="btn bg-white text-navy-900 hover:bg-slate-100">Open the Optimization Studio</Link>

@@ -39,7 +39,7 @@ export const LEVEL_LABEL: Record<Level, string> = {
 
 export const RESEARCH: ResearchItem[] = [
   {
-    id: "structural-theorem", title: "Westfall structural optimization theorem (AutoCut)",
+    id: "structural-theorem", title: "Structural decomposition theorem (AutoCut)",
     statement: "A deterministic algorithm returns the optimum, an optimal ordering and a partition attaining λ(A) = min_B (b² + 3K₀), using poly(n)·2^{O(√λ)} arithmetic operations (unit-cost model).",
     level: "lean", also: ["computational"], status: "Kernel-checked on the formal/westfall-theorem branch (Mission 025). Bit-level complexity and novelty are open; the manuscript is not peer reviewed.",
     source: leanBlob("MISSION_025_REPORT.md"), sourceLabel: "Formal verification report",

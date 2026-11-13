@@ -1,4 +1,4 @@
-# Westfall Structural Optimization Theorem: formal verification protocol and status
+# Structural decomposition theorem: formal verification protocol and status
 
 **Status (November 13, 2026): eight flagship declarations kernel-checked** on branch `formal/westfall-theorem`,
 commit `5de1b5b60d770a6d3bf447665576e5f92ff2e334`. The GitHub Actions *Lean Foundations* workflow

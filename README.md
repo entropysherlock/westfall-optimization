@@ -3,7 +3,7 @@
 **Structural algorithms. Exact optimization. Verifiable results.**
 
 Research-driven optimization software for weighted ordering problems (sequencing, ranking and prioritization driven by
-pairwise costs or preferences), built on exact algorithms, structural decomposition and machine-checked proofs.
+pairwise costs or preferences), built on exact algorithms and structural decomposition, with machine-checked proofs for the core structural theorem.
 
 - **Website:** https://entropysherlock.github.io/westfall-optimization/
 - **Optimization Studio (runs in the browser):** https://entropysherlock.github.io/westfall-optimization/studio/
@@ -18,7 +18,7 @@ software are developed with AI-assisted research and programming tools.
 
 | Component | Status |
 |---|---|
-| Westfall Structural Optimization Theorem: λ(A), partition recovery, AutoCut correctness | **Lean kernel-checked** (branch `formal/westfall-theorem`, commit `5de1b5b`, [CI run](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867)) |
+| Structural decomposition theorem: λ(A), partition recovery, AutoCut correctness | **Lean kernel-checked** (branch `formal/westfall-theorem`, commit `5de1b5b`, [CI run](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867)) |
 | AutoCut running time `poly(n)·2^{O(√λ)}` (≤ 1 728 000 (n+1)¹⁸ 2^{45(⌊√λ⌋+1)} operations) | **Lean kernel-checked**, in a declared unit-cost arithmetic model |
 | Sharper `poly(n)·P(6λ)²`, bit complexity, memory bound | **Not established** |
 | Novelty relative to prior cut-DP methods | **Not independently assessed** |

@@ -63,7 +63,7 @@ export default function Atlas032Bench({ data }: { data: A32Data }) {
             {(["A", "S", "B", "C", "E"] as const).map((s) => { const x = ablation.filter((r) => r.solver === s); const ok = x.filter((r) => r.status === "OPTIMAL"); const m = median(ok.map((r) => r.states!).filter((v) => v !== null));
               return <tr key={s}><td>{data.solvers[s]}</td><td className="font-mono">{ok.length}/{x.length}</td><td className="font-mono">{m === null ? "—" : Math.round(m).toLocaleString("en-US")}</td></tr>; })}
           </tbody></table>
-          <p className="mt-2 text-xs text-fog-500">The residual cycle-packing bound, not strict pruning alone, removes the barrier.</p>
+          <p className="mt-2 text-xs text-fog-500">The residual cycle-packing bound, not strict pruning alone, is what makes these instances tractable.</p>
         </div>
       </div>
       {data.toleranceMislabels.length > 0 && (

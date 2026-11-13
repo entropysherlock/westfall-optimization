@@ -1,4 +1,4 @@
-# Westfall Structural Optimization Theorem — targeted prior-art audit
+# Structural decomposition theorem — targeted prior-art audit
 
 **Status:** preliminary novelty analysis, November 12, 2026.  
 **Scope:** published statements and their reported techniques. **No originality certification.**
