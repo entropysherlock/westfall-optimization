@@ -39,6 +39,63 @@ export interface CutDPResult {
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
+/** Telemetry emitted by the DP (Mission 039). Every field is a count the search actually performed. */
+export interface CutDPLayerEvent {
+  /** prefix length just completed (1..n) */
+  depth: number;
+  n: number;
+  /** states kept at this depth */
+  layerSize: number;
+  /** states created so far (all depths) */
+  states: number;
+  expanded: number;
+  pruned: number;
+  /** B = β(incumbent); the DP keeps states with bound ≤ B (or ≤ B − 1 when strict) */
+  incumbentBeta: number;
+}
+export interface CutDPTickEvent { depth: number; n: number; expandedInLayer: number; layerTotal: number; states: number; pruned: number }
+
+/** Growable Float64Array (amortised doubling). */
+class F64 {
+  a: Float64Array;
+  len = 0;
+  constructor(cap: number) { this.a = new Float64Array(Math.max(16, cap)); }
+  reserve(extra: number) {
+    if (this.len + extra <= this.a.length) return;
+    let cap = this.a.length * 2;
+    while (cap < this.len + extra) cap *= 2;
+    const b = new Float64Array(cap); b.set(this.a.subarray(0, this.len)); this.a = b;
+  }
+}
+class I32 {
+  a: Int32Array;
+  len = 0;
+  constructor(cap: number) { this.a = new Int32Array(Math.max(16, cap)); }
+  push(x: number) {
+    if (this.len === this.a.length) { const b = new Int32Array(this.a.length * 2); b.set(this.a); this.a = b; }
+    this.a[this.len++] = x;
+  }
+}
+class U32 {
+  a: Uint32Array;
+  len = 0;
+  constructor(cap: number) { this.a = new Uint32Array(Math.max(16, cap)); }
+  reserve(extra: number) {
+    if (this.len + extra <= this.a.length) return;
+    let cap = this.a.length * 2;
+    while (cap < this.len + extra) cap *= 2;
+    const b = new Uint32Array(cap); b.set(this.a.subarray(0, this.len)); this.a = b;
+  }
+}
+
+/**
+ * Mission 039 implementation note. The search is identical, state for state, to the ATLAS-032 version
+ * (kept verbatim in cutdp.reference.ts and compared by tests/studio039.test.ts): same expansion order,
+ * same pruning test with the same floating-point operations, same tie-breaking on duplicates. Only the
+ * storage changed: per-layer flat typed arrays instead of one Uint32Array + three Float64Arrays per state,
+ * numeric set keys derived from the parent key (no mask copy for a duplicate child), and every per-state
+ * vector of a finished layer is released (only parent/added links are retained for reconstruction).
+ */
 export function cutBoundedDP(
   M: number[][],
   incumbent: number[],
@@ -52,6 +109,10 @@ export function cutBoundedDP(
      * ordering survives, the incumbent is optimal (every strictly better ordering would have survived).
      */
     strict?: boolean;
+    /** Mission 039 telemetry: called once per completed depth (cheap; never alters the search). */
+    onLayer?: (e: CutDPLayerEvent) => void;
+    /** Mission 039 telemetry: called every 4096 expansions with in-layer progress. */
+    onTick?: (e: CutDPTickEvent) => void;
   } = {},
 ): CutDPResult {
   const n = M.length;
@@ -61,7 +122,6 @@ export function cutBoundedDP(
   const colP = new Float64Array(n);
   let W = 0;
   for (let u = 0; u < n; u++) for (let v = 0; v < n; v++) { colP[v] += P[u][v]; W += P[u][v]; }
-  // β(incumbent)
   let B = 0;
   for (let r = 0; r < n; r++) for (let t = r + 1; t < n; t++) B += P[incumbent[t]][incumbent[r]];
 
@@ -69,93 +129,121 @@ export function cutBoundedDP(
   const strict = !!opts.strict && integral;
   const pk = opts.packing && integral && opts.packing.n === n ? opts.packing : null;
   const Dp = pk ? pk.D : 1;
-  // a child is kept iff  β + cut + ⌈L/D⌉ ≤ limit
   const limit = strict ? B - 1 : B;
   const layerSizes: number[] = [1];
   const words = (n + 31) >>> 5;
-  // Numeric keys (exact below 2^53) for n ≤ 52 — avoids building a string per generated state.
-  const keyOf = n <= 52
-    ? (m: Uint32Array): number | string => (words > 1 ? m[0] + m[1] * 4294967296 : m[0])
-    : (m: Uint32Array): number | string => {
-        let s = "";
-        for (let i = 0; i < words; i++) s += String.fromCharCode(m[i] & 0xffff, m[i] >>> 16);
-        return s;
-      };
-  // layer storage
-  interface Layer { masks: Uint32Array[]; beta: number[]; cut: number[]; lb: number[]; parent: number[]; added: number[]; a: Float64Array[]; b: Float64Array[]; d: Float64Array[] }
-  const newLayer = (): Layer => ({ masks: [], beta: [], cut: [], lb: [], parent: [], added: [], a: [], b: [], d: [] });
-  const layers: Layer[] = [];
-  const L0 = newLayer();
-  L0.masks.push(new Uint32Array(words)); L0.beta.push(0); L0.cut.push(0); L0.lb.push(pk ? pk.total : 0); L0.parent.push(-1); L0.added.push(-1);
-  L0.a.push(new Float64Array(n)); L0.b.push(new Float64Array(n));
-  // d[v] = Σ_{T∋v, T⊆R} y_T for R = V∖S: the packing weight lost when v leaves R (O(1) pruning test)
-  const d0 = new Float64Array(n);
-  if (pk) for (let c = 0; c < pk.w.length; c++) for (let i = pk.start[c]; i < pk.start[c + 1]; i++) d0[pk.cyc[i]] += pk.w[c];
-  L0.d.push(d0);
-  layers.push(L0);
+  const numericKeys = n <= 52;
+  const POW2 = new Float64Array(Math.min(n, 53));
+  for (let v = 0; v < POW2.length; v++) POW2[v] = 2 ** v;
+
+  // ---- layer t storage (flat) ----
+  let curCount = 1;
+  let curMasks: Uint32Array = new Uint32Array(words);
+  let curKeys: Float64Array = new Float64Array(1); // numeric set key (n ≤ 52)
+  let curBeta: Float64Array = new Float64Array(1), curCut: Float64Array = new Float64Array(1), curLb: Float64Array = new Float64Array(1);
+  let curA: Float64Array = new Float64Array(n), curB: Float64Array = new Float64Array(n), curD: Float64Array = new Float64Array(pk ? n : 0);
+  curLb[0] = pk ? pk.total : 0;
+  if (pk) for (let c = 0; c < pk.w.length; c++) for (let i = pk.start[c]; i < pk.start[c + 1]; i++) curD[pk.cyc[i]] += pk.w[c];
+  // reconstruction links for every layer (layer 0 has one root)
+  const parents: Int32Array[] = [Int32Array.of(-1)];
+  const addeds: Int32Array[] = [Int32Array.of(-1)];
+  let lastBeta: Float64Array = curBeta;
+
   let states = 1, expanded = 0, pruned = 0, maxLayer = 1;
+  const scratch = new Uint32Array(words);
   for (let t = 0; t < n; t++) {
-    const cur = layers[t];
-    const next = newLayer();
+    const est = Math.min(curCount * 4, 1 << 16);
+    const nMasks = new U32(est * words), nKeys = new F64(numericKeys ? est : 1);
+    const nBeta = new F64(est), nCut = new F64(est), nLb = new F64(est);
+    const nA = new F64(est * n), nB = new F64(est * n), nD = new F64(pk ? est * n : 1);
+    const nParent = new I32(est), nAdded = new I32(est);
     const seen = new Map<number | string, number>();
-    for (let s = 0; s < cur.masks.length; s++) {
-      if ((expanded & 1023) === 0 && opts.deadline !== undefined && now() > opts.deadline) throw new Interrupted("time limit reached during the cut-bounded DP");
+    let count = 0;
+    for (let s = 0; s < curCount; s++) {
+      if ((expanded & 1023) === 0) {
+        if (opts.deadline !== undefined && now() > opts.deadline) throw new Interrupted("time limit reached during the cut-bounded DP");
+        if (opts.onTick && (expanded & 4095) === 0 && expanded > 0) opts.onTick({ depth: t + 1, n, expandedInLayer: s, layerTotal: curCount, states, pruned });
+      }
       expanded++;
-      const mask = cur.masks[s], bS = cur.beta[s], cS = cur.cut[s], a = cur.a[s], b = cur.b[s], lS = cur.lb[s], dS = cur.d[s];
+      const mo = s * words, vo = s * n;
+      const bS = curBeta[s], cS = curCut[s], lS = curLb[s];
+      const pkey = numericKeys ? curKeys[s] : 0;
       for (let v = 0; v < n; v++) {
-        if (mask[v >>> 5] & (1 << (v & 31))) continue;
-        // adding v: new backward pairs inside = a[v] = Σ_{x∈S} P[v][x]
-        const beta = bS + a[v];
-        const cut = cS - a[v] + colP[v] - b[v] - P[v][v];
-        const lb = pk ? lS - dS[v] : 0;
+        if (curMasks[mo + (v >>> 5)] & (1 << (v & 31))) continue;
+        const av = curA[vo + v];
+        const beta = bS + av;
+        const cut = cS - av + colP[v] - curB[vo + v] - P[v][v];
+        const lb = pk ? lS - curD[vo + v] : 0;
         if (beta + cut + (pk ? Math.ceil(lb / Dp) : 0) > limit) { pruned++; continue; }
-        const m2 = mask.slice(); m2[v >>> 5] |= 1 << (v & 31);
-        const k = keyOf(m2);
+        let k: number | string;
+        if (numericKeys) k = pkey + POW2[v];
+        else {
+          for (let w = 0; w < words; w++) scratch[w] = curMasks[mo + w];
+          scratch[v >>> 5] |= 1 << (v & 31);
+          let str = "";
+          for (let i = 0; i < words; i++) str += String.fromCharCode(scratch[i] & 0xffff, scratch[i] >>> 16);
+          k = str;
+        }
         const j = seen.get(k);
         if (j === undefined) {
-          const a2 = a.slice(), b2 = b.slice();
-          const Pv = P[v];
-          for (let x = 0; x < n; x++) { a2[x] += P[x][v]; b2[x] += Pv[x]; }
-          let d2 = dS;
+          const idx = count++;
+          seen.set(k, idx);
+          // mask
+          nMasks.reserve(words);
+          for (let w = 0; w < words; w++) nMasks.a[nMasks.len + w] = curMasks[mo + w];
+          nMasks.a[nMasks.len + (v >>> 5)] |= 1 << (v & 31);
+          nMasks.len += words;
+          if (numericKeys) { nKeys.reserve(1); nKeys.a[nKeys.len++] = k as number; }
+          nBeta.reserve(1); nBeta.a[nBeta.len++] = beta;
+          nCut.reserve(1); nCut.a[nCut.len++] = cut;
+          nLb.reserve(1); nLb.a[nLb.len++] = lb;
+          nParent.push(s); nAdded.push(v);
+          // a2[x] = a[x] + P[x][v],  b2[x] = b[x] + P[v][x]   (same operations as the reference)
+          nA.reserve(n); nB.reserve(n);
+          const ao = nA.len, Pv = P[v];
+          for (let x = 0; x < n; x++) { nA.a[ao + x] = curA[vo + x] + P[x][v]; nB.a[ao + x] = curB[vo + x] + Pv[x]; }
+          nA.len += n; nB.len += n;
           if (pk) {
-            d2 = dS.slice();
-            // cycles through v that lie inside R = V∖S leave the residual set: every other vertex loses their weight
+            nD.reserve(n);
+            const dd = nD.len;
+            for (let x = 0; x < n; x++) nD.a[dd + x] = curD[vo + x];
             const lst = pk.byVertex[v];
             for (let q = 0; q < lst.length; q++) {
               const c = lst[q], c0 = pk.start[c], c1 = pk.start[c + 1];
               let inside = true;
-              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (mask[x >>> 5] & (1 << (x & 31))) { inside = false; break; } }
+              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (curMasks[mo + (x >>> 5)] & (1 << (x & 31))) { inside = false; break; } }
               if (!inside) continue;
               const wc = pk.w[c];
-              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (x !== v) d2[x] -= wc; }
+              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (x !== v) nD.a[dd + x] -= wc; }
             }
+            nD.len += n;
           }
-          seen.set(k, next.masks.length);
-          next.masks.push(m2); next.beta.push(beta); next.cut.push(cut); next.lb.push(lb); next.parent.push(s); next.added.push(v);
-          next.a.push(a2); next.b.push(b2); next.d.push(d2);
           if (++states > maxStates) throw new Interrupted(`state budget of ${maxStates.toLocaleString("en-US")} prefix states exhausted`);
-        } else if (beta < next.beta[j]) {
-          next.beta[j] = beta; next.parent[j] = s; next.added[j] = v;
+        } else if (beta < nBeta.a[j]) {
+          nBeta.a[j] = beta; nParent.a[j] = s; nAdded.a[j] = v;
         }
       }
     }
-    // the per-state vectors of layer t are no longer needed
-    cur.a = []; cur.b = []; cur.d = [];
-    if (next.masks.length === 0) {
+    if (count === 0) {
       if (strict) {
         // No ordering with β ≤ B − 1 survives; by admissibility none exists, so the incumbent is optimal.
         return { order: incumbent.slice(), beta: B, value: W - 2 * B, states, expanded, pruned, maxLayer, bound: B, incumbentProved: true, rootLB: pk ? pk.total / Dp : 0, layerSizes };
       }
       throw new Error("internal error: cut-bounded DP lost every state (the bound must be admissible; please report this input)");
     }
-    layerSizes.push(next.masks.length);
-    maxLayer = Math.max(maxLayer, next.masks.length);
-    layers.push(next);
+    // the previous layer's per-state data is released here; only parent/added links are kept
+    parents.push(nParent.a.slice(0, count)); addeds.push(nAdded.a.slice(0, count));
+    curCount = count;
+    curMasks = nMasks.a; curKeys = nKeys.a; curBeta = nBeta.a; curCut = nCut.a; curLb = nLb.a; curA = nA.a; curB = nB.a; curD = nD.a;
+    lastBeta = curBeta;
+    layerSizes.push(count);
+    maxLayer = Math.max(maxLayer, count);
+    opts.onLayer?.({ depth: t + 1, n, layerSize: count, states, expanded, pruned, incumbentBeta: B });
   }
   const order: number[] = [];
   let idx = 0;
-  for (let t = n; t > 0; t--) { order.push(layers[t].added[idx]); idx = layers[t].parent[idx]; }
+  for (let t = n; t > 0; t--) { order.push(addeds[t][idx]); idx = parents[t][idx]; }
   order.reverse();
-  const beta = layers[n].beta[0];
+  const beta = lastBeta[0];
   return { order, beta, value: W - 2 * beta, states, expanded, pruned, maxLayer, bound: B, incumbentProved: false, rootLB: pk ? pk.total / Dp : 0, layerSizes };
 }

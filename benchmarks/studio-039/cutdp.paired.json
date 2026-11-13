@@ -1,0 +1,153 @@
+{
+ "label": "paired",
+ "node": "v22.23.4",
+ "reps": 5,
+ "telemetry": false,
+ "cpu": "see README",
+ "rows": [
+  {
+   "name": "random-int n=24 s=2",
+   "size": 24,
+   "states": 5816,
+   "pruned": 93403,
+   "beta": 222,
+   "beforeMedianMs": 37.6,
+   "afterMedianMs": 33.1,
+   "speedup": 1.14,
+   "beforeMs": [
+    79,
+    38,
+    12,
+    45,
+    37
+   ],
+   "afterMs": [
+    31,
+    36,
+    9,
+    33,
+    54
+   ]
+  },
+  {
+   "name": "random-int n=30 s=3",
+   "size": 30,
+   "states": 3956,
+   "pruned": 85792,
+   "beta": 302,
+   "beforeMedianMs": 8,
+   "afterMedianMs": 6.8,
+   "speedup": 1.18,
+   "beforeMs": [
+    8,
+    8,
+    25,
+    8,
+    10
+   ],
+   "afterMs": [
+    7,
+    7,
+    7,
+    7,
+    10
+   ]
+  },
+  {
+   "name": "ties n=30 s=1",
+   "size": 30,
+   "states": 623964,
+   "pruned": 11462718,
+   "beta": 152,
+   "beforeMedianMs": 3309.2,
+   "afterMedianMs": 1225.8,
+   "speedup": 2.7,
+   "beforeMs": [
+    3582,
+    3309,
+    3303,
+    3214,
+    3832
+   ],
+   "afterMs": [
+    1258,
+    1215,
+    1148,
+    1369,
+    1226
+   ]
+  },
+  {
+   "name": "ties n=35 s=3",
+   "size": 35,
+   "states": 310164,
+   "pruned": 6931942,
+   "beta": 174,
+   "beforeMedianMs": 1677.1,
+   "afterMedianMs": 599.7,
+   "speedup": 2.8,
+   "beforeMs": [
+    1677,
+    1692,
+    1562,
+    1738,
+    1666
+   ],
+   "afterMs": [
+    681,
+    600,
+    604,
+    564,
+    570
+   ]
+  },
+  {
+   "name": "random-int n=35 s=3",
+   "size": 35,
+   "states": 216203,
+   "pruned": 5045987,
+   "beta": 428,
+   "beforeMedianMs": 1175,
+   "afterMedianMs": 554.2,
+   "speedup": 2.12,
+   "beforeMs": [
+    1152,
+    1175,
+    1138,
+    1233,
+    1311
+   ],
+   "afterMs": [
+    558,
+    584,
+    535,
+    548,
+    554
+   ]
+  },
+  {
+   "name": "multi-comp(b=12) n=120 s=1 (largest component)",
+   "size": 12,
+   "states": 1,
+   "pruned": 12,
+   "beta": 31,
+   "beforeMedianMs": 0.1,
+   "afterMedianMs": 0,
+   "speedup": 1,
+   "beforeMs": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "afterMs": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ]
+  }
+ ]
+}

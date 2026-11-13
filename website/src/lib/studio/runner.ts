@@ -1,7 +1,7 @@
 /**
  * Solve orchestration shared by the Web Worker and the tests.
  */
-import { solveAtlas } from "./atlas";
+import { solveAtlas, type AtlasEvent } from "./atlas";
 import { autoCut, AUTOCUT_MAX_N } from "./autocut";
 import type { Problem } from "./model";
 import { buildProblem } from "./model";
@@ -11,6 +11,13 @@ import { totalWeight, userFromFA, maximises } from "./model";
 import type { AtlasCertificate, AtlasInfo } from "./report";
 import { instanceJson, makeResult, type SolveResult } from "./report";
 import { bruteForce, exclusionExact, Interrupted, localSearch, SOLVERS, subsetDPExact, type Hooks, type SolverId } from "./solvers";
+
+/**
+ * Mission 039 telemetry: measured events streamed from the worker to the UI. ATLAS events carry β in units of
+ * the scaled integer matrix M; "incumbent" carries F_M of the heuristic's current best ordering. Nothing here is
+ * estimated or extrapolated.
+ */
+export type Telemetry = AtlasEvent | { kind: "incumbent"; value: number; starts: number; ms: number };
 
 export interface SolveConfig {
   timeLimitMs: number;
@@ -68,6 +75,7 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
       const r = solveAtlas(p.M, {
         deadline, seed: config.seed, bound: st.bound, strict: st.strict, maxStates: st.maxStates,
         incumbentMs: st.incumbentMs ?? undefined, noDecompose: !st.decompose,
+        onEvent: hooks.telemetry,
       });
       const sizes = r.components.map((c) => c.size);
       const details: Record<string, string | number> = {
@@ -99,7 +107,8 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
       // internal consistency: the DP value must equal the exact F_A of the returned order
       if (!res.FA.eq(r.value)) throw new Error("internal check failed: AutoCut value differs from the recomputed objective");
     } else {
-      const r = localSearch(p.M, p.initialOrder, { timeMs: Math.min(config.timeLimitMs, 60_000), seed: config.seed, progress: hooks.progress });
+      const r = localSearch(p.M, p.initialOrder, { timeMs: Math.min(config.timeLimitMs, 60_000), seed: config.seed, progress: hooks.progress,
+        onIncumbent: hooks.telemetry ? (value, starts, ms) => hooks.telemetry!({ kind: "incumbent", value, starts, ms }) : undefined });
       res = makeResult(p, { ...base, status: "FEASIBLE", statusNote: "heuristic result: a locally optimal ordering; global optimality is NOT established",
         order: r.order, runtimeMs: now() - t0, details: { "restarts": r.starts } });
     }

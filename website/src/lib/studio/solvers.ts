@@ -48,6 +48,8 @@ export interface Hooks {
   /** Called with real progress fractions in [0,1] (only where progress is measurable). */
   progress?: (fraction: number, note: string) => void;
   deadline?: number; // performance.now() timestamp
+  /** Mission 039: structured, measured telemetry (see runner.ts Telemetry). */
+  telemetry?: (e: import("./runner").Telemetry) => void;
 }
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
@@ -100,7 +102,7 @@ export function subsetDPExact(M: number[][], hooks: Hooks = {}): { order: number
 }
 
 /** Multi-start insertion local search. Deterministic for a fixed seed. */
-export function localSearch(M: number[][], start: number[], opts: { timeMs?: number; seed?: number; maxStarts?: number } & Hooks = {}) {
+export function localSearch(M: number[][], start: number[], opts: { timeMs?: number; seed?: number; maxStarts?: number; onIncumbent?: (value: number, starts: number, ms: number) => void } & Hooks = {}) {
   const n = M.length;
   const t0 = now();
   const budget = opts.timeMs ?? 1500;
@@ -115,6 +117,7 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
   const cv = scoreOf(M, c);
   starts++;
   if (cv > bestVal) { best = c; bestVal = cv; }
+  opts.onIncumbent?.(bestVal, starts, now() - t0);
   while (starts < maxStarts && now() - t0 < budget) {
     // perturb the incumbent: random segment reversal + a few random moves, then re-optimise
     const p = best.slice();
@@ -129,7 +132,7 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
     const q = insertionLocalSearch(M, p);
     const qv = scoreOf(M, q);
     starts++;
-    if (qv > bestVal) { best = q; bestVal = qv; }
+    if (qv > bestVal) { best = q; bestVal = qv; opts.onIncumbent?.(bestVal, starts, now() - t0); }
     if (starts % 16 === 0) opts.progress?.(Math.min(1, (now() - t0) / budget), `${starts} restarts`);
   }
   return { order: best, value: bestVal, starts };
