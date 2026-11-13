@@ -50,3 +50,13 @@ jobs:
           NEXT_TELEMETRY_DISABLED: "1"
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+  atlas-certificates:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Independently verify ATLAS-032 certificates
+        run: python benchmarks/atlas-032/verify_certificate.py benchmarks/atlas-032/certificates.json
