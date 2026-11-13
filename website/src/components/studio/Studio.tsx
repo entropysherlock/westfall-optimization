@@ -233,6 +233,29 @@ export default function Studio() {
   };
   const elapsed = job ? ((job.finishedAt ?? now) - job.startedAt) / 1000 : 0;
 
+  // ------------------------------------------------------------------ reset
+  // "Clear results" keeps the problem and settings; "Start over" also restores the first example and default settings.
+  // Saved local sessions are never touched.
+  const [resetOpen, setResetOpen] = useState(false);
+  const clearResults = () => {
+    jobRef.current?.cancel(); jobRef.current = null;
+    verifyRef.current?.cancel(); verifyRef.current = null;
+    cmp.clear();
+    setJob(null); setLive(emptyLive()); setResult(null); setHistory({ fp: "", runs: [] });
+    setVs({ running: false, verdict: null, error: null });
+    setResetOpen(false);
+  };
+  const startOver = () => {
+    clearResults();
+    loadExample(EXAMPLES[0]);
+    setMode("beginner"); setManualSolver("atlas"); setFollowRec(true); setAtlasCfg({ ...ATLAS_DEFAULTS }); setTimeLimit(30); setSeed(1);
+    setBfCheck(true); setAutoVerify(true); setVerifyBudget(2_000_000);
+    setFileNote(null); setSessionNote(null);
+    setView("problem");
+    setAnnounce("Studio reset: results cleared and the first example loaded");
+  };
+  const canReset = !!(job || result || cmp.c.rows.length || cmp.c.running);
+
   // ------------------------------------------------------------------ keyboard
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -285,7 +308,28 @@ export default function Studio() {
               <StatusPill status={(result.r.status as StatusKind) in STATUS_UI ? (result.r.status as StatusKind) : "FAILED"} size="sm" />
             </button>
           )}
-          <div className="flex items-center gap-2">
+          <div className="relative flex items-center gap-2">
+            {canReset && (
+              <button type="button" className="ws-btn ws-btn-ghost" onClick={() => setResetOpen((v) => !v)} aria-expanded={resetOpen} aria-controls="reset-panel" data-testid="reset">
+                Reset
+              </button>
+            )}
+            {resetOpen && (
+              <div id="reset-panel" role="dialog" aria-label="Reset the Studio" className="ws-panel absolute right-0 top-full z-40 mt-2 w-[min(320px,calc(100vw-24px))] p-3" data-testid="reset-panel"
+                onKeyDown={(e) => { if (e.key === "Escape") setResetOpen(false); }}>
+                <p className="text-[13px] font-semibold ws-text">Reset the Studio</p>
+                <p className="ws-sub mt-1">Saved sessions are kept either way.</p>
+                <div className="mt-3 grid gap-2">
+                  <button type="button" className="ws-btn flex-col items-start gap-0.5 text-left" onClick={clearResults} data-testid="clear-results" autoFocus>
+                    <span>Clear results</span><span className="ws-faint text-[12px] font-normal">Keep this problem and its settings</span>
+                  </button>
+                  <button type="button" className="ws-btn ws-btn-danger flex-col items-start gap-0.5 text-left" onClick={startOver} data-testid="start-over">
+                    <span>Start over</span><span className="ws-faint text-[12px] font-normal">Load the first example with default settings</span>
+                  </button>
+                  <button type="button" className="ws-btn ws-btn-ghost" onClick={() => setResetOpen(false)}>Cancel</button>
+                </div>
+              </div>
+            )}
             <span className="hidden max-w-[220px] truncate text-[12px] ws-muted lg:inline" title={solverInfo.label}>{solverInfo.label}</span>
             {running
               ? <button type="button" className="ws-btn" onClick={cancel} data-testid="cancel">Cancel</button>
