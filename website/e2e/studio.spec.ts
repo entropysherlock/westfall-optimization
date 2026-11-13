@@ -10,10 +10,14 @@ const fx = (f: string) => path.join(__dirname, "fixtures", f);
 
 async function open(page: Page) {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimize an ordering" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
 }
 
+/** Mission 039 workstation: the solver radios live in the Solver workspace, inputs in the Problem workspace. */
+const go = (page: Page, view: "problem" | "solver" | "results" | "analysis" | "verification" | "compare") => page.getByTestId(`nav-${view}`).click();
+
 async function runAndWait(page: Page, solver: string, state = "COMPLETED") {
+  await go(page, "solver");
   await page.check(`input[name=solver][value=${solver}]`);
   await page.getByTestId("run").click();
   await expect(page.getByTestId("job-state")).toHaveText(state, { timeout: 90_000 });
@@ -80,6 +84,7 @@ test("5: export JSON and CSV, re-import, and reproduce the result", async ({ pag
   expect(data.result.objective).toBe("15");
   const order: string[] = data.result.order;
   // re-import: the exported ordering becomes the initial order and re-verifies at the optimum
+  await go(page, "problem");
   await page.setInputFiles("[data-testid=file-input]", { name: "result.json", mimeType: "application/json", buffer: fs.readFileSync(file) });
   await expect(page.getByTestId("validation-ok")).toContainText("5 items");
   await runAndWait(page, "subset-dp");
@@ -118,6 +123,8 @@ test("9a: a running job can be cancelled", async ({ page }) => {
   // the heuristic keeps improving until its time budget (here 60 s), so it is reliably still running
   await page.getByRole("button", { name: /Large instance/ }).click();
   await expect(page.getByTestId("validation-ok")).toContainText("60 items");
+  await go(page, "solver");
+  await page.getByTestId("mode-advanced").click();
   await page.fill("#tl", "600");
   await page.check("input[name=solver][value=heuristic]");
   await page.getByTestId("run").click();
@@ -132,6 +139,8 @@ test("9b: the time limit stops a job without producing a result", async ({ page 
   await page.getByTestId("data-input").fill(randomMatrix(20, 9));
   await page.selectOption("#format", "matrix");
   await page.selectOption("#interp", "skew");
+  await go(page, "solver");
+  await page.getByTestId("mode-advanced").click();
   await page.fill("#tl", "0.1");
   await page.check("input[name=solver][value=subset-dp]");
   await page.getByTestId("run").click();
@@ -143,11 +152,12 @@ test("9b: the time limit stops a job without producing a result", async ({ page 
 test("measured: exact subset DP runtime at n = 15 and n = 20 in this browser", async ({ page }) => {
   await open(page);
   for (const n of [15, 20]) {
+    await go(page, "problem");
     await page.getByTestId("data-input").fill(randomMatrix(n, 3));
     await page.selectOption("#format", "matrix");
     await page.selectOption("#interp", "skew");
     await runAndWait(page, "subset-dp");
-    const rt = await page.getByText(/^\d+(\.\d+)? (ms|s)$/).first().innerText();
+    const rt = await page.locator("section[aria-labelledby=compute-h]").getByText(/^\d+(\.\d+)? (ms|s)$/).first().innerText();
     console.log(`subset DP n=${n}: ${rt}`);
   }
 });
@@ -156,15 +166,17 @@ test("9c: size limits are enforced per solver", async ({ page }) => {
   await open(page);
   await page.getByRole("button", { name: /Large instance/ }).click();
   await expect(page.getByTestId("validation-ok")).toContainText("60 items");
+  await go(page, "solver");
   await page.check("input[name=solver][value=subset-dp]");
   await expect(page.getByTestId("run")).toBeDisabled();
-  await expect(page.getByText("This solver supports n ≤ 20")).toBeVisible();
+  await expect(page.getByText("This solver supports n ≤ 20 (instance has 60).").first()).toBeVisible();
   await runAndWait(page, "heuristic");
   await expect(page.getByTestId("status-badge")).toHaveText("Feasible — not proven optimal");
 });
 
 test("remote solver service is honestly reported as not configured", async ({ page }) => {
   await open(page);
+  await go(page, "solver");
   await expect(page.getByTestId("remote-unconfigured")).toContainText("not configured");
 });
 
@@ -175,13 +187,14 @@ test("038: ATLAS-032 is recommended for larger inputs, proves optimality, and it
   for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { const v = ((i * 7 + j * 11) % 9) - 4 || 1; rows[i][j] = v; rows[j][i] = -v; }
   await page.getByTestId("data-input").fill(rows.map((r) => r.join(",")).join("\n"));
   await page.selectOption("#interp", "skew");
+  await go(page, "solver");
   await expect(page.getByTestId("recommendation")).toContainText("ATLAS");
   await expect(page.locator("input[name=solver][value=atlas]")).toBeChecked();
   await page.getByTestId("run").click();
   await expect(page.getByTestId("job-state")).toHaveText("COMPLETED", { timeout: 90_000 });
   await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
   await expect(page.getByTestId("gap")).toHaveText("0 (proved)");
-  await page.getByRole("tab", { name: "Certificate" }).click();
+  await go(page, "verification");
   await page.getByTestId("verify-certificate").click();
   await expect(page.getByTestId("verdict")).toContainText("ACCEPTED", { timeout: 60_000 });
 });

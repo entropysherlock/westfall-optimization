@@ -202,11 +202,10 @@ describe("ordering analysis identities (exact)", () => {
     const order = localSearch(M, [...Array(37).keys()], { timeMs: 1e9, maxStarts: 5 }).order;
     for (const bins of [1, 5, 8, 37, 100]) {
       const g = aggregate(M, order, bins);
-      let total = 0, upper = 0;
-      for (let i = 0; i < g.bins; i++) for (let j = 0; j < g.bins; j++) { const s = g.pos[i * g.bins + j] + g.neg[i * g.bins + j]; total += s; if (j > i) upper += s; else if (i === j) upper += s / 2; }
+      let total = 0;
+      for (let i = 0; i < g.bins * g.bins; i++) total += g.pos[i] + g.neg[i];
       expect(total).toBe(0);
-      // within a diagonal block, the upper half is (block sum + Σ_{r<s} (a_rs − a_sr))/2; for a skew block the block sum is 0
-      // so the identity reduces to: F_M = Σ strictly-upper blocks + Σ diagonal-block upper triangles; check that directly
+      // F_M = Σ strictly-upper blocks + Σ upper triangles inside the diagonal blocks
       let diagUpper = 0;
       for (let b = 0; b < g.bins; b++) for (let r = g.edges[b]; r < g.edges[b + 1]; r++) for (let t = r + 1; t < g.edges[b + 1]; t++) diagUpper += M[order[r]][order[t]];
       let strictUpper = 0;
