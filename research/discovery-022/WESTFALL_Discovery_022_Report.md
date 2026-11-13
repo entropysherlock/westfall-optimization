@@ -24,7 +24,7 @@ where λ(A) = min over **all** ordered partitions 𝓑 of b(𝓑)² + 3K₀(𝓑
 | **Theorem 6.** No 2^{o(√λ)}·poly(n) algorithm under ETH | Proved (corollary of Karpinski–Schudy) |
 | **Theorem 7.** Search/certificate separation: a family with optimal cut-width ≤ 6 but λ = Θ(n^{2/3}) | Proved; formalizes Part V |
 
-**Classification: Level 3 candidate (internal, provisional).** It is not Level 4. The machinery (k-cut dynamic programming, the exchange argument) is known; what is new is the parameter, its recognition algorithm and the resulting unification. Novelty has not been independently established.
+**Research assessment.** The cut-state dynamic programming and exchange arguments build on established techniques. The proposed contribution is the structural parameter, its recognition algorithm, and their integration into an exact solver. Novelty has not been independently established.
 
 **Practical verdict: the prototype is not competitive.** It proved 7 of 20 benchmark instances. BLX 2.0 or packing SLDP solved all 20, faster. The contribution is theoretical.
 
@@ -258,13 +258,13 @@ Cells: wall time / retained states. "chain" instances are Paley blocks of the li
 
 ---
 
-## J. Classification
+## J. Research assessment
 
-**Level 3 candidate (internal classification; provisional; not an external endorsement).**
+**Theoretical contribution (provisional; independent review outstanding).**
 
-- *For Level 3:* a precise, proved theorem that answers the program's stated central question; a new parameter with exact FPT recognition; dominance over the classical parameter plus a strict separation; a matching ETH bound; a proved search/certificate separation.
-- *Against Level 4:* the core mechanism is Fomin–Pilipczuk's; the structural step is a three-case count on top of 021's exchange lemma; λ is defined partly to fit the method; there is no practical capability gain; novelty is unreviewed.
-- *Risk of downgrade to 2+:* if a specialist judges Theorem 4 an immediate corollary of the k-cut framework, or finds λ in the literature under another name.
+- *Strengths:* a precisely stated algorithm and structural parameter with FPT recognition, a claimed comparison with a classical parameter and a separation example, an ETH-based lower-bound argument, and a search/certificate separation.
+- *Limitations:* the cut-state mechanism builds on Fomin–Pilipczuk; the structural bound uses an exchange lemma from Discovery 021; the parameter is tailored to this approach; no practical speed advantage has been demonstrated; novelty remains unreviewed.
+- *Prior-art risk:* a specialist may find Theorem 4 to follow directly from known k-cut techniques or identify the same parameter under another name.
 
 ---
 
