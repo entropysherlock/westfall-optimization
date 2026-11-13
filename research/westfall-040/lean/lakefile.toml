@@ -1,0 +1,11 @@
+name = "Westfall040"
+version = "0.1.0"
+defaultTargets = ["Westfall040"]
+
+[[lean_lib]]
+name = "Westfall040"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4"
+rev = "v4.32.0"

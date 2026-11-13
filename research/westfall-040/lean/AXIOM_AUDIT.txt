@@ -1,0 +1,17 @@
+'Westfall040.rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall040.hyperbola' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall040.mu_gap' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall040.eq_of_mu_eq' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall040.card_kcuts_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall040.card_kcuts_le_of_width_le_k' depends on axioms: [propext, Classical.choice, Quot.sound]
+@Westfall040.card_kcuts_le : ∀ {V : Type u_1} [inst : Fintype V] [inst_1 : LinearOrder V] [inst_2 : DecidableEq V]
+  (D : V → V → Prop) [inst_3 : DecidableRel D],
+  Westfall040.Semicomplete D →
+    ∀ {c : ℕ},
+      Westfall040.WidthLe D c →
+        ∀ (k : ℕ), {X | Westfall040.back D X ≤ k}.card ≤ (Fintype.card V + 1) * Westfall040.H (c + k)
+@Westfall040.card_kcuts_le_of_width_le_k : ∀ {V : Type u_1} [inst : Fintype V] [inst_1 : LinearOrder V]
+  [inst_2 : DecidableEq V] (D : V → V → Prop) [inst_3 : DecidableRel D],
+  Westfall040.Semicomplete D →
+    ∀ {k : ℕ},
+      Westfall040.WidthLe D k → {X | Westfall040.back D X ≤ k}.card ≤ (Fintype.card V + 1) * Westfall040.H (2 * k)
