@@ -1,8 +1,14 @@
 # Discovery 021–022 Lean formalization: status and correspondence
 
+> **Mission 023 update.** The seven proofs are unchanged from commit `4c6103b`. New:
+> - `SEMANTIC_AUDIT_023.md` — independent audit. All seven declarations are EXACT MATCH or EQUIVALENT WITH EXPLAINED REFORMULATION; the mechanical oracle audit is clean.
+> - `Exec.lean` — a deterministic **executable** recogniser and AutoCut, with **verified refinement** to the specification.
+> - `Complexity.lean` — state and round bounds for the executable. `autoCut_complexity` remains **not proved**: the executable is not memoised, so the manuscript's running-time bound does not hold for it, and no cost semantics or partition-number estimate is formalized.
+> - `tests/` — native exact comparison of `autoCutX` against an exhaustive reference.
+
 **Toolchain:** Lean 4.32.0, Mathlib `v4.32.0` (pinned in `lean-toolchain` / `lakefile.toml`).
 **Entry point:** `import Westfall022.Main`. Root module `Westfall022.lean` imports `Foundations` and `Main`.
-**Integrity:** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 28 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
+**Integrity (Mission 023: 39 audited declarations):** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 28 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
 
 **Independent checks.**
 - A local kernel build was run against a source-built slice of Mathlib.
@@ -21,8 +27,19 @@
 | `autoCut_correct` | **proved** | Thm 4, correctness: AutoCut returns OPT(A), an ordering attaining it, a partition attaining λ(A), and a threshold k with λ(A) ≤ k and (k = 1 or k < 2λ(A)). |
 | `autoCut_complexity` | **BLOCKED — not present** | Thm 4 running time poly(n)·P(6λ)² ≤ poly(n)·2^{O(√λ)}; Thm 3 time O(n⁶√k·N²). |
 
+## Mission 023: executable implementation and refinement
+
+| Lean name | Statement |
+|---|---|
+| `recognizeX`, `autoCutX` | Deterministic executable code. Ties: colex-least set, least vertex, lexicographic (τ, b). Doubling loop bounded by 2n + 1 rounds. Abort test short-circuited by P(M) ≥ M + 1 (`pcumGuard_iff`). |
+| `recognizeX_isSome` | `(recognizeX A k).isSome = (recognize A k).isSome`: same decisions as the specification |
+| `partition_recoveryX_sound/complete/minimal` | Theorem 3's guarantees for the executable recogniser |
+| `autoCutX_correct` | ∀ skew A, `autoCutX A = some r` with value = OPT, ordering attaining OPT, λ(partition) = λ(A), λ(A) ≤ k, (k = 1 ∨ k < 2λ), and the same round and value as `autoCut` |
+| `autoCutX_state_bounds` | accepting-round state counts ≤ (n+1)·P(3k), ≤ (n+1)·P(6λ) for λ ≥ 1, k ≤ 4ⁿ |
+
 ## Why `autoCut_complexity` is blocked
 
+0. **The executable does not have the claimed running time** (Mission 023 finding). `dist` and `cutDP` are evaluated as plain recursions without memoisation, so evaluation cost grows with the number of chains in the node DAG, not with the number of nodes. A faithful complexity theorem needs a memoised, layer-by-layer implementation with its own refinement proof.
 1. **No operational cost model.** The algorithm is formalized as mathematical (noncomputable) definitions. A faithful runtime theorem needs the same program written in an instrumented model, for example a tick-counting monad over a fixed set of primitive operations. It must then state both:
    - arithmetic-operation counts over ℚ;
    - separately, bit complexity, since rational sizes grow along shortest-path sums.

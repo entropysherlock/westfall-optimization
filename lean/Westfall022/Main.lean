@@ -1,4 +1,6 @@
 import Westfall022.AutoCut
+import Westfall022.Exec
+import Westfall022.Complexity
 
 /-!
 # Westfall Discovery 022 — formalization entry point
@@ -16,7 +18,16 @@ user axioms; the axiom audit below reports only Lean's standard `propext`,
 | `partition_recovery_complete`  | proved | 022 Theorem 3, completeness |
 | `partition_recovery_minimal`   | proved | 022 Theorem 3, returns a partition attaining `λ(A)` |
 | `autoCut_correct`              | proved | 022 Theorem 4, correctness part |
-| `autoCut_complexity`           | **NOT PRESENT — blocked** (see `lean/FORMALIZATION_STATUS.md`) |
+| `autoCut_complexity`           | **NOT PRESENT — blocked** (see `Complexity.lean`, `lean/FORMALIZATION_STATUS.md`) |
+
+Mission 023 additions (the seven proofs above are unchanged from commit `4c6103b`):
+* `Exec.lean` — deterministic, executable `recognizeX` / `autoCutX` (no `Classical.choose`,
+  no `Nat.find`, no proof argument) and refinement theorems `recognizeX_isSome`,
+  `partition_recoveryX_sound/complete/minimal`, `autoCutX_correct` (same round and value as
+  the specification).
+* `Complexity.lean` — `autoCutX_state_bounds` (state counts and rounds only). The running-time
+  theorem is not proved; the executable is not memoised and does not have the claimed running
+  time.
 
 `autoCut_state_bounds` proves the state-count facts the running-time claim rests on; it is
 deliberately not named `autoCut_complexity`.
@@ -57,5 +68,17 @@ namespace Westfall022
 #print axioms autoCut_correct
 -- Stage E (partial; not a running-time theorem)
 #print axioms autoCut_state_bounds
+-- Mission 023: executable implementation and refinement
+#print axioms selMinSet_spec
+#print axioms selCand_spec
+#print axioms extractX_spec
+#print axioms recognizeX_isSome
+#print axioms partition_recoveryX_sound
+#print axioms partition_recoveryX_complete
+#print axioms partition_recoveryX_minimal
+#print axioms dpOrderX_spec
+#print axioms lam_le_sq
+#print axioms autoCutX_correct
+#print axioms autoCutX_state_bounds
 
 end Westfall022
