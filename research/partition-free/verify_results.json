@@ -1,0 +1,53 @@
+{
+ "T3_sccdp_exact_instances": 1512,
+ "T2_monotone_instances": 288,
+ "T2_strictly_smaller": 111,
+ "separation": [
+  {
+   "n": 2,
+   "zero_lam": 4,
+   "zero_lam_circ": 1,
+   "zero_states": 0,
+   "cycle_lam": 1,
+   "cycle_lam_circ": 1,
+   "cycle_states": 0
+  },
+  {
+   "n": 3,
+   "zero_lam": 9,
+   "zero_lam_circ": 1,
+   "zero_states": 0,
+   "cycle_lam": 7,
+   "cycle_lam_circ": 7,
+   "cycle_states": 1
+  },
+  {
+   "n": 4,
+   "zero_lam": 16,
+   "zero_lam_circ": 1,
+   "zero_states": 0,
+   "cycle_lam": 13,
+   "cycle_lam_circ": 13,
+   "cycle_states": 1
+  },
+  {
+   "n": 5,
+   "zero_lam": 25,
+   "zero_lam_circ": 1,
+   "zero_states": 0,
+   "cycle_lam": 22,
+   "cycle_lam_circ": 22,
+   "cycle_states": 1
+  },
+  {
+   "n": 6,
+   "zero_lam": 36,
+   "zero_lam_circ": 1,
+   "zero_states": 0,
+   "cycle_lam": 34,
+   "cycle_lam_circ": 34,
+   "cycle_states": 1
+  }
+ ],
+ "T4_reduction_instances": 48
+}
