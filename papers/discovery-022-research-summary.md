@@ -84,4 +84,4 @@ The closest antecedent is the **\(k\)-cut enumeration and dynamic program of Fom
 - Barbero, Paul & Pilipczuk — https://arxiv.org/abs/1706.00617
 - Phung & Hamel — https://arxiv.org/abs/2506.15097
 
-**Internal classification: Level 3 candidate.** This is not a peer-reviewed result, novelty certification, formal proof, award or external endorsement.
+**Research status:** This summary has not undergone peer review or independent novelty certification. Consult the Lean verification record for the precise scope of any machine-checked claims.
