@@ -15,13 +15,13 @@ export default function WestfallManuscript() {
   const source = loadRepoFile("research/discovery-022/WESTFALL_Discovery_022_Report.md")
     .replace(/^# .*\n/, "");
   return <>
-    <PageHeader kicker="Original full research report · November 12, 2026" title="The Westfall Structural Optimization Theorem">
+    <PageHeader kicker="Original research report · November 12, 2026" title="The Westfall Structural Optimization Theorem">
       <p>Automatic Structural Decomposition for Exact Weighted Linear Ordering. The report below is published in full, as originally authored. The partition-discovery result is now called the <strong>Westfall Partition Recovery Theorem.</strong></p>
       <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /></div>
       <p className="mt-3 text-sm">This is a complete <em>written</em> research report, not a peer-reviewed manuscript or a completed Lean verification. Its historical status notes describe the original local branch; the source document is now publicly archived.</p>
       <div className="mt-5 flex flex-wrap gap-3">
         <ButtonLink href={blob("research/discovery-022/WESTFALL_Discovery_022_Report.md")} external primary>Original Markdown source ↗</ButtonLink>
-        <ButtonLink href="/research/discovery-022/">Theorem overview</ButtonLink>
+        <ButtonLink href="/research/theorem/">Theorem overview</ButtonLink>
         <ButtonLink href="/formal-verification/">Proof verification status</ButtonLink>
       </div>
     </PageHeader>

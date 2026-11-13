@@ -79,6 +79,15 @@ describe("rational parsing", () => {
   });
 });
 
+describe("format detection", () => {
+  it("distinguishes 3-column edge lists from 3x3 matrices", () => {
+    expect(guessCsvKind(EDGES_CSV)).toBe("edges");
+    expect(guessCsvKind("0,1,2\n-1,0,3\n-2,-3,0\n")).toBe("matrix");
+    expect(guessCsvKind("a,b,1\nb,c,2\n")).toBe("edges");
+    expect(guessCsvKind(MATRIX_CSV)).toBe("matrix");
+  });
+});
+
 describe("Acceptance 1: matrix CSV, exact solve, independent exhaustive verification", () => {
   it("solves exactly and the optimum matches exhaustive enumeration", () => {
     const p = build(MATRIX_CSV);

@@ -7,7 +7,7 @@ interface Rec { source: string; family: string; instance: string; seed: number |
 interface Data { environment: Record<string, string>; records: Rec[] }
 
 const SOLVERS = ["Packing SLDP", "BLX 1.0", "BLX 2.0", "HiGHS MILP"] as const;
-const COLORS: Record<string, string> = { "Packing SLDP": "#a78bfa", "BLX 1.0": "#fbbf24", "BLX 2.0": "#38bdf8", "HiGHS MILP": "#4ade80" };
+const COLORS: Record<string, string> = { "Packing SLDP": "#5b3fb8", "BLX 1.0": "#b7791f", "BLX 2.0": "#0f766e", "HiGHS MILP": "#15803d" };
 const DATASETS = {
   test: { label: "Out-of-sample evaluation", sources: ["Original out-of-sample test"] },
   insample: { label: "In-sample BLX 2.0 evaluation", sources: ["Grid instances (portfolio training set)", "LOLIB instances (training set)", "BLX 2.0 on historical in-sample instances"] },
@@ -127,7 +127,7 @@ export default function BenchmarkDashboard() {
         <svg viewBox={`0 0 ${W} ${H}`} className="w-full min-w-[760px]" role="img" aria-label="Runtime comparison chart">
           {[0.01, 0.1, 1, 10, 100, 1000].map((t) => (
             <g key={t}>
-              <line x1={xs(t)} x2={xs(t)} y1={top - 10} y2={H - 15} stroke="#1b2643" />
+              <line x1={xs(t)} x2={xs(t)} y1={top - 10} y2={H - 15} stroke="#e2e8f0" />
               <text x={xs(t)} y={top - 14} textAnchor="middle" fontSize={10} className="fill-fog-500 font-mono">{t >= 1 ? `${t}s` : `${t * 1000}ms`}</text>
             </g>
           ))}

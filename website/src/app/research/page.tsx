@@ -1,85 +1,88 @@
 import Link from "next/link";
-import { ButtonLink, EvidenceTag, PageHeader, Section } from "@/components/ui";
+import { ButtonLink, EvidenceTag, FeatureCard, PageHeader, Section } from "@/components/ui";
 import { Tex } from "@/components/Tex";
-import { blob } from "@/lib/site";
+import { blob, leanBlob, REPO, tree } from "@/lib/site";
 
-export const metadata = { title: "Research" };
+export const metadata = { title: "Research", description: "A research program in exact weighted linear ordering: structural localization, partition recovery and verified parameterized algorithms." };
 
-const timeline = [
-  ["Foundations", "Foundations", "Local certificates, core-face lifting, symmetry-reduced DP, and self-localizing exclusion."],
-  ["Algorithm development", "BLX 1.0", "Hybrid hereditary bounds and block-localized exclusion; early benchmarks exposed weaknesses on LOLIB."],
-  ["Structural counting", "Square-root localization", "Supplied-partition counting bound |S_K| ≤ (n+1)P(2K+b²)."],
-  ["Exchange localization", "Gap-free localization", "Computable K₀ for a supplied partition. Manuscript and code reported on a local branch."],
-  ["Partition recovery", "Westfall Partition Recovery Theorem", "Intrinsic λ and proposed exact recognition of a minimizing partition; with kernel-verified correctness statements."],
+const program: [string, string, "lean" | "proved" | "provisional", string][] = [
+  ["Block localization with a supplied partition", "Given an ordered partition with largest block b, the prefix states an exact search must keep are bounded by (n+1)·P(2K+b²) (square-root localization).", "provisional", "/research/paper/"],
+  ["Exchange localization (gap-free bound K₀)", "For every ordered partition, the cross-block inversions of any optimal prefix are bounded by a computable quantity K₀(𝓑), with no incumbent required.", "lean", "/formal-verification/"],
+  ["Intrinsic parameter and optimal-prefix width", "λ(A) = min over 𝓑 of b² + 3K₀ bounds the weak-majority cut of every optimal prefix.", "lean", "/research/theorem/"],
+  ["Partition recovery", "A shortest-path search over cut states decides λ(A) ≤ k and recovers a minimizing partition, without a supplied partition.", "lean", "/research/theorem/"],
+  ["Verified parameterized algorithm", "AutoCut is correct and runs in poly(n)·2^{O(√λ)} arithmetic operations (unit-cost model; sharper and bit-level bounds open).", "lean", "/formal-verification/"],
 ];
+
 export default function Research() {
-  return <>
-    <PageHeader kicker="Research archive · 2026" title="A research program in exact ordering">
-      Research on exact weighted linear ordering, structural decompositions, and algorithmic partition recovery. Formal correctness results have passed kernel verification; the claimed running-time bound remains under investigation.
-      <div className="mt-6 flex flex-wrap gap-3">
-        <ButtonLink href="/research/discovery-022/" primary>Westfall Structural Optimization Theorem →</ButtonLink>
-        <ButtonLink href="/research/manuscript/">Full Westfall manuscript</ButtonLink><ButtonLink href="/research/paper/">Earlier manuscript</ButtonLink>
-        <ButtonLink href="/formal-verification/">Formal proof tracker</ButtonLink>
-      </div>
-    </PageHeader>
-    <Section kicker="The mathematical problem" title="Weighted linear ordering">
-      <div className="grid gap-5 lg:grid-cols-2">
-        <div className="card p-7">
-          <p className="text-fog-400">For a skew-symmetric weight matrix A, choose a permutation π maximizing:</p>
-          <Tex block>{"F_A(\\pi)=\\sum_{r<s}a_{\\pi_r\\pi_s}"}</Tex>
-          <p className="mt-4 text-sm leading-relaxed text-fog-400">Applications include rank aggregation and tournament feedback arc set. Solving generally is NP-hard. The research concerns exact parameterized algorithms for structurally favorable families.</p>
+  return (
+    <>
+      <PageHeader kicker="Research program" title="Structure and exactness in weighted ordering">
+        The central question: when can an exact algorithm for weighted linear ordering discover and exploit hidden structure on its own? The program runs from block-localized search with a supplied partition to an intrinsic structural parameter, an algorithm that recovers it, and machine-checked proofs.
+        <div className="mt-6 flex flex-wrap gap-3">
+          <ButtonLink href="/research/theorem/" primary>The structural theorem</ButtonLink>
+          <ButtonLink href="/research/manuscript/">Full manuscript</ButtonLink>
+          <ButtonLink href="/roadmap/">Open questions</ButtonLink>
         </div>
-        <div className="card p-7">
-          <p className="font-mono text-xs text-cyan-300">CURRENT RESEARCH QUESTION</p>
-          <h3 className="mt-4 text-xl font-semibold">Can the method recover its own structure?</h3>
-          <p className="mt-3 text-sm leading-relaxed text-fog-400">The earlier localization method needs a supplied ordered partition. The Westfall Partition Recovery Theorem proposes that the optimal partition witness for a specific structural parameter can itself be recovered in subexponential parameterized time.</p>
-          <Link href="/research/discovery-022/" className="mt-6 inline-block text-sm text-cyan-300 hover:underline">Read the formal statements →</Link>
+      </PageHeader>
+
+      <Section kicker="Main result" title="Westfall Structural Optimization Theorem">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+          <div className="card p-7 text-[15px] leading-relaxed text-fog-300">
+            <p className="font-semibold text-fog-100">Theorem (informal statement of the verified form).</p>
+            <p className="mt-2">Let <Tex>{"A"}</Tex> be a skew-symmetric rational matrix on <Tex>{"n"}</Tex> items, and let</p>
+            <Tex block>{"\\lambda(A)=\\min_{\\mathcal B}\\bigl(b(\\mathcal B)^2+3K_0(\\mathcal B)\\bigr)."}</Tex>
+            <p>There is a deterministic algorithm that receives only <Tex>{"A"}</Tex> and returns (i) the optimum <Tex>{"\\max_\\pi F_A(\\pi)"}</Tex>, (ii) an ordering attaining it, and (iii) an ordered partition <Tex>{"\\hat{\\mathcal B}"}</Tex> with <Tex>{"b(\\hat{\\mathcal B})^2+3K_0(\\hat{\\mathcal B})=\\lambda(A)"}</Tex>. It uses <Tex>{"\\operatorname{poly}(n)\\,2^{O(\\sqrt{\\lambda(A)})}"}</Tex> arithmetic operations.</p>
+            <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="lean" /><EvidenceTag kind="provisional" /></div>
+          </div>
+          <div className="space-y-4 text-[15px] leading-relaxed text-fog-300">
+            <p>The proof combines three ingredients. Optimal prefixes are low-width cuts (exchange localization). Low-width cuts are few, which follows from counting integer partitions. A layered shortest-path formulation recognizes the best partition among those cuts.</p>
+            <p>The cut-state dynamic program follows Fomin and Pilipczuk. The step under study is recognizing a minimum-λ partition, and its novelty has not been independently assessed.</p>
+            <Link href="/research/theorem/" className="inline-block font-semibold text-accent-600 hover:underline">Statements, lemmas and proofs →</Link>
+          </div>
         </div>
-      </div>
-    </Section>
-    <section className="border-y border-line bg-ink-900/40">
-      <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
-        <p className="kicker">Research timeline</p>
-        <h2 className="mt-3 text-3xl font-semibold">Development of the structural framework</h2>
-        <div className="mt-9 grid gap-4">
-          {timeline.map(([number,title,detail],i)=><div key={number} className={`card grid gap-3 p-6 md:grid-cols-[100px_1fr_auto] md:items-center ${i===4?"border-cyan-400/50":""}`}>
-            <span className="font-mono text-lg text-cyan-300">{number}</span>
-            <div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-relaxed text-fog-400">{detail}</p></div>
-            {i===4?<Link href="/research/discovery-022/" className="text-sm text-cyan-300">Read theorem →</Link>:null}
-          </div>)}
+      </Section>
+
+      <Section muted kicker="Supporting results" title="The development, result by result">
+        <div className="space-y-3">
+          {program.map(([t, d, k, href], i) => (
+            <Link key={t} href={href} className="card grid gap-3 p-5 transition hover:shadow-lift md:grid-cols-[48px_1fr_auto] md:items-center">
+              <span className="font-mono text-sm text-fog-500">{String(i + 1).padStart(2, "0")}</span>
+              <div><h3 className="font-semibold text-fog-100">{t}</h3><p className="mt-1 text-sm leading-relaxed text-fog-400">{d}</p></div>
+              <EvidenceTag kind={k} />
+            </Link>
+          ))}
         </div>
-      </div>
-    </section>
-    <Section kicker="Theory" title="Two distinct guarantees">
-      <div className="grid gap-5 md:grid-cols-2">
-        <div className="card p-7">
-          <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
-          <h3 className="mt-4 text-xl font-semibold">Localization with a supplied partition</h3>
-          <Tex block>{"|\\mathcal S_K|\\le(n+1)P(2K+b^2)"}</Tex>
-          <p className="mt-3 text-sm text-fog-400">The square-root counting bound for block-localized prefix states. The manuscript is public; specialist novelty review remains outstanding.</p>
-          <Link href="/research/paper/" className="mt-5 inline-block text-sm text-cyan-300">Read the existing manuscript →</Link>
+      </Section>
+
+      <Section kicker="Publications" title="Manuscripts and technical notes"
+        intro="These manuscripts are provisional. They have not been peer reviewed and have not been submitted for publication. The original reports are preserved verbatim as an archival record.">
+        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <FeatureCard kicker="Manuscript" title="Automatic structural decomposition for exact weighted linear ordering" href="/research/manuscript/" cta="Read">The full original report of the structural theorem, partition recovery, the cut DP and the experimental study.</FeatureCard>
+          <FeatureCard kicker="Manuscript" title="Square-root block localization" href="/research/paper/" cta="Read">The earlier counting bound for block-localized prefix states when a partition is supplied.</FeatureCard>
+          <FeatureCard kicker="Manuscript" title="Block-localized exclusion (v1)" href={blob("papers/block-localized-exclusion-v1.md")} cta="Source">Hybrid hereditary bounds and pairwise block certificates: the BLX solver&apos;s foundations.</FeatureCard>
+          <FeatureCard kicker="Technical note" title="Formal verification report" href={leanBlob("MISSION_025_REPORT.md")} cta="Read">Cost semantics, the running-time theorem, and an explicit list of what is not established.</FeatureCard>
+          <FeatureCard kicker="Technical note" title="Exact certificates" href={blob("docs/certificates.md")} cta="Read">Certificate format and the independent exact-integer checker.</FeatureCard>
+          <FeatureCard kicker="Technical note" title="Prior-art audit" href={blob("docs/novelty-audit.md")} cta="Read">A preliminary, targeted comparison with the literature. Not an originality certification.</FeatureCard>
         </div>
-        <div className="card border-cyan-400/30 p-7">
-          <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
-          <h3 className="mt-4 text-xl font-semibold">Westfall Structural Optimization Theorem</h3>
-          <Tex block>{"T(A)=\\operatorname{poly}(n)2^{O(\\sqrt{\\lambda(A)})}"}</Tex>
-          <p className="mt-3 text-sm text-fog-400">The recognition procedure and executable exactness are formalized in Lean on the research branch. The asymptotic running-time claim has not been formally established, and originality still requires external review.</p>
-          <Link href="/research/manuscript/" className="mt-5 inline-block text-sm text-cyan-300">Read the full manuscript →</Link>
+      </Section>
+
+      <Section muted kicker="Related literature" title="The work this builds on">
+        <div className="grid gap-4 md:grid-cols-2">
+          <FeatureCard title="Fomin & Pilipczuk (2013): subexponential parameterized algorithms on tournaments" href="https://arxiv.org/abs/1301.7314" cta="arXiv">k-cut enumeration and dynamic programming are the direct antecedents of the cut-state engine.</FeatureCard>
+          <FeatureCard title="Karpinski & Schudy (2010): faster algorithms for feedback arc set tournament" href="https://arxiv.org/abs/1006.4396" cta="arXiv">Subexponential algorithms and ETH lower bounds for weighted FAST.</FeatureCard>
+          <FeatureCard title="Condorcet decompositions" href="https://arxiv.org/abs/2609.19593" cta="arXiv">Perfect and approximate Condorcet decompositions precede this work. The question here is algorithmic recognition under bounded disagreement.</FeatureCard>
+          <FeatureCard title="Martí & Reinelt (2011): The Linear Ordering Problem">The standard monograph on exact and heuristic methods: branch-and-cut, LOLIB benchmarks and metaheuristics. A matched comparison with a specialized LOP solver is still outstanding.</FeatureCard>
         </div>
-      </div>
-    </Section>
-    <Section kicker="Prior work" title="What we did not invent"
-      intro="The cut-state engine builds on existing literature. Naming a new parameter does not by itself demonstrate originality.">
-      <div className="grid gap-4 md:grid-cols-2">
-        <div className="card p-6"><h3 className="font-semibold">Fomin & Pilipczuk (2013)</h3><p className="mt-2 text-sm text-fog-400">k-cut enumeration and dynamic programming are established antecedents of the structural optimization algorithm.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/1301.7314">Read paper ↗</a></div>
-        <div className="card p-6"><h3 className="font-semibold">Karpinski & Schudy (2010)</h3><p className="mt-2 text-sm text-fog-400">Subexponential algorithms and ETH lower bounds for weighted tournament feedback arc set are classical predecessors.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/1006.4396">Read paper ↗</a></div>
-        <div className="card p-6"><h3 className="font-semibold">Condorcet decomposition literature</h3><p className="mt-2 text-sm text-fog-400">Perfect and approximate decompositions precede this project. The potentially novel point is algorithmic recognition under bounded disagreement.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/2609.19593">Recent comparison ↗</a></div>
-        <div className="card p-6"><h3 className="font-semibold">Width and ordering frameworks</h3><p className="mt-2 text-sm text-fog-400">2026 work on structural width for ordering problems needs careful comparison before claiming novelty.</p><Link href="/research/discovery-022/" className="mt-4 inline-block text-sm text-cyan-300">Open technical questions →</Link></div>
-      </div>
-    </Section>
-    <Section kicker="Open record" title="The code and the limits">
-      <p className="max-w-3xl leading-relaxed text-fog-400">BLX 2.0 and its exact certificate checker are public. The original structural optimization manuscript is public. Earlier research materials and the original prototype logs have gaps in their public archival record; a new exhaustive reference checker is clearly labeled as independent.</p>
-      <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>Earlier proof source ↗</ButtonLink><ButtonLink href="/benchmarks/">Benchmarks</ButtonLink><ButtonLink href="/formal-verification/">What Lean has verified</ButtonLink></div>
-    </Section>
-  </>;
+      </Section>
+
+      <Section kicker="Reproducibility" title="Everything needed to check the work">
+        <div className="grid gap-4 md:grid-cols-3">
+          <FeatureCard title="Lean development" href={leanBlob("FORMALIZATION_STATUS.md")} cta="Status & correspondence">Pinned toolchain, axiom audit and a theorem-to-manuscript table.</FeatureCard>
+          <FeatureCard title="Solvers and tests" href={tree("src/westfall_optimization")} cta="Python package">BLX 2.0, exact DP, MILP, certificates, with tests run in CI.</FeatureCard>
+          <FeatureCard title="Original research records" href={tree("research")} cta="Archive">Historical reports, original code and the exact small-instance reference checker.</FeatureCard>
+        </div>
+        <p className="mt-6 text-sm text-fog-500">Historical file names keep their original research numbering so that the archival record stays reproducible. <a className="text-accent-600 underline" href={REPO}>Repository</a>.</p>
+      </Section>
+    </>
+  );
 }

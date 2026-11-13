@@ -28,6 +28,9 @@ jobs:
         env:
           NEXT_PUBLIC_BASE_PATH: /westfall-optimization
           NEXT_TELEMETRY_DISABLED: "1"
+          # optional public configuration (repository Settings → Variables); empty by default
+          NEXT_PUBLIC_STUDIO_API_URL: ${{ vars.STUDIO_API_URL }}
+          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT }}
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:

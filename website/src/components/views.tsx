@@ -2,7 +2,7 @@
 import { useMemo } from "react";
 import type { Matrix } from "@/lib/engine";
 
-const BLOCK_COLORS = ["#38bdf8", "#a78bfa", "#fbbf24", "#4ade80", "#f472b6", "#fb923c", "#2dd4bf", "#c084fc"];
+const BLOCK_COLORS = ["#0f766e", "#5b3fb8", "#b7791f", "#15803d", "#be185d", "#c2410c", "#0e7490", "#7e22ce"];
 export const blockColor = (i: number) => BLOCK_COLORS[i % BLOCK_COLORS.length];
 
 function blockIndex(blocks?: number[][] | null) {
@@ -41,16 +41,16 @@ export function OrderingDiagram({ A, order, blocks, height = 230, label = true, 
     <figure className="w-full">
       <svg viewBox={`0 0 ${W} ${height}`} className="w-full" role="img" aria-label={title ?? "Ordering diagram"}>
         {title && <title>{title}</title>}
-        <line x1={pad - 12} y1={mid} x2={W - pad + 12} y2={mid} stroke="#1b2643" />
+        <line x1={pad - 12} y1={mid} x2={W - pad + 12} y2={mid} stroke="#e2e8f0" />
         {arcs.filter((a) => !a.back).map((a) => (
-          <path key={a.key} d={a.d} fill="none" stroke="#38bdf8" strokeOpacity={0.18 + 0.5 * (a.w / maxW)} strokeWidth={0.8 + 2 * (a.w / maxW)} />
+          <path key={a.key} d={a.d} fill="none" stroke="#0f766e" strokeOpacity={0.18 + 0.5 * (a.w / maxW)} strokeWidth={0.8 + 2 * (a.w / maxW)} />
         ))}
         {arcs.filter((a) => a.back).map((a) => (
-          <path key={a.key} d={a.d} fill="none" stroke="#f87171" strokeOpacity={0.45 + 0.5 * (a.w / maxW)} strokeWidth={1 + 2.4 * (a.w / maxW)} />
+          <path key={a.key} d={a.d} fill="none" stroke="#b42318" strokeOpacity={0.45 + 0.5 * (a.w / maxW)} strokeWidth={1 + 2.4 * (a.w / maxW)} />
         ))}
         {order.map((v, i) => (
           <g key={v} style={{ transform: `translate(${x(i)}px, ${mid}px)`, transition: "transform 700ms cubic-bezier(.2,.7,.2,1)" }}>
-            <circle r={11} fill="#0a1020" stroke={bi.has(v) ? blockColor(bi.get(v)!) : "#7dd3fc"} strokeWidth={bi.has(v) ? 2.4 : 1.4} />
+            <circle r={11} fill="#ffffff" stroke={bi.has(v) ? blockColor(bi.get(v)!) : "#0d9488"} strokeWidth={bi.has(v) ? 2.4 : 1.4} />
             {label && <text y={4} textAnchor="middle" className="fill-fog-100 font-mono" fontSize={10}>{v + 1}</text>}
           </g>
         ))}
@@ -80,7 +80,7 @@ export function GraphCircle({ A, order, blocks }: { A: Matrix; order: number[]; 
       <defs>
         {["c", "r"].map((k) => (
           <marker key={k} id={`ah-${k}`} viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill={k === "c" ? "#38bdf8" : "#f87171"} />
+            <path d="M 0 0 L 10 5 L 0 10 z" fill={k === "c" ? "#0f766e" : "#b42318"} />
           </marker>
         ))}
       </defs>
@@ -92,7 +92,7 @@ export function GraphCircle({ A, order, blocks }: { A: Matrix; order: number[]; 
           const sx = x1 + (dx / L) * 13, sy = y1 + (dy / L) * 13, ex = x2 - (dx / L) * 15, ey = y2 - (dy / L) * 15;
           const back = pos.get(u)! > pos.get(v)!;
           return (
-            <line key={`${u}-${v}`} x1={sx} y1={sy} x2={ex} y2={ey} stroke={back ? "#f87171" : "#38bdf8"}
+            <line key={`${u}-${v}`} x1={sx} y1={sy} x2={ex} y2={ey} stroke={back ? "#b42318" : "#0f766e"}
               strokeOpacity={back ? 0.85 : 0.25 + 0.45 * (w / maxW)} strokeWidth={0.8 + 2 * (w / maxW)} markerEnd={`url(#ah-${back ? "r" : "c"})`} />
           );
         })
@@ -101,7 +101,7 @@ export function GraphCircle({ A, order, blocks }: { A: Matrix; order: number[]; 
         const [x, y] = pt(v);
         return (
           <g key={v}>
-            <circle cx={x} cy={y} r={12} fill="#0a1020" stroke={bi.has(v) ? blockColor(bi.get(v)!) : "#7dd3fc"} strokeWidth={bi.has(v) ? 2.4 : 1.4} />
+            <circle cx={x} cy={y} r={12} fill="#ffffff" stroke={bi.has(v) ? blockColor(bi.get(v)!) : "#0d9488"} strokeWidth={bi.has(v) ? 2.4 : 1.4} />
             <text x={x} y={y + 4} textAnchor="middle" fontSize={10} className="fill-fog-100 font-mono">{v + 1}</text>
           </g>
         );
@@ -132,12 +132,12 @@ export function MatrixView({ A, order, blocks }: { A: Matrix; order: number[]; b
               {order.map((v, s) => {
                 const w = A[u][v];
                 const a = Math.min(1, Math.abs(w) / maxW);
-                const bg = w > 0 ? `rgba(56,189,248,${0.08 + 0.5 * a})` : w < 0 ? `rgba(248,113,113,${0.08 + 0.5 * a})` : "transparent";
+                const bg = w > 0 ? `rgba(13,148,136,${0.08 + 0.5 * a})` : w < 0 ? `rgba(180,35,24,${0.08 + 0.5 * a})` : "transparent";
                 const edgeR = blocks && s < n - 1 && bi.get(order[s]) !== bi.get(order[s + 1]);
                 const edgeB = blocks && r < n - 1 && bi.get(order[r]) !== bi.get(order[r + 1]);
                 return (
                   <td key={v} title={`a(${u + 1},${v + 1}) = ${w}`} className="h-7 min-w-[1.9rem] px-1 text-center text-fog-100"
-                    style={{ background: u === v ? "#0d1428" : bg, borderRight: edgeR ? "1px solid #fbbf24" : undefined, borderBottom: edgeB ? "1px solid #fbbf24" : undefined }}>
+                    style={{ background: u === v ? "#f1f5f9" : bg, borderRight: edgeR ? "1px solid #b7791f" : undefined, borderBottom: edgeB ? "1px solid #b7791f" : undefined }}>
                     {u === v ? "·" : fmt(w)}
                   </td>
                 );
