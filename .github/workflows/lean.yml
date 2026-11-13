@@ -17,6 +17,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - name: Initialize pinned Lake dependencies
+        working-directory: lean
+        shell: bash
+        run: |
+          curl -fsSL https://raw.githubusercontent.com/leanprover/elan/master/elan-init.sh | sh -s -- -y
+          export PATH="$HOME/.elan/bin:$PATH"
+          lake update
       - uses: leanprover/lean-action@v1
         with:
           lake-package-directory: lean
