@@ -1,33 +1,30 @@
-# Release 0.2 — research integrity status
+# Release 1.0 — status
 
-Updated: 2026-11-12
+Updated: 2026-11-13
 
-## Actually released
+## Released
 
-- Original full Discovery 022 written research report and a separately
-  identified editorial presentation under the Westfall theorem name.
-- Historical Discovery 019 paper and original computational tools.
-- Independent **exhaustive small-n** integer-weight reference checker
-  with tests, distinct from the unpublished AutoCut code.
-- Six foundational Lean lemmas passed the pinned kernel build and automated
-  axiom audit in GitHub Actions run 43359133881. This is not the flagship proof.
-- Separate benchmark reporting (historical 018/019 dashboard versus reported
-  022 comparison).
-- Updated citations, grant draft, site link checks and metadata.
-- Targeted prior-art analysis under `docs/novelty-audit.md`.
+- **Website redesign** covering Technology, Research, Verification, Studio, Benchmarks, Applications, Documentation,
+  About and Contact. Old routes `/lab/` and `/research/discovery-022/` redirect.
+- **Westfall Optimization Studio**, a browser application:
+  - CSV, TSV, JSON and edge-list input with exact rational parsing and line-level validation;
+  - explicit skew, benefit or cost interpretation, with the exact affine identity and offset preserved;
+  - exact subset DP (n ≤ 20), exact exclusion DP (n ≤ 26), the AutoCut port (n ≤ 9) and local search (n ≤ 400);
+  - Web Worker execution with real progress, cancellation, time limits and a watchdog;
+  - exact objective verification, exhaustive cross-checks for n ≤ 9, and CSV, JSON and Markdown exports that re-import.
+- **Benchmark dashboard** with separated provenance: the Mission 025 AutoCut generations, exact-oracle comparisons, the
+  reported prototype study, and the historical BLX series.
+- **Job service** (`service/`, FastAPI): implemented with integration tests, Dockerfile and documentation.
+- **Lean:** eight flagship declarations kernel-checked on the research branch (see `docs/formal-verification.md`).
 
-## Still incomplete
+## Not done or not operational
 
-- Original Fable AutoCut `exact.py`, `falsify22.py`, `bench22.py`,
-  raw `results22.jsonl` and other local `discovery-022` files have not
-  been recovered. Do NOT label these public or independently reproducible.
-- Discovery 021 full source report/code not yet publicly located.
-- Lean formalization of the intrinsic parameter, partition-recovery,
-  AutoCut exactness, complexity and ETH transfer.
-- Specialist novelty comparison, specialized exact LOP baseline.
-- License selection requires the owner's explicit decision.
-- Next.js upgraded to 16.4.6: the verified npm audit has **zero high** findings,
-  but 8 moderate and 4 low remain; see `docs/security.md`.
+- The job service is not deployed. A container host and its configuration are required.
+- The contact form is disabled until a form-delivery endpoint is configured (`docs/deployment.md`).
+- There are no user accounts, saved projects, persistent job history, usage metering, payments or pricing.
+- The repository license requires the owner's decision.
+- Specialist novelty review and a comparison against a specialized LOP solver are outstanding.
+- The original AutoCut prototype code from the first report remains unrecovered. The verified AutoCut is a new
+  implementation.
 
-A failed CI workflow is a failed check, not proof that a theorem is false.
-A passing CI workflow on foundations does not certify the main theorem.
+A passing CI workflow certifies the stated checks only; it is not an external endorsement.

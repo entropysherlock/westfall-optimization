@@ -2,41 +2,53 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { REPO } from "@/lib/site";
+import { Wordmark } from "./Logo";
 
-const links = [
+export const NAV_LINKS = [
+  ["/technology/", "Technology"],
   ["/research/", "Research"],
-  ["/research/discovery-022/", "Structural Theorem"],
-  ["/lab/", "Lab"],
+  ["/formal-verification/", "Verification"],
   ["/benchmarks/", "Benchmarks"],
-  ["/verify/", "Certificates"],
-  ["/formal-verification/", "Lean status"],
-  ["/roadmap/", "Roadmap"],
+  ["/applications/", "Applications"],
+  ["/docs/", "Documentation"],
+  ["/about/", "About"],
 ] as const;
 
-function Logo() {
- return <svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true">
-   <rect x="1" y="1" width="28" height="28" rx="8" fill="#0a1020" stroke="#1b4560"/>
-   <path d="M5 21 11 10 16 20 23 7 26 12" fill="none" stroke="#38bdf8" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-   <circle cx="11" cy="10" r="2" fill="#7dd3fc"/><circle cx="23" cy="7" r="2" fill="#a78bfa"/>
- </svg>;
-}
-
 export default function Nav() {
- const path=usePathname();
- const [open,setOpen]=useState(false);
- const active=(href:string)=>path===href || (href==="/research/" ? path==="/research/" || path==="/research/paper/" : path?.startsWith(href));
- return <nav className="sticky top-0 z-50 border-b border-line bg-ink-950/90 backdrop-blur-xl" aria-label="Main navigation">
-   <div className="mx-auto flex max-w-page items-center justify-between gap-4 px-5 py-3.5 sm:px-8">
-     <Link href="/" className="flex shrink-0 items-center gap-3" onClick={()=>setOpen(false)}>
-       <Logo/><span className="font-mono text-[11px] font-bold tracking-[.19em] text-fog-100 sm:text-[12px]">WESTFALL <span className="text-cyan-300">/</span> OPTIMIZATION</span>
-     </Link>
-     <div className="hidden items-center gap-1 xl:flex">
-       {links.map(([href,label])=><Link key={href} href={href} className={`rounded-lg px-2.5 py-2 text-[13px] transition ${active(href)?"bg-cyan-400/10 text-cyan-300":"text-fog-400 hover:bg-ink-800 hover:text-fog-100"}`}>{label}</Link>)}
-       <a href={REPO} target="_blank" rel="noreferrer" className="ml-2 rounded-lg border border-cyan-400/30 px-3 py-2 text-[13px] text-cyan-300 hover:border-cyan-400">GitHub ↗</a>
-     </div>
-     <button type="button" className="rounded-lg border border-line px-3 py-2 text-sm text-fog-100 xl:hidden" aria-expanded={open} aria-controls="mobile-nav" onClick={()=>setOpen(v=>!v)}>{open?"Close":"Menu"}</button>
-   </div>
-   {open&&<div id="mobile-nav" className="max-h-[75vh] overflow-y-auto border-t border-line bg-ink-950 px-5 py-3 xl:hidden">{links.map(([href,label])=><Link key={href} href={href} onClick={()=>setOpen(false)} className="block border-b border-line/60 px-2 py-3 text-sm text-fog-300 hover:text-cyan-300">{label}</Link>)}<a href={REPO} target="_blank" rel="noreferrer" className="block px-2 py-3 text-sm text-cyan-300">GitHub ↗</a></div>}
- </nav>;
+  const path = usePathname() || "/";
+  // the menu is open only for the path it was opened on, so navigating closes it
+  const [openOn, setOpenOn] = useState<string | null>(null);
+  const open = openOn === path;
+  const setOpen = (f: (v: boolean) => boolean) => setOpenOn(f(open) ? path : null);
+  const active = (href: string) => path === href || path.startsWith(href);
+  return (
+    <nav className="sticky top-0 z-50 border-b border-line bg-white/95 backdrop-blur" aria-label="Main navigation">
+      <div className="mx-auto flex h-16 max-w-page items-center justify-between gap-4 px-5 sm:px-8">
+        <Link href="/" aria-label="Westfall Optimization home" className="shrink-0"><Wordmark /></Link>
+        <div className="hidden items-center gap-0.5 lg:flex">
+          {NAV_LINKS.map(([href, label]) => (
+            <Link key={href} href={href} aria-current={active(href) ? "page" : undefined}
+              className={`rounded-md px-3 py-2 text-[13.5px] font-medium transition ${active(href) ? "text-navy-900" : "text-fog-400 hover:text-fog-100"}`}>
+              {label}
+              {active(href) && <span className="mt-0.5 block h-0.5 rounded bg-accent-500" aria-hidden />}
+            </Link>
+          ))}
+        </div>
+        <div className="hidden items-center gap-2 lg:flex">
+          <Link href="/contact/" className="btn-ghost whitespace-nowrap px-3 py-2 text-[13.5px]">Contact</Link>
+          <Link href="/studio/" className="btn-primary whitespace-nowrap px-4 py-2 text-[13.5px]">Open Studio</Link>
+        </div>
+        <button type="button" className="btn-secondary px-3 py-2 lg:hidden" aria-expanded={open} aria-controls="mobile-nav" onClick={() => setOpen((v) => !v)}>
+          {open ? "Close" : "Menu"}
+        </button>
+      </div>
+      {open && (
+        <div id="mobile-nav" className="max-h-[80vh] overflow-y-auto border-t border-line bg-white px-5 py-2 lg:hidden">
+          {[["/studio/", "Optimization Studio"], ...NAV_LINKS, ["/contact/", "Contact"]].map(([href, label]) => (
+            <Link key={href} href={href} className={`block border-b border-line px-1 py-3 text-[15px] ${active(href) ? "font-semibold text-navy-900" : "text-fog-300"}`}>{label}</Link>
+          ))}
+        </div>
+      )}
+    </nav>
+  );
 }

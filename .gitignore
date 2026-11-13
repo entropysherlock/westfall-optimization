@@ -228,3 +228,6 @@ website/out/
 website/next-env.d.ts.bak
 *.tsbuildinfo
 .DS_Store
+website/test-results/
+website/playwright-report/
+website/tsconfig.tsbuildinfo

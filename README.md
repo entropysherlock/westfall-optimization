@@ -1,118 +1,89 @@
-# WESTFALL / OPTIMIZATION
+# Westfall Optimization
 
-**Discover the structure. Prove the optimum.**
+**Structural algorithms. Exact optimization. Verifiable results.**
 
-An independent research project in **exact weighted linear ordering, parameterized algorithms, block-localized exclusion, and checkable optimality certificates**.
+Research-driven optimization software for weighted ordering problems (sequencing, ranking and prioritization driven by
+pairwise costs or preferences), built on exact algorithms, structural decomposition and machine-checked proofs.
 
-- **Research website:** https://entropysherlock.github.io/westfall-optimization/
-- **Westfall Structural Optimization Theorem (Discovery 022):** https://entropysherlock.github.io/westfall-optimization/research/discovery-022/
-- **Full original Westfall theorem manuscript:** https://entropysherlock.github.io/westfall-optimization/research/manuscript/
+- **Website:** https://entropysherlock.github.io/westfall-optimization/
+- **Optimization Studio (runs in the browser):** https://entropysherlock.github.io/westfall-optimization/studio/
 - **Formal verification status:** https://entropysherlock.github.io/westfall-optimization/formal-verification/
-- **Interactive laboratory:** https://entropysherlock.github.io/westfall-optimization/lab/
-- **Benchmarks:** https://entropysherlock.github.io/westfall-optimization/benchmarks/
+- **Documentation:** https://entropysherlock.github.io/westfall-optimization/docs/
 
-Independent research led by **Caleb Westfall**, using AI-assisted discovery, adversarial computation and written proof development. Not affiliated with a university or institute; no research funding or peer-reviewed publication is claimed.
+Westfall Optimization is an independent research and software initiative founded by **Caleb Westfall**. It has no
+university or institute affiliation and no research funding, and it claims no peer-reviewed publication. Research and
+software are developed with AI-assisted research and programming tools.
 
-## Research status — November 2026
+## Status — November 2026
 
-| Discovery | Contribution | Evidence status |
-|---|---|---|
-| **019** | Square-root block-localization counting for a supplied ordered partition | Written public provisional manuscript; tests reported |
-| **021** | Gap-free localization quantity \(K_0\) for a supplied partition | Research report and code reported on unpublished local branch |
-| **022 — Westfall Structural Optimization Theorem** | Candidate intrinsic \(\lambda(A)\), minimum-partition recognition and partition-free exact algorithm | **Internal Level 3 candidate**, unreviewed and **not Lean-verified** |
+| Component | Status |
+|---|---|
+| Westfall Structural Optimization Theorem: λ(A), partition recovery, AutoCut correctness | **Lean kernel-checked** (branch `formal/westfall-theorem`, commit `5de1b5b`, [CI run](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867)) |
+| AutoCut running time `poly(n)·2^{O(√λ)}` (≤ 1 728 000 (n+1)¹⁸ 2^{45(⌊√λ⌋+1)} operations) | **Lean kernel-checked**, in a declared unit-cost arithmetic model |
+| Sharper `poly(n)·P(6λ)²`, bit complexity, memory bound | **Not established** |
+| Novelty relative to prior cut-DP methods | **Not independently assessed** |
+| Optimization Studio (browser solvers, exports, verification) | Released on the website. Unit, correspondence and end-to-end tests run in CI |
+| Job service (`service/`) for the Python BLX solver | Implemented and tested; **not deployed** (needs a container host) |
+| Commercial licensing, accounts, payments | **Not available**; the repository license is pending |
 
-The provisional Westfall Structural Optimization Theorem proposes
+The eight flagship Lean declarations are listed with their source locations on the
+[verification page](https://entropysherlock.github.io/westfall-optimization/formal-verification/). The browser solvers
+are TypeScript programs, not the Lean executable. The browser AutoCut is tested for exact output equality with the Lean
+executable on 103 archived instances (`website/tests/autocut.test.ts`).
 
-\[
-\lambda(A)=\min_{\mathcal B}\bigl(b(\mathcal B)^2+3K_0(\mathcal B)\bigr)
-\quad\text{and}\quad
-T(A)=\mathrm{poly}(n)2^{O(\sqrt{\lambda(A)})}.
-\]
+### Negative results
 
-This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the **Westfall Partition Recovery Theorem**, which claims recognition of its minimizing partition. The [full original written report](research/discovery-022/WESTFALL_Discovery_022_Report.md) is now public, along with [this editorial summary](papers/discovery-022-research-summary.md). The original AutoCut code and raw benchmarks remain unrecovered from the reported local branch.
+- In the original report, the AutoCut prototype proved 7 of 20 benchmark cases, while BLX 2.0 and packing SLDP each
+  proved 20 of 20.
+- The verified AutoCut completed 103 of 119 adversarial instances within 3600 s; the other 16 hit the time limit.
+- HiGHS MILP beats BLX on some published benchmarks.
+- No comparison with a specialized linear-ordering solver has been made, so no claim of superiority is made.
 
-**Level 3** is the program's own research classification, **not an external endorsement**. Neither the new theorem nor its asymptotic runtime claim has passed a Lean kernel check. See [the formal verification protocol](docs/formal-verification.md).
+## Repository layout
 
-### Negative results matter
+| Path | Content |
+|---|---|
+| `website/` | Next.js 16 static site and the Optimization Studio (`src/lib/studio`: parsing, model, solvers, AutoCut port) |
+| `service/` | FastAPI job service: queue, time and memory limits, cancellation, API keys, rate limits |
+| `src/westfall_optimization/` | Python package: BLX 2.0 portfolio, exclusion DP, subset DP, MILP, local search, exact certificates, CLI |
+| `lean/` | Lean foundations on `main`. The full development is on branch `formal/westfall-theorem` |
+| `papers/`, `research/` | Manuscripts and the original research records (historical file names kept for reproducibility) |
+| `benchmarks/` | Raw benchmark logs for the historical BLX series |
+| `docs/` | Architecture, deployment, security, certificates, verification protocol, release status |
 
-The Westfall Structural Optimization Theorem's AutoCut prototype reportedly proved **7/20** benchmark cases, while BLX 2.0 and packing SLDP each proved **20/20**, and AutoCut was slower wherever it succeeded. The new claim is theoretical, not a new fastest solver. The original published benchmarks also include cases where generic HiGHS MILP beats BLX.
+## Running things
 
-## What you can run today
-
-The public repository contains:
-
-- Python package \`westfall_optimization\`: BLX 2.0 portfolio, SLDP, subset DP, local search, MILP wrapper
-- Exact integer certificate generator and independent verifier with input binding and tamper tests
-- Static Next.js research website with interactive browser-only solvers, explainer and BigInt certificate verification
-- Benchmark logs and provisional Discovery 019 manuscript
-- Original complete Discovery 022 written report and editorial summary, but **not** its unrecovered AutoCut prototype
-- Independent exhaustive small-n reference checker in `research/discovery_022/`, not a substitute for AutoCut
-- Six elementary Lean weak-cut lemmas verified by GitHub Actions with an axiom audit; **not** a proof of the flagship theorem
-
-**The website's TypeScript solver is not the Python BLX 2.0 algorithm.** The browser demonstration and real solver presets are labeled separately.
-
-### Install and test
-
-\`\`\`bash
-git clone https://github.com/entropysherlock/westfall-optimization.git
-cd westfall-optimization
-python -m pip install -e ".[test]"
-python -m pytest
-\`\`\`
-
-### Solve and verify
-
-\`\`\`bash
-westfall-opt solve examples/paley11.json
+```bash
+# Python solvers and certificates
+python -m pip install -e ".[test]" && python -m pytest
 westfall-opt solve examples/paley11.json --mode sldp --certificate cert.json --out result.json
 westfall-opt verify cert.json --instance examples/paley11.json
-\`\`\`
 
-Input: JSON \`{"matrix":[...]}\` with skew-symmetric weights, or raw \`.npy\`. Use \`westfall-opt lolib PATH\` for LOLIB files.
+# Job service
+python -m pip install -e . -e "./service[test]" && python -m pytest service/tests
+uvicorn westfall_service.app:app --port 8000 --workers 1
 
-Certificate verifier implementations:
+# Website and Studio
+cd website && npm ci
+npm run typecheck && npm run lint && npm test && npm run check:links
+npm run build && npx playwright install chromium && npm run test:e2e
+```
 
-- [Python exact checker](src/westfall_optimization/certificates/verify_exact.py)
-- [TypeScript BigInt browser checker](website/src/lib/verify.ts)
+## Documentation
 
-Exact arithmetic verification of one supported solution is **not a formal proof assistant certification**.
-
-### Website development
-
-\`\`\`bash
-cd website
-npm ci
-npm run typecheck
-npm run lint
-npm test
-npm run build
-\`\`\`
-
-GitHub Actions runs the Python and website checks and deploys a static Next.js export to GitHub Pages.
-
-## Mathematical manuscripts and documentation
-
-- [Original Westfall Structural Optimization Theorem full report](research/discovery-022/WESTFALL_Discovery_022_Report.md)
-- [Discovery 019: Square-Root Block Localization](papers/square-root-block-localization-v2.md)
-- [Westfall Structural Optimization Theorem: Provisional Research Summary](papers/discovery-022-research-summary.md)
-- [Formal verification protocol and tracker](docs/formal-verification.md)
-- [Release-status and remaining gaps](docs/RELEASE_STATUS.md)
-- [Targeted prior-art novelty audit](docs/novelty-audit.md)
-- [Verified foundational Lean workflow](https://github.com/entropysherlock/westfall-optimization/actions/runs/43359133881)
-- [Architecture](docs/architecture.md)
-- [Certificates](docs/certificates.md)
-- [Grant application draft](docs/grant-application-draft.md) — **not submitted for Westfall Optimization**
-- [Contribution guidelines](CONTRIBUTING.md)
+- [Architecture](docs/architecture.md) · [Deployment](docs/deployment.md) · [Security](docs/security.md) · [Release status](docs/RELEASE_STATUS.md)
+- [Formal verification protocol](docs/formal-verification.md) · [Certificates](docs/certificates.md) · [Prior-art audit](docs/novelty-audit.md)
+- [Original theorem report](research/discovery-022/WESTFALL_Discovery_022_Report.md) · [Square-root block localization](papers/square-root-block-localization-v2.md)
+- [Grant application draft](docs/grant-application-draft.md) (**not submitted**) · [Contributing](CONTRIBUTING.md)
 
 ## Key prior art
 
-- [Fomin & Pilipczuk — cut enumeration / FAST](https://arxiv.org/abs/1301.7314)
-- [Karpinski & Schudy — subexponential weighted FAST](https://arxiv.org/abs/1006.4396)
-- [Feige — Faster FAST](https://arxiv.org/abs/0911.5094)
-- [Kawashima & Sukegawa — Condorcet structure](https://arxiv.org/abs/2609.19593)
-
-No claim of universal superiority to specialized linear-ordering solvers is made; that head-to-head comparison is still missing.
+- [Fomin & Pilipczuk: cut enumeration / FAST](https://arxiv.org/abs/1301.7314)
+- [Karpinski & Schudy: subexponential weighted FAST](https://arxiv.org/abs/1006.4396)
+- [Feige: Faster FAST](https://arxiv.org/abs/0911.5094)
+- [Kawashima & Sukegawa: Condorcet structure](https://arxiv.org/abs/2609.19593)
 
 ## License
 
-**Pending project-owner decision.** Until a license is selected, all rights are reserved; public source visibility is not a redistribution license. See [LICENSE-PENDING.md](LICENSE-PENDING.md).
+**Pending the project owner's decision.** Until a license is selected, all rights are reserved; public source visibility
+is not a redistribution license. See [LICENSE-PENDING.md](LICENSE-PENDING.md).

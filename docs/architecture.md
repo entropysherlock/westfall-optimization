@@ -26,3 +26,37 @@ src/westfall_optimization/
 
 ## Website
 `website/` is a Next.js static export. `src/lib/engine.ts` is a TypeScript **browser engine** (subset DP and exclusion DP) — not BLX. `src/lib/verify.ts` is a BigInt port of `verify_exact.py`. Presets in `public/data/` are produced by the Python solver via `scripts/build_site_data.py`.
+
+
+## Website and Optimization Studio (`website/`)
+
+```
+src/lib/studio/
+  rational.ts      exact BigInt rationals; decimal/fraction parsing with digit limits
+  parse.ts         matrix CSV/TSV, edge list, JSON and exported-result parsing; LIMITS; line-level errors
+  model.ts         Problem: interpretation (skew | benefit | cost), A = C − Cᵀ or Dᵀ − D, offset S,
+                   integer scaling, exact objective and identity checks, pair contributions
+  solvers.ts       subset DP (progress, deadline), exclusion DP wrapper, multi-start local search, enumeration
+  autocut.ts       AutoCut port (BigInt), tested for exact equality with the Lean executable
+  runner.ts        solve(): statuses, cross-checks, wire format for the worker
+  report.ts        results, verification record, JSON/CSV/Markdown export, improvement metrics
+  studio.worker.ts Web Worker entry (cancellation = Worker.terminate())
+src/components/studio/  Studio UI, visualizations (heatmap, arc diagram, graph), remote-service panel
+```
+
+The site is a static export. No user data leaves the browser unless a remote job service is configured and the user
+submits a job. Status vocabulary:
+- `OPTIMAL`: an exact solver completed in exact arithmetic;
+- `FEASIBLE`: a heuristic, an interrupted exact search, or floating-point arithmetic;
+- the verification record is kept separately.
+
+## Job service (`service/`)
+
+```
+westfall_service/
+  config.py   limits and settings from environment variables (no secrets in the repository)
+  model.py    instance validation and the exact model transformation (Fractions)
+  jobs.py     JobManager: bounded FIFO queue, one OS process per job (time limit, RLIMIT_AS, terminate on cancel),
+              exact result verification, in-memory retention
+  app.py      FastAPI endpoints, API-key auth (SHA-256 digests), sliding-window rate limits, body-size limit, CORS
+```

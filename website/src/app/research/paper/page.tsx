@@ -16,7 +16,7 @@ export default function Paper() {
         <div className="flex flex-wrap gap-2"><EvidenceTag kind="provisional" /></div>
         <p className="mt-3">An earlier investigation of block localization and exact weighted linear ordering. Preserved as part of the research record; specialist peer review remains outstanding.</p>
         <div className="mt-4 flex flex-wrap gap-3">
-          <ButtonLink href="/research/manuscript/" primary>Read the newer Westfall theorem →</ButtonLink><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>019 Markdown source ↗</ButtonLink>
+          <ButtonLink href="/research/manuscript/" primary>Read the structural theorem →</ButtonLink><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>Markdown source ↗</ButtonLink>
           <ButtonLink href={blob("research/discovery-019/WESTFALL_Discovery_019_Report.md")} external>Original research report ↗</ButtonLink>
           <ButtonLink href={blob("papers/block-localized-exclusion-v1.md")} external>Previous version (v1) ↗</ButtonLink>
         </div>

@@ -1,39 +1,52 @@
-# Westfall Structural Optimization Theorem — Formal Verification Protocol
+# Westfall Structural Optimization Theorem: formal verification protocol and status
 
-**Status on November 12, 2026: six foundational lemmas verified; flagship incomplete.**
+**Status (November 13, 2026): eight flagship declarations kernel-checked** on branch `formal/westfall-theorem`,
+commit `5de1b5b60d770a6d3bf447665576e5f92ff2e334`. The GitHub Actions *Lean Foundations* workflow
+[run 43419080867](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867) succeeded, and its
+axiom audit covered 963 declarations, all within `propext`, `Classical.choice` and `Quot.sound`. There is no `sorry`,
+`admit`, `native_decide` or user axiom.
 
-The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). A pinned `lean/Westfall022/Foundations.lean` module and GitHub Actions workflow are now committed. The [successful Lean Foundations workflow](https://github.com/entropysherlock/westfall-optimization/actions/runs/43359133881) verifies the six elementary weak-cut lemmas and completed the axiom audit (12 declarations reviewed). It does not prove the flagship theorem.
+The full development lives on the research branch. `main` still contains only the six foundational lemmas in
+`lean/Westfall022/Foundations.lean`, to keep the website branch light. The research branch is not merged into `main`.
 
-## Verified milestone
+## Verified flagship declarations
 
-Lean 4.32.0 / Mathlib 4.32.0: all six foundational theorems in `lean/Westfall022/Foundations.lean` compile. The axiom audit allows only `propext`, `Classical.choice`, and `Quot.sound`. The main theorem and complexity are not Lean-verified.
+| # | Declaration | Content |
+|---|---|---|
+| 1 | `k0_exchange_localization` | I_𝓑(S) ≤ R_𝓑(π*) ≤ K₀(𝓑) for every partition, optimal ordering and prefix |
+| 2 | `optimal_prefix_width_bound` | every optimal prefix has weak-majority cut ≤ λ(A) |
+| 3 | `cut_count_bound` | λ(A) ≤ k ⇒ #k-cuts ≤ (n+1)·P(3k) |
+| 4–6 | `partition_recovery_sound/complete/minimal` | the recognizer is sound and complete, and returns a partition attaining λ(A) |
+| 7 | `autoCut_correct` | AutoCut returns OPT(A), an optimal ordering, a minimizing partition, and λ ≤ k with (k = 1 or k < 2λ) |
+| 8 | `autoCut_complexity` | the executable `autoCutC` equals `autoCutX`, and its counted cost is ≤ 1 728 000 (n+1)¹⁸ 2^{45(⌊√λ⌋+1)} |
 
-## Live CI status
+## Scope of the eighth theorem
 
-Check [Lean Foundations workflow](https://github.com/entropysherlock/westfall-optimization/actions/workflows/lean.yml) for the latest kernel build outcome. The reported status must match the workflow, not an unverified chat statement.
+- The cost is counted by a cost semantics (a step-counting monad). The executable is the value projection of the same
+  program, so the counted program and the program that runs are one term.
+- Every collection operation charges one step per element visited, deduplication is charged quadratically, and table
+  lookups are linear scans.
+- Rational arithmetic is unit cost. Every doubling round is charged: aborted, rejected and accepted.
 
-## Verification layers
+**Not established:**
+- the manuscript's sharper `poly(n)·P(6λ)²` form;
+- bit complexity;
+- a complete memory bound;
+- machine verification of the declared per-operation charges against compiled execution semantics.
 
-1. **Definitions.** Formalize finite weighted ordering, permutations, weak-majority cuts with tied pairs counted, ordered partitions and \`K0\` with the threshold and floor conventions from the report.
-2. **Localization.** Kernel-check the weighted exchange argument and the optimal-prefix cut bound.
-3. **Counting.** Formalize the finite combinatorial encoding and integer-partition count.
-4. **Partition recognition.** Model the candidate cut DAG, shortest paths, admissibility, soundness, completeness, parameter minimization and floor treatment.
-5. **Exactness.** Prove the algorithm's output equals the true maximum of the finite ordering objective. Do not substitute unrestricted enumeration for the described algorithm.
-6. **Complexity.** Track states and arithmetic operations, then prove the parameterized asymptotic bound in a stated input model.
-7. **Lower bound.** Distinguish a standalone ETH formalization from an explicit theorem assumption based on published complexity reductions.
+Kernel verification does not establish novelty or practical superiority. Details are in `lean/MISSION_025_REPORT.md`
+and `lean/FORMALIZATION_STATUS.md` on the research branch.
 
-## Acceptance criteria
+## Relationship to the website and the Python package
 
-- Lean source states the **original** theorem (not a weakened reformulation).
-- Pinned Lean/Mathlib toolchains and clean reproducible builds.
-- No \`sorry\`, \`admit\`, or undocumented theorem-specific axioms.
-- Full \`#print axioms\` report and human audit of statement-to-manuscript correspondence.
-- Build logs and proof source committed under a dedicated \`lean/\` or \`formal/\` directory.
-- An independent kernel check, not just an editor success message.
-- An honest scope label for every theorem.
+- The **browser solvers** in the Optimization Studio are TypeScript programs, not the Lean executable. The browser
+  AutoCut port reproduces the Lean executable's outputs exactly on all 103 completed archived instances. This is tested
+  in `website/tests/autocut.test.ts`, not proved.
+- The **Python BLX solver** and its exact certificates are independent of the Lean development.
 
-## Not the same thing
+## Acceptance criteria applied
 
-The project's existing Python/TypeScript integer-certificate verifier rechecks optimality of supported BLX instances. It **does not** machine-check the general Westfall Structural Optimization Theorem or the asymptotic complexity proof.
-
-Lean verification cannot establish **novelty**. Literature comparison and scholarly evaluation remain separate tasks.
+- The Lean source states the theorem without weakening it. Modelling choices are documented in the semantic audit.
+- Pinned Lean and Mathlib toolchains, and clean reproducible builds in GitHub Actions.
+- No `sorry`, `admit` or theorem-specific axioms, with a full `#print axioms` report.
+- An honest scope label for every statement.
