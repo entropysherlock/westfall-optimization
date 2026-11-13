@@ -6,7 +6,7 @@ import { REPO } from "@/lib/site";
 
 const links = [
   ["/research/", "Research"],
-  ["/research/discovery-022/", "Westfall Theorem"],
+  ["/research/discovery-022/", "Structural Theorem"],
   ["/lab/", "Lab"],
   ["/benchmarks/", "Benchmarks"],
   ["/verify/", "Certificates"],

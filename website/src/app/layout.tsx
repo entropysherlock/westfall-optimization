@@ -6,19 +6,19 @@ import Footer from "@/components/Footer";
 export const metadata: Metadata = {
   metadataBase: new URL("https://entropysherlock.github.io"),
   title: { default: "Westfall Optimization — Discover the structure. Prove the optimum.", template: "%s · Westfall Optimization" },
-  description: "Independent research in exact weighted linear ordering, BLX 2.0, the provisional Westfall Structural Optimization Theorem, reproducible experiments and Lean verification.",
+  description: "Research in exact weighted linear ordering, structural decomposition, partition recovery, Lean formalization, and reproducible algorithms.",
   keywords: ["weighted linear ordering","exact algorithms","parameterized complexity","BLX","cut dynamic programming","formal verification"],
   openGraph: {
     type: "website",
     siteName: "Westfall Optimization",
     title: "Westfall Optimization — Discover the structure. Prove the optimum.",
-    description: "The Westfall Structural Optimization Theorem, BLX 2.0 and transparent proof-verification progress.",
+    description: "Structural optimization research, verified correctness results, algorithms, and reproducible experiments.",
     url: "https://entropysherlock.github.io/westfall-optimization/"
   },
   twitter: {
     card: "summary",
     title: "Westfall Optimization — Theorem & Research",
-    description: "Exact structural optimization, algorithms and evidence. Provisional research, openly audited."
+    description: "Exact structural optimization, algorithms and evidence. Formal mathematics and reproducible computational evidence."
   }
 };
 

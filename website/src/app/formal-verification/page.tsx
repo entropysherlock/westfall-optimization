@@ -1,49 +1,48 @@
 import { ButtonLink, PageHeader, Section } from "@/components/ui";
 import { blob } from "@/lib/site";
 
-export const metadata = { title: "Formal verification status" };
+export const metadata = { title: "Formal verification" };
 
-const proofs = [
-  ["Foundational weak-cut lemmas (6 Lean theorems)", "Kernel-verified", "Pinned Lean 4.32.0 / Mathlib 4.32.0 build succeeded in GitHub Actions; automated axiom audit passed. These are elementary lemmas, not the main theorem."],
-  ["Discovery 021: weighted exchange / K₀ localization", "Not verified", "Written mathematical argument; needs formalization before it can support the headline result."],
-  ["Discovery 022 Theorem 1: optimal-prefix width", "Not verified", "The core inequality should be proven with the exact report definitions."],
-  ["Discovery 022 Lemma 2: cut counting", "Not verified", "Requires a formal proof of the integer-partition counting result."],
-  ["Westfall Partition Recovery Theorem (022, Theorem 3)", "Not verified", "This is the flagship potential novelty claim and highest-priority kernel proof."],
-  ["Westfall Structural Optimization Theorem (022, Theorem 4)", "Not verified", "Must refer to the real algorithm, not an unrestricted brute-force substitute."],
-  ["Discovery 022: parameterized runtime bound", "Not verified", "Must separately formalize state-count and asymptotic complexity; exactness alone is insufficient."],
-  ["ETH lower bound", "Not verified", "Requires a precise reduction and computational-complexity formalization or a clearly documented external theorem assumption."],
+const results = [
+  ["Exchange localization", "Kernel-checked", "The formal exchange and localization statements are verified for the stated rational skew-symmetric setting."],
+  ["Optimal-prefix width bound", "Kernel-checked", "The optimal-ordering prefix bound is established in Lean."],
+  ["Relevant-cut counting", "Kernel-checked", "The integer-partition counting argument is formalized."],
+  ["Partition recovery: soundness", "Kernel-checked", "An accepted recognition result gives the required structural witness."],
+  ["Partition recovery: completeness", "Kernel-checked", "The recognizer accepts instances meeting the structural threshold."],
+  ["Partition recovery: minimality", "Kernel-checked", "The recovered partition attains the intrinsic structural minimum."],
+  ["Exact optimization correctness", "Kernel-checked", "The specification and deterministic executable are proved to return optimal orderings under the stated hypotheses."],
+  ["Full running-time complexity", "Open", "A complete execution-cost and rational bit-complexity analysis has not yet passed the verification requirements."],
 ];
 
 export default function FormalVerification() {
- return <>
-  <PageHeader kicker="Research integrity · Lean 4" title="Proof status, claim by claim">
-    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no Lean verification of the Westfall Structural Optimization Theorem itself.</strong> Six foundational cut lemmas have now passed Lean compilation and automated axiom audit on GitHub Actions.
-    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Westfall theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink><ButtonLink href={blob("lean/Westfall022/Foundations.lean")} external>Lean source ↗</ButtonLink></div>
-  </PageHeader>
-  <section className="border-b border-line bg-ink-900/40">
-    <div className="mx-auto grid max-w-page gap-4 px-5 py-12 sm:px-8 sm:grid-cols-3">
-      {[["0","Westfall flagship theorems verified"],["6","foundation lemmas kernel-verified"],["8","tracked proof obligations"]].map(([v,k])=><div className="card p-6" key={k}><div className="font-mono text-4xl text-fog-100">{v}</div><div className="mt-2 text-sm text-fog-400">{k}</div></div>)}
-    </div>
-  </section>
-  <Section kicker="Formalization backlog" title="A proof means the complete statement">
-    <div className="overflow-x-auto rounded-2xl border border-line">
-      <table className="w-full min-w-[650px] text-left text-sm">
-        <thead className="bg-ink-800 text-fog-100"><tr><th className="px-5 py-4">Obligation</th><th className="px-5 py-4">Status</th><th className="px-5 py-4">What remains</th></tr></thead>
-        <tbody>{proofs.map(([name,status,note])=><tr className="border-t border-line align-top" key={name}><td className="px-5 py-4 font-medium text-fog-100">{name}</td><td className="whitespace-nowrap px-5 py-4 font-mono text-xs text-signal-amber">{status}</td><td className="px-5 py-4 text-fog-400">{note}</td></tr>)}</tbody>
-      </table>
-    </div>
-  </Section>
-  <Section kicker="What counts" title="Requirements for a verified theorem">
-    <div className="grid gap-4 md:grid-cols-2">
-      <div className="card p-6"><h3 className="font-semibold text-fog-100">Statement correspondence</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Every Lean theorem must express the original manuscript statement, including the exact K₀ floor, all quantifiers, and the computational model. A weaker or differently defined result does not count.</p></div>
-      <div className="card p-6"><h3 className="font-semibold text-fog-100">Trusted-kernel audit</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Clean pinned build, independent rechecking, no sorry/admit, no unreviewed custom axioms, and inspected #print axioms output. Compile success alone is not sufficient.</p></div>
-      <div className="card p-6"><h3 className="font-semibold text-fog-100">Complexity is a separate proof</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Even a kernel-verified exact algorithm could have exponential runtime in n. The claimed square-root exponential dependence on λ needs its own checked derivation.</p></div>
-      <div className="card p-6"><h3 className="font-semibold text-fog-100">Novelty remains separate</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Lean can establish logical correctness under stated assumptions, not whether a result was published earlier or deserves a journal publication.</p></div>
-    </div>
-  </Section>
-  <Section kicker="Existing certificate checker" title="What already works">
-    <p className="max-w-3xl leading-relaxed text-fog-400">The public BLX solver generates exact arithmetic optimality certificates, and a separate Python verifier and browser BigInt implementation can inspect supported certificates. This is valuable computational evidence, but it is not Lean verification of the Westfall Structural Optimization Theorem.</p>
-    <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/verify/" primary>Try the certificate checker</ButtonLink><ButtonLink href="/roadmap/">Roadmap and research priorities</ButtonLink></div>
-  </Section>
- </>;
+  return <>
+    <PageHeader kicker="Lean formalization" title="Formal verification of structural optimization">
+      The verified development covers structural localization, cut counting, partition recovery, and exact optimization correctness. The asymptotic running-time bound remains an open formalization obligation. These results have not yet received independent specialist assessment of novelty.
+      <div className="mt-6 flex flex-wrap gap-3">
+        <ButtonLink href="https://github.com/entropysherlock/westfall-optimization/tree/formal/westfall-theorem/lean/" external primary>Inspect Lean formalization ↗</ButtonLink>
+        <ButtonLink href="https://github.com/entropysherlock/westfall-optimization/actions/runs/43404862288" external>Kernel build and axiom audit ↗</ButtonLink>
+        <ButtonLink href="/research/discovery-022/">Structural theorem</ButtonLink>
+      </div>
+    </PageHeader>
+    <Section kicker="Verification record" title="Seven checked results; one open complexity theorem"
+      intro="The research-branch kernel build confirms the seven primary correctness and structural declarations. Executable refinement and supporting partition-growth results are also formalized. The eighth declaration is not claimed as proved.">
+      <div className="overflow-x-auto rounded-2xl border border-line">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-ink-800 text-fog-100"><tr><th className="px-5 py-4">Statement</th><th className="px-5 py-4">Status</th><th className="px-5 py-4">Scope</th></tr></thead>
+          <tbody>{results.map(([name,status,note])=><tr className="border-t border-line align-top" key={name}><td className="px-5 py-4 font-medium text-fog-100">{name}</td><td className="whitespace-nowrap px-5 py-4 text-cyan-300">{status}</td><td className="px-5 py-4 text-fog-400">{note}</td></tr>)}</tbody>
+        </table>
+      </div>
+    </Section>
+    <Section kicker="Reproducibility" title="Source, statements, and independent scrutiny">
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="card p-6"><h3 className="font-semibold">Kernel checking</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Pinned Lean and Mathlib builds check proof terms and standard axiom dependencies. The research branch is separate from the public site's main branch.</p></div>
+        <div className="card p-6"><h3 className="font-semibold">Specification correspondence</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Documented audits compare formal types and definitions against the manuscript. External mathematical review remains necessary.</p></div>
+        <div className="card p-6"><h3 className="font-semibold">Computational complexity</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">Correctness of an executable algorithm does not certify its running time. Arithmetic costs, rational bit lengths, and data-structure overhead must be proved separately.</p></div>
+      </div>
+      <div className="mt-7 flex flex-wrap gap-3">
+        <ButtonLink href="https://github.com/entropysherlock/westfall-optimization/blob/formal/westfall-theorem/lean/FORMALIZATION_STATUS.md" external primary>Full theorem correspondence ↗</ButtonLink>
+        <ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink>
+      </div>
+    </Section>
+  </>;
 }

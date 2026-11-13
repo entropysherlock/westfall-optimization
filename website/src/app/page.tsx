@@ -6,9 +6,9 @@ import { loadPresets } from "@/lib/data";
 import { REPO } from "@/lib/site";
 
 const milestones = [
-  { number: "019", label: "Block localization", detail: "A square-root bound for prefix-state enumeration when an ordered partition is supplied.", status: "Written proof · provisional" },
-  { number: "021", label: "Gap-free localization", detail: "An incumbent-independent structural parameter for a supplied partition.", status: "Research report · unreviewed" },
-  { number: "022", label: "Westfall Partition Recovery", detail: "A proposed intrinsic parameter and a partition-free exact algorithm based on cut enumeration.", status: "Level 3 candidate · not formalized" },
+  { number: "I", label: "Block localization", detail: "A square-root bound for prefix-state enumeration when an ordered partition is supplied.", status: "Structural foundation" },
+  { number: "II", label: "Gap-free localization", detail: "An incumbent-independent structural parameter for a supplied partition.", status: "Localization framework" },
+  { number: "III", label: "Westfall Partition Recovery", detail: "An intrinsic structural parameter and formally verified partition-recovery and correctness results.", status: "Lean-verified recovery and correctness" },
 ];
 
 const research = [
@@ -38,16 +38,16 @@ export default function Home() {
               WESTFALL OPTIMIZATION studies why hard weighted-ordering problems sometimes admit exact, checkable solutions—and how hidden structure can be discovered algorithmically.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/research/discovery-022/" primary>Explore the Westfall theorem →</ButtonLink>
-              <ButtonLink href="/research/manuscript/">Full original manuscript</ButtonLink><ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
+              <ButtonLink href="/research/discovery-022/" primary>Study the structural theorem →</ButtonLink>
+              <ButtonLink href="/research/manuscript/">Research manuscript</ButtonLink><ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
             </div>
             <p className="mt-5 max-w-xl text-xs leading-relaxed text-fog-500">
-              The Westfall Structural Optimization Theorem (Discovery 022) is provisional, not peer-reviewed or Lean-verified. Its prototype is slower than existing project solvers on the reported benchmark.
+              Partition recovery, structural bounds, and exact correctness have passed Lean kernel checks on the research branch. The full runtime guarantee and independent novelty assessment remain outstanding.
             </p>
             <div className="mt-11 grid grid-cols-3 gap-4 border-t border-line pt-7">
-              <div><div className="font-mono text-2xl text-fog-100">019→022</div><div className="mt-1 text-xs text-fog-500">Research progression</div></div>
-              <div><div className="font-mono text-2xl text-fog-100">2<sup>O(√λ)</sup></div><div className="mt-1 text-xs text-fog-500">Proposed exact bound</div></div>
-              <div><div className="font-mono text-2xl text-fog-100">7 / 20</div><div className="mt-1 text-xs text-fog-500">022 prototype benchmark</div></div>
+              <div><div className="font-mono text-2xl text-fog-100">7 results</div><div className="mt-1 text-xs text-fog-500">Flagship proofs kernel-checked</div></div>
+              <div><div className="font-mono text-2xl text-fog-100">2<sup>O(√λ)</sup></div><div className="mt-1 text-xs text-fog-500">Runtime bound under formal review</div></div>
+              <div><div className="font-mono text-2xl text-fog-100">7 / 20</div><div className="mt-1 text-xs text-fog-500">Original prototype benchmark</div></div>
             </div>
           </div>
           <div className="relative">
@@ -71,12 +71,12 @@ export default function Home() {
         </div>
       </section>
 
-      <Section kicker="The current research frontier" title="Three discoveries. One central question."
-        intro="Can an exact algorithm exploit structure it has to find for itself? The research has progressed from supplied blocks to a provisional partition-free result.">
+      <Section kicker="The current research frontier" title="Structural results and exact algorithms"
+        intro="Can an exact algorithm exploit structure it has to find for itself? The development extends supplied-partition localization to verified partition recovery and exact optimization correctness.">
         <div className="grid gap-4 md:grid-cols-3">
           {milestones.map((m, i) => (
             <div key={m.number} className={`card relative overflow-hidden p-6 ${i === 2 ? "border-cyan-400/50 bg-cyan-500/[.06]" : ""}`}>
-              <div className="flex items-start justify-between"><span className="font-mono text-xs text-cyan-300">DISCOVERY / {m.number}</span><span className="text-xs text-fog-500">{i === 2 ? "CURRENT" : "FOUNDATION"}</span></div>
+              <div className="flex items-start justify-between"><span className="font-mono text-xs text-cyan-300">RESULT / {m.number}</span><span className="text-xs text-fog-500">{i === 2 ? "CURRENT" : "FOUNDATION"}</span></div>
               <h3 className="mt-6 text-xl font-semibold text-fog-100">{m.label}</h3>
               <p className="mt-3 min-h-[92px] text-sm leading-relaxed text-fog-400">{m.detail}</p>
               <div className="mt-5 border-t border-line pt-4 font-mono text-[11px] text-fog-500">{m.status}</div>
@@ -89,12 +89,12 @@ export default function Home() {
       <section className="border-y border-line bg-ink-900/50">
         <div className="mx-auto grid max-w-page items-center gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr]">
           <div>
-            <p className="kicker">Westfall Structural Optimization Theorem · Research 022</p>
-            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-fog-100 sm:text-4xl">What if the algorithm finds the partition itself?</h2>
-            <p className="mt-5 leading-relaxed text-fog-400">The proposed Westfall Partition Recovery Theorem uses a Robust Condorcet parameter that minimizes block size and cross-block disagreement over all ordered partitions. The proposed recognition algorithm searches for a witness without receiving one as input.</p>
+            <p className="kicker">Westfall Structural Optimization Theorem</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-fog-100 sm:text-4xl">Recovering structure from weighted orderings</h2>
+            <p className="mt-5 leading-relaxed text-fog-400">The Westfall Partition Recovery Theorem concerns a Robust Condorcet parameter that minimizes block size and cross-block disagreement over all ordered partitions. The formalized recognition algorithm searches for a witness without receiving one as input.</p>
             <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /><EvidenceTag kind="proved" /></div>
-            <p className="mt-3 text-xs text-fog-500">“Proved” means written in the research report. Novelty, complete formal correctness, and practical advantage are not established.</p>
-            <div className="mt-7"><ButtonLink href="/research/manuscript/">Read the full provisional manuscript →</ButtonLink></div>
+            <p className="mt-3 text-xs text-fog-500">The structural, recovery, and correctness statements are kernel-checked. The full running-time claim and external novelty assessment remain open.</p>
+            <div className="mt-7"><ButtonLink href="/research/manuscript/">Read the mathematical manuscript →</ButtonLink></div>
           </div>
           <div className="card p-7">
             <div className="font-mono text-[11px] tracking-widest text-cyan-300">INTRINSIC STRUCTURAL PARAMETER</div>
@@ -123,15 +123,15 @@ export default function Home() {
 
       <section className="border-y border-line bg-ink-900/40">
         <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
-          <p className="kicker">Reality check</p>
-          <h2 className="mt-3 text-3xl font-semibold tracking-tight">No benchmark cherry-picking.</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-fog-400">The research prototype for the Westfall Structural Optimization Theorem proved only 7 of 20 reported instances, versus 20 of 20 for both BLX 2.0 and packing SLDP. It was slower wherever it finished. This is a proposed theoretical contribution, not a claim of state-of-the-art speed.</p>
-          <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/benchmarks/" primary>BLX benchmark dashboard</ButtonLink><ButtonLink href="/research/discovery-022/">022 experimental details</ButtonLink></div>
+          <p className="kicker">Experimental evidence</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight">Performance and limitations</h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-fog-400">The original research prototype completed only 7 of 20 reported instances, versus 20 of 20 for both BLX 2.0 and packing SLDP. It was slower wherever it finished. This is a theoretical research contribution, not evidence of state-of-the-art speed.</p>
+          <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/benchmarks/" primary>BLX benchmark dashboard</ButtonLink><ButtonLink href="/research/discovery-022/">Original experimental details</ButtonLink></div>
         </div>
       </section>
 
       <Section kicker="Reproducible research" title="Inspect. Reproduce. Challenge."
-        intro="Westfall Optimization is an independent initiative. The available software and complete 022 written research report are public, with no claim of peer review, grant funding, or institutional endorsement.">
+        intro="Westfall Optimization is an independent initiative. The available software and original structural optimization manuscript are public, with no claim of peer review, grant funding, or institutional endorsement.">
         <div className="flex flex-wrap gap-3">
           <ButtonLink href={REPO} external primary>Explore source on GitHub ↗</ButtonLink>
           <ButtonLink href="/verify/">Verify BLX certificates</ButtonLink>
