@@ -4,7 +4,7 @@ import { blob } from "@/lib/site";
 export const metadata = { title: "Formal verification status" };
 
 const proofs = [
-  ["Definitions: finite weighted ordering, cuts and partitions", "Planned", "Lean formalization has been started in a separate Colab workflow; no build log or proof artifact is publicly committed."],
+  ["Definitions: finite weighted ordering, cuts and partitions", "Planned", "A pinned foundational Lean module and GitHub Actions workflow are now committed. Its kernel-check status depends on the workflow outcome; the main theorem remains unverified."],
   ["Discovery 021: weighted exchange / K₀ localization", "Not verified", "Written mathematical argument; needs formalization before it can support the headline result."],
   ["Discovery 022 Theorem 1: optimal-prefix width", "Not verified", "The core inequality should be proven with the exact report definitions."],
   ["Discovery 022 Lemma 2: cut counting", "Not verified", "Requires a formal proof of the integer-partition counting result."],
@@ -17,8 +17,8 @@ const proofs = [
 export default function FormalVerification() {
  return <>
   <PageHeader kicker="Research integrity · Lean 4" title="Proof status, claim by claim">
-    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no publicly confirmed Lean verification of the Westfall Structural Optimization Theorem.</strong>
-    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Westfall theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink></div>
+    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no Lean verification of the Westfall Structural Optimization Theorem itself.</strong> Foundational cut lemmas have a separate reproducible proof workflow.
+    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Westfall theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink><ButtonLink href={blob("lean/Westfall022/Foundations.lean")} external>Lean source ↗</ButtonLink></div>
   </PageHeader>
   <section className="border-b border-line bg-ink-900/40">
     <div className="mx-auto grid max-w-page gap-4 px-5 py-12 sm:px-8 sm:grid-cols-3">

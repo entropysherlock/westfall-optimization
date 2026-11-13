@@ -1,0 +1,35 @@
+name: Dependency Security Audit
+on:
+  push:
+    branches: [main]
+    paths:
+      - "website/package.json"
+      - "website/package-lock.json"
+      - ".github/workflows/security.yml"
+  pull_request:
+    paths:
+      - "website/package.json"
+      - "website/package-lock.json"
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  npm-audit:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: website
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - name: Produce dependency audit evidence
+        run: npm audit --json > npm-audit.json || true
+      - name: Upload audit artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: npm-audit-report
+          path: website/npm-audit.json
+          retention-days: 30

@@ -1,0 +1,32 @@
+# Release 0.2 — research integrity status
+
+Updated: 2026-11-12
+
+## Actually released
+
+- Original full Discovery 022 written research report and a separately
+  identified editorial presentation under the Westfall theorem name.
+- Historical Discovery 019 paper and original computational tools.
+- Independent **exhaustive small-n** rational/integer-weight reference checker
+  with tests, distinct from the unpublished AutoCut code.
+- Lean foundational proof project and automated workflow; only consider
+  foundations kernel-checked after the workflow passes.
+- Separate benchmark reporting (historical 018/019 dashboard versus reported
+  022 comparison).
+- Updated citations, grant draft, site link checks and metadata.
+
+## Still incomplete
+
+- Original Fable AutoCut `exact.py`, `falsify22.py`, `bench22.py`,
+  raw `results22.jsonl` and other local `discovery-022` files have not
+  been recovered. Do NOT label these public or independently reproducible.
+- Discovery 021 full source report/code not yet publicly located.
+- Lean formalization of the intrinsic parameter, partition-recovery,
+  AutoCut exactness, complexity and ETH transfer.
+- Specialist novelty comparison, specialized exact LOP baseline.
+- License selection requires the owner's explicit decision.
+- npm dependency audit still needs verified remediation; record the severity
+  and affected transitive packages, then upgrade/test deliberately.
+
+A failed CI workflow is a failed check, not proof that a theorem is false.
+A passing CI workflow on foundations does not certify the main theorem.

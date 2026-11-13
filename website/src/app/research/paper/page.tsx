@@ -14,9 +14,9 @@ export default function Paper() {
     <>
       <PageHeader kicker="Provisional manuscript · v2 (Discovery 019)" title="Square-Root Block Localization for Exact Weighted Linear Ordering">
         <div className="flex flex-wrap gap-2"><EvidenceTag kind="provisional" /></div>
-        <p className="mt-3">Caleb Westfall, with Claude (Anthropic) as AI research collaborator. Not peer-reviewed. Rendered directly from the repository source.</p>
+        <p className="mt-3">Historical Discovery 019 manuscript, preceding the provisional Westfall Structural Optimization Theorem (Discovery 022). Caleb Westfall, with Claude (Anthropic) as AI research collaborator. Not peer-reviewed.</p>
         <div className="mt-4 flex flex-wrap gap-3">
-          <ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>Markdown source ↗</ButtonLink>
+          <ButtonLink href="/research/manuscript/" primary>Read the newer Westfall theorem →</ButtonLink><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>019 Markdown source ↗</ButtonLink>
           <ButtonLink href={blob("research/discovery-019/WESTFALL_Discovery_019_Report.md")} external>Discovery 019 report ↗</ButtonLink>
           <ButtonLink href={blob("papers/block-localized-exclusion-v1.md")} external>Previous version (v1) ↗</ButtonLink>
         </div>

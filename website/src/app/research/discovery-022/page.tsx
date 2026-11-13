@@ -15,9 +15,9 @@ const theorem = [
 export default function Discovery022() {
  return <>
   <PageHeader kicker="Westfall Structural Optimization Theorem · Discovery 022" title="Automatic Structural Decomposition for Exact Weighted Linear Ordering">
-    The proposed Westfall Structural Optimization Theorem introduces a partition-free parameterized algorithm through the Robust Condorcet number. Its central partition-recognition result is named the Westfall Partition Recovery Theorem. Written arguments and computational tests are available in the supplied research report; the original prototype remains on an unpublished local branch.
+    The proposed Westfall Structural Optimization Theorem introduces a partition-free parameterized algorithm through the Robust Condorcet number. Its central partition-recognition result is named the Westfall Partition Recovery Theorem. The full original written research report is now published. The original AutoCut prototype and its raw experiment files remain unavailable in the public repository.
     <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
-    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/formal-verification/" primary>Verification status →</ButtonLink><ButtonLink href="/research/">Research archive</ButtonLink><ButtonLink href={blob("papers/discovery-022-research-summary.md")} external>Research summary source ↗</ButtonLink></div>
+    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/manuscript/" primary>Read the full original manuscript →</ButtonLink><ButtonLink href="/formal-verification/">Verification status →</ButtonLink><ButtonLink href="/research/">Research archive</ButtonLink><ButtonLink href={blob("papers/discovery-022-research-summary.md")} external>Research summary source ↗</ButtonLink></div>
   </PageHeader>
   <section className="border-b border-line bg-ink-900/40">
     <div className="mx-auto grid max-w-page gap-8 px-5 py-16 sm:px-8 lg:grid-cols-2">
@@ -26,7 +26,7 @@ export default function Discovery022() {
     </div>
   </section>
   <Section kicker="Precise claims" title="Seven mathematical statements, one main theorem."
-    intro="These are reported in the Discovery 022 manuscript, not yet Lean-kernel-checked. The center of the potential originality claim is the Westfall Partition Recovery Theorem (Theorem 3).">
+    intro="These are claims in the original written manuscript, not yet Lean-kernel-checked. The center of the potential originality claim is the Westfall Partition Recovery Theorem (Theorem 3).">
     <div className="grid gap-4 md:grid-cols-2">{theorem.map(([id,title,body])=><div className="card p-6" key={id}><p className="font-mono text-xs tracking-wider text-cyan-300">THEOREM / {id}</p><h3 className="mt-3 text-lg font-semibold">{title}</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">{body}</p></div>)}</div>
   </Section>
   <section className="border-y border-line bg-ink-900/40">
@@ -34,7 +34,7 @@ export default function Discovery022() {
       <div className="mt-8 grid gap-4 sm:grid-cols-3">
         {[[ "650", "small instances checked by Fable", "Zero reported violations; not a machine proof." ],["7/20","AutoCut instances proved", "A state cap and timeout limited the prototype." ],["20/20","BLX 2.0 and packing SLDP", "Both outperformed AutoCut on the reported set." ]].map(([v,h,n])=><div key={h} className="card p-6"><p className="font-mono text-3xl text-fog-100">{v}</p><p className="mt-2 font-semibold">{h}</p><p className="mt-2 text-xs leading-relaxed text-fog-500">{n}</p></div>)}
       </div>
-      <p className="mt-5 text-sm text-fog-400">The small certificate sizes reported for successful cases are structural witnesses; they are not polynomial-time proofs of optimality. The code and exact benchmark records are not yet included in the public main branch.</p>
+      <p className="mt-5 text-sm text-fog-400">The small certificate sizes reported for successful cases are structural witnesses; they are not polynomial-time proofs of optimality. The original AutoCut implementation and raw benchmark logs are not yet included in the public main branch.</p>
     </div>
   </section>
   <Section kicker="A stronger standard" title="What would confirm the mathematics?">

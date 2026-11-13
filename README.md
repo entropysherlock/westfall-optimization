@@ -6,6 +6,7 @@ An independent research project in **exact weighted linear ordering, parameteriz
 
 - **Research website:** https://entropysherlock.github.io/westfall-optimization/
 - **Westfall Structural Optimization Theorem (Discovery 022):** https://entropysherlock.github.io/westfall-optimization/research/discovery-022/
+- **Full original Westfall theorem manuscript:** https://entropysherlock.github.io/westfall-optimization/research/manuscript/
 - **Formal verification status:** https://entropysherlock.github.io/westfall-optimization/formal-verification/
 - **Interactive laboratory:** https://entropysherlock.github.io/westfall-optimization/lab/
 - **Benchmarks:** https://entropysherlock.github.io/westfall-optimization/benchmarks/
@@ -28,7 +29,7 @@ The provisional Westfall Structural Optimization Theorem proposes
 T(A)=\mathrm{poly}(n)2^{O(\sqrt{\lambda(A)})}.
 \]
 
-This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the **Westfall Partition Recovery Theorem**, which claims recognition of its minimizing partition. The original 022 report and executable code have **not yet been pushed** from the reported local research branch; [this public summary](papers/discovery-022-research-summary.md) records the statements and limitations.
+This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the **Westfall Partition Recovery Theorem**, which claims recognition of its minimizing partition. The [full original written report](research/discovery-022/WESTFALL_Discovery_022_Report.md) is now public, along with [this editorial summary](papers/discovery-022-research-summary.md). The original AutoCut code and raw benchmarks remain unrecovered from the reported local branch.
 
 **Level 3** is the program's own research classification, **not an external endorsement**. Neither the new theorem nor its asymptotic runtime claim has passed a Lean kernel check. See [the formal verification protocol](docs/formal-verification.md).
 
@@ -44,7 +45,9 @@ The public repository contains:
 - Exact integer certificate generator and independent verifier with input binding and tamper tests
 - Static Next.js research website with interactive browser-only solvers, explainer and BigInt certificate verification
 - Benchmark logs and provisional Discovery 019 manuscript
-- Discovery 022 public research **summary**, not yet the complete executable Discovery 022 implementation
+- Original complete Discovery 022 written report and editorial summary, but **not** its unrecovered AutoCut prototype
+- Independent exhaustive small-n reference checker in `research/discovery_022/`, not a substitute for AutoCut
+- Pinned Lean foundational source plus CI workflow; **not** a proof of the flagship theorem
 
 **The website's TypeScript solver is not the Python BLX 2.0 algorithm.** The browser demonstration and real solver presets are labeled separately.
 
@@ -89,9 +92,11 @@ GitHub Actions runs the Python and website checks and deploys a static Next.js e
 
 ## Mathematical manuscripts and documentation
 
+- [Original Westfall Structural Optimization Theorem full report](research/discovery-022/WESTFALL_Discovery_022_Report.md)
 - [Discovery 019: Square-Root Block Localization](papers/square-root-block-localization-v2.md)
 - [Westfall Structural Optimization Theorem: Provisional Research Summary](papers/discovery-022-research-summary.md)
 - [Formal verification protocol and tracker](docs/formal-verification.md)
+- [Release-status and remaining gaps](docs/RELEASE_STATUS.md)
 - [Architecture](docs/architecture.md)
 - [Certificates](docs/certificates.md)
 - [Grant application draft](docs/grant-application-draft.md) — **not submitted for Westfall Optimization**

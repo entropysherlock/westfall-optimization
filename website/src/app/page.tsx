@@ -12,7 +12,7 @@ const milestones = [
 ];
 
 const research = [
-  { title: "A structural theory", category: "THEOREM DEVELOPMENT", description: "From block-localized search to a proposed intrinsic parameter: λ(A) = min over ordered partitions of b² + 3K₀.", href: "/research/discovery-022/", label: "Explore the theorem" },
+  { title: "A structural theory", category: "THEOREM DEVELOPMENT", description: "From block-localized search to a proposed intrinsic parameter: λ(A) = min over ordered partitions of b² + 3K₀.", href: "/research/discovery-022/", label: "Read full proof report" },
   { title: "Proof status, without ambiguity", category: "FORMAL VERIFICATION", description: "Track written arguments, independent checks, exact certificates, and Lean kernel verification as separate forms of evidence.", href: "/formal-verification/", label: "View proof status" },
   { title: "The algorithm in your browser", category: "INTERACTIVE LAB", description: "Explore weighted ordering, compare exact subset DP and exclusion DP, and inspect small-instance behavior.", href: "/lab/", label: "Open the lab" },
 ];
@@ -39,7 +39,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <ButtonLink href="/research/discovery-022/" primary>Explore the Westfall theorem →</ButtonLink>
-              <ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
+              <ButtonLink href="/research/manuscript/">Full original manuscript</ButtonLink><ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
             </div>
             <p className="mt-5 max-w-xl text-xs leading-relaxed text-fog-500">
               The Westfall Structural Optimization Theorem (Discovery 022) is provisional, not peer-reviewed or Lean-verified. Its prototype is slower than existing project solvers on the reported benchmark.
@@ -94,7 +94,7 @@ export default function Home() {
             <p className="mt-5 leading-relaxed text-fog-400">The proposed Westfall Partition Recovery Theorem uses a Robust Condorcet parameter that minimizes block size and cross-block disagreement over all ordered partitions. The proposed recognition algorithm searches for a witness without receiving one as input.</p>
             <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /><EvidenceTag kind="proved" /></div>
             <p className="mt-3 text-xs text-fog-500">“Proved” means written in the research report. Novelty, complete formal correctness, and practical advantage are not established.</p>
-            <div className="mt-7"><ButtonLink href="/research/discovery-022/">Examine the claim and evidence →</ButtonLink></div>
+            <div className="mt-7"><ButtonLink href="/research/manuscript/">Read the full provisional manuscript →</ButtonLink></div>
           </div>
           <div className="card p-7">
             <div className="font-mono text-[11px] tracking-widest text-cyan-300">INTRINSIC STRUCTURAL PARAMETER</div>
@@ -131,7 +131,7 @@ export default function Home() {
       </section>
 
       <Section kicker="Reproducible research" title="Inspect. Reproduce. Challenge."
-        intro="Westfall Optimization is an independent initiative. The software and provisional research record are public, with no claim of peer review, grant funding, or institutional endorsement.">
+        intro="Westfall Optimization is an independent initiative. The available software and complete 022 written research report are public, with no claim of peer review, grant funding, or institutional endorsement.">
         <div className="flex flex-wrap gap-3">
           <ButtonLink href={REPO} external primary>Explore source on GitHub ↗</ButtonLink>
           <ButtonLink href="/verify/">Verify BLX certificates</ButtonLink>

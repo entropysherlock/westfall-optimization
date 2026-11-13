@@ -4,9 +4,22 @@ import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://entropysherlock.github.io"),
   title: { default: "Westfall Optimization — Discover the structure. Prove the optimum.", template: "%s · Westfall Optimization" },
-  description: "Independent research in exact weighted linear ordering, BLX 2.0, the provisional Westfall Structural Optimization Theorem, reproducible experiments and formal verification.",
+  description: "Independent research in exact weighted linear ordering, BLX 2.0, the provisional Westfall Structural Optimization Theorem, reproducible experiments and Lean verification.",
   keywords: ["weighted linear ordering","exact algorithms","parameterized complexity","BLX","cut dynamic programming","formal verification"],
+  openGraph: {
+    type: "website",
+    siteName: "Westfall Optimization",
+    title: "Westfall Optimization — Discover the structure. Prove the optimum.",
+    description: "The Westfall Structural Optimization Theorem, BLX 2.0 and transparent proof-verification progress.",
+    url: "https://entropysherlock.github.io/westfall-optimization/"
+  },
+  twitter: {
+    card: "summary",
+    title: "Westfall Optimization — Theorem & Research",
+    description: "Exact structural optimization, algorithms and evidence. Provisional research, openly audited."
+  }
 };
 
 export default function RootLayout({children}:{children:React.ReactNode}) {

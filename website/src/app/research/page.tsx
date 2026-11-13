@@ -18,7 +18,7 @@ export default function Research() {
       A transparent record of theorems, algorithms, falsified ideas, and computational evidence. Current theoretical flagship: the Westfall Structural Optimization Theorem (Discovery 022; provisional, not machine-verified).
       <div className="mt-6 flex flex-wrap gap-3">
         <ButtonLink href="/research/discovery-022/" primary>Westfall Structural Optimization Theorem →</ButtonLink>
-        <ButtonLink href="/research/paper/">Discovery 019 manuscript</ButtonLink>
+        <ButtonLink href="/research/manuscript/">Full Westfall manuscript</ButtonLink><ButtonLink href="/research/paper/">Discovery 019 archive</ButtonLink>
         <ButtonLink href="/formal-verification/">Formal proof tracker</ButtonLink>
       </div>
     </PageHeader>
@@ -45,7 +45,7 @@ export default function Research() {
           {timeline.map(([number,title,detail],i)=><div key={number} className={`card grid gap-3 p-6 md:grid-cols-[100px_1fr_auto] md:items-center ${i===4?"border-cyan-400/50":""}`}>
             <span className="font-mono text-lg text-cyan-300">{number}</span>
             <div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-relaxed text-fog-400">{detail}</p></div>
-            {i===4?<Link href="/research/discovery-022/" className="text-sm text-cyan-300">Read report →</Link>:null}
+            {i===4?<Link href="/research/discovery-022/" className="text-sm text-cyan-300">Read theorem →</Link>:null}
           </div>)}
         </div>
       </div>
@@ -64,7 +64,7 @@ export default function Research() {
           <h3 className="mt-4 text-xl font-semibold">Westfall Structural Optimization Theorem · Discovery 022</h3>
           <Tex block>{"T(A)=\\operatorname{poly}(n)2^{O(\\sqrt{\\lambda(A)})}"}</Tex>
           <p className="mt-3 text-sm text-fog-400">A reported recognition procedure computes λ and a minimizing partition. The written proof and small-instance tests are promising; no verified Lean implementation or specialist novelty decision exists.</p>
-          <Link href="/research/discovery-022/" className="mt-5 inline-block text-sm text-cyan-300">Examine Theorems 1–7 →</Link>
+          <Link href="/research/manuscript/" className="mt-5 inline-block text-sm text-cyan-300">Read Theorems 1–7 in full →</Link>
         </div>
       </div>
     </Section>
@@ -78,7 +78,7 @@ export default function Research() {
       </div>
     </Section>
     <Section kicker="Open record" title="The code and the limits">
-      <p className="max-w-3xl leading-relaxed text-fog-400">BLX 2.0 and its exact certificate checker are public. The 021 and 022 experiments were reported on a local branch and were not part of the initial public release; the current research summary is not a substitute for their executable source files.</p>
+      <p className="max-w-3xl leading-relaxed text-fog-400">BLX 2.0 and its exact certificate checker are public. The full original Discovery 022 written report is now public. The separate 021 report and original AutoCut executable sources and logs remain unpublished; a new exhaustive reference checker is clearly labeled as independent.</p>
       <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>019 proof source ↗</ButtonLink><ButtonLink href="/benchmarks/">Benchmarks</ButtonLink><ButtonLink href="/formal-verification/">What Lean has verified</ButtonLink></div>
     </Section>
   </>;

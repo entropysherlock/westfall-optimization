@@ -2,7 +2,11 @@
 
 **Status on November 12, 2026: incomplete.**
 
-The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). The research workflow has proposed a Colab foundation module, but no successful pinned clean-build evidence for that module was supplied for inclusion here.
+The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). A pinned `lean/Westfall022/Foundations.lean` module and GitHub Actions workflow are now committed. A passing workflow, if achieved, establishes only the elementary definitions/lemmas, not the flagship theorem.
+
+## Live CI status
+
+Check [Lean Foundations workflow](https://github.com/entropysherlock/westfall-optimization/actions/workflows/lean.yml) for the latest kernel build outcome. The reported status must match the workflow, not an unverified chat statement.
 
 ## Verification layers
 

@@ -3,11 +3,11 @@ import { blob, REPO } from "@/lib/site";
 
 export const metadata = { title: "Roadmap & grant readiness" };
 const phases = [
-  ["01", "Make the Westfall Structural Optimization Theorem reproducible", "NOW", "Publish the original 021 and 022 proof reports, exact reference code, falsification scripts, benchmark inputs and logs on a review branch. Pin versions and regenerate every result."],
+  ["01", "Make the Westfall Structural Optimization Theorem reproducible", "NOW", "The full original 022 report is now public and an independently written exhaustive reference has been added. Recover the original 021 report and AutoCut source/logs, pin versions and regenerate all reported results."],
   ["02", "Machine-check the mathematical dependency chain", "NEXT", "Formalize the actual exchange lemma, prefix localization, cut counting, partition recognition and exactness. Audit all axioms and prove complexity separately."],
   ["03", "Settle the potential originality", "RESEARCH", "Compare the exact minimization and partition-recognition statement against Fomin–Pilipczuk, Karpinski–Schudy, and structural-width methods, including recent 2026 work."],
   ["04", "Challenge the performance claim", "EVALUATION", "Benchmark BLX, AutoCut, packing SLDP, generic MILP, and a specialized LOP branch-and-cut implementation using matched resources and multiple seeds."],
-  ["05", "Publication-quality package", "RELEASE", "Prepare a standalone formal manuscript, theorem-to-code correspondence, reproducible benchmark tables, citation metadata and an errata log."],
+  ["05", "Publication-quality package", "RELEASE", "Keep the full original manuscript public; prepare a corrected journal-style revision after the Lean and novelty audit. Publish precise theorem-to-code correspondence and reproducible benchmark tables."],
   ["06", "Grant submission strategy", "WHEN APPROPRIATE", "Keep this initiative distinct from the submitted ProofScope proposal. Decide on a separate funding application after the first response and an updated evidence review."],
 ];
 export default function Roadmap() {
