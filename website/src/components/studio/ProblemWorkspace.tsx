@@ -58,13 +58,13 @@ export default function ProblemWorkspace(props: ProblemProps) {
   const p = built.problem;
   const [editor, setEditor] = useState<"text" | "grid">("text");
   return (
-    <div className="grid gap-4 xl:grid-cols-[minmax(0,360px)_minmax(0,1fr)]">
+    <div className="grid gap-4 xl:grid-cols-[minmax(0,320px)_minmax(0,1fr)]">
       <div className="space-y-4">
         <LoadPanel {...props} />
-        <SessionPanel {...props} />
+        <details className="ws-panel p-3" data-testid="sessions-disclosure"><summary className="cursor-pointer text-[13px] font-medium ws-text">Saved sessions</summary><div className="mt-3"><SessionPanel {...props} /></div></details>
       </div>
       <div className="space-y-4 min-w-0">
-        <Panel id="editor" title="Data" sub={<>Paste or edit a matrix, an edge list (<span className="num">from,to,weight</span>) or JSON. <Link className="ws-accent underline" href="/docs/#input-formats">Format reference</Link>.</>}
+        <Panel id="editor" title="2. Review your data"
           actions={<>
             {props.dirty && <button type="button" className="ws-btn ws-btn-ghost" onClick={props.resetOriginal}>Reset to original input</button>}
             <div className="ws-tabs !border-0" role="tablist" aria-label="Editor">
@@ -93,8 +93,8 @@ export default function ProblemWorkspace(props: ProblemProps) {
             <div className="mt-3">
               <label className="ws-lbl" htmlFor="data">Data</label>
               <textarea id="data" data-testid="data-input" spellCheck={false} value={props.text} onChange={(e) => props.setText(e.target.value)}
-                className="ws-field ws-scroll num mt-1 h-64 resize-y text-[12px] leading-relaxed" />
-              <p className="ws-sub mt-1">{props.text.length.toLocaleString("en-US")} characters · limit {LIMITS.maxBytes / 1e6} MB, {LIMITS.maxVertices} items, values up to 10¹² (decimals and fractions such as 3/7 are exact).</p>
+                className="ws-field ws-scroll num mt-1 h-48 resize-y text-[12px] leading-relaxed" />
+              <p className="ws-faint mt-1 text-[11px]">{props.text.length.toLocaleString("en-US")} characters · <Link className="underline" href="/docs/#input-formats">Input help</Link></p>
             </div>
           ) : (
             <GridEditor key={gridKey(p)} p={p} interp={props.interp} loadText={props.loadText} />
@@ -104,7 +104,7 @@ export default function ProblemWorkspace(props: ProblemProps) {
             <p className="ws-sub mt-2">The initial order is set from a previous result (it seeds local search and the exclusion DP, and is the baseline for “improvement”). <button type="button" className="ws-accent underline" onClick={props.clearInitial}>Use the input order instead</button></p>
           )}
         </Panel>
-        {p && <ModelPreview p={p} nameEdits={props.nameEdits} setNameEdits={props.setNameEdits} />}
+        {p && <details className="ws-panel p-3" data-testid="model-disclosure"><summary className="cursor-pointer text-[13px] font-medium ws-text">Advanced: mathematical model</summary><div className="mt-3"><ModelPreview p={p} nameEdits={props.nameEdits} setNameEdits={props.setNameEdits} /></div></details>}
       </div>
     </div>
   );
@@ -116,8 +116,23 @@ function LoadPanel(props: ProblemProps) {
   const [gseed, setGseed] = useState(1);
   const [over, setOver] = useState(false);
   return (
-    <Panel id="load" title="Load a problem" sub="Everything stays in this browser. Nothing is uploaded.">
-      <p className="ws-lbl">Examples</p>
+    <Panel id="load" title="1. Upload or choose a problem">
+      <p className="ws-lbl">Your file</p>
+      <label htmlFor="file"
+        onDragOver={(e) => { e.preventDefault(); setOver(true); }} onDragLeave={() => setOver(false)}
+        onDrop={(e) => { e.preventDefault(); setOver(false); props.onFile(e.dataTransfer.files?.[0]); }}
+        className="mt-1.5 flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-3 py-4 text-center text-[12.5px]"
+        style={{ borderColor: over ? "var(--ws-accent)" : "var(--ws-line-strong)", background: over ? "color-mix(in srgb, var(--ws-accent) 8%, transparent)" : "var(--ws-sunken)" }}>
+        <span className="ws-text font-medium">Drop a file here or browse</span>
+        <span className="ws-faint mt-0.5">CSV, TSV, TXT or JSON · up to {LIMITS.maxBytes / 1e6} MB</span>
+        <input id="file" data-testid="file-input" type="file" className="sr-only" accept=".csv,.tsv,.txt,.json,text/csv,application/json,text/plain" onChange={(e) => { props.onFile(e.target.files?.[0]); e.target.value = ""; }} />
+      </label>
+      {props.fileNote && <p className="ws-sub mt-1.5" role="status">{props.fileNote}</p>}
+
+
+      <details className="mt-3 rounded-md border p-3" style={{ borderColor: "var(--ws-line)" }} data-testid="examples-disclosure">
+        <summary className="cursor-pointer text-[13px] font-medium ws-text">Try an example</summary>
+        <div className="mt-3">      <p className="ws-lbl">Choose an example</p>
       <div className="mt-1.5 grid gap-1">
         {[...EXAMPLES, largeExample()].map((ex) => (
           <button key={ex.id} type="button" onClick={() => props.loadExample(ex)} aria-pressed={props.exampleId === ex.id}
@@ -129,19 +144,11 @@ function LoadPanel(props: ProblemProps) {
         ))}
       </div>
 
-      <p className="ws-lbl mt-4">File</p>
-      <label htmlFor="file"
-        onDragOver={(e) => { e.preventDefault(); setOver(true); }} onDragLeave={() => setOver(false)}
-        onDrop={(e) => { e.preventDefault(); setOver(false); props.onFile(e.dataTransfer.files?.[0]); }}
-        className="mt-1.5 flex cursor-pointer flex-col items-center justify-center rounded-md border border-dashed px-3 py-4 text-center text-[12.5px]"
-        style={{ borderColor: over ? "var(--ws-accent)" : "var(--ws-line-strong)", background: over ? "color-mix(in srgb, var(--ws-accent) 8%, transparent)" : "var(--ws-sunken)" }}>
-        <span className="ws-text font-medium">Drop a CSV, TSV, TXT or JSON file, or choose one</span>
-        <span className="ws-faint mt-0.5">up to {LIMITS.maxBytes / 1e6} MB · exported Studio results re-import with their ordering</span>
-        <input id="file" data-testid="file-input" type="file" className="sr-only" accept=".csv,.tsv,.txt,.json,text/csv,application/json,text/plain" onChange={(e) => { props.onFile(e.target.files?.[0]); e.target.value = ""; }} />
-      </label>
-      {props.fileNote && <p className="ws-sub mt-1.5" role="status">{props.fileNote}</p>}
-
-      <p className="ws-lbl mt-4">Synthetic instance</p>
+</div>
+      </details>
+      <details className="mt-2 rounded-md border p-3" style={{ borderColor: "var(--ws-line)" }} data-testid="generator-disclosure">
+        <summary className="cursor-pointer text-[13px] font-medium ws-text">Generate test data</summary>
+        <div className="mt-3">      <p className="ws-lbl">Test data</p>
       <div className="mt-1.5 grid grid-cols-[1fr_72px_72px] gap-2">
         <select className="ws-field" aria-label="Generator" value={kind} onChange={(e) => setKind(e.target.value as Generator)}>
           {GENERATORS.map(([k, l]) => <option key={k} value={k}>{l}</option>)}
@@ -149,9 +156,11 @@ function LoadPanel(props: ProblemProps) {
         <input className="ws-field num" type="number" min={2} max={400} aria-label="Number of items" value={gn} onChange={(e) => setGn(Math.max(2, Math.min(400, Math.round(Number(e.target.value) || 2))))} />
         <input className="ws-field num" type="number" min={1} max={1_000_000} aria-label="Generator seed" value={gseed} onChange={(e) => setGseed(Math.max(1, Math.min(1_000_000, Math.round(Number(e.target.value) || 1))))} />
       </div>
-      <p className="ws-sub mt-1">{GENERATORS.find((g) => g[0] === kind)![2]}. Same kind, size and seed always give the same matrix.</p>
+
       <button type="button" className="ws-btn mt-2 w-full" data-testid="generate"
         onClick={() => props.loadText(generatedText(kind, gn, gseed), "matrix", "skew", `Generated ${kind} n = ${gn}, seed ${gseed}.`)}>Generate {gn}-item instance</button>
+</div>
+      </details>
     </Panel>
   );
 }
@@ -159,7 +168,7 @@ function LoadPanel(props: ProblemProps) {
 function SessionPanel(props: ProblemProps) {
   const [name, setName] = useState("");
   return (
-    <Panel id="sessions" title="Local sessions" sub="Saved in this browser's local storage only; delete them here at any time.">
+    <Panel id="sessions" title="Local sessions" >
       <div className="flex gap-2">
         <input className="ws-field" placeholder="Session name" aria-label="Session name" value={name} maxLength={120} onChange={(e) => setName(e.target.value)} />
         <button type="button" className="ws-btn" onClick={() => { props.saveCurrent(name); setName(""); }} data-testid="save-session">Save</button>
@@ -270,7 +279,7 @@ function ModelPreview({ p, nameEdits, setNameEdits }: { p: Problem; nameEdits: R
   const identity = p.interpretation === "skew" ? "objective = F_A" : p.interpretation === "benefit" ? "objective = (F_A + S) / 2" : "objective = (S − F_A) / 2";
   const rows = useMemo(() => p.A.slice(0, 12).map((r) => r.slice(0, 12)), [p]);
   return (
-    <Panel id="model" title="Transformation preview" sub="Every instance is reduced exactly to a skew-symmetric matrix A; the identity below converts back to your objective.">
+    <Panel id="model" title="Transformation preview">
       <dl className="grid grid-cols-[auto_1fr] gap-x-5 gap-y-1.5 text-[13px]" data-testid="model-summary">
         <dt className="ws-muted">Items</dt><dd className="num">{p.n}</dd>
         <dt className="ws-muted">Source</dt><dd>{p.source === "edges" ? "edge list" : "matrix"}</dd>
