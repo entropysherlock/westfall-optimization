@@ -173,7 +173,7 @@ function Advanced(props: SolverProps) {
             <option value="cycles">Fractional triangles + longer cycles (default)</option>
             <option value="fractional">Fractional triangle packing</option>
             <option value="greedy">Greedy triangle packing</option>
-            <option value="none">None (ATLAS-031 rule)</option>
+            <option value="none">None (no residual bound)</option>
           </select>
         </div>
         <div className="grid gap-3 sm:grid-cols-2">
