@@ -1,0 +1,217 @@
+{
+ "instances": 119,
+ "completed": 83,
+ "passed": 83,
+ "failed": 0,
+ "not_completed": [
+  [
+   83,
+   "uniform",
+   6
+  ],
+  [
+   84,
+   "ties_zeros",
+   6
+  ],
+  [
+   85,
+   "near_transitive",
+   6
+  ],
+  [
+   86,
+   "planted",
+   6
+  ],
+  [
+   87,
+   "blocks",
+   6
+  ],
+  [
+   88,
+   "equal_thresholds",
+   6
+  ],
+  [
+   89,
+   "uniform",
+   6
+  ],
+  [
+   90,
+   "ties_zeros",
+   6
+  ],
+  [
+   91,
+   "near_transitive",
+   6
+  ],
+  [
+   92,
+   "planted",
+   6
+  ],
+  [
+   93,
+   "blocks",
+   6
+  ],
+  [
+   94,
+   "equal_thresholds",
+   6
+  ],
+  [
+   95,
+   "all_zero_max_cuts",
+   6
+  ],
+  [
+   96,
+   "band",
+   6
+  ],
+  [
+   97,
+   "uniform",
+   7
+  ],
+  [
+   98,
+   "ties_zeros",
+   7
+  ],
+  [
+   99,
+   "near_transitive",
+   7
+  ],
+  [
+   100,
+   "planted",
+   7
+  ],
+  [
+   101,
+   "blocks",
+   7
+  ],
+  [
+   102,
+   "equal_thresholds",
+   7
+  ],
+  [
+   103,
+   "uniform",
+   7
+  ],
+  [
+   104,
+   "ties_zeros",
+   7
+  ],
+  [
+   105,
+   "near_transitive",
+   7
+  ],
+  [
+   106,
+   "planted",
+   7
+  ],
+  [
+   107,
+   "blocks",
+   7
+  ],
+  [
+   108,
+   "equal_thresholds",
+   7
+  ],
+  [
+   109,
+   "uniform",
+   7
+  ],
+  [
+   110,
+   "ties_zeros",
+   7
+  ],
+  [
+   111,
+   "near_transitive",
+   7
+  ],
+  [
+   112,
+   "planted",
+   7
+  ],
+  [
+   113,
+   "blocks",
+   7
+  ],
+  [
+   114,
+   "equal_thresholds",
+   7
+  ],
+  [
+   115,
+   "all_zero_max_cuts",
+   7
+  ],
+  [
+   116,
+   "band",
+   7
+  ],
+  [
+   117,
+   "H_p",
+   6
+  ],
+  [
+   118,
+   "H_p",
+   7
+  ]
+ ],
+ "unmemo_completed": 60,
+ "identical_outputs": 60,
+ "max_ms_memo_by_n": {
+  "1": 0,
+  "2": null,
+  "3": 354,
+  "4": 16576,
+  "5": 210691,
+  "6": 1197366,
+  "7": null
+ },
+ "max_ms_unmemo_by_n": {
+  "1": null,
+  "2": null,
+  "3": 475,
+  "4": 94687,
+  "5": null,
+  "6": null,
+  "7": null
+ },
+ "max_reachable_by_n": {
+  "1": 2,
+  "2": null,
+  "3": 8,
+  "4": 16,
+  "5": 32,
+  "6": 64,
+  "7": null
+ }
+}

@@ -1,6 +1,7 @@
 import Westfall022.AutoCut
 import Westfall022.Exec
 import Westfall022.Complexity
+import Westfall022.PartitionCountDP
 
 /-!
 # Westfall Discovery 022 — formalization entry point
@@ -28,6 +29,16 @@ Mission 023 additions (the seven proofs above are unchanged from commit `4c6103b
 * `Complexity.lean` — `autoCutX_state_bounds` (state counts and rounds only). The running-time
   theorem is not proved; the executable is not memoised and does not have the claimed running
   time.
+
+Mission 024 additions:
+* `PartitionGrowth.lean` — `partition_card_le_exp` (`p(M) ≤ e^{3√M}`), `Pcum_le_exp`,
+  `partition_card_le_two_pow`, `Pcum_le_two_pow` (all analytic steps proved).
+* `MemoizedAutoCut.lean` — bottom-up DP and shortest-path tables (`dpTab`, `distTab`), memoised
+  extraction; each memoised value is proved equal to the verified recursive one.
+* `PartitionCountDP.lean` — closed-form, capped abort test (never evaluates `P(3k)`),
+  `recognizeM_eq : recognizeM = recognizeX`, `autoCutM_eq : autoCutM = autoCutX`,
+  `autoCutM_correct`.
+`autoCut_complexity` is still absent: there is no operational cost semantics and no bit-size bound.
 
 `autoCut_state_bounds` proves the state-count facts the running-time claim rests on; it is
 deliberately not named `autoCut_complexity`.
@@ -80,5 +91,22 @@ namespace Westfall022
 #print axioms lam_le_sq
 #print axioms autoCutX_correct
 #print axioms autoCutX_state_bounds
+-- Mission 024
+#print axioms partition_card_le_exp
+#print axioms Pcum_le_exp
+#print axioms partition_card_le_two_pow
+#print axioms Pcum_le_two_pow
+#print axioms lookup_dpTab
+#print axioms cutDPM_eq
+#print axioms distTab_inv
+#print axioms distM_eq
+#print axioms extractM_eq
+#print axioms dpOrderM_eq
+#print axioms capLayers_none_iff
+#print axioms recognizeM_eq
+#print axioms autoCutM_eq
+#print axioms autoCutM_correct
+#print axioms dpTab_card_le
+#print axioms distTab_card_le
 
 end Westfall022

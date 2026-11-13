@@ -1,4 +1,5 @@
 import Westfall022.Complexity
+import Westfall022.PartitionCountDP
 open Lean Meta Elab Command
 
 /-- Transitively collect the constants reachable from `root` through *definition bodies*
@@ -22,7 +23,8 @@ elab "#oracle_audit " root:ident : command => do
   let cl := defClosure env root.getId
   let forbidden := [``Westfall022.lam, ``Westfall022.lamB, ``Westfall022.OPT, ``Westfall022.objective,
     ``Westfall022.IsOptimal, ``Westfall022.autoCut, ``Westfall022.recognize, ``Westfall022.argPred,
-    ``Westfall022.bestCand, ``Westfall022.dpLast, ``Classical.choice, ``Classical.choose, ``Nat.find]
+    ``Westfall022.bestCand, ``Westfall022.dpLast, ``Classical.choice, ``Classical.choose, ``Nat.find, ``Westfall022.Pcum, ``Nat.Partition,
+    ``Westfall022.dist, ``Westfall022.cutDP, ``Westfall022.pcumGuard]
   let hits := forbidden.filter cl.contains
   let ours := cl.toList.filter (fun n => (`Westfall022).isPrefixOf n)
   logInfo m!"{root.getId}: {cl.size} constants in definition closure, {ours.length} in Westfall022; forbidden reachable: {hits}"
@@ -31,3 +33,6 @@ elab "#oracle_audit " root:ident : command => do
 #oracle_audit Westfall022.autoCutX
 #oracle_audit Westfall022.recognizeX
 #oracle_audit Westfall022.recognize
+
+#oracle_audit Westfall022.autoCutM
+#oracle_audit Westfall022.recognizeM

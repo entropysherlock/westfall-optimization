@@ -1,5 +1,13 @@
 # Discovery 021–022 Lean formalization: status and correspondence
 
+> **Mission 024 update.** New, all kernel-checked (55 audited declarations, standard axioms only):
+> - `PartitionGrowth.lean`: **p(M) ≤ e^{3√M}** and **P(M) ≤ (M+1)·e^{3√M}**, with every analytic step proved, plus the closed forms p(M) ≤ 2^{5(⌊√M⌋+1)}.
+> - `MemoizedAutoCut.lean`: bottom-up DP and shortest-path tables, each memoised value proved equal to the verified recursion.
+> - `PartitionCountDP.lean`: an abort test that never evaluates P(3k), with capped layer generation. Proved: `recognizeM = recognizeX` and `autoCutM = autoCutX` (identical outputs).
+> - Benchmark (measured): memoised `autoCutM` completed 83 of 119 instances, and all 83 match an exhaustive exact oracle. It completed all 77 Mission 023 instances, plus 6 of the 42 extended n = 6/7 instances within a 3600 s limit. The unmemoised `autoCutX` completed 60 instances with identical outputs.
+>
+> `autoCut_complexity` is still **not proved**: no cost semantics and no bit-size bound. See `MISSION_024_REPORT.md`.
+>
 > **Mission 023 update.** The seven proofs are unchanged from commit `4c6103b`. New:
 > - `SEMANTIC_AUDIT_023.md` — independent audit. All seven declarations are EXACT MATCH or EQUIVALENT WITH EXPLAINED REFORMULATION; the mechanical oracle audit is clean.
 > - `Exec.lean` — a deterministic **executable** recogniser and AutoCut, with **verified refinement** to the specification.
@@ -8,7 +16,7 @@
 
 **Toolchain:** Lean 4.32.0, Mathlib `v4.32.0` (pinned in `lean-toolchain` / `lakefile.toml`).
 **Entry point:** `import Westfall022.Main`. Root module `Westfall022.lean` imports `Foundations` and `Main`.
-**Integrity (Mission 023: 39 audited declarations):** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 28 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
+**Integrity (Mission 024: 55 audited declarations):** no `sorry`, `admit`, `native_decide`, `implemented_by`, `extern` or user axioms. Every declaration in the audit (`#print axioms`, 55 declarations listed in `Main.lean`) depends only on `propext`, `Classical.choice`, `Quot.sound`.
 
 **Independent checks.**
 - A local kernel build was run against a source-built slice of Mathlib.
@@ -37,9 +45,24 @@
 | `autoCutX_correct` | ∀ skew A, `autoCutX A = some r` with value = OPT, ordering attaining OPT, λ(partition) = λ(A), λ(A) ≤ k, (k = 1 ∨ k < 2λ), and the same round and value as `autoCut` |
 | `autoCutX_state_bounds` | accepting-round state counts ≤ (n+1)·P(3k), ≤ (n+1)·P(6λ) for λ ≥ 1, k ≤ 4ⁿ |
 
+## Mission 024: memoised implementation, partition growth, abort test
+
+| Lean name | Statement |
+|---|---|
+| `partition_card_le_exp` | p(M) ≤ e^{3√M} for all M (constant 3 instead of the sharp π√(2/3)) |
+| `Pcum_le_exp`, `Pcum_le_two_pow` | P(M) ≤ (M+1)·e^{3√M}; P(M) ≤ (M+1)·2^{5(⌊√M⌋+1)} |
+| `lookup_dpTab`, `cutDPM_eq` | memoised DP table entries equal `cutDP`; f_k(V) from the table equals `cutDP A k V` |
+| `distTab_inv`, `distM_eq` | memoised shortest-path table entries equal `dist`; every node is present once |
+| `extractM_eq`, `dpOrderM_eq` | memoised path and ordering extraction equal the executable ones |
+| `capLayers_none_iff` | capped layer generation stops iff \|𝒞_k\| > U(n,k) |
+| `recognizeM_eq`, `autoCutM_eq` | memoised recogniser and AutoCut return **exactly** the outputs of `recognizeX` / `autoCutX` |
+| `autoCutM_correct` | all guarantees of `autoCutX_correct` for the memoised algorithm |
+| `dpTab_card_le`, `distTab_card_le` | each state is stored once (table size ≤ layer size; ≤ \|𝒩\| + 1) |
+
 ## Why `autoCut_complexity` is blocked
 
-0. **The executable does not have the claimed running time** (Mission 023 finding). `dist` and `cutDP` are evaluated as plain recursions without memoisation, so evaluation cost grows with the number of chains in the node DAG, not with the number of nodes. A faithful complexity theorem needs a memoised, layer-by-layer implementation with its own refinement proof.
+0. *(Resolved structurally in Mission 024.)* The memoised implementation (`autoCutM`) removes the chain explosion and provably equals `autoCutX`. But its helper sets (`reachable`, `nodes`, `preds`) are recomputed per query: polynomial overhead, not formally bounded.
+0′. **Original Mission 023 finding:** the executable does not have the claimed running time. `dist` and `cutDP` are evaluated as plain recursions without memoisation, so evaluation cost grows with the number of chains in the node DAG, not with the number of nodes. A faithful complexity theorem needs a memoised, layer-by-layer implementation with its own refinement proof.
 1. **No operational cost model.** The algorithm is formalized as mathematical (noncomputable) definitions. A faithful runtime theorem needs the same program written in an instrumented model, for example a tick-counting monad over a fixed set of primitive operations. It must then state both:
    - arithmetic-operation counts over ℚ;
    - separately, bit complexity, since rational sizes grow along shortest-path sums.
