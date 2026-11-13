@@ -31,7 +31,7 @@ def _cmd_solve(A, args):
     H = res.pop("_H", None)
     sol = {k: v for k, v in res.items() if k not in ("features",) or True}
     if args.certificate:
-        if res["status"] != "PROVED_OPTIMAL" or res.get("proved_by") == "milp":
+        if res["status"] != "PROVED_OPTIMAL" or res.get("proved_by") in ("milp", "scc_milp"):
             print("certificate: only produced for exclusion-DP routes (sldp/blx); MILP proofs are not certificates",
                   file=sys.stderr)
         else:

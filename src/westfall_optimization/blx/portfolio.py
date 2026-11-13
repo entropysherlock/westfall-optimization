@@ -68,6 +68,22 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
     A = as_skew(A)
     n = A.shape[0]
     t0 = time.time()
+    if mode == "scc_milp":
+        # Avoid computing an unnecessary heuristic incumbent before the
+        # decomposition: the fast preprocessing path must be end-to-end fast.
+        from ..solvers.scc_milp import scc_milp_solve
+        m = scc_milp_solve(A, time_limit=milp_time_limit)
+        result = dict(n=n, mode=mode, route=mode, order=m["order"],
+                      scc={k: m[k] for k in ("components", "component_sizes",
+                                            "largest_component", "subsolver_calls")},
+                      time=time.time() - t0)
+        if m["proved"]:
+            result.update(status=PROVED, OPT=m["OPT"], proved_by="scc_milp")
+        else:
+            result.update(status=UNRESOLVED, OPT=None, best_found=m["best_found"],
+                          upper_bound=m["upper_bound"])
+        return result
+
     order0 = best_of_restarts(A, restarts=restarts, seed=seed) if n > 1 else list(range(n))
     L = score(A, order0)
     out = dict(n=n, incumbent_order=order0, incumbent_score=L, mode=mode)
@@ -102,19 +118,6 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
         res = sldp(A, L, ub_kind="trivial", keep_layers=True, want_pairs=want_pairs)  # exact order reconstruction
         out.update(status=PROVED, OPT=float(dp[-1]), order=_reconstruct(A, res["layers"], res["fs"]))
         out["time"] = time.time() - t0
-        return out
-
-    if route == "scc_milp":
-        from ..solvers.scc_milp import scc_milp_solve
-        m = scc_milp_solve(A, time_limit=milp_time_limit)
-        out["scc"] = {k: m[k] for k in ("components", "component_sizes", "largest_component", "subsolver_calls")}
-        if m["proved"]:
-            out.update(status=PROVED, OPT=m["OPT"], order=m["order"],
-                       proved_by="scc_milp", time=time.time() - t0)
-        else:
-            out.update(status=UNRESOLVED, OPT=None, order=m["order"],
-                       best_found=m["best_found"], upper_bound=m["upper_bound"],
-                       time=time.time() - t0)
         return out
 
     if route.startswith("milp"):
