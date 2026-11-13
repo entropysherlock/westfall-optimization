@@ -1,8 +1,12 @@
 # Westfall Structural Optimization Theorem — Formal Verification Protocol
 
-**Status on November 12, 2026: incomplete.**
+**Status on November 12, 2026: six foundational lemmas verified; flagship incomplete.**
 
-The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). A pinned `lean/Westfall022/Foundations.lean` module and GitHub Actions workflow are now committed. A passing workflow, if achieved, establishes only the elementary definitions/lemmas, not the flagship theorem.
+The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). A pinned `lean/Westfall022/Foundations.lean` module and GitHub Actions workflow are now committed. The [successful Lean Foundations workflow](https://github.com/entropysherlock/westfall-optimization/actions/runs/43359133881) verifies the six elementary weak-cut lemmas and completed the axiom audit (12 declarations reviewed). It does not prove the flagship theorem.
+
+## Verified milestone
+
+Lean 4.32.0 / Mathlib 4.32.0: all six foundational theorems in `lean/Westfall022/Foundations.lean` compile. The axiom audit allows only `propext`, `Classical.choice`, and `Quot.sound`. The main theorem and complexity are not Lean-verified.
 
 ## Live CI status
 

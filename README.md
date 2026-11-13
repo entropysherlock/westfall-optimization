@@ -47,7 +47,7 @@ The public repository contains:
 - Benchmark logs and provisional Discovery 019 manuscript
 - Original complete Discovery 022 written report and editorial summary, but **not** its unrecovered AutoCut prototype
 - Independent exhaustive small-n reference checker in `research/discovery_022/`, not a substitute for AutoCut
-- Pinned Lean foundational source plus CI workflow; **not** a proof of the flagship theorem
+- Six elementary Lean weak-cut lemmas verified by GitHub Actions with an axiom audit; **not** a proof of the flagship theorem
 
 **The website's TypeScript solver is not the Python BLX 2.0 algorithm.** The browser demonstration and real solver presets are labeled separately.
 
@@ -97,6 +97,8 @@ GitHub Actions runs the Python and website checks and deploys a static Next.js e
 - [Westfall Structural Optimization Theorem: Provisional Research Summary](papers/discovery-022-research-summary.md)
 - [Formal verification protocol and tracker](docs/formal-verification.md)
 - [Release-status and remaining gaps](docs/RELEASE_STATUS.md)
+- [Targeted prior-art novelty audit](docs/novelty-audit.md)
+- [Verified foundational Lean workflow](https://github.com/entropysherlock/westfall-optimization/actions/runs/43359133881)
 - [Architecture](docs/architecture.md)
 - [Certificates](docs/certificates.md)
 - [Grant application draft](docs/grant-application-draft.md) — **not submitted for Westfall Optimization**

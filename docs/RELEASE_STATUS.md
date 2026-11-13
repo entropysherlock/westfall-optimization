@@ -9,11 +9,12 @@ Updated: 2026-11-12
 - Historical Discovery 019 paper and original computational tools.
 - Independent **exhaustive small-n** rational/integer-weight reference checker
   with tests, distinct from the unpublished AutoCut code.
-- Lean foundational proof project and automated workflow; only consider
-  foundations kernel-checked after the workflow passes.
+- Six foundational Lean lemmas passed the pinned kernel build and automated
+  axiom audit in GitHub Actions run 43359133881. This is not the flagship proof.
 - Separate benchmark reporting (historical 018/019 dashboard versus reported
   022 comparison).
 - Updated citations, grant draft, site link checks and metadata.
+- Targeted prior-art analysis under `docs/novelty-audit.md`.
 
 ## Still incomplete
 

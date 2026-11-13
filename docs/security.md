@@ -20,5 +20,7 @@ Safe remediation process:
 4. Re-run `npm ci`, typecheck, lint, unit tests and production export.
 5. Document residual findings and their relevance.
 
+The downloaded JSON audit artifact identified the **high-severity** findings in a nested `node_modules/next/node_modules/postcss` dependency (a version at or below 8.5.22) and additional moderate/low issues in transitive `minimatch`, `@typescript-eslint`, and older nested KaTeX versions. The audit reports that a clean automatic repair of the Next.js chain may require a major Next.js version change; that migration has not been performed or tested. See [the GitHub audit workflow](https://github.com/entropysherlock/westfall-optimization/actions/runs/43358932520) and its JSON artifact.
+
 No claim that the 12 findings have been fixed is made here. The independent
 site-link checker is a quality gate, not a security scanner.

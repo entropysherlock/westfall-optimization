@@ -4,7 +4,7 @@ import { blob } from "@/lib/site";
 export const metadata = { title: "Formal verification status" };
 
 const proofs = [
-  ["Definitions: finite weighted ordering, cuts and partitions", "Planned", "A pinned foundational Lean module and GitHub Actions workflow are now committed. Its kernel-check status depends on the workflow outcome; the main theorem remains unverified."],
+  ["Foundational weak-cut lemmas (6 Lean theorems)", "Kernel-verified", "Pinned Lean 4.32.0 / Mathlib 4.32.0 build succeeded in GitHub Actions; automated axiom audit passed. These are elementary lemmas, not the main theorem."],
   ["Discovery 021: weighted exchange / K₀ localization", "Not verified", "Written mathematical argument; needs formalization before it can support the headline result."],
   ["Discovery 022 Theorem 1: optimal-prefix width", "Not verified", "The core inequality should be proven with the exact report definitions."],
   ["Discovery 022 Lemma 2: cut counting", "Not verified", "Requires a formal proof of the integer-partition counting result."],
@@ -17,12 +17,12 @@ const proofs = [
 export default function FormalVerification() {
  return <>
   <PageHeader kicker="Research integrity · Lean 4" title="Proof status, claim by claim">
-    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no Lean verification of the Westfall Structural Optimization Theorem itself.</strong> Foundational cut lemmas have a separate reproducible proof workflow.
+    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no Lean verification of the Westfall Structural Optimization Theorem itself.</strong> Six foundational cut lemmas have now passed Lean compilation and automated axiom audit on GitHub Actions.
     <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Westfall theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink><ButtonLink href={blob("lean/Westfall022/Foundations.lean")} external>Lean source ↗</ButtonLink></div>
   </PageHeader>
   <section className="border-b border-line bg-ink-900/40">
     <div className="mx-auto grid max-w-page gap-4 px-5 py-12 sm:px-8 sm:grid-cols-3">
-      {[["0","Westfall flagship theorems kernel-verified"],["8","proof obligations tracked"],["1","critical recognition theorem"]].map(([v,k])=><div className="card p-6" key={k}><div className="font-mono text-4xl text-fog-100">{v}</div><div className="mt-2 text-sm text-fog-400">{k}</div></div>)}
+      {[["0","Westfall flagship theorems verified"],["6","foundation lemmas kernel-verified"],["8","tracked proof obligations"]].map(([v,k])=><div className="card p-6" key={k}><div className="font-mono text-4xl text-fog-100">{v}</div><div className="mt-2 text-sm text-fog-400">{k}</div></div>)}
     </div>
   </section>
   <Section kicker="Formalization backlog" title="A proof means the complete statement">

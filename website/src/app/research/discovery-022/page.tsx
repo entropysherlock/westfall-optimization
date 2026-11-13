@@ -39,7 +39,7 @@ export default function Discovery022() {
   </section>
   <Section kicker="A stronger standard" title="What would confirm the mathematics?">
     <div className="grid gap-4 md:grid-cols-3">
-      <div className="card p-6"><h3 className="font-semibold">Formal correctness</h3><p className="mt-2 text-sm text-fog-400">Lean definitions, localization, partition discovery, exact DP correctness, and separate asymptotic complexity verification.</p></div>
+      <div className="card p-6"><h3 className="font-semibold">Formal correctness</h3><p className="mt-2 text-sm text-fog-400">Six elementary weak-cut lemmas have passed Lean kernel compilation and axiom audit. The localization, partition discovery, exact DP and asymptotic complexity theorems remain unverified.</p></div>
       <div className="card p-6"><h3 className="font-semibold">Novelty comparison</h3><p className="mt-2 text-sm text-fog-400">Show that recovering a minimum λ-partition is not already a consequence of Fomin–Pilipczuk or newer width-based methods.</p></div>
       <div className="card p-6"><h3 className="font-semibold">Reproducibility</h3><p className="mt-2 text-sm text-fog-400">Publish the exact source, pin dependencies, rerun all experiments, and compare a specialized LOP solver.</p></div>
     </div>
