@@ -13,7 +13,7 @@
 import { strongComponents } from "./decompose";
 import type { Problem } from "./model";
 import { Q } from "./rational";
-import { SOLVERS, type SolverId } from "./solvers";
+import { SOLVERS, type SolverId } from "./catalog";
 
 /* ------------------------------------------------------------------ problem profile */
 

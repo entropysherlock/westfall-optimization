@@ -10,8 +10,8 @@
  */
 import type { Problem } from "./model";
 import { strongComponents } from "./decompose";
-import type { SolverId } from "./solvers";
-import { SOLVERS } from "./solvers";
+import type { SolverId } from "./catalog";
+import { SOLVERS } from "./catalog";
 
 export interface Recommendation {
   solver: SolverId;

@@ -5,8 +5,8 @@
  */
 import type { Problem } from "./model";
 import { instanceJson, type SolveResult } from "./report";
-import { fromWire, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./runner";
-import type { SolverId } from "./solvers";
+import { fromWire, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./config";
+import type { SolverId } from "./catalog";
 import type { CertificateLike, Verdict } from "./certverify";
 
 export interface JobCallbacks {

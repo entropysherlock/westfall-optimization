@@ -100,7 +100,7 @@ function RunEvidence({ p, r, stale, vs, verify, cancelVerify, base, exportBundle
             )}
             {vs.error && <p className="mt-2 text-[12.5px] ws-back" role="alert">{vs.error}</p>}
             <TamperDemo cert={cert as unknown as CertificateLike} />
-            <p className="ws-sub mt-3">The browser verifier (<span className="num">certverify.ts</span>) imports no solver code and works in exact BigInt arithmetic. Outside this website, run the separate Python verifier on the exported file: <span className="num">python3 benchmarks/atlas-032/verify_certificate.py certificate.json</span>. Both are computational checks, not Lean proofs.</p>
+            <p className="ws-sub mt-3">The browser verifier (<span className="num">certverify.ts</span>) imports no solver code and works in exact BigInt arithmetic. Outside this website, run the separate Python verifier on the exported file: <span className="num">python3 benchmarks/atlas-032/verify_certificate.py certificate.json</span>. Both are computational checks, not Lean proofs. The browser verifier deliberately trades speed for simplicity (BigInt throughout), so it can take far longer than the solve: measured 0.9 s to solve and 7.9 s to verify the 60-item example, 1.6 s and 49 s for a tie-heavy 30-item instance (Node 22, 2.3 GHz Xeon).</p>
           </>
         )}
       </Panel>

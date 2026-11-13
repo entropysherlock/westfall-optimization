@@ -40,8 +40,22 @@ src/lib/studio/
   autocut.ts       AutoCut port (BigInt), tested for exact equality with the Lean executable
   runner.ts        solve(): statuses, cross-checks, wire format for the worker
   report.ts        results, verification record, JSON/CSV/Markdown export, improvement metrics
-  studio.worker.ts Web Worker entry (cancellation = Worker.terminate())
-src/components/studio/  Studio UI, visualizations (heatmap, arc diagram, graph), remote-service panel
+  studio.worker.ts Web Worker entry (cancellation = Worker.terminate()); batches measured telemetry
+  atlas.ts / cutdp.ts / bounds/  ATLAS-032 engine; cutdp.ts uses flat typed-array layers (Mission 039),
+                   cutdp.reference.ts is the pre-039 code kept only as a differential test oracle
+  catalog.ts / config.ts  solver metadata, run settings and wire format (no engine code; page bundle)
+  client.ts        browser job control: one fresh worker per job, watchdog, verifier worker
+  analysis.ts      problem profile + difficulty class, per-item contributions, backward pairs, movement,
+                   matrix aggregation, instance fingerprint (identities tested exactly)
+  evidence.ts      six-level evidence ladder (feasible → recomputed → bound → certificate → independently
+                   accepted → Lean); never reports Lean verification for browser runs
+  compare.ts       comparison plan, rows, consistency checks, comparability statement, exports
+  session.ts       local-only sessions (localStorage) and reproducibility bundles
+  certverify.ts / verify.worker.ts  independent certificate verifier (imports no solver code)
+src/components/studio/  Studio 2.0 workstation (Mission 039): Studio.tsx shell (run bar, workspace rail,
+                   inspector) and one module per workspace: Problem, Solver, Results, Analysis
+                   (MatrixExplorer canvas), Verification, Compare; RunMonitor shows live telemetry;
+                   Viz.tsx keeps the arc diagram and graph view; RemotePanel the optional job service
 ```
 
 The site is a static export. No user data leaves the browser unless a remote job service is configured and the user

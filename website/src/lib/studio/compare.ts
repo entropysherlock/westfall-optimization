@@ -10,7 +10,7 @@ import type { Problem } from "./model";
 import { maximises } from "./model";
 import { parseQ } from "./rational";
 import { STATUS_LABEL, type SolveResult } from "./report";
-import { SOLVERS, type SolverId } from "./solvers";
+import { SOLVERS, type SolverId } from "./catalog";
 
 export interface PlanEntry { solver: SolverId; label: string; exact: boolean; applicable: boolean; reason: string }
 

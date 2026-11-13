@@ -6,8 +6,8 @@
  */
 import type { Problem } from "./model";
 import { instanceJson, resultJson, STUDIO_VERSION, type SolveResult } from "./report";
-import type { AtlasSettings } from "./runner";
-import type { SolverId } from "./solvers";
+import type { AtlasSettings } from "./config";
+import type { SolverId } from "./catalog";
 
 export type InputFormat = "auto" | "matrix" | "edges" | "json";
 export type InterpChoice = "auto" | "skew" | "benefit" | "cost";

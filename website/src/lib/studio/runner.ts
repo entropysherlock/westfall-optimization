@@ -1,46 +1,19 @@
 /**
  * Solve orchestration shared by the Web Worker and the tests.
  */
-import { solveAtlas, type AtlasEvent } from "./atlas";
+import { solveAtlas } from "./atlas";
 import { autoCut, AUTOCUT_MAX_N } from "./autocut";
 import type { Problem } from "./model";
 import { buildProblem } from "./model";
-import { parseJsonText, type Interpretation } from "./parse";
-import { parseQ, Q } from "./rational";
+import { parseJsonText } from "./parse";
+import { Q } from "./rational";
 import { totalWeight, userFromFA, maximises } from "./model";
 import type { AtlasCertificate, AtlasInfo } from "./report";
-import { instanceJson, makeResult, type SolveResult } from "./report";
+import { makeResult, type SolveResult } from "./report";
 import { bruteForce, exclusionExact, Interrupted, localSearch, SOLVERS, subsetDPExact, type Hooks, type SolverId } from "./solvers";
 
-/**
- * Mission 039 telemetry: measured events streamed from the worker to the UI. ATLAS events carry β in units of
- * the scaled integer matrix M; "incumbent" carries F_M of the heuristic's current best ordering. Nothing here is
- * estimated or extrapolated.
- */
-export type Telemetry = AtlasEvent | { kind: "incumbent"; value: number; starts: number; ms: number };
-
-export interface SolveConfig {
-  timeLimitMs: number;
-  seed: number;
-  /** Run exhaustive enumeration as an independent check when n ≤ 9 (default true). */
-  bruteForceCheck?: boolean;
-  /** ATLAS-032 settings (only used by the "atlas" solver). Every option is honoured by solveAtlas. */
-  atlas?: AtlasSettings;
-}
-
-export interface AtlasSettings {
-  bound?: "none" | "greedy" | "fractional" | "cycles";
-  strict?: boolean;
-  maxStates?: number;
-  /** Local-search time per component in ms (null/undefined = size-dependent default). */
-  incumbentMs?: number | null;
-  decompose?: boolean;
-  certificate?: boolean;
-}
-
-export const ATLAS_DEFAULTS: Required<Omit<AtlasSettings, "incumbentMs">> & { incumbentMs: number | null } = {
-  bound: "cycles", strict: true, maxStates: 1_500_000, incumbentMs: null, decompose: true, certificate: true,
-};
+export { ATLAS_DEFAULTS, fromWire, toWire, type AtlasSettings, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./config";
+import { ATLAS_DEFAULTS, type SolveConfig, type WireJob } from "./config";
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -165,33 +138,6 @@ function atlasInfo(p: Problem, r: ReturnType<typeof solveAtlas>, st: typeof ATLA
     components: r.components.map((c) => ({ size: c.size, method: c.method, optimal: c.optimal, states: c.states, pruned: c.pruned ?? null, rootLB: c.rootLB ?? null, ms: Math.round(c.ms), note: c.note ?? null })),
     lowerBoundBeta, objectiveBound, gap, gapPercent, certificate, certificateNote,
   };
-}
-
-/* ---------- wire format (postMessage-safe: no class instances) ---------- */
-
-export interface WireJob {
-  id: number;
-  instance: ReturnType<typeof instanceJson>;
-  interpretation: Interpretation;
-  solver: SolverId;
-  config: SolveConfig;
-}
-
-type Wire<T> = { [K in keyof T]: T[K] extends Q ? string : T[K] };
-export type WireResult = Wire<SolveResult>;
-
-const Q_FIELDS = ["initialObjective", "objective", "initialFA", "FA", "backwardInitial", "backwardFinal"] as const;
-
-export function toWire(r: SolveResult): WireResult {
-  const w = { ...r } as unknown as Record<string, unknown>;
-  for (const k of Q_FIELDS) w[k] = r[k].toString();
-  return w as unknown as WireResult;
-}
-
-export function fromWire(w: WireResult): SolveResult {
-  const r = { ...w } as unknown as Record<string, unknown>;
-  for (const k of Q_FIELDS) r[k] = parseQ(w[k]);
-  return r as unknown as SolveResult;
 }
 
 export function problemFromWire(job: Pick<WireJob, "instance" | "interpretation">): Problem {

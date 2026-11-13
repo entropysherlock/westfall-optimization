@@ -7,25 +7,25 @@
  * The run bar (top) is always available; the inspector (right) shows the problem profile and live, measured
  * run telemetry. All computation happens in Web Workers; the page stays responsive and Cancel is immediate.
  */
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useDeferredValue, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { parseInput, LIMITS } from "@/lib/studio/parse";
 import { buildProblem, type Problem } from "@/lib/studio/model";
 import { instanceJson, type SolveResult } from "@/lib/studio/report";
-import { ATLAS_DEFAULTS } from "@/lib/studio/runner";
+import { ATLAS_DEFAULTS } from "@/lib/studio/config";
 import { recommendSolver } from "@/lib/studio/select";
 import { EXAMPLES, type Example } from "@/lib/studio/examples";
 import { fingerprint, profileProblem } from "@/lib/studio/analysis";
 import { startSolve, startVerify, download } from "@/lib/studio/client";
 import type { CertificateLike } from "@/lib/studio/certverify";
 import { deleteSession, listSessions, loadSession, makeSession, parseSession, reproBundle, saveSession, type InputFormat, type InterpChoice, type SessionEntry, type StudioSession, type StudioSettings } from "@/lib/studio/session";
-import { SOLVERS, type SolverId } from "@/lib/studio/solvers";
+import { SOLVERS, type SolverId } from "@/lib/studio/catalog";
 import ProblemWorkspace, { type Built } from "./ProblemWorkspace";
-import SolverWorkspace, { type AtlasCfg } from "./SolverWorkspace";
-import ResultsWorkspace, { runRecord, type RunRecord } from "./ResultsWorkspace";
-import AnalysisWorkspace from "./AnalysisWorkspace";
-import VerificationWorkspace, { type VerifyState } from "./VerificationWorkspace";
-import CompareWorkspace, { useComparison } from "./CompareWorkspace";
+import dynamic from "next/dynamic";
+import type { AtlasCfg } from "./SolverWorkspace";
+import { runRecord, type RunRecord } from "./runRecord";
+import type { VerifyState } from "./VerificationWorkspace";
+import { useComparison } from "./useComparison";
 import RunMonitor, { emptyLive, reduceLive, type LiveState } from "./RunMonitor";
 import { StatusGlyph, StatusPill, STATUS_UI, fmtInt, type StatusKind } from "./ui";
 
@@ -42,6 +42,14 @@ const VIEWS: { id: View; label: string; key: string; hint: string }[] = [
   { id: "compare", label: "Compare", key: "6", hint: "Run several solvers on the same instance" },
 ];
 const THEME_KEY = "westfall.studio.theme";
+
+// Workspaces other than Problem are code-split and loaded on first use (smaller initial bundle).
+const loading = () => <div className="ws-panel min-h-[240px] p-5"><p className="ws-sub">Loading workspace…</p></div>;
+const SolverWorkspace = dynamic(() => import("./SolverWorkspace"), { loading });
+const ResultsWorkspace = dynamic(() => import("./ResultsWorkspace"), { loading });
+const AnalysisWorkspace = dynamic(() => import("./AnalysisWorkspace"), { loading });
+const VerificationWorkspace = dynamic(() => import("./VerificationWorkspace"), { loading });
+const CompareWorkspace = dynamic(() => import("./CompareWorkspace"), { loading });
 const kv = () => (typeof window !== "undefined" ? window.localStorage : null);
 
 export default function Studio() {
@@ -87,8 +95,11 @@ export default function Studio() {
   const setText = (t: string) => { setTextRaw(t); setExampleId(""); setInitialOverride(null); };
 
   // ------------------------------------------------------------------ parse + build (pure, bounded by LIMITS)
+  // Re-parsing a 400-item matrix costs ~0.1 s (bench/studio039main.bench.test.ts), so the model is rebuilt in a
+  // deferred, low-priority render: the text area updates first while typing.
+  const deferredText = useDeferredValue(text);
   const built = useMemo((): Built => {
-    const parsed = parseInput(text, format);
+    const parsed = parseInput(deferredText, format);
     if (!parsed.ok) return { problem: null, errors: parsed.errors, stage: "parse" };
     const raw = parsed.value;
     const names = raw.names.map((s, i) => (nameEdits[i] !== undefined ? nameEdits[i].trim() : s));
@@ -98,7 +109,7 @@ export default function Studio() {
     if (!b.ok) return { problem: null, errors: b.errors, stage: "model" };
     if (initialOverride && initialOverride.length === b.problem.n) b.problem.initialOrder = initialOverride.slice();
     return { problem: b.problem, errors: [], stage: null };
-  }, [text, format, interp, nameEdits, initialOverride, original.title]);
+  }, [deferredText, format, interp, nameEdits, initialOverride, original.title]);
   const p = built.problem;
   const fp = useMemo(() => (p ? fingerprint(JSON.stringify(instanceJson(p))) : ""), [p]);
   const rec = useMemo(() => (p ? recommendSolver(p) : null), [p]);

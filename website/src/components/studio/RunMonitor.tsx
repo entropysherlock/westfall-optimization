@@ -8,7 +8,7 @@ import { useMemo } from "react";
 import type { AtlasBounds } from "@/lib/studio/atlas";
 import { maximises, userFromFA, type Problem } from "@/lib/studio/model";
 import { Q } from "@/lib/studio/rational";
-import type { Telemetry } from "@/lib/studio/runner";
+import type { Telemetry } from "@/lib/studio/config";
 import { fmtInt, fmtMs } from "./ui";
 
 export interface LiveState {
@@ -152,7 +152,7 @@ function GapSpark({ history, scale }: { history: LiveState["history"]; scale: nu
     <svg viewBox={`0 0 ${W} ${H}`} className="mt-2 w-full max-w-[320px]" role="img" aria-label={`Gap over time: from ${pts[0].g.toFixed(2)} to ${pts[pts.length - 1].g.toFixed(2)} in ${pts.length} measured steps`}>
       <line x1={2} x2={W - 2} y1={H - 3} y2={H - 3} style={{ stroke: "var(--ws-line-strong)" }} />
       <path d={d} fill="none" style={{ stroke: "var(--ws-amber)" }} strokeWidth={1.6} />
-      <text x={4} y={10} style={{ fill: "var(--ws-faint)", font: "10px JetBrains Mono, monospace" }}>gap {gmax.toFixed(0)}</text>
+      <text x={4} y={H - 7} style={{ fill: "var(--ws-faint)", font: "10px JetBrains Mono, monospace" }}>gap {pts[0].g.toFixed(0)} → {pts[pts.length - 1].g.toFixed(0)}</text>
       <text x={W - 4} y={H - 7} textAnchor="end" style={{ fill: "var(--ws-faint)", font: "10px JetBrains Mono, monospace" }}>{((t1 - t0) / 1000).toFixed(1)} s</text>
     </svg>
   );

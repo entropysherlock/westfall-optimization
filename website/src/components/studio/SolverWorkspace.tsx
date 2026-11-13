@@ -6,10 +6,10 @@
 import Link from "next/link";
 import type { ProblemProfile } from "@/lib/studio/analysis";
 import type { Problem } from "@/lib/studio/model";
-import { ATLAS_DEFAULTS } from "@/lib/studio/runner";
+import { ATLAS_DEFAULTS } from "@/lib/studio/config";
 import type { Recommendation } from "@/lib/studio/select";
 import type { StudioSettings } from "@/lib/studio/session";
-import { SOLVERS, type SolverId } from "@/lib/studio/solvers";
+import { SOLVERS, type SolverId } from "@/lib/studio/catalog";
 import RemotePanel from "./RemotePanel";
 import { Metric, Panel, Term, Toggle, fmtInt } from "./ui";
 
