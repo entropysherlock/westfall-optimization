@@ -116,6 +116,10 @@ def test_limits_and_cancellation():
     assert time.time() - t0 < 10
     c.delete(f"/v1/jobs/{d}")
     wait(c, d)
+    # a cancelled job reports "cancelled" at once; its worker process is reaped right after
+    t1 = time.time()
+    while mgr.stats()["running"] and time.time() - t1 < 10:
+        time.sleep(0.1)
     assert mgr.stats()["running"] == 0
 
 
