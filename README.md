@@ -1,105 +1,111 @@
-# Westfall Optimization
+# WESTFALL / OPTIMIZATION
 
-**Exact weighted linear ordering with block-localized exclusion dynamic programming and independently checkable optimality certificates.**
+**Discover the structure. Prove the optimum.**
 
-Westfall Optimization is an independent research initiative led by Caleb Westfall. It is not a company, institute or university group, and it has no external funding, publications or endorsements at this time.
+An independent research project in **exact weighted linear ordering, parameterized algorithms, block-localized exclusion, and checkable optimality certificates**.
 
-- **Website (static, GitHub Pages):** https://entropysherlock.github.io/westfall-optimization/ — live only once Pages is enabled; see [docs/deployment.md](docs/deployment.md)
-- **Manuscript (not peer-reviewed):** [papers/square-root-block-localization-v2.md](papers/square-root-block-localization-v2.md)
-- **Research records:** [research/discovery-019/](research/discovery-019/) (Discovery 015–019 reports and original code)
+- **Research website:** https://entropysherlock.github.io/westfall-optimization/
+- **Discovery 022:** https://entropysherlock.github.io/westfall-optimization/research/discovery-022/
+- **Formal verification status:** https://entropysherlock.github.io/westfall-optimization/formal-verification/
+- **Interactive laboratory:** https://entropysherlock.github.io/westfall-optimization/lab/
+- **Benchmarks:** https://entropysherlock.github.io/westfall-optimization/benchmarks/
 
-> **Status.** The main theorem is proved in an internal manuscript and rated *Level 3 (provisional)*. Level 3 is this initiative's own internal classification, **not** an external academic endorsement. Nothing here has been peer-reviewed.
+Independent research led by **Caleb Westfall**, using AI-assisted discovery, adversarial computation and written proof development. Not affiliated with a university or institute; no research funding or peer-reviewed publication is claimed.
 
-## What is in this repository
+## Research status — November 2026
 
-| Component | Path | Evidence |
+| Discovery | Contribution | Evidence status |
 |---|---|---|
-| Python package `westfall_optimization`: BLX 2.0 portfolio, exclusion DP (SLDP), subset DP, local search, HiGHS MILP wrapper | `src/westfall_optimization/` | unit-tested against brute force |
-| Exact certificate generator and **integer** verifier (input binding, tamper rejection) | `src/westfall_optimization/certificates/` | unit-tested |
-| Square-root block-localization theorem: \|S_K\| ≤ (n+1)·P(2K+b²) ⇒ poly(n)·2^O(b+√K) | `papers/` | proved in manuscript, provisional |
-| Benchmark logs (Discoveries 018–019) | `benchmarks/data/` | raw experimental logs |
-| Static research website (Next.js) | `website/` | built and tested in CI |
+| **019** | Square-root block-localization counting for a supplied ordered partition | Written public provisional manuscript; tests reported |
+| **021** | Gap-free localization quantity \(K_0\) for a supplied partition | Research report and code reported on unpublished local branch |
+| **022** | Candidate intrinsic \(\lambda(A)\), minimum-partition recognition and partition-free exact algorithm | **Internal Level 3 candidate**, unreviewed and **not Lean-verified** |
 
-### What the website does — and does not — run
-GitHub Pages serves static files only; it **cannot run Python**. The website therefore contains:
-- a **browser engine** (TypeScript subset DP and exclusion DP with a trivial or block-table bound, n ≤ 26). It is labeled as such and is *not* the BLX implementation;
-- **preset instances** whose results and certificates were produced by the real Python BLX 2.0 solver (`scripts/build_site_data.py`);
-- a **BigInt TypeScript port of the exact verifier**, which re-checks those certificates in the browser.
+The latest report proposes
 
-To run BLX itself, use the Python package below.
+\[
+\lambda(A)=\min_{\mathcal B}\bigl(b(\mathcal B)^2+3K_0(\mathcal B)\bigr)
+\quad\text{and}\quad
+T(A)=\mathrm{poly}(n)2^{O(\sqrt{\lambda(A)})}.
+\]
 
-## Install
+This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the claimed recognition of its minimizing partition. The original 022 report and executable code have **not yet been pushed** from the reported local research branch; [this public summary](papers/discovery-022-research-summary.md) records the statements and limitations.
 
-```bash
-git clone https://github.com/entropysherlock/westfall-optimization
+**Level 3** is the program's own research classification, **not an external endorsement**. Neither the new theorem nor its asymptotic runtime claim has passed a Lean kernel check. See [the formal verification protocol](docs/formal-verification.md).
+
+### Negative results matter
+
+Discovery 022's AutoCut prototype reportedly proved **7/20** benchmark cases, while BLX 2.0 and packing SLDP each proved **20/20**, and AutoCut was slower wherever it succeeded. The new claim is theoretical, not a new fastest solver. The original published benchmarks also include cases where generic HiGHS MILP beats BLX.
+
+## What you can run today
+
+The public repository contains:
+
+- Python package \`westfall_optimization\`: BLX 2.0 portfolio, SLDP, subset DP, local search, MILP wrapper
+- Exact integer certificate generator and independent verifier with input binding and tamper tests
+- Static Next.js research website with interactive browser-only solvers, explainer and BigInt certificate verification
+- Benchmark logs and provisional Discovery 019 manuscript
+- Discovery 022 public research **summary**, not yet the complete executable Discovery 022 implementation
+
+**The website's TypeScript solver is not the Python BLX 2.0 algorithm.** The browser demonstration and real solver presets are labeled separately.
+
+### Install and test
+
+\`\`\`bash
+git clone https://github.com/entropysherlock/westfall-optimization.git
 cd westfall-optimization
-python -m pip install -e ".[test]"      # Python ≥ 3.10, numpy, scipy (HiGHS)
-python -m pytest                        # 15 tests
-```
+python -m pip install -e ".[test]"
+python -m pytest
+\`\`\`
 
-## Quickstart
+### Solve and verify
 
-```bash
-# Solve with the automatic BLX 2.0 portfolio
+\`\`\`bash
 westfall-opt solve examples/paley11.json
-
-# Force the exclusion-DP route and write an exact certificate
 westfall-opt solve examples/paley11.json --mode sldp --certificate cert.json --out result.json
-
-# Independently verify the certificate against the instance (exit code 1 if rejected)
 westfall-opt verify cert.json --instance examples/paley11.json
-```
+\`\`\`
 
-Input formats: JSON `{"matrix": [[...]]}` (skew-symmetric A, a_ij = −a_ji) or a raw `.npy`; `westfall-opt lolib PATH` reads LOLIB files.
+Input: JSON \`{"matrix":[...]}\` with skew-symmetric weights, or raw \`.npy\`. Use \`westfall-opt lolib PATH\` for LOLIB files.
 
-```python
-import numpy as np
-from westfall_optimization import solve, perturbed_paley
-A = perturbed_paley(11)
-res = solve(A, mode="auto")
-print(res["status"], res["route"], res["OPT"], res["order"])
-```
+Certificate verifier implementations:
 
-Statuses: `PROVED_OPTIMAL`, `BEST_FOUND`, `UNRESOLVED`, `CERTIFICATE_REJECTED`.
+- [Python exact checker](src/westfall_optimization/certificates/verify_exact.py)
+- [TypeScript BigInt browser checker](website/src/lib/verify.ts)
 
-## Verification walkthrough
-1. A certificate lists the instance (scaled to integers by a power-of-two D), the claimed order and value, the block bound data, and every excluded DP state with the integers that justify its exclusion.
-2. `verify` recomputes everything with exact Python integers: the objective of the order, each suffix bound, and each exclusion inequality f(S)+r(S)+U(V∖S) < L.
-3. With `--instance`, it also checks that the certificate is about *that* instance (binding); an edited matrix is rejected.
-4. Any single tampered field is rejected (see `tests/test_certificates.py` and the website's Verification Center).
+Exact arithmetic verification of one supported solution is **not a formal proof assistant certification**.
 
-Exact certificate checking is integer arithmetic re-verification of one run. It is **not** equivalent to formal verification in a proof assistant such as Lean. See [docs/certificates.md](docs/certificates.md).
+### Website development
 
-## Benchmarks
-Raw logs live in `benchmarks/data/`; the website dashboard is generated from them by `python scripts/build_site_data.py`. Results are mixed and are reported as such:
-- favorable: structured block families where BLX proves optimality and a 60 s generic MILP did not;
-- unfavorable: many LOLIB instances, where generic MILP (HiGHS) is faster;
-- unresolved instances are listed explicitly.
-
-BLX is **not** claimed to be universally faster than MILP. No specialised LOP branch-and-cut solver has been benchmarked yet. See [benchmarks/README.md](benchmarks/README.md).
-
-## Website development
-
-```bash
+\`\`\`bash
 cd website
 npm ci
-npm run dev                 # http://localhost:3000
-npm run typecheck && npm run lint && npm test && npm run build   # static export in website/out
-```
+npm run typecheck
+npm run lint
+npm test
+npm run build
+\`\`\`
 
-## Prior art (selection)
-- Karpinski & Schudy (ISAAC 2010): weighted FAST in O*(2^O(√OPT)); the closest technique.
-- Feige (2009): n^O(1)·2^O(√k) for unweighted FAST.
-- Stein & Andres (ICML 2024): polynomial-time partial optimality via improving maps.
-- Akbari & Escobedo (2023): approximate Condorcet partitioning for large Kemeny instances.
-- LOP branch-and-cut (Grötschel–Jünger–Reinelt; Charon–Hudry) — not yet benchmarked here; the most important missing comparison.
+GitHub Actions runs the Python and website checks and deploys a static Next.js export to GitHub Pages.
 
-The website's research page discusses the relationships. Novelty has not been independently assessed.
+## Mathematical manuscripts and documentation
 
-## Documents
-- [docs/architecture.md](docs/architecture.md) · [docs/certificates.md](docs/certificates.md) · [docs/deployment.md](docs/deployment.md)
-- [docs/grant-application-draft.md](docs/grant-application-draft.md) (draft; nothing submitted)
-- [CONTRIBUTING.md](CONTRIBUTING.md) · [CITATION.cff](CITATION.cff)
+- [Discovery 019: Square-Root Block Localization](papers/square-root-block-localization-v2.md)
+- [Discovery 022: Provisional Research Summary](papers/discovery-022-research-summary.md)
+- [Formal verification protocol and tracker](docs/formal-verification.md)
+- [Architecture](docs/architecture.md)
+- [Certificates](docs/certificates.md)
+- [Grant application draft](docs/grant-application-draft.md) — **not submitted for Westfall Optimization**
+- [Contribution guidelines](CONTRIBUTING.md)
+
+## Key prior art
+
+- [Fomin & Pilipczuk — cut enumeration / FAST](https://arxiv.org/abs/1301.7314)
+- [Karpinski & Schudy — subexponential weighted FAST](https://arxiv.org/abs/1006.4396)
+- [Feige — Faster FAST](https://arxiv.org/abs/0911.5094)
+- [Kawashima & Sukegawa — Condorcet structure](https://arxiv.org/abs/2609.19593)
+
+No claim of universal superiority to specialized linear-ordering solvers is made; that head-to-head comparison is still missing.
 
 ## License
-**Pending.** No license has been chosen yet; see [LICENSE-PENDING.md](LICENSE-PENDING.md). Until one is added, all rights are reserved by the author.
+
+**Pending project-owner decision.** Until a license is selected, all rights are reserved; public source visibility is not a redistribution license. See [LICENSE-PENDING.md](LICENSE-PENDING.md).

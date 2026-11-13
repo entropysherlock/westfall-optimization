@@ -1,191 +1,85 @@
+import Link from "next/link";
 import { ButtonLink, EvidenceTag, PageHeader, Section } from "@/components/ui";
 import { Tex } from "@/components/Tex";
-import { blob, tree } from "@/lib/site";
-import Link from "next/link";
+import { blob } from "@/lib/site";
 
-export const metadata = { title: "Research" };
+export const metadata = { title: "Research & discoveries" };
 
-const params: [string, string, string?][] = [
-  ["n", "number of items (vertices)"],
-  ["\\mathcal B=(B_1,\\dots,B_m)", "an ordered partition of the vertices into blocks, supplied to the algorithm"],
-  ["b", "largest block size", "b=\\max_i |B_i|"],
-  ["I_{\\mathcal B}(S)", "cross-block inversions of a prefix set S", "\\#\\{(w,u): w\\notin S,\\ u\\in S,\\ \\mathrm{blk}(w)<\\mathrm{blk}(u)\\}"],
-  ["X", "reversed cross weight", "\\sum_{i<j}\\sum_{u\\in B_i,\\,v\\in B_j}\\max(-a_{uv},0)"],
-  ["\\mu_+", "smallest nonzero cross-block margin |a_uv|"],
-  ["z", "number of zero-weight cross-block pairs"],
-  ["\\delta", "incumbent gap, with L the incumbent's score", "\\delta=(\\mathrm{OPT}-L)/2"],
-  ["K", "effective count of cross-block inconsistencies", "K=\\lfloor(\\delta+3X)/\\mu_+\\rfloor+z"],
+const timeline = [
+  ["014–017", "Foundations", "Local certificates, core-face lifting, symmetry-reduced DP, and self-localizing exclusion."],
+  ["018", "BLX 1.0", "Hybrid hereditary bounds and block-localized exclusion; early benchmarks exposed weaknesses on LOLIB."],
+  ["019", "Square-root localization", "Supplied-partition counting bound |S_K| ≤ (n+1)P(2K+b²)."],
+  ["021", "Gap-free localization", "Computable K₀ for a supplied partition. Manuscript and code reported on a local branch."],
+  ["022", "Partition-free candidate", "Intrinsic λ and proposed exact recognition of a minimizing partition; internal Level 3 candidate."],
 ];
-
-const history = [
-  ["Discovery 014", "Paley resistance", "Perturbed quadratic-residue tournaments defeat pairwise local certificates (ACC): zero relations certified although the optimum is unique.", "research/discovery-019/WESTFALL_Discovery_015_Report.md"],
-  ["Discovery 015", "Core-Face Lifting", "Prefix states of near-optimal orderings of an integer core localize the search; certified all pairs on seeded Paley(11/19/23), with exponential preprocessing.", "research/discovery-019/WESTFALL_Discovery_015_Report.md"],
-  ["Discovery 016", "Symmetric exclusion DP and a barrier", "Orbit-reduced core DP solved perturbed Paley(31); an isolation-lemma argument shows no algorithm can be output-sensitive in the number of optimal prefixes alone unless NP ⊆ ZPP.", "research/discovery-019/WESTFALL_Discovery_016_Report.md"],
-  ["Discovery 017", "Self-localizing exclusion DP (SLDP)", "The exclusion rule with any admissible suffix bound confines the search near every optimum; hereditary triangle-packing bound. Audit showed partial overlap with Stein–Andres and Karpinski–Schudy.", "research/discovery-019/WESTFALL_Discovery_017_Report.md"],
-  ["Discovery 018", "Block-Localized Exclusion (BLX 1.0)", "Hybrid hereditary bound (exact block tables + transversal triangle packing) and a block-localization theorem with an exponent K log(Kb); LOLIB benchmarking showed MILP wins on input–output instances.", "research/discovery-019/WESTFALL_Discovery_018_Report.md"],
-  ["Discovery 019", "Square-root block localization (BLX 2.0)", "Tight 2^Θ(b+√K) counting theorem, zero-weight extension with matching necessity, exact integer certificates, and an out-of-sample portfolio benchmark.", "research/discovery-019/WESTFALL_Discovery_019_Report.md"],
-];
-
 export default function Research() {
-  return (
-    <>
-      <PageHeader kicker="Research portal" title="Exact weighted linear ordering with structural guarantees">
-        The program asks a precise question: when the difficulty of an ordering problem is concentrated in a few internally cyclic regions, can an exact algorithm pay
-        exponentially only for those regions? This page states what has been proved, how, and what remains open.
-        <div className="mt-5 flex flex-wrap gap-3">
-          <ButtonLink href="/research/paper/" primary>Read the manuscript</ButtonLink>
-          <ButtonLink href={tree("research/discovery-019")} external>Discovery reports ↗</ButtonLink>
+  return <>
+    <PageHeader kicker="Research archive · 2026" title="A research program in exact ordering">
+      A transparent record of theorems, algorithms, falsified ideas, and computational evidence. Current theoretical flagship: Discovery 022 (provisional, not machine-verified).
+      <div className="mt-6 flex flex-wrap gap-3">
+        <ButtonLink href="/research/discovery-022/" primary>Discovery 022 →</ButtonLink>
+        <ButtonLink href="/research/paper/">Discovery 019 manuscript</ButtonLink>
+        <ButtonLink href="/formal-verification/">Formal proof tracker</ButtonLink>
+      </div>
+    </PageHeader>
+    <Section kicker="The mathematical problem" title="Weighted linear ordering">
+      <div className="grid gap-5 lg:grid-cols-2">
+        <div className="card p-7">
+          <p className="text-fog-400">For a skew-symmetric weight matrix A, choose a permutation π maximizing:</p>
+          <Tex block>{"F_A(\\pi)=\\sum_{r<s}a_{\\pi_r\\pi_s}"}</Tex>
+          <p className="mt-4 text-sm leading-relaxed text-fog-400">Applications include rank aggregation and tournament feedback arc set. Solving generally is NP-hard. The research concerns exact parameterized algorithms for structurally favorable families.</p>
         </div>
-      </PageHeader>
-
-      <Section id="theorem" kicker="BLX 2.0 theorem" title="Square-root block localization"
-        intro={<>In plain language: if you can split the items into ordered groups of size at most <Tex>{"b"}</Tex> so that only a few preferences cross the groups in the
-          “wrong” direction, then BLX solves the problem exactly while exploring a number of partial orderings that grows like <Tex>{"2^{O(b+\\sqrt K)}"}</Tex>, times a polynomial in
-          <Tex>{"n"}</Tex>. Hard structure <em>inside</em> a group costs only the <Tex>{"2^b"}</Tex> factor.</>}>
-        <div className="grid gap-6 lg:grid-cols-2">
-          <div className="card p-6">
-            <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved" /><EvidenceTag kind="tested" /><EvidenceTag kind="provisional" /></div>
-            <p className="mt-4 font-semibold text-fog-100">Theorem A (counting)</p>
-            <p className="mt-1 text-sm text-fog-400">For every ordered partition with maximum block size <Tex>{"b"}</Tex>, every <Tex>{"n"}</Tex> and every <Tex>{"K\\ge0"}</Tex>:</p>
-            <Tex block>{"\\big|\\mathcal S_K\\big|=\\big|\\{S\\subseteq V: I_{\\mathcal B}(S)\\le K\\}\\big|\\ \\le\\ (n+1)\\,P(2K+b^2),\\qquad P(M)=\\sum_{j\\le M}p(j)."}</Tex>
-            <p className="text-sm text-fog-400">Since <Tex>{"p(j)<e^{\\pi\\sqrt{2j/3}}"}</Tex>, this is <Tex>{"\\mathrm{poly}(n)\\,2^{O(b+\\sqrt K)}"}</Tex>. It is tight up to constants: one free block gives <Tex>{"2^b"}</Tex> sets, and chains of half-full blocks give <Tex>{"2^{\\Omega(\\sqrt K)}"}</Tex>.</p>
-          </div>
-          <div className="card p-6">
-            <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved" /><EvidenceTag kind="provisional" /></div>
-            <p className="mt-4 font-semibold text-fog-100">Corollary D (exact algorithm, supplied partition)</p>
-            <p className="mt-1 text-sm text-fog-400">Exclusion DP with the hybrid hereditary bound retains only prefixes with <Tex>{"I_{\\mathcal B}(S)\\le K"}</Tex>, so it generates at most</p>
-            <Tex block>{"n(n+1)\\,P(2K+b^2)\\ \\text{states, in time}\\ \\mathrm{poly}(n)\\,2^{O(b+\\sqrt K)},"}</Tex>
-            <p className="text-sm text-fog-400">including segmentation, block tables, the two packing LPs and certificate generation. Zero-weight pairs enter through <Tex>{"z"}</Tex>, and that term is necessary:
-              all-zero instances force <Tex>{"2^{\\lfloor\\sqrt{2z}\\rfloor}"}</Tex> retained states (Theorem C).</p>
-          </div>
+        <div className="card p-7">
+          <p className="font-mono text-xs text-cyan-300">CURRENT RESEARCH QUESTION</p>
+          <h3 className="mt-4 text-xl font-semibold">Can the method recover its own structure?</h3>
+          <p className="mt-3 text-sm leading-relaxed text-fog-400">Discovery 019 needs a supplied ordered partition. Discovery 022 proposes that the optimal partition witness for a specific structural parameter can itself be recovered in subexponential parameterized time.</p>
+          <Link href="/research/discovery-022/" className="mt-6 inline-block text-sm text-cyan-300 hover:underline">Read the formal statements →</Link>
         </div>
-        <div className="card mt-6 overflow-x-auto p-6">
-          <p className="mb-3 font-semibold text-fog-100">Parameters</p>
-          <table className="w-full text-sm">
-            <tbody>
-              {params.map(([sym, desc, formula]) => (
-                <tr key={sym} className="border-t border-line/60">
-                  <td className="w-48 py-2 pr-4 text-fog-100"><Tex>{sym}</Tex></td>
-                  <td className="py-2 text-fog-400">{desc}{formula && <>: <Tex>{formula}</Tex></>}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <p className="mt-4 text-xs text-fog-500">Scope: the guarantee is relative to an ordered block partition supplied to the algorithm. BLX 2.0 obtains one by exact segmentation of a heuristic incumbent; it does not
-            prove that this partition is the best possible. Weights may be any reals; the objective is <Tex>{"F_A(\\pi)=\\sum_{r<s}a_{\\pi_r\\pi_s}"}</Tex> for skew-symmetric <Tex>{"A"}</Tex>.</p>
+      </div>
+    </Section>
+    <section className="border-y border-line bg-ink-900/40">
+      <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
+        <p className="kicker">Research timeline</p>
+        <h2 className="mt-3 text-3xl font-semibold">What changed between the discoveries</h2>
+        <div className="mt-9 grid gap-4">
+          {timeline.map(([number,title,detail],i)=><div key={number} className={`card grid gap-3 p-6 md:grid-cols-[100px_1fr_auto] md:items-center ${i===4?"border-cyan-400/50":""}`}>
+            <span className="font-mono text-lg text-cyan-300">{number}</span>
+            <div><h3 className="font-semibold">{title}</h3><p className="mt-1 text-sm leading-relaxed text-fog-400">{detail}</p></div>
+            {i===4?<Link href="/research/discovery-022/" className="text-sm text-cyan-300">Read report →</Link>:null}
+          </div>)}
         </div>
-      </Section>
-
-      <section className="border-y border-line bg-ink-900/40">
-        <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
-          <p className="kicker mb-3">Mathematical derivation</p>
-          <h2 className="h-display text-3xl">From one inequality to an integer-partition count</h2>
-          <div className="mt-8 grid gap-6 lg:grid-cols-3">
-            <div className="card p-6">
-              <p className="font-mono text-xs text-cyan-400">Step 1 · central lemma</p>
-              <p className="mt-2 text-sm text-fog-400">For a prefix set <Tex>{"S"}</Tex>, let <Tex>{"a_i=|B_i\\setminus S|"}</Tex> and <Tex>{"x_i=|B_i\\cap S|"}</Tex>. Then</p>
-              <Tex block>{"\\sum_i a_i x_i\\ \\le\\ b^2+I_{\\mathcal B}(S)."}</Tex>
-              <p className="text-sm text-fog-400">With <Tex>{"t_i=\\min(a_i,x_i)"}</Tex>, cross inversions dominate <Tex>{"\\sum_{i<j}t_it_j"}</Tex>, so <Tex>{"(\\sum t)^2\\le \\tfrac b2\\sum t+2I"}</Tex>, giving
-                <Tex>{"\\sum t\\le \\tfrac b2+\\sqrt{2I}"}</Tex> and <Tex>{"\\sum a_ix_i\\le b\\sum t\\le b^2+I"}</Tex>.</p>
-            </div>
-            <div className="card p-6">
-              <p className="font-mono text-xs text-cyan-400">Step 2 · encode as a binary word</p>
-              <p className="mt-2 text-sm text-fog-400">List the vertices block by block. A set <Tex>{"S"}</Tex> becomes a 0/1 word whose ordinary inversion number equals <Tex>{"I_{\\mathcal B}(S)"}</Tex> plus
-                within-block inversions, which are at most <Tex>{"\\sum_i a_ix_i"}</Tex>. By Step 1,</p>
-              <Tex block>{"\\mathrm{inv}(\\omega(S))\\le 2I_{\\mathcal B}(S)+b^2."}</Tex>
-            </div>
-            <div className="card p-6">
-              <p className="font-mono text-xs text-cyan-400">Step 3 · count Young diagrams</p>
-              <p className="mt-2 text-sm text-fog-400">Words with <Tex>{"s"}</Tex> ones and <Tex>{"j"}</Tex> inversions correspond to partitions of <Tex>{"j"}</Tex> in an <Tex>{"s\\times(n-s)"}</Tex> box, so there are at most <Tex>{"p(j)"}</Tex>. Summing over <Tex>{"s"}</Tex> and <Tex>{"j\\le 2K+b^2"}</Tex>:</p>
-              <Tex block>{"|\\mathcal S_K|\\le (n+1)P(2K+b^2)."}</Tex>
-            </div>
-          </div>
-          <div className="card mt-6 p-6 text-sm text-fog-400">
-            <p className="font-semibold text-fog-100">From counting to the algorithm</p>
-            <p className="mt-2">The hybrid bound <Tex>{"U_{\\mathrm{hyb}}(T)=W(T)-2\\big[\\sum_i\\beta^*(T\\cap B_i)+\\sum_{\\Delta\\subseteq T}y'_\\Delta\\big]"}</Tex> (exact block tables plus a fractional packing of directed
-              triangles meeting three different blocks) is admissible for every <Tex>{"T"}</Tex>. Combining the exclusion rule with three inequalities — <Tex>{"\\beta^*\\le\\sum_i\\beta^*(B_i)+X"}</Tex>, the suffix gap of
-              <Tex>{"U_{\\mathrm{hyb}}"}</Tex> is at most <Tex>{"X"}</Tex>, and each inverted cross pair either contributes <Tex>{"\\ge\\mu_+"}</Tex>, is reversed, or has weight zero — shows every retained prefix satisfies
-              <Tex>{"I_{\\mathcal B}(S)\\le K"}</Tex>. Full proofs: <Link className="text-cyan-300 underline" href="/research/paper/">manuscript §5</Link>.</p>
-          </div>
+      </div>
+    </section>
+    <Section kicker="Theory" title="Two distinct guarantees">
+      <div className="grid gap-5 md:grid-cols-2">
+        <div className="card p-7">
+          <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
+          <h3 className="mt-4 text-xl font-semibold">Discovery 019 · supplied partition</h3>
+          <Tex block>{"|\\mathcal S_K|\\le(n+1)P(2K+b^2)"}</Tex>
+          <p className="mt-3 text-sm text-fog-400">The square-root counting bound for block-localized prefix states. The manuscript is public; specialist novelty review remains outstanding.</p>
+          <Link href="/research/paper/" className="mt-5 inline-block text-sm text-cyan-300">Read the existing manuscript →</Link>
         </div>
-      </section>
-
-      <Section kicker="Evidence" title="What was checked, and how">
-        <div className="grid gap-4 md:grid-cols-3">
-          {[
-            ["Counting theorem", "0 violations in 7,192 exhaustive (partition, K) checks (n ≤ 16, blocks ≤ 4, K ≤ 30); exact counts up to n = 608 stay within a factor 1.4–2.3 in the exponent.", "tested"],
-            ["Bound admissibility", "Hybrid bound ≥ exact sub-optimum on every subset: 0 violations over 81,920 checks, including random conflicting partitions, ties and zero weights.", "tested"],
-            ["Solver-level theorem", "80 runs with ties and zero-weight mixes: no retained prefix exceeded K; no run exceeded the state bound.", "tested"],
-            ["Asymptotic constant", "(log₂|S_K| − b)/√K ≈ 3.0–3.3 at K = 256 for every b from 1 to 32 — the reason the √(Kb) target was replaced by √K.", "observed"],
-            ["Novelty", "Compared against the closest literature (below); no specialist review yet.", "provisional"],
-            ["Partition-free version", "Finding a near-optimal partition within the same budget is open.", "future"],
-          ].map(([t, b, e]) => (
-            <div key={t} className="card p-5">
-              <EvidenceTag kind={e as "tested"} />
-              <p className="mt-3 font-semibold text-fog-100">{t}</p>
-              <p className="mt-2 text-sm leading-relaxed text-fog-400">{b}</p>
-            </div>
-          ))}
+        <div className="card border-cyan-400/30 p-7">
+          <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
+          <h3 className="mt-4 text-xl font-semibold">Discovery 022 · partition-free candidate</h3>
+          <Tex block>{"T(A)=\\operatorname{poly}(n)2^{O(\\sqrt{\\lambda(A)})}"}</Tex>
+          <p className="mt-3 text-sm text-fog-400">A reported recognition procedure computes λ and a minimizing partition. The written proof and small-instance tests are promising; no verified Lean implementation or specialist novelty decision exists.</p>
+          <Link href="/research/discovery-022/" className="mt-5 inline-block text-sm text-cyan-300">Examine Theorems 1–7 →</Link>
         </div>
-      </Section>
-
-      <section id="history" className="border-y border-line bg-ink-900/40">
-        <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
-          <p className="kicker mb-3">Research history</p>
-          <h2 className="h-display text-3xl">From failed local certificates to block localization</h2>
-          <p className="mt-3 max-w-3xl text-fog-400">Only results documented in the repository&apos;s discovery reports are listed. Earlier discoveries (006–013) are referenced in those reports but are not reproduced here.</p>
-          <ol className="mt-10 space-y-4 border-l border-line pl-6">
-            {history.map(([d, t, b, src]) => (
-              <li key={d} className="relative">
-                <span className="absolute -left-[31px] top-1.5 h-3 w-3 rounded-full border-2 border-cyan-400 bg-ink-950" />
-                <p className="font-mono text-xs text-cyan-400">{d}</p>
-                <p className="font-semibold text-fog-100">{t}</p>
-                <p className="mt-1 max-w-3xl text-sm text-fog-400">{b} <a className="text-cyan-300 underline" href={blob(src)}>source</a></p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
-
-      <Section id="prior-art" kicker="Prior art" title="How this relates to existing work"
-        intro="A stronger guarantee in a structural regime is not the same as better practical performance. Both comparisons are given separately.">
-        <div className="overflow-x-auto">
-          <table className="w-full min-w-[720px] text-sm">
-            <thead><tr className="border-b border-line text-left text-fog-100"><th className="py-2 pr-4">Work</th><th className="py-2 pr-4">What it proves</th><th className="py-2">Relation to BLX</th></tr></thead>
-            <tbody className="text-fog-400">
-              {[
-                ["Karpinski & Schudy (ISAAC 2010)", "Weighted FAST in O*(2^O(√OPT)) via DP over position windows of an approximate ranking (weights with w_uv + w_vu = 1); ETH lower bound.", "Closest technique. Their exponent charges all backward weight, including frustration inside blocks: on m Paley-like blocks of size b the guarantee is 2^O(b√m+√K) vs 2^O(b+√K). Separation of guarantees only — not measured."],
-                ["Feige, Faster FAST (2009)", "n^O(1)·2^O(√k) for unweighted FAST with k = optimal cost.", "Same parameter family as Karpinski–Schudy."],
-                ["Stein & Andres (ICML 2024)", "Polynomial-time partial optimality: improving maps (transposition, grouping, conditional grouping, shifting).", "Pair-fixing, not exact global optimization. Our earlier ACC rules partly overlap; a 9-vertex instance separates our block certificate from their single-pass conditions."],
-                ["Akbari & Escobedo (2023)", "Approximate Condorcet partitioning for large Kemeny instances, with instance-specific approximation guarantees.", "Approximation only; no exact state-count or runtime bound in block size or violating pairs."],
-                ["Condorcet / modular decompositions (Truchon; Phung & Hamel 2025)", "Exact decomposition when every cross pair agrees with the block order.", "Our K = 0 case (X = z = 0, δ = 0). Not claimed as new."],
-                ["Morin & Marsten (1976); state-space relaxation", "Bounding states in dynamic programming.", "The general paradigm BLX instantiates."],
-                ["LOP branch-and-cut (Grötschel–Jünger–Reinelt; Charon–Hudry)", "Strong exact solvers for LOLIB-type instances.", "Not benchmarked here — the most important missing comparison."],
-              ].map(([w, p, r]) => (
-                <tr key={w} className="border-b border-line/60 align-top"><td className="py-3 pr-4 text-fog-100">{w}</td><td className="py-3 pr-4">{p}</td><td className="py-3">{r}</td></tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </Section>
-
-      <section id="open" className="border-t border-line bg-ink-900/40">
-        <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
-          <p className="kicker mb-3">Open problems</p>
-          <h2 className="h-display text-3xl">What is not solved</h2>
-          <div className="mt-8 grid gap-4 md:grid-cols-2">
-            {[
-              ["Partition discovery", "Can a near-optimal ordered partition (minimising b + √K) be found within the same 2^O(b+√K) budget? A positive answer would give a partition-free structural FPT theorem for weighted FAST."],
-              ["ETH tightness in K", "Karpinski–Schudy's ETH lower bound suggests 2^o(√K) is impossible uniformly; the transfer to our parameter has not been verified."],
-              ["Specialist comparison", "Benchmark against a specialised LOP branch-and-cut solver on LOLIB/xLOLIB, and run an implementation of Karpinski–Schudy."],
-              ["Scalable certification", "The exact verifier is pure Python / TypeScript; multi-million-state certificates need a compiled verifier and possibly a formalised checker."],
-            ].map(([t, b]) => (
-              <div key={t} className="card p-5"><EvidenceTag kind="future" /><p className="mt-3 font-semibold text-fog-100">{t}</p><p className="mt-2 text-sm text-fog-400">{b}</p></div>
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
-  );
+      </div>
+    </Section>
+    <Section kicker="Prior work" title="What we did not invent"
+      intro="Our proposed cut-state engine builds on existing literature. Naming a new parameter does not by itself demonstrate originality.">
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="card p-6"><h3 className="font-semibold">Fomin & Pilipczuk (2013)</h3><p className="mt-2 text-sm text-fog-400">k-cut enumeration and dynamic programming form the existing engine of the Discovery 022 algorithm.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/1301.7314">Read paper ↗</a></div>
+        <div className="card p-6"><h3 className="font-semibold">Karpinski & Schudy (2010)</h3><p className="mt-2 text-sm text-fog-400">Subexponential algorithms and ETH lower bounds for weighted tournament feedback arc set are classical predecessors.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/1006.4396">Read paper ↗</a></div>
+        <div className="card p-6"><h3 className="font-semibold">Condorcet decomposition literature</h3><p className="mt-2 text-sm text-fog-400">Perfect and approximate decompositions precede this project. The proposed new point is algorithmic recognition under bounded disagreement.</p><a className="mt-4 inline-block text-sm text-cyan-300" href="https://arxiv.org/abs/2609.19593">Recent comparison ↗</a></div>
+        <div className="card p-6"><h3 className="font-semibold">Width and ordering frameworks</h3><p className="mt-2 text-sm text-fog-400">2026 work on structural width for ordering problems needs careful comparison before claiming novelty.</p><Link href="/research/discovery-022/" className="mt-4 inline-block text-sm text-cyan-300">Our outstanding questions →</Link></div>
+      </div>
+    </Section>
+    <Section kicker="Open record" title="The code and the limits">
+      <p className="max-w-3xl leading-relaxed text-fog-400">BLX 2.0 and its exact certificate checker are public. The 021 and 022 experiments were reported on a local branch and were not part of the initial public release; the current research summary is not a substitute for their executable source files.</p>
+      <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>019 proof source ↗</ButtonLink><ButtonLink href="/benchmarks/">Benchmarks</ButtonLink><ButtonLink href="/formal-verification/">What Lean has verified</ButtonLink></div>
+    </Section>
+  </>;
 }
-

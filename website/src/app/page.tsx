@@ -1,194 +1,143 @@
-import HeroGraph from "@/components/HeroGraph";
-import { ButtonLink, EvidenceTag, Section, type Evidence } from "@/components/ui";
-import { Tex } from "@/components/Tex";
-import { loadPresets } from "@/lib/data";
-import { blob, REPO } from "@/lib/site";
 import Link from "next/link";
+import { ButtonLink, EvidenceTag, Section } from "@/components/ui";
+import { Tex } from "@/components/Tex";
+import HeroGraph from "@/components/HeroGraph";
+import { loadPresets } from "@/lib/data";
+import { REPO } from "@/lib/site";
+
+const milestones = [
+  { number: "019", label: "Block localization", detail: "A square-root bound for prefix-state enumeration when an ordered partition is supplied.", status: "Written proof · provisional" },
+  { number: "021", label: "Gap-free localization", detail: "An incumbent-independent structural parameter for a supplied partition.", status: "Research report · unreviewed" },
+  { number: "022", label: "Partition discovery", detail: "A proposed intrinsic parameter and a partition-free exact algorithm based on cut enumeration.", status: "Level 3 candidate · not formalized" },
+];
+
+const research = [
+  { title: "A structural theory", category: "THEOREM DEVELOPMENT", description: "From block-localized search to a proposed intrinsic parameter: λ(A) = min over ordered partitions of b² + 3K₀.", href: "/research/discovery-022/", label: "Read Discovery 022" },
+  { title: "Proof status, without ambiguity", category: "FORMAL VERIFICATION", description: "Track written arguments, independent checks, exact certificates, and Lean kernel verification as separate forms of evidence.", href: "/formal-verification/", label: "View proof status" },
+  { title: "The algorithm in your browser", category: "INTERACTIVE LAB", description: "Explore weighted ordering, compare exact subset DP and exclusion DP, and inspect small-instance behavior.", href: "/lab/", label: "Open the lab" },
+];
 
 export default function Home() {
   const presets = loadPresets();
-  const hero = presets.find((p) => p.id === "blocks-14-mixed")!;
-
-  const claims: { title: string; body: string; ev: Evidence[] }[] = [
-    { title: "Square-root block-localization bound", body: "For a supplied ordered block partition, exclusion DP retains at most (n+1)·P(2K+b²) prefix states, giving poly(n)·2^O(b+√K) exact optimization.", ev: ["proved", "provisional"] },
-    { title: "Tightness of the counting", body: "Exhaustive enumeration (7,192 cases) and exact generating-function counts up to n = 608 match the 2^Θ(b+√K) order.", ev: ["tested"] },
-    { title: "Exact optimality certificates", body: "Certificates are checked in exact integer arithmetic by a verifier independent of the search code, bound to the input matrix, and tested against deliberate tampering.", ev: ["tested"] },
-    { title: "Reproducible benchmarks, including losses", body: "Wins on embedded cyclic cores; a generic MILP is faster on LOLIB input–output instances; large xLOLIB instances remain unresolved.", ev: ["observed"] },
-  ];
-
-  const steps = [
-    ["Construct an incumbent", "Insertion local search produces a feasible ordering π₀. Its score L = F_A(π₀) becomes the exclusion threshold."],
-    ["Analyze structure", "A fractional directed-triangle packing gives a global lower bound on unavoidable backward weight; the gap to π₀ and the zero-weight fraction are measured."],
-    ["Identify ordered blocks", "An exact dynamic program segments π₀ into contiguous blocks that keep as much backward weight inside blocks as possible."],
-    ["Compute admissible bounds", "Exact block tables β*(X) plus a transversal triangle packing give U_hyb(T) ≥ OPT(A|T) for every vertex subset T, with no double counting."],
-    ["Exclude impossible prefixes", "A prefix S survives only if f(S) + r(S) + U(V∖S) ≥ L. Every ordering scoring ≥ L keeps all its prefixes, so nothing optimal is lost."],
-    ["Solve exactly", "A longest-path DP over the surviving prefix states returns the optimum and every forced precedence. A portfolio routes LP-friendly instances to MILP."],
-    ["Certify", "The retained states, packings and block partition form a certificate that an independent exact verifier re-checks from scratch."],
-  ];
+  const hero = presets.find((p) => p.id === "blocks-14-mixed") || presets[0];
 
   return (
     <>
-      {/* HERO */}
       <section className="grid-bg relative overflow-hidden border-b border-line">
-        <div className="mx-auto grid max-w-page items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.05fr_1fr] lg:py-28">
+        <div className="pointer-events-none absolute -right-32 -top-44 h-[560px] w-[560px] rounded-full bg-cyan-500/10 blur-[120px]" />
+        <div className="pointer-events-none absolute bottom-0 left-0 h-60 w-96 rounded-full bg-violet-500/10 blur-[100px]" />
+        <div className="relative mx-auto grid max-w-page items-center gap-10 px-5 pb-24 pt-20 sm:px-8 lg:grid-cols-[1.12fr_.88fr] lg:pb-32 lg:pt-28">
           <div>
-            <p className="kicker">Independent research initiative · exact combinatorial optimization</p>
-            <h1 className="h-display mt-5 text-5xl leading-[1.04] sm:text-6xl">
-              WESTFALL<br />OPTIMIZATION
+            <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 px-3 py-1.5 font-mono text-[11px] tracking-wider text-cyan-300">
+              <span className="h-2 w-2 rounded-full bg-cyan-400" /> INDEPENDENT MATHEMATICAL RESEARCH · 2026
+            </div>
+            <h1 className="mt-8 text-5xl font-semibold leading-[1.01] tracking-[-.065em] text-fog-100 sm:text-6xl lg:text-[75px]">
+              Discover the<br /><span className="bg-gradient-to-r from-cyan-300 via-sky-300 to-violet-300 bg-clip-text text-transparent">structure.</span><br />Prove the optimum.
             </h1>
-            <p className="mt-6 text-2xl font-medium text-cyan-300">Optimization, with mathematical guarantees.</p>
-            <p className="mt-5 max-w-xl text-lg leading-relaxed text-fog-400">
-              Researching exact algorithms that transform complex weighted-ordering problems into mathematically verifiable solutions.
+            <p className="mt-7 max-w-xl text-lg leading-relaxed text-fog-300">
+              WESTFALL OPTIMIZATION studies why hard weighted-ordering problems sometimes admit exact, checkable solutions—and how hidden structure can be discovered algorithmically.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <ButtonLink href="/lab/" primary>Launch BLX Laboratory →</ButtonLink>
-              <ButtonLink href="/research/">Explore the Research</ButtonLink>
-              <ButtonLink href={REPO} external>View GitHub ↗</ButtonLink>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <ButtonLink href="/research/discovery-022/" primary>Explore Discovery 022 →</ButtonLink>
+              <ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
+            </div>
+            <p className="mt-5 max-w-xl text-xs leading-relaxed text-fog-500">
+              Discovery 022 is a provisional mathematical result, not peer-reviewed or Lean-verified. Its prototype is slower than existing project solvers on the reported benchmark.
+            </p>
+            <div className="mt-11 grid grid-cols-3 gap-4 border-t border-line pt-7">
+              <div><div className="font-mono text-2xl text-fog-100">019→022</div><div className="mt-1 text-xs text-fog-500">Research progression</div></div>
+              <div><div className="font-mono text-2xl text-fog-100">2<sup>O(√λ)</sup></div><div className="mt-1 text-xs text-fog-500">Proposed exact bound</div></div>
+              <div><div className="font-mono text-2xl text-fog-100">7 / 20</div><div className="mt-1 text-xs text-fog-500">022 prototype benchmark</div></div>
             </div>
           </div>
-          <div>
-            <HeroGraph A={hero.matrix} blocks={hero.reference.blocks} />
-            <p className="mt-3 text-xs leading-relaxed text-fog-500">
-              A 14-vertex instance with two cyclic cores and two reversed cross-block preferences. Every arc u→v means “u should precede v” with weight a<sub>uv</sub>;
-              red arcs point backward in the current ordering. The final stage is computed exactly in your browser.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* PROBLEM */}
-      <Section kicker="The problem" title="Weighted linear ordering"
-        intro={<>Given pairwise preferences between n items, find the ordering that agrees with them as much as possible. This is the weighted
-          linear-ordering problem, equivalent to minimum weighted feedback arc set in tournaments, and NP-hard in general.</>}>
-        <div className="grid gap-6 md:grid-cols-3">
-          <div className="card p-6 md:col-span-2">
-            <p className="text-fog-400">For a skew-symmetric matrix <Tex>{"A=(a_{ij}),\\ a_{ij}=-a_{ji}"}</Tex>, maximise</p>
-            <Tex block>{"F_A(\\pi)=\\sum_{r<s} a_{\\pi_r\\pi_s},\\qquad \\beta_A(\\pi)=\\frac{W(A)-F_A(\\pi)}{2},\\quad W(A)=\\sum_{i<j}|a_{ij}|."}</Tex>
-            <p className="text-fog-400">Maximising <Tex>{"F_A"}</Tex> is the same as minimising the backward weight <Tex>{"\\beta_A"}</Tex>: the total weight of preferences the ordering violates.</p>
-          </div>
-          <div className="card p-6 text-sm leading-relaxed text-fog-400">
-            <p className="font-semibold text-fog-100">Where it appears</p>
-            <p className="mt-2">Rank aggregation (Kemeny), tournament ranking, input–output table triangulation, scheduling with pairwise costs, and feedback-arc-set problems in graph drawing and verification.</p>
-          </div>
-        </div>
-      </Section>
-
-      {/* CREDIBILITY */}
-      <section className="border-y border-line bg-ink-900/40">
-        <div className="mx-auto max-w-page px-5 py-16 sm:px-8">
-          <p className="kicker mb-8">What has actually been established</p>
-          <div className="grid gap-5 md:grid-cols-2">
-            {claims.map((c) => (
-              <div key={c.title} className="card p-6">
-                <div className="flex flex-wrap gap-2">{c.ev.map((e) => <EvidenceTag key={e} kind={e} />)}</div>
-                <h3 className="mt-4 text-lg font-semibold text-fog-100">{c.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-fog-400">{c.body}</p>
+          <div className="relative">
+            <div className="rounded-[28px] border border-cyan-400/20 bg-ink-900/80 p-5 shadow-[0_24px_90px_-30px_rgba(56,189,248,.24)] sm:p-7">
+              <div className="flex items-center justify-between border-b border-line pb-4">
+                <div><p className="font-mono text-[11px] uppercase tracking-widest text-cyan-400">Ordering laboratory</p><p className="mt-1 text-xs text-fog-500">Weighted interaction graph · sample instance</p></div>
+                <span className="rounded-full border border-signal-green/30 px-2.5 py-1 font-mono text-[10px] text-signal-green">LIVE DEMO</span>
               </div>
-            ))}
+              {hero && <HeroGraph A={hero.matrix} blocks={hero.reference.blocks} />}
+              <Link href="/explainer/" className="mt-1 inline-flex text-xs text-cyan-300 hover:underline">How exact exclusion works →</Link>
+            </div>
           </div>
-          <p className="mt-6 text-xs text-fog-500">
-            Labels: “proved in manuscript” means a complete proof appears in the provisional manuscript; it has not been peer-reviewed. Our internal research scale rates the result
-            “Level 3 (provisional)”; that is an internal classification, not an external endorsement.
-          </p>
         </div>
       </section>
 
-      {/* BLX */}
-      <Section kicker="Flagship technology" title="BLX 2.0 — Block-Localized Exclusion"
-        intro="An exact search over prefix sets that discards states which provably cannot lead to an ordering better than the incumbent, using bounds that stay tight when the difficulty is concentrated in a few cyclic blocks.">
-        <ol className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {steps.map(([t, b], i) => (
-            <li key={t} className={`card p-5 ${i === 4 ? "lg:col-span-2 border-cyan-400/40" : ""}`}>
-              <div className="font-mono text-xs text-cyan-400">0{i + 1}</div>
-              <div className="mt-2 font-semibold text-fog-100">{t}</div>
-              <p className="mt-2 text-sm leading-relaxed text-fog-400">{b}</p>
-            </li>
+      <section className="border-b border-line bg-ink-900/30">
+        <div className="mx-auto grid max-w-page gap-4 px-5 py-7 sm:px-8 md:grid-cols-3">
+          <div className="text-sm text-fog-300"><span className="mr-2 text-cyan-400">01 /</span> Mathematical structure, not heuristic hype</div>
+          <div className="text-sm text-fog-300"><span className="mr-2 text-cyan-400">02 /</span> Exact certificate checking, independently implemented</div>
+          <div className="text-sm text-fog-300"><span className="mr-2 text-cyan-400">03 /</span> Negative benchmarks published alongside successes</div>
+        </div>
+      </section>
+
+      <Section kicker="The current research frontier" title="Three discoveries. One central question."
+        intro="Can an exact algorithm exploit structure it has to find for itself? The research has progressed from supplied blocks to a provisional partition-free result.">
+        <div className="grid gap-4 md:grid-cols-3">
+          {milestones.map((m, i) => (
+            <div key={m.number} className={`card relative overflow-hidden p-6 ${i === 2 ? "border-cyan-400/50 bg-cyan-500/[.06]" : ""}`}>
+              <div className="flex items-start justify-between"><span className="font-mono text-xs text-cyan-300">DISCOVERY / {m.number}</span><span className="text-xs text-fog-500">{i === 2 ? "CURRENT" : "FOUNDATION"}</span></div>
+              <h3 className="mt-6 text-xl font-semibold text-fog-100">{m.label}</h3>
+              <p className="mt-3 min-h-[92px] text-sm leading-relaxed text-fog-400">{m.detail}</p>
+              <div className="mt-5 border-t border-line pt-4 font-mono text-[11px] text-fog-500">{m.status}</div>
+            </div>
           ))}
-        </ol>
-        <div className="mt-8 flex flex-wrap gap-3">
-          <ButtonLink href="/explainer/" primary>See the exclusion rule run step by step</ButtonLink>
-          <ButtonLink href="/benchmarks/">Where it helps — and where it does not</ButtonLink>
+        </div>
+        <div className="mt-7"><ButtonLink href="/research/" primary>Explore the full research history →</ButtonLink></div>
+      </Section>
+
+      <section className="border-y border-line bg-ink-900/50">
+        <div className="mx-auto grid max-w-page items-center gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr]">
+          <div>
+            <p className="kicker">Proposed headline theorem · Discovery 022</p>
+            <h2 className="mt-4 text-3xl font-semibold tracking-tight text-fog-100 sm:text-4xl">What if the algorithm finds the partition itself?</h2>
+            <p className="mt-5 leading-relaxed text-fog-400">The reported Robust Condorcet parameter minimizes block size and cross-block disagreement over all ordered partitions. The proposed recognition algorithm searches for a witness without receiving one as input.</p>
+            <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /><EvidenceTag kind="proved" /></div>
+            <p className="mt-3 text-xs text-fog-500">“Proved” means written in the research report. Novelty, complete formal correctness, and practical advantage are not established.</p>
+            <div className="mt-7"><ButtonLink href="/research/discovery-022/">Examine the claim and evidence →</ButtonLink></div>
+          </div>
+          <div className="card p-7">
+            <div className="font-mono text-[11px] tracking-widest text-cyan-300">INTRINSIC STRUCTURAL PARAMETER</div>
+            <Tex block>{"\\lambda(A)=\\min_{\\mathcal B}(b(\\mathcal B)^2+3K_0(\\mathcal B))"}</Tex>
+            <div className="my-5 border-t border-line" />
+            <div className="font-mono text-[11px] tracking-widest text-fog-500">PROPOSED PARAMETERIZED ALGORITHM</div>
+            <Tex block>{"T(A)=\\operatorname{poly}(n)2^{O(\\sqrt{\\lambda(A)})}"}</Tex>
+            <div className="mt-5 rounded-xl border border-signal-amber/25 bg-signal-amber/5 p-3 text-xs leading-relaxed text-fog-400">The algorithm uses prior cut-enumeration ideas of Fomin–Pilipczuk. Recognition of the specific minimizing partition is the possible new contribution; independent novelty is still under review.</div>
+          </div>
+        </div>
+      </section>
+
+      <Section kicker="Explore the platform" title="From theorem to executable evidence."
+        intro="Read the mathematics, run the browser laboratory, inspect certificates, and reproduce the software results. Each component says what it does—and what it does not prove.">
+        <div className="grid gap-4 lg:grid-cols-3">
+          {research.map((item) => (
+            <Link key={item.title} href={item.href} className="group card flex flex-col p-6 transition hover:border-cyan-400/50 hover:bg-ink-800">
+              <span className="font-mono text-[11px] tracking-widest text-cyan-400">{item.category}</span>
+              <h3 className="mt-6 text-xl font-semibold text-fog-100">{item.title}</h3>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-fog-400">{item.description}</p>
+              <span className="mt-8 border-t border-line pt-4 text-sm font-medium text-cyan-300">{item.label} →</span>
+            </Link>
+          ))}
         </div>
       </Section>
 
-      {/* PAPER */}
       <section className="border-y border-line bg-ink-900/40">
-        <div className="mx-auto grid max-w-page gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1.2fr_1fr]">
-          <div>
-            <p className="kicker">Featured research</p>
-            <h2 className="h-display mt-3 text-3xl">Square-Root Block Localization for Exact Weighted Linear Ordering</h2>
-            <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /><EvidenceTag kind="proved" /></div>
-            <p className="mt-5 leading-relaxed text-fog-400">
-              Exclusion dynamic programming with a hybrid hereditary bound — exact optima on subsets of blocks plus a packing of directed triangles that meet three different
-              blocks — explores a number of prefix states governed only by the block size <Tex>{"b"}</Tex> and an effective count <Tex>{"K"}</Tex> of cross-block inconsistencies.
-              Frustration inside blocks costs only <Tex>{"2^{b}"}</Tex>, however severe it is.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <ButtonLink href="/research/paper/" primary>Read the manuscript</ButtonLink>
-              <ButtonLink href="/research/#theorem">Theorem & proof idea</ButtonLink>
-              <ButtonLink href={blob("papers/square-root-block-localization-v2.md")} external>Manuscript source ↗</ButtonLink>
-            </div>
-          </div>
-          <div className="card p-6">
-            <p className="font-mono text-xs uppercase tracking-wider text-fog-500">Theorem A (counting)</p>
-            <Tex block>{"\\big|\\{S\\subseteq V:\\ I_{\\mathcal B}(S)\\le K\\}\\big|\\ \\le\\ (n+1)\\,P(2K+b^2)"}</Tex>
-            <p className="font-mono text-xs uppercase tracking-wider text-fog-500">Corollary (exact algorithm, supplied partition)</p>
-            <Tex block>{"T(n)=\\mathrm{poly}(n)\\cdot 2^{O(b+\\sqrt{K})},\\qquad K=\\Big\\lfloor\\tfrac{\\delta+3X}{\\mu_+}\\Big\\rfloor+z"}</Tex>
-            <p className="mt-2 text-xs leading-relaxed text-fog-500">
-              <Tex>{"P(M)=\\sum_{j\\le M}p(j)"}</Tex> counts integer partitions. The guarantee is relative to an ordered block partition supplied to the algorithm; finding an optimal partition
-              efficiently is an open problem.
-            </p>
-          </div>
+        <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
+          <p className="kicker">Reality check</p>
+          <h2 className="mt-3 text-3xl font-semibold tracking-tight">No benchmark cherry-picking.</h2>
+          <p className="mt-4 max-w-3xl leading-relaxed text-fog-400">The Discovery 022 AutoCut prototype proved only 7 of 20 reported instances, versus 20 of 20 for both BLX 2.0 and packing SLDP. It was slower wherever it finished. This is a proposed theoretical contribution, not a claim of state-of-the-art speed.</p>
+          <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/benchmarks/" primary>BLX benchmark dashboard</ButtonLink><ButtonLink href="/research/discovery-022/">022 experimental details</ButtonLink></div>
         </div>
       </section>
 
-      {/* METHOD */}
-      <Section kicker="Methodology" title="How the research is done"
-        intro="Each result passes through the same loop. Claims that fail a step are revised or dropped, and the failures are kept in the record.">
-        <div className="grid gap-4 md:grid-cols-5">
-          {[
-            ["AI-assisted exploration", "Candidate bounds and algorithms are proposed and stress-tested with an AI research collaborator (Claude, Anthropic)."],
-            ["Exact computation", "Conjectured counts and bounds are computed exactly — e.g. exact generating-function counts showed the original √(Kb) target was loose."],
-            ["Theorem development", "Only statements with complete written proofs are labelled as proved; everything else is labelled as observed or conjectural."],
-            ["Adversarial testing", "Exhaustive small cases, random partitions, ties and zero weights, adversarial instance families, and certificate tampering."],
-            ["Independent verification", "Solutions are re-checked by a separate exact verifier and cross-checked against exact subset DP and MILP."],
-          ].map(([t, b], i) => (
-            <div key={t} className="card p-5">
-              <div className="font-mono text-xs text-cyan-400">{["I", "II", "III", "IV", "V"][i]}</div>
-              <div className="mt-2 font-semibold text-fog-100">{t}</div>
-              <p className="mt-2 text-sm leading-relaxed text-fog-400">{b}</p>
-            </div>
-          ))}
+      <Section kicker="Reproducible research" title="Inspect. Reproduce. Challenge."
+        intro="Westfall Optimization is an independent initiative. The software and provisional research record are public, with no claim of peer review, grant funding, or institutional endorsement.">
+        <div className="flex flex-wrap gap-3">
+          <ButtonLink href={REPO} external primary>Explore source on GitHub ↗</ButtonLink>
+          <ButtonLink href="/verify/">Verify BLX certificates</ButtonLink>
+          <ButtonLink href="/roadmap/">See the validation roadmap</ButtonLink>
         </div>
       </Section>
-
-      {/* OPEN */}
-      <section className="border-t border-line">
-        <div className="mx-auto grid max-w-page gap-8 px-5 py-20 sm:px-8 md:grid-cols-2">
-          <div>
-            <p className="kicker">Open research</p>
-            <h2 className="h-display mt-3 text-3xl">Inspect it. Reproduce it. Try to break it.</h2>
-            <p className="mt-4 leading-relaxed text-fog-400">
-              The solver, verifier, benchmark logs and manuscripts are in the repository. Mathematicians, optimization researchers and engineers are invited to check the proofs,
-              rerun the benchmarks, compare against specialised branch-and-cut codes, and report errors or prior art we missed.
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3">
-              <ButtonLink href={blob("CONTRIBUTING.md")} external>How to contribute ↗</ButtonLink>
-              <ButtonLink href={blob("CITATION.cff")} external>Citation metadata ↗</ButtonLink>
-              <ButtonLink href="/verify/">Verify a certificate</ButtonLink>
-            </div>
-          </div>
-          <div className="card p-6 font-mono text-[13px] leading-relaxed text-fog-300">
-            <p className="text-fog-500"># install and solve a seeded Paley(11) instance</p>
-            <p>git clone {REPO}.git</p>
-            <p>cd westfall-optimization && pip install -e .</p>
-            <p>python -c &quot;import westfall_optimization as w; print(w.solve(w.perturbed_paley(11))[&apos;OPT&apos;])&quot;</p>
-            <p className="mt-3 text-fog-500"># → 15.52614286834…  (status PROVED_OPTIMAL)</p>
-            <p className="mt-4 text-fog-500">Cite as: Westfall, C. (2026). Westfall Optimization: BLX 2.0. Software, {REPO.replace("https://", "")}</p>
-            <p className="mt-4 text-xs text-fog-500">See <Link href="/roadmap/" className="text-cyan-300">Roadmap</Link> for proposed next steps.</p>
-          </div>
-        </div>
-      </section>
     </>
   );
 }
