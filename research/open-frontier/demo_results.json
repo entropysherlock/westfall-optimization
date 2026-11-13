@@ -1,0 +1,42 @@
+[
+ {
+  "n": 30,
+  "flips": 6,
+  "cutwidth": 2,
+  "cuts_generated_at_k": 79,
+  "cap": 806,
+  "FP_cap_log2": 21.1,
+  "new_cap_log2": 9.7,
+  "seconds": 0.0
+ },
+ {
+  "n": 40,
+  "flips": 10,
+  "cutwidth": 2,
+  "cuts_generated_at_k": 117,
+  "cap": 1066,
+  "FP_cap_log2": 21.5,
+  "new_cap_log2": 10.1,
+  "seconds": 0.0
+ },
+ {
+  "n": 60,
+  "flips": 12,
+  "cutwidth": 2,
+  "cuts_generated_at_k": 171,
+  "cap": 1586,
+  "FP_cap_log2": 22.1,
+  "new_cap_log2": 10.6,
+  "seconds": 0.0
+ },
+ {
+  "n": 80,
+  "flips": 16,
+  "cutwidth": 2,
+  "cuts_generated_at_k": 245,
+  "cap": 2106,
+  "FP_cap_log2": 22.5,
+  "new_cap_log2": 11.0,
+  "seconds": 0.01
+ }
+]

@@ -1,0 +1,59 @@
+{
+ "instances": 1554,
+ "cut_sets_checked": 434856,
+ "max_ratio_count_over_bound": 1.0,
+ "worst": {
+  "n": 1,
+  "c": 0,
+  "kcuts": 2,
+  "bound": 2
+ },
+ "hyperbola_violations": 0,
+ "injectivity_violations": 0,
+ "cutwidth_algorithm_checks": 7766,
+ "ola_checks": 5488,
+ "aborts_seen": 0,
+ "ola_width_lemma_orderings": 21800,
+ "exponent_table": [
+  {
+   "k": 5,
+   "FP_exponent": 20.8,
+   "ln_H_2k": 7.3
+  },
+  {
+   "k": 10,
+   "FP_exponent": 32.4,
+   "ln_H_2k": 12.6
+  },
+  {
+   "k": 25,
+   "FP_exponent": 56.9,
+   "ln_H_2k": 24.6
+  },
+  {
+   "k": 50,
+   "FP_exponent": 85.9,
+   "ln_H_2k": 39.3
+  },
+  {
+   "k": 100,
+   "FP_exponent": 128.7,
+   "ln_H_2k": 61.0
+  },
+  {
+   "k": 250,
+   "FP_exponent": 217.9,
+   "ln_H_2k": 105.9
+  },
+  {
+   "k": 500,
+   "FP_exponent": 322.6,
+   "ln_H_2k": 158.5
+  },
+  {
+   "k": 1000,
+   "FP_exponent": 475.8,
+   "ln_H_2k": 234.4
+  }
+ ]
+}
