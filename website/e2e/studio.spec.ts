@@ -63,7 +63,7 @@ test("4: a heuristic run never claims optimality", async ({ page }) => {
   await runAndWait(page, "heuristic");
   await expect(page.getByTestId("status-badge")).toHaveText("Feasible — not proven optimal");
   await expect(page.getByTestId("status-note")).toContainText("NOT established");
-  await expect(page.getByText("Proven optimal")).toHaveCount(0);
+  await expect(page.getByText("Proven optimal", { exact: true })).toHaveCount(0); // exact: "Feasible — not proven optimal" must not match
 });
 
 test("5: export JSON and CSV, re-import, and reproduce the result", async ({ page }) => {
