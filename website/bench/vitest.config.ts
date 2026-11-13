@@ -1,0 +1,3 @@
+import { defineConfig } from "vitest/config";
+import path from "path";
+export default defineConfig({ resolve: { alias: { "@": path.resolve(__dirname, "../src") } }, test: { include: ["bench/**/*.bench.test.ts"], testTimeout: 7_200_000 } });

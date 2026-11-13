@@ -12,6 +12,7 @@ export const STUDIO_VERSION = "1.0.0";
 export type SolveStatus =
   | "OPTIMAL" // an exact solver completed under its stated assumptions
   | "FEASIBLE" // a heuristic, or an interrupted exact solver, returned an incumbent
+  | "INTERRUPTED" // an exact search stopped (budget/deadline) without proof; the incumbent is returned
   | "FAILED";
 
 export interface Verification {

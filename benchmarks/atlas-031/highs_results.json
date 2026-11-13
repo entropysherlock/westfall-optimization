@@ -1,0 +1,194 @@
+[
+ {
+  "instance": "random-int n=18 s=1",
+  "n": 18,
+  "status": "Optimal",
+  "value": 231.0,
+  "bound": 231.0,
+  "s": 0.04
+ },
+ {
+  "instance": "random-int n=24 s=1",
+  "n": 24,
+  "status": "Optimal",
+  "value": 399.0,
+  "bound": 399.0,
+  "s": 0.25
+ },
+ {
+  "instance": "near-transitive n=24 s=1",
+  "n": 24,
+  "status": "Optimal",
+  "value": 571.0,
+  "bound": 571.0,
+  "s": 0.05
+ },
+ {
+  "instance": "planted(r=10) n=30 s=1",
+  "n": 30,
+  "status": "Optimal",
+  "value": 1216.0,
+  "bound": 1216.0,
+  "s": 0.09
+ },
+ {
+  "instance": "planted(r=20) n=60 s=1",
+  "n": 60,
+  "status": "Optimal",
+  "value": 5156.0,
+  "bound": 5156.0,
+  "s": 0.66
+ },
+ {
+  "instance": "planted(r=30) n=100 s=1",
+  "n": 100,
+  "status": "Optimal",
+  "value": 14665.0,
+  "bound": 14665.0,
+  "s": 3.48
+ },
+ {
+  "instance": "multi-comp(b=10) n=60 s=1",
+  "n": 60,
+  "status": "Optimal",
+  "value": 2241.0,
+  "bound": 2241.0,
+  "s": 0.76
+ },
+ {
+  "instance": "multi-comp(b=12) n=120 s=1",
+  "n": 120,
+  "status": "Optimal",
+  "value": 9066.0,
+  "bound": 9066.0,
+  "s": 6.28
+ },
+ {
+  "instance": "random-int n=18 s=2",
+  "n": 18,
+  "status": "Optimal",
+  "value": 232.0,
+  "bound": 232.0,
+  "s": 0.02
+ },
+ {
+  "instance": "random-int n=24 s=2",
+  "n": 24,
+  "status": "Optimal",
+  "value": 355.0,
+  "bound": 355.0,
+  "s": 6.61
+ },
+ {
+  "instance": "near-transitive n=24 s=2",
+  "n": 24,
+  "status": "Optimal",
+  "value": 564.0,
+  "bound": 564.0,
+  "s": 0.04
+ },
+ {
+  "instance": "planted(r=10) n=30 s=2",
+  "n": 30,
+  "status": "Optimal",
+  "value": 1231.0,
+  "bound": 1231.0,
+  "s": 0.07
+ },
+ {
+  "instance": "planted(r=20) n=60 s=2",
+  "n": 60,
+  "status": "Optimal",
+  "value": 5235.0,
+  "bound": 5235.0,
+  "s": 0.55
+ },
+ {
+  "instance": "planted(r=30) n=100 s=2",
+  "n": 100,
+  "status": "Optimal",
+  "value": 14508.0,
+  "bound": 14508.0,
+  "s": 3.02
+ },
+ {
+  "instance": "multi-comp(b=10) n=60 s=2",
+  "n": 60,
+  "status": "Optimal",
+  "value": 2326.0,
+  "bound": 2326.0,
+  "s": 0.7
+ },
+ {
+  "instance": "multi-comp(b=12) n=120 s=2",
+  "n": 120,
+  "status": "Optimal",
+  "value": 8977.0,
+  "bound": 8977.0,
+  "s": 6.68
+ },
+ {
+  "instance": "random-int n=18 s=3",
+  "n": 18,
+  "status": "Optimal",
+  "value": 263.0,
+  "bound": 263.0,
+  "s": 0.02
+ },
+ {
+  "instance": "random-int n=24 s=3",
+  "n": 24,
+  "status": "Optimal",
+  "value": 441.0,
+  "bound": 441.0,
+  "s": 0.06
+ },
+ {
+  "instance": "near-transitive n=24 s=3",
+  "n": 24,
+  "status": "Optimal",
+  "value": 634.0,
+  "bound": 634.0,
+  "s": 0.04
+ },
+ {
+  "instance": "planted(r=10) n=30 s=3",
+  "n": 30,
+  "status": "Optimal",
+  "value": 1246.0,
+  "bound": 1246.0,
+  "s": 0.07
+ },
+ {
+  "instance": "planted(r=20) n=60 s=3",
+  "n": 60,
+  "status": "Optimal",
+  "value": 5176.0,
+  "bound": 5176.0,
+  "s": 0.7
+ },
+ {
+  "instance": "planted(r=30) n=100 s=3",
+  "n": 100,
+  "status": "Optimal",
+  "value": 14634.0,
+  "bound": 14634.0,
+  "s": 3.2
+ },
+ {
+  "instance": "multi-comp(b=10) n=60 s=3",
+  "n": 60,
+  "status": "Optimal",
+  "value": 2229.0,
+  "bound": 2229.0,
+  "s": 0.68
+ },
+ {
+  "instance": "multi-comp(b=12) n=120 s=3",
+  "n": 120,
+  "status": "Optimal",
+  "value": 9025.0,
+  "bound": 9025.0,
+  "s": 6.51
+ }
+]
