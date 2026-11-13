@@ -37,7 +37,7 @@ export default function Benchmarks() {
     <section className="border-t border-line">
       <div className="mx-auto max-w-page px-5 pt-16 sm:px-8">
         <p className="kicker">Discovery 018–019 · reproducible historical dashboard</p>
-        <h2 className="mt-3 text-3xl font-semibold">BLX's earlier benchmark series</h2>
+        <h2 className="mt-3 text-3xl font-semibold">Earlier BLX benchmark series</h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-fog-400">This dashboard is generated from public raw logs with <a className="text-cyan-300 underline" href={blob("scripts/build_site_data.py")}>build_site_data.py</a>. It does not incorporate unreleased AutoCut measurements.</p>
       </div>
       <div className="mx-auto max-w-page px-5 py-10 sm:px-8"><BenchmarkDashboard /></div>
