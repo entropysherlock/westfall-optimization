@@ -10,7 +10,7 @@ import { Stat, StatusBadge, type Status } from "./ui";
 type Mode = "subset" | "exclusion-trivial" | "exclusion-blocks";
 const MODES: { id: Mode; label: string; limit: number; note: string }[] = [
   { id: "subset", label: "Browser exact subset DP", limit: 18, note: "Exhaustive dynamic program over all 2ⁿ prefix sets. Complete proof of optimality; not BLX." },
-  { id: "exclusion-trivial", label: "Browser exclusion DP — trivial suffix bound", limit: 22, note: "The exclusion rule f(S)+r(S)+U(V∖S) ≥ L with U(T)=W(T). Exact (Discovery 017 mechanism)." },
+  { id: "exclusion-trivial", label: "Browser exclusion DP — trivial suffix bound", limit: 22, note: "The exclusion rule f(S)+r(S)+U(V∖S) ≥ L with U(T)=W(T). Exact under the stated exclusion bound." },
   { id: "exclusion-blocks", label: "Browser exclusion DP — block-table hybrid bound", limit: 22, note: "U(T)=W(T)−2Σβ*(T∩Bᵢ): BLX's hybrid bound without the triangle-packing LP. Exact." },
 ];
 

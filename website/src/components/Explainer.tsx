@@ -35,7 +35,7 @@ export default function Explainer() {
   return (
     <div className="space-y-6">
       <div className="card p-6">
-        <p className="kicker mb-2">The rule (Discovery 017, Lemma 0; Discovery 018–019)</p>
+        <p className="kicker mb-2">The exclusion rule · mathematical formulation</p>
         <p className="text-fog-400">Build orderings left to right. A <em>prefix state</em> is the set <Tex>{"S"}</Tex> of vertices placed so far. Keep <Tex>{"S"}</Tex> only if</p>
         <Tex block>{"f(S)\\;+\\;r(S)\\;+\\;U(V\\setminus S)\\;\\ge\\;L"}</Tex>
         <ul className="grid gap-2 text-sm text-fog-400 md:grid-cols-2">

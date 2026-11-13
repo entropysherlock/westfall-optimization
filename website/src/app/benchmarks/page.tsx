@@ -19,7 +19,7 @@ export default function Benchmarks() {
       logs remain unavailable on the public branch.
       <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="observed" /></div>
     </PageHeader>
-    <Section kicker="Discovery 022 · source report" title="The partition-free prototype is not the fastest solver"
+    <Section kicker="Original manuscript · experimental evidence" title="The partition-free prototype is not the fastest solver"
       intro="These figures are transcribed from the complete original research report. They have not yet been independently regenerated from its original code, so they are separate from the reproducible BLX dashboard.">
       <div className="grid gap-4 md:grid-cols-3">
         {comparison.map(([solver,result,note])=><div key={solver} className="card p-6">
@@ -36,7 +36,7 @@ export default function Benchmarks() {
     </Section>
     <section className="border-t border-line">
       <div className="mx-auto max-w-page px-5 pt-16 sm:px-8">
-        <p className="kicker">Discovery 018–019 · reproducible historical dashboard</p>
+        <p className="kicker">Historical benchmark series · reproducible dashboard</p>
         <h2 className="mt-3 text-3xl font-semibold">Earlier BLX benchmark series</h2>
         <p className="mt-4 max-w-3xl text-sm leading-relaxed text-fog-400">This dashboard is generated from public raw logs with <a className="text-cyan-300 underline" href={blob("scripts/build_site_data.py")}>build_site_data.py</a>. It does not incorporate unreleased AutoCut measurements.</p>
       </div>

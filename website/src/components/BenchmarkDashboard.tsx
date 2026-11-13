@@ -9,8 +9,8 @@ interface Data { environment: Record<string, string>; records: Rec[] }
 const SOLVERS = ["Packing SLDP", "BLX 1.0", "BLX 2.0", "HiGHS MILP"] as const;
 const COLORS: Record<string, string> = { "Packing SLDP": "#a78bfa", "BLX 1.0": "#fbbf24", "BLX 2.0": "#38bdf8", "HiGHS MILP": "#4ade80" };
 const DATASETS = {
-  test: { label: "Out-of-sample test (Discovery 019)", sources: ["D019 out-of-sample test"] },
-  insample: { label: "Discovery 018 instances (in-sample for BLX 2.0)", sources: ["D018 grid (training set for portfolio thresholds)", "D018 LOLIB (training set)", "D019 BLX 2.0 on D018 instances (in-sample)"] },
+  test: { label: "Out-of-sample evaluation", sources: ["Original out-of-sample test"] },
+  insample: { label: "In-sample BLX 2.0 evaluation", sources: ["Grid instances (portfolio training set)", "LOLIB instances (training set)", "BLX 2.0 on historical in-sample instances"] },
 } as const;
 
 type Row = { key: string; family: string; instance: string; seed: number | null; q: number | null; by: Record<string, Rec> };

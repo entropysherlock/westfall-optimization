@@ -8,7 +8,7 @@ import { blob } from "@/lib/site";
 
 export const metadata = {
   title: "Westfall Structural Optimization Theorem — Full research manuscript",
-  description: "Original full Discovery 022 manuscript. Provisional mathematical claims and independent-verification limitations are stated explicitly.",
+  description: "Original research manuscript, preserved verbatim as an archival record. Consult the formal verification page for the current proof status.",
 };
 
 export default function WestfallManuscript() {
