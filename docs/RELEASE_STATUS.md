@@ -7,7 +7,7 @@ Updated: 2026-11-12
 - Original full Discovery 022 written research report and a separately
   identified editorial presentation under the Westfall theorem name.
 - Historical Discovery 019 paper and original computational tools.
-- Independent **exhaustive small-n** rational/integer-weight reference checker
+- Independent **exhaustive small-n** integer-weight reference checker
   with tests, distinct from the unpublished AutoCut code.
 - Six foundational Lean lemmas passed the pinned kernel build and automated
   axiom audit in GitHub Actions run 43359133881. This is not the flagship proof.
@@ -26,8 +26,8 @@ Updated: 2026-11-12
   AutoCut exactness, complexity and ETH transfer.
 - Specialist novelty comparison, specialized exact LOP baseline.
 - License selection requires the owner's explicit decision.
-- npm dependency audit still needs verified remediation; record the severity
-  and affected transitive packages, then upgrade/test deliberately.
+- Next.js upgraded to 16.4.6: the verified npm audit has **zero high** findings,
+  but 8 moderate and 4 low remain; see `docs/security.md`.
 
 A failed CI workflow is a failed check, not proof that a theorem is false.
 A passing CI workflow on foundations does not certify the main theorem.
