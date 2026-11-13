@@ -1,7 +1,7 @@
 /**
  * Recommended-solver rules for the Studio. Pure function of the built Problem; every recommendation carries
- * the reasons it was made. It never substitutes a heuristic silently: a heuristic is only recommended when no
- * exact browser solver supports the instance, and the reasons say so.
+ * the reasons it was made. For very large dense components, it recommends a feasible heuristic rather than
+ * an exact method with little practical chance of finishing, and explicitly explains that tradeoff.
  *
  * Measured basis (benchmarks/atlas-032/RESULTS.md, 30 s, one thread): ATLAS-032 proved all instances with
  * strong components up to n = 30 in the suite, 3 of 6 dense n = 35 instances, and all 50 LOLIB IO instances
@@ -33,6 +33,14 @@ export function recommendSolver(p: Problem): Recommendation {
   if (n <= 9 && p.exact) {
     reasons.push(`${n} ≤ 9 items: AutoCut solves exactly and also recovers the structural partition attaining λ(A); the result is independently checked by exhaustive enumeration.`);
     return { solver: "autocut", reasons, warnings, profile };
+  }
+  // Dense, large single components can exhaust a browser worker before ATLAS reports a result.
+  // Prefer a usable ordering; users can still explicitly select ATLAS to seek proof.
+  if (largest >= 80 && density >= 0.6) {
+    reasons.push(`A dense, strongly connected component of ${largest} items is beyond the reliable exact benchmark range.`);
+    reasons.push("Local search returns a feasible ordering without claiming optimality.");
+    warnings.push("For an optimality proof, select ATLAS manually; it may exceed the time or memory budget.");
+    return { solver: "heuristic", reasons, warnings, profile };
   }
   if (n <= atlasMax) {
     reasons.push(`${n} items: ATLAS-032 is the adaptive exact solver for up to ${atlasMax} items.`);
