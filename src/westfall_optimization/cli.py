@@ -58,7 +58,7 @@ def main(argv=None):
     for name in ("solve", "lolib"):
         s = sub.add_parser(name)
         s.add_argument("path")
-        s.add_argument("--mode", default="auto", choices=["auto", "blx", "sldp", "milp", "subset_dp"])
+        s.add_argument("--mode", default="auto", choices=["auto", "blx", "sldp", "milp", "scc_milp", "subset_dp"])
         s.add_argument("--milp-time-limit", type=float, default=30.0)
         s.add_argument("--certificate")
         s.add_argument("--out")

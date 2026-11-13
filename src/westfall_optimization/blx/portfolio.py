@@ -62,7 +62,7 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
     """Solve max_pi F_A(pi). Returns a dict with status in {PROVED_OPTIMAL, BEST_FOUND, UNRESOLVED}.
 
     mode: 'auto' (BLX 2.0 routing), 'blx' (hybrid exclusion DP), 'sldp' (packing exclusion DP),
-          'milp' (HiGHS), 'subset_dp' (unrestricted exact DP, n <= 24).
+          'milp' (HiGHS), 'subset_dp' (unrestricted exact DP, n <= 24), 'scc_milp' (SCC preprocessing + HiGHS).
     blocks: optional ordered partition (list of vertex lists) for mode 'blx'.
     """
     A = as_skew(A)
@@ -102,6 +102,19 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
         res = sldp(A, L, ub_kind="trivial", keep_layers=True, want_pairs=want_pairs)  # exact order reconstruction
         out.update(status=PROVED, OPT=float(dp[-1]), order=_reconstruct(A, res["layers"], res["fs"]))
         out["time"] = time.time() - t0
+        return out
+
+    if route == "scc_milp":
+        from ..solvers.scc_milp import scc_milp_solve
+        m = scc_milp_solve(A, time_limit=milp_time_limit)
+        out["scc"] = {k: m[k] for k in ("components", "component_sizes", "largest_component", "subsolver_calls")}
+        if m["proved"]:
+            out.update(status=PROVED, OPT=m["OPT"], order=m["order"],
+                       proved_by="scc_milp", time=time.time() - t0)
+        else:
+            out.update(status=UNRESOLVED, OPT=None, order=m["order"],
+                       best_found=m["best_found"], upper_bound=m["upper_bound"],
+                       time=time.time() - t0)
         return out
 
     if route.startswith("milp"):
