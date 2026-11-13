@@ -6,7 +6,15 @@ import { backwardWeight, exactFA, exactUserObjective, isPermutation, maximises, 
 import type { SolverId } from "./solvers";
 import { Q } from "./rational";
 
-export const STUDIO_VERSION = "1.0.0";
+export const STUDIO_VERSION = "1.1.0";
+
+/** User-facing status vocabulary (Mission 038): never equate a feasible result with a proof. */
+export const STATUS_LABEL: Record<string, string> = {
+  OPTIMAL: "Proven optimal",
+  FEASIBLE: "Feasible — not proven optimal",
+  INTERRUPTED: "Interrupted — not proven optimal",
+  FAILED: "Failed",
+};
 
 /** Honest status vocabulary (see the Documentation page). */
 export type SolveStatus =
@@ -61,6 +69,34 @@ export interface SolveResult {
   structure: StructuralInfo | null;
   config: { timeLimitMs: number; seed: number };
   finishedAt: string;
+  /** ATLAS-032 run information (only for the "atlas" solver). Plain JSON; exact values as rational strings. */
+  atlas?: AtlasInfo;
+}
+
+export interface AtlasComponentInfo { size: number; method: string; optimal: boolean; states: number; pruned: number | null; rootLB: number | null; ms: number; note: string | null }
+export interface AtlasInfo {
+  settings: { bound: string; strict: boolean; maxStates: number; incumbentMs: number | null; decompose: boolean };
+  components: AtlasComponentInfo[];
+  /** Rigorous lower bound on the optimal backward weight β* (units of A), or null if unavailable. */
+  lowerBoundBeta: string | null;
+  /** Rigorous bound on the user objective implied by lowerBoundBeta (upper bound when maximising, lower bound when minimising). */
+  objectiveBound: string | null;
+  /** |objectiveBound − objective| (0 when optimality is proved). */
+  gap: string | null;
+  gapPercent: number | null;
+  /** Certificate in the format of benchmarks/atlas-032/verify_certificate.py, or null (see certificateNote). */
+  certificate: AtlasCertificate | null;
+  certificateNote: string;
+}
+export interface AtlasCertificate {
+  format: "westfall-atlas-032-certificate/1";
+  /** Integer skew matrix M = scale · A (the exact instance the certificate is about). */
+  A: number[][];
+  scale: string;
+  order: number[];
+  components: { vertices: number[]; order: number[]; beta: number; packing: { D: number; start: number[]; cyc: number[]; w: number[] } | null; verifiable: boolean }[];
+  claimedBeta: number;
+  claimedFA: number;
 }
 
 export function verifyOrdering(p: Problem, order: number[]): { ok: boolean; FA: Q; user: Q; identity: boolean } {
@@ -156,6 +192,8 @@ export function resultJson(p: Problem, r: SolveResult) {
       runtimeMs: Math.round(r.runtimeMs * 1000) / 1000,
       details: r.details,
       structure: r.structure,
+      bounds: r.atlas ? { lowerBoundBeta: r.atlas.lowerBoundBeta, objectiveBound: r.atlas.objectiveBound, gap: r.atlas.gap } : null,
+      atlasComponents: r.atlas ? r.atlas.components : null,
     },
     verification: r.verification,
     finishedAt: r.finishedAt,

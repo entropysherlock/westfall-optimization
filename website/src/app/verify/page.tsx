@@ -11,8 +11,8 @@ export default function Verify() {
   return (
     <>
       <PageHeader kicker="Exact certificate verification center" title="Don't trust the solver. Check the certificate.">
-        A solver&apos;s <em>claimed</em> optimum is only as reliable as its code. An exclusion-DP certificate lets anyone re-establish optimality with a separate, much simpler program
-        working in exact integer arithmetic.
+        A solver&apos;s <em>claimed</em> optimum is only as reliable as its code. An exclusion-DP certificate (BLX 2.0) or an ATLAS-032 certificate (from the Studio) lets anyone re-establish optimality with a separate, much simpler program
+        working in exact integer arithmetic. These are independent computational checks, not Lean proofs.
         <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="tested" /></div>
       </PageHeader>
 

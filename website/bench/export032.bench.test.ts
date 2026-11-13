@@ -10,9 +10,6 @@ import fs from "fs";
 import path from "path";
 import { generate, mulberry32 } from "../src/lib/engine";
 
-const TL = Number(process.env.ATLAS_TL_MS ?? 30000);
-const ONLY = process.env.ATLAS_ONLY ?? "";
-const now = () => performance.now();
 const skew = (n: number) => Array.from({ length: n }, () => Array(n).fill(0));
 const set = (A: number[][], i: number, j: number, v: number) => { A[i][j] = v; A[j][i] = -v; };
 const shuffleSym = (A: number[][], rnd: () => number) => { const p = [...A.keys()]; for (let i = p.length - 1; i > 0; i--) { const j = Math.floor(rnd() * (i + 1)); [p[i], p[j]] = [p[j], p[i]]; } return p.map((i) => p.map((j) => A[i][j])); };

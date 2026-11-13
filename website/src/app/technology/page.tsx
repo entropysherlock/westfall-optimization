@@ -95,6 +95,7 @@ export default function Technology() {
             <table className="table-clean">
               <thead><tr><th>Method</th><th>Guarantee</th><th>Practical range</th></tr></thead>
               <tbody>
+                <tr><td>ATLAS-032 (decomposition + cut-bounded DP + cycle-packing bounds)</td><td>optimal when every component is proved; otherwise best ordering + rigorous gap; independently checkable certificate</td><td>n ≤ 400 (browser); benchmarked: dense components to ~30–35 items, real instances to 79</td></tr>
                 <tr><td>Subset DP</td><td>optimal</td><td>n ≤ 20 (browser)</td></tr>
                 <tr><td>Exclusion DP</td><td>optimal if it completes</td><td>n ≤ 26 (browser), ≤ 62 (service)</td></tr>
                 <tr><td>AutoCut</td><td>optimal + λ-partition</td><td>small λ; n ≤ 9 in the browser</td></tr>

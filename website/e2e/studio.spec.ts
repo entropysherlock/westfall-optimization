@@ -26,7 +26,7 @@ test("1: upload a matrix, solve exactly, exhaustive enumeration confirms the opt
   await expect(page.getByTestId("model-summary")).toContainText("skew");
   for (const solver of ["subset-dp", "autocut", "exclusion"]) {
     await runAndWait(page, solver);
-    await expect(page.getByTestId("status-badge")).toHaveText("Optimality established");
+    await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
     await expect(page.getByTestId("objective")).toHaveText("15"); // independently computed: max over all 120 orderings
     await expect(page.getByTestId("verification")).toContainText("exhaustive enumeration of 120 orderings: optimum attained");
     await expect(page.getByTestId("verified-badge")).toBeVisible();
@@ -41,7 +41,7 @@ test("2: the same problem as an edge list gives an equivalent result", async ({ 
   await expect(page.getByTestId("validation-ok")).toContainText("5 items");
   await runAndWait(page, "subset-dp");
   await expect(page.getByTestId("objective")).toHaveText("15");
-  await expect(page.getByTestId("status-badge")).toHaveText("Optimality established");
+  await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
 });
 
 test("3: malformed input produces useful validation errors and blocks solving", async ({ page }) => {
@@ -61,9 +61,9 @@ test("4: a heuristic run never claims optimality", async ({ page }) => {
   await open(page);
   await page.setInputFiles("[data-testid=file-input]", fx("matrix.csv"));
   await runAndWait(page, "heuristic");
-  await expect(page.getByTestId("status-badge")).toHaveText("Feasible solution only");
+  await expect(page.getByTestId("status-badge")).toHaveText("Feasible — not proven optimal");
   await expect(page.getByTestId("status-note")).toContainText("NOT established");
-  await expect(page.getByText("Optimality established")).toHaveCount(0);
+  await expect(page.getByText("Proven optimal")).toHaveCount(0);
 });
 
 test("5: export JSON and CSV, re-import, and reproduce the result", async ({ page }) => {
@@ -96,7 +96,7 @@ test("6: exact case with negative weights, fractions and ties", async ({ page })
   await page.getByRole("button", { name: /Negative weights and ties/ }).click();
   await expect(page.getByTestId("validation-ok")).toContainText("5 items");
   await runAndWait(page, "autocut");
-  await expect(page.getByTestId("status-badge")).toHaveText("Optimality established");
+  await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
   await expect(page.getByTestId("verification")).toContainText("optimum attained");
   await expect(page.getByTestId("verification")).toContainText(/\((\d+) optimal\)/);
   const text = await page.getByTestId("verification").innerText();
@@ -160,10 +160,28 @@ test("9c: size limits are enforced per solver", async ({ page }) => {
   await expect(page.getByTestId("run")).toBeDisabled();
   await expect(page.getByText("This solver supports n ≤ 20")).toBeVisible();
   await runAndWait(page, "heuristic");
-  await expect(page.getByTestId("status-badge")).toHaveText("Feasible solution only");
+  await expect(page.getByTestId("status-badge")).toHaveText("Feasible — not proven optimal");
 });
 
 test("remote solver service is honestly reported as not configured", async ({ page }) => {
   await open(page);
   await expect(page.getByTestId("remote-unconfigured")).toContainText("not configured");
+});
+
+test("038: ATLAS-032 is recommended for larger inputs, proves optimality, and its certificate verifies independently", async ({ page }) => {
+  await open(page);
+  // 14-item dense instance: recommendation must be ATLAS (n > 9) and explain itself
+  const n = 14, rows: number[][] = Array.from({ length: n }, () => Array(n).fill(0));
+  for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) { const v = ((i * 7 + j * 11) % 9) - 4 || 1; rows[i][j] = v; rows[j][i] = -v; }
+  await page.getByTestId("data-input").fill(rows.map((r) => r.join(",")).join("\n"));
+  await page.selectOption("#interp", "skew");
+  await expect(page.getByTestId("recommendation")).toContainText("ATLAS");
+  await expect(page.locator("input[name=solver][value=atlas]")).toBeChecked();
+  await page.getByTestId("run").click();
+  await expect(page.getByTestId("job-state")).toHaveText("COMPLETED", { timeout: 90_000 });
+  await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
+  await expect(page.getByTestId("gap")).toHaveText("0 (proved)");
+  await page.getByRole("tab", { name: "Certificate" }).click();
+  await page.getByTestId("verify-certificate").click();
+  await expect(page.getByTestId("verdict")).toContainText("ACCEPTED", { timeout: 60_000 });
 });

@@ -2,6 +2,8 @@ import Link from "next/link";
 import { ButtonLink, EvidenceTag, FeatureCard, PageHeader, Section } from "@/components/ui";
 import { Tex } from "@/components/Tex";
 import { blob, leanBlob, REPO, tree } from "@/lib/site";
+import { InProgressCards } from "@/components/ResearchStatus";
+import { atlasCounts } from "@/lib/atlasData";
 
 export const metadata = { title: "Research", description: "A research program in exact weighted linear ordering: structural localization, partition recovery and verified parameterized algorithms." };
 
@@ -14,6 +16,7 @@ const program: [string, string, "lean" | "proved" | "provisional", string][] = [
 ];
 
 export default function Research() {
+  const ac = atlasCounts();
   return (
     <>
       <PageHeader kicker="Research program" title="Structure and exactness in weighted ordering">
@@ -51,6 +54,25 @@ export default function Research() {
               <EvidenceTag kind={k} />
             </Link>
           ))}
+        </div>
+      </Section>
+
+      <Section id="in-progress" kicker="Research in progress · not established results" title="Proof drafts, conjectures and experimental capabilities"
+        intro={<>These items are under active investigation. None is peer reviewed, and none is claimed as a solved problem. In particular, the 2013 Fomin–Pilipczuk question is <strong>not</strong> claimed as answered: the candidate proof is a draft awaiting independent mathematical and literature review, and the Airy asymptotic is an unproved conjecture. The full status of every result is on the <Link className="text-accent-600 underline" href="/formal-verification/#status">verification page</Link>.</>}>
+        <InProgressCards />
+      </Section>
+
+      <Section muted kicker="Engineering" title="ATLAS-032: the exact solver behind the Studio">
+        <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
+          <div className="space-y-3 text-[15px] leading-relaxed text-fog-300">
+            <p>ATLAS-032 combines strong-component decomposition, a cut-bounded prefix dynamic program and lower bounds from directed-cycle packings (triangles plus longer cycles), and proves its incumbent optimal when no prefix can beat it. These are established techniques from the linear-ordering literature, implemented natively in the browser with exact integer arithmetic.</p>
+            <p>On the {ac.E.total}-instance benchmark it proved {ac.E.proved} instances against {ac.A.proved} for ATLAS-031 and {ac.H.proved} for HiGHS with an exact gap, including {ac.Ereal.proved} of {ac.Ereal.total} real LOLIB input–output instances. HiGHS is faster on several families, and {ac.unprovedE.length} dense instances remain unproved.</p>
+          </div>
+          <div className="flex flex-wrap content-start gap-3">
+            <ButtonLink href="/studio/" primary>Try it in the Studio</ButtonLink>
+            <ButtonLink href="/benchmarks/#atlas-032">Benchmarks, including losses</ButtonLink>
+            <ButtonLink href={blob("benchmarks/atlas-032/NOVELTY.md")}>Novelty audit</ButtonLink>
+          </div>
         </div>
       </Section>
 
