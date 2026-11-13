@@ -5,35 +5,15 @@ import { solveAtlas } from "./atlas";
 import { autoCut, AUTOCUT_MAX_N } from "./autocut";
 import type { Problem } from "./model";
 import { buildProblem } from "./model";
-import { parseJsonText, type Interpretation } from "./parse";
-import { parseQ, Q } from "./rational";
+import { parseJsonText } from "./parse";
+import { Q } from "./rational";
 import { totalWeight, userFromFA, maximises } from "./model";
 import type { AtlasCertificate, AtlasInfo } from "./report";
-import { instanceJson, makeResult, type SolveResult } from "./report";
+import { makeResult, type SolveResult } from "./report";
 import { bruteForce, exclusionExact, Interrupted, localSearch, SOLVERS, subsetDPExact, type Hooks, type SolverId } from "./solvers";
 
-export interface SolveConfig {
-  timeLimitMs: number;
-  seed: number;
-  /** Run exhaustive enumeration as an independent check when n ≤ 9 (default true). */
-  bruteForceCheck?: boolean;
-  /** ATLAS-032 settings (only used by the "atlas" solver). Every option is honoured by solveAtlas. */
-  atlas?: AtlasSettings;
-}
-
-export interface AtlasSettings {
-  bound?: "none" | "greedy" | "fractional" | "cycles";
-  strict?: boolean;
-  maxStates?: number;
-  /** Local-search time per component in ms (null/undefined = size-dependent default). */
-  incumbentMs?: number | null;
-  decompose?: boolean;
-  certificate?: boolean;
-}
-
-export const ATLAS_DEFAULTS: Required<Omit<AtlasSettings, "incumbentMs">> & { incumbentMs: number | null } = {
-  bound: "cycles", strict: true, maxStates: 1_500_000, incumbentMs: null, decompose: true, certificate: true,
-};
+export { ATLAS_DEFAULTS, fromWire, toWire, type AtlasSettings, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./config";
+import { ATLAS_DEFAULTS, type SolveConfig, type WireJob } from "./config";
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
@@ -68,6 +48,7 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
       const r = solveAtlas(p.M, {
         deadline, seed: config.seed, bound: st.bound, strict: st.strict, maxStates: st.maxStates,
         incumbentMs: st.incumbentMs ?? undefined, noDecompose: !st.decompose,
+        onEvent: hooks.telemetry,
       });
       const sizes = r.components.map((c) => c.size);
       const details: Record<string, string | number> = {
@@ -99,7 +80,8 @@ export function solve(p: Problem, solver: SolverId, config: SolveConfig, hooks: 
       // internal consistency: the DP value must equal the exact F_A of the returned order
       if (!res.FA.eq(r.value)) throw new Error("internal check failed: AutoCut value differs from the recomputed objective");
     } else {
-      const r = localSearch(p.M, p.initialOrder, { timeMs: Math.min(config.timeLimitMs, 60_000), seed: config.seed, progress: hooks.progress });
+      const r = localSearch(p.M, p.initialOrder, { timeMs: Math.min(config.timeLimitMs, 60_000), seed: config.seed, progress: hooks.progress,
+        onIncumbent: hooks.telemetry ? (value, starts, ms) => hooks.telemetry!({ kind: "incumbent", value, starts, ms }) : undefined });
       res = makeResult(p, { ...base, status: "FEASIBLE", statusNote: "heuristic result: a locally optimal ordering; global optimality is NOT established",
         order: r.order, runtimeMs: now() - t0, details: { "restarts": r.starts } });
     }
@@ -156,33 +138,6 @@ function atlasInfo(p: Problem, r: ReturnType<typeof solveAtlas>, st: typeof ATLA
     components: r.components.map((c) => ({ size: c.size, method: c.method, optimal: c.optimal, states: c.states, pruned: c.pruned ?? null, rootLB: c.rootLB ?? null, ms: Math.round(c.ms), note: c.note ?? null })),
     lowerBoundBeta, objectiveBound, gap, gapPercent, certificate, certificateNote,
   };
-}
-
-/* ---------- wire format (postMessage-safe: no class instances) ---------- */
-
-export interface WireJob {
-  id: number;
-  instance: ReturnType<typeof instanceJson>;
-  interpretation: Interpretation;
-  solver: SolverId;
-  config: SolveConfig;
-}
-
-type Wire<T> = { [K in keyof T]: T[K] extends Q ? string : T[K] };
-export type WireResult = Wire<SolveResult>;
-
-const Q_FIELDS = ["initialObjective", "objective", "initialFA", "FA", "backwardInitial", "backwardFinal"] as const;
-
-export function toWire(r: SolveResult): WireResult {
-  const w = { ...r } as unknown as Record<string, unknown>;
-  for (const k of Q_FIELDS) w[k] = r[k].toString();
-  return w as unknown as WireResult;
-}
-
-export function fromWire(w: WireResult): SolveResult {
-  const r = { ...w } as unknown as Record<string, unknown>;
-  for (const k of Q_FIELDS) r[k] = parseQ(w[k]);
-  return r as unknown as SolveResult;
 }
 
 export function problemFromWire(job: Pick<WireJob, "instance" | "interpretation">): Problem {

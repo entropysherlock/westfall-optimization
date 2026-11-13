@@ -14,7 +14,7 @@ export default defineConfig({
   use: { baseURL: "http://localhost:4321", trace: "off", launchOptions: { executablePath, args: executablePath ? ["--no-sandbox"] : [] } },
   webServer: { command: "node scripts/serve-static.mjs out 4321", port: 4321, reuseExistingServer: true },
   projects: [
-    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } } },
-    { name: "mobile", use: { ...devices["Pixel 7"] }, testMatch: /navigation\.spec\.ts/ },
+    { name: "desktop", use: { ...devices["Desktop Chrome"], viewport: { width: 1440, height: 900 } }, testIgnore: /\.mobile\.spec\.ts/ },
+    { name: "mobile", use: { ...devices["Pixel 7"] }, testMatch: /(navigation|studio039\.mobile)\.spec\.ts/ },
   ],
 });

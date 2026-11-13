@@ -3,10 +3,10 @@
  */
 import type { Problem } from "./model";
 import { backwardWeight, exactFA, exactUserObjective, isPermutation, maximises, userFromFA } from "./model";
-import type { SolverId } from "./solvers";
+import type { SolverId } from "./catalog";
 import { Q } from "./rational";
 
-export const STUDIO_VERSION = "1.1.0";
+export const STUDIO_VERSION = "2.0.0";
 
 /** User-facing status vocabulary (Mission 038): never equate a feasible result with a proof. */
 export const STATUS_LABEL: Record<string, string> = {

@@ -159,7 +159,7 @@ export function largeExample(n = 60, seed = 2026): Example {
     domain: "Scale test",
     format: "edges",
     interpretation: "skew",
-    note: "One strongly connected component of 60 items. ATLAS-032 proves the optimum (objective 3027) with an exportable certificate; in our tests this took about 12 s on one 2.1 GHz core. The local search heuristic gives a quick feasible ordering without an optimality claim.",
+    note: "One strongly connected component of 60 items. ATLAS-032 proves the optimum (objective 3027) with an exportable certificate; on our test machine (Chrome, one 2.3 GHz Xeon core, Studio 039) the proof took about 1 s. Timings vary by device. The local search heuristic gives a quick feasible ordering without an optimality claim.",
     text: lines.join("\n") + "\n",
   };
 }

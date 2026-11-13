@@ -74,3 +74,81 @@ select { max-width: 100%; }
   nav, footer, .no-print { display: none !important; }
   body { background: #fff; }
 }
+
+@layer components {
+/* ======================================================================================
+   Optimization Studio workstation (Mission 039). Scoped to .ws so no other page changes.
+   Dark by default (deep WESTFALL navy, teal accent); data-theme="light" for light mode.
+   Colour carries meaning only: teal = agrees with the ordering / primary action,
+   coral = backward / failure, amber = not proven, green = proven, violet = rigorous bounds.
+   ====================================================================================== */
+.ws {
+  --ws-bg: #08121f; --ws-surface: #0d1a2c; --ws-raised: #12233a; --ws-sunken: #060e19;
+  --ws-line: #1c3049; --ws-line-strong: #2b4565;
+  --ws-text: #e7eef7; --ws-muted: #a3b3c8; --ws-faint: #8396b0;
+  --ws-accent: #2bb3a1; --ws-accent-strong: #63d3c3; --ws-accent-ink: #04211d;
+  --ws-back: #f2766d; --ws-amber: #e8a640; --ws-green: #45d197; --ws-violet: #a593f7;
+  --ws-zero: #22344d; --ws-diag: #1a2b42;
+  --ws-shadow: 0 1px 0 rgba(255,255,255,.03) inset, 0 8px 24px -16px rgba(0,0,0,.6);
+  color-scheme: dark;
+  background: var(--ws-bg); color: var(--ws-text);
+}
+.ws[data-theme="light"] {
+  --ws-bg: #eef2f7; --ws-surface: #ffffff; --ws-raised: #f5f7fb; --ws-sunken: #e6ecf3;
+  --ws-line: #dbe3ed; --ws-line-strong: #c3cfdd;
+  --ws-text: #0b1526; --ws-muted: #3f4f65; --ws-faint: #53637a;
+  --ws-accent: #0f766e; --ws-accent-strong: #115e59; --ws-accent-ink: #ffffff;
+  --ws-back: #b42318; --ws-amber: #9a3f06; --ws-green: #05643d; --ws-violet: #5b3fb8;
+  --ws-zero: #e8edf3; --ws-diag: #d9e1ea;
+  --ws-shadow: 0 1px 2px rgba(15,23,42,.05);
+  color-scheme: light;
+}
+.ws :focus-visible { outline: 2px solid var(--ws-accent-strong); outline-offset: 2px; }
+.ws ::selection { background: color-mix(in srgb, var(--ws-accent) 35%, transparent); }
+.ws .num { font-family: "JetBrains Mono", ui-monospace, monospace; font-variant-numeric: tabular-nums; }
+.ws-panel { background: var(--ws-surface); border: 1px solid var(--ws-line); border-radius: 10px; box-shadow: var(--ws-shadow); min-width: 0; }
+.ws-sunken { background: var(--ws-sunken); border: 1px solid var(--ws-line); border-radius: 8px; }
+.ws-h { font-size: 15px; font-weight: 600; letter-spacing: -.01em; color: var(--ws-text); }
+.ws-sub { font-size: 12.5px; line-height: 1.55; color: var(--ws-muted); }
+.ws-lbl { display: block; font-size: 12px; font-weight: 500; color: var(--ws-muted); }
+.ws-faint { color: var(--ws-faint); }
+.ws-muted { color: var(--ws-muted); }
+.ws-text { color: var(--ws-text); }
+.ws-accent { color: var(--ws-accent-strong); }
+.ws-back { color: var(--ws-back); }
+.ws-amber { color: var(--ws-amber); }
+.ws-green { color: var(--ws-green); }
+.ws-violet { color: var(--ws-violet); }
+.ws-field { width: 100%; border-radius: 7px; border: 1px solid var(--ws-line-strong); background: var(--ws-sunken); color: var(--ws-text); padding: 7px 10px; font-size: 13px; outline: none; transition: border-color .12s; }
+.ws-field:focus { border-color: var(--ws-accent); box-shadow: 0 0 0 3px color-mix(in srgb, var(--ws-accent) 22%, transparent); }
+.ws-field:disabled { opacity: .55; cursor: not-allowed; }
+.ws select.ws-field { padding-right: 28px; }
+.ws-btn { display: inline-flex; align-items: center; justify-content: center; gap: 7px; border-radius: 7px; padding: 7px 13px; font-size: 13px; font-weight: 600; border: 1px solid var(--ws-line-strong); background: var(--ws-raised); color: var(--ws-text); transition: background .12s, border-color .12s; white-space: nowrap; }
+.ws-btn:hover:not(:disabled) { border-color: var(--ws-faint); }
+.ws-btn:disabled { opacity: .45; cursor: not-allowed; }
+.ws-btn-primary { background: var(--ws-accent); border-color: var(--ws-accent); color: var(--ws-accent-ink); }
+.ws-btn-primary:hover:not(:disabled) { background: var(--ws-accent-strong); border-color: var(--ws-accent-strong); }
+.ws-btn-ghost { background: transparent; border-color: transparent; color: var(--ws-muted); font-weight: 500; }
+.ws-btn-ghost:hover:not(:disabled) { color: var(--ws-text); background: var(--ws-raised); border-color: var(--ws-line); }
+.ws-btn-danger { color: var(--ws-back); }
+.ws-chip { display: inline-flex; align-items: center; gap: 6px; border-radius: 999px; border: 1px solid var(--ws-line-strong); padding: 2px 9px; font-size: 11.5px; color: var(--ws-muted); white-space: nowrap; }
+.ws-check { accent-color: var(--ws-accent); width: 15px; height: 15px; }
+.ws-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.ws-table th { position: sticky; top: 0; z-index: 1; background: var(--ws-raised); border-bottom: 1px solid var(--ws-line); padding: 7px 10px; text-align: left; font-weight: 500; color: var(--ws-muted); white-space: nowrap; }
+.ws-table td { border-bottom: 1px solid var(--ws-line); padding: 6px 10px; color: var(--ws-text); vertical-align: top; }
+.ws-table tr:last-child td { border-bottom: 0; }
+.ws-table tbody tr:hover td { background: color-mix(in srgb, var(--ws-raised) 70%, transparent); }
+.ws-tabs { display: flex; flex-wrap: wrap; gap: 2px; border-bottom: 1px solid var(--ws-line); }
+.ws-tab { padding: 8px 12px; font-size: 13px; font-weight: 500; color: var(--ws-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
+.ws-tab:hover { color: var(--ws-text); }
+.ws-tab[aria-selected="true"] { color: var(--ws-text); border-bottom-color: var(--ws-accent); }
+.ws-rail-item { display: flex; align-items: center; gap: 10px; width: 100%; border-radius: 8px; padding: 8px 10px; font-size: 13px; font-weight: 500; color: var(--ws-muted); text-align: left; border: 1px solid transparent; }
+.ws-rail-item:hover { color: var(--ws-text); background: var(--ws-raised); }
+.ws-rail-item[aria-current="page"] { color: var(--ws-text); background: var(--ws-raised); border-color: var(--ws-line-strong); }
+.ws-dot { width: 7px; height: 7px; border-radius: 999px; flex: none; background: var(--ws-line-strong); }
+.ws-term { text-decoration: underline dotted; text-underline-offset: 3px; text-decoration-color: var(--ws-faint); cursor: help; }
+.ws details > summary { cursor: pointer; }
+.ws-scroll { scrollbar-width: thin; scrollbar-color: var(--ws-line-strong) transparent; }
+@media print { .ws { --ws-bg: #fff; --ws-surface: #fff; --ws-text: #000; --ws-muted: #333; } .ws-noprint { display: none !important; } }
+.ws-table td.num, .ws-table th { white-space: nowrap; }
+}

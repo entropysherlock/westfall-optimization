@@ -1,0 +1,159 @@
+{
+ "label": "telemetry",
+ "node": "v22.23.4",
+ "reps": 5,
+ "telemetry": true,
+ "cpu": "see README",
+ "rows": [
+  {
+   "name": "random-int n=24 s=2",
+   "size": 24,
+   "states": 5816,
+   "pruned": 93403,
+   "beta": 222,
+   "beforeMedianMs": 35.1,
+   "afterMedianMs": 32.5,
+   "speedup": 1.08,
+   "beforeMs": [
+    63,
+    30,
+    18,
+    35,
+    39
+   ],
+   "afterMs": [
+    33,
+    34,
+    8,
+    31,
+    44
+   ],
+   "layerEvents": 80
+  },
+  {
+   "name": "random-int n=30 s=3",
+   "size": 30,
+   "states": 3956,
+   "pruned": 85792,
+   "beta": 302,
+   "beforeMedianMs": 8.5,
+   "afterMedianMs": 7,
+   "speedup": 1.21,
+   "beforeMs": [
+    8,
+    18,
+    9,
+    10,
+    8
+   ],
+   "afterMs": [
+    7,
+    7,
+    7,
+    11,
+    6
+   ],
+   "layerEvents": 105
+  },
+  {
+   "name": "ties n=30 s=1",
+   "size": 30,
+   "states": 623964,
+   "pruned": 11462718,
+   "beta": 152,
+   "beforeMedianMs": 3228.4,
+   "afterMedianMs": 1226.2,
+   "speedup": 2.63,
+   "beforeMs": [
+    3114,
+    3629,
+    3192,
+    3342,
+    3228
+   ],
+   "afterMs": [
+    1299,
+    1221,
+    1267,
+    1226,
+    1132
+   ],
+   "layerEvents": 115
+  },
+  {
+   "name": "ties n=35 s=3",
+   "size": 35,
+   "states": 310164,
+   "pruned": 6931942,
+   "beta": 174,
+   "beforeMedianMs": 1648.9,
+   "afterMedianMs": 555.5,
+   "speedup": 2.97,
+   "beforeMs": [
+    1426,
+    1496,
+    1658,
+    1649,
+    1692
+   ],
+   "afterMs": [
+    532,
+    636,
+    579,
+    530,
+    555
+   ],
+   "layerEvents": 175
+  },
+  {
+   "name": "random-int n=35 s=3",
+   "size": 35,
+   "states": 216203,
+   "pruned": 5045987,
+   "beta": 428,
+   "beforeMedianMs": 1309.5,
+   "afterMedianMs": 604.4,
+   "speedup": 2.17,
+   "beforeMs": [
+    1332,
+    1059,
+    1310,
+    1284,
+    1326
+   ],
+   "afterMs": [
+    604,
+    649,
+    581,
+    558,
+    609
+   ],
+   "layerEvents": 145
+  },
+  {
+   "name": "multi-comp(b=12) n=120 s=1 (largest component)",
+   "size": 12,
+   "states": 1,
+   "pruned": 12,
+   "beta": 31,
+   "beforeMedianMs": 0,
+   "afterMedianMs": 0.1,
+   "speedup": 0,
+   "beforeMs": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "afterMs": [
+    0,
+    0,
+    0,
+    0,
+    0
+   ],
+   "layerEvents": 0
+  }
+ ]
+}

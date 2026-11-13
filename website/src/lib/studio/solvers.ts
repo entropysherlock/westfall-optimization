@@ -14,28 +14,7 @@
  */
 import { exclusionDP, insertionLocalSearch, mulberry32, segmentOrder } from "../engine";
 
-export type SolverId = "subset-dp" | "exclusion" | "autocut" | "atlas" | "heuristic";
-
-export interface SolverInfo {
-  id: SolverId;
-  label: string;
-  exact: boolean;
-  maxN: number;
-  summary: string;
-}
-
-export const SOLVERS: SolverInfo[] = [
-  { id: "subset-dp", label: "Exact subset dynamic program", exact: true, maxN: 20,
-    summary: "Exhaustive dynamic program over all 2ⁿ prefix sets. Optimality is established when it completes." },
-  { id: "exclusion", label: "Exact exclusion DP (block bound)", exact: true, maxN: 26,
-    summary: "Prefix-state DP that discards states provably unable to beat a local-search incumbent. Exact when it completes within its state budget." },
-  { id: "autocut", label: "AutoCut structural solver", exact: true, maxN: 9,
-    summary: "Browser port of the Lean-verified AutoCut algorithm: recovers a partition attaining λ(A) and an optimal ordering. The port is tested against the Lean executable, not itself formally verified." },
-  { id: "atlas", label: "ATLAS adaptive exact (components + cut-bounded DP)", exact: true, maxN: 400,
-    summary: "Splits the instance into strongly connected components (exact), solves each with the subset DP or a cut-bounded prefix DP, and concatenates. Optimal when every component completes; otherwise the result is reported as interrupted with the best ordering found." },
-  { id: "heuristic", label: "Local search (heuristic)", exact: false, maxN: 400,
-    summary: "Multi-start insertion local search. Returns a good feasible ordering; it does not establish optimality." },
-];
+export { SOLVERS, type SolverId, type SolverInfo } from "./catalog";
 
 export class Interrupted extends Error {
   constructor(message: string) {
@@ -48,6 +27,8 @@ export interface Hooks {
   /** Called with real progress fractions in [0,1] (only where progress is measurable). */
   progress?: (fraction: number, note: string) => void;
   deadline?: number; // performance.now() timestamp
+  /** Mission 039: structured, measured telemetry (see runner.ts Telemetry). */
+  telemetry?: (e: import("./config").Telemetry) => void;
 }
 
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
@@ -100,7 +81,7 @@ export function subsetDPExact(M: number[][], hooks: Hooks = {}): { order: number
 }
 
 /** Multi-start insertion local search. Deterministic for a fixed seed. */
-export function localSearch(M: number[][], start: number[], opts: { timeMs?: number; seed?: number; maxStarts?: number } & Hooks = {}) {
+export function localSearch(M: number[][], start: number[], opts: { timeMs?: number; seed?: number; maxStarts?: number; onIncumbent?: (value: number, starts: number, ms: number) => void } & Hooks = {}) {
   const n = M.length;
   const t0 = now();
   const budget = opts.timeMs ?? 1500;
@@ -115,6 +96,7 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
   const cv = scoreOf(M, c);
   starts++;
   if (cv > bestVal) { best = c; bestVal = cv; }
+  opts.onIncumbent?.(bestVal, starts, now() - t0);
   while (starts < maxStarts && now() - t0 < budget) {
     // perturb the incumbent: random segment reversal + a few random moves, then re-optimise
     const p = best.slice();
@@ -129,7 +111,7 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
     const q = insertionLocalSearch(M, p);
     const qv = scoreOf(M, q);
     starts++;
-    if (qv > bestVal) { best = q; bestVal = qv; }
+    if (qv > bestVal) { best = q; bestVal = qv; opts.onIncumbent?.(bestVal, starts, now() - t0); }
     if (starts % 16 === 0) opts.progress?.(Math.min(1, (now() - t0) / budget), `${starts} restarts`);
   }
   return { order: best, value: bestVal, starts };
