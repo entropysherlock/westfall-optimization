@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { generate, mulberry32 } from "../src/lib/engine";
 import { solveAtlas } from "../src/lib/studio/atlas";
 import { cutBoundedDP } from "../src/lib/studio/cutdp";
-import { directedTriangles, fractionalPacking, greedyPacking, packingValueOn } from "../src/lib/studio/bounds/packing";
+import { directedTriangles, fractionalPacking, greedyPacking, packingValueOn, withLongerCycles } from "../src/lib/studio/bounds/packing";
 import { bruteForce, scoreOf, subsetDPExact } from "../src/lib/studio/solvers";
 
 const W = (M: number[][]) => { let w = 0; for (let i = 0; i < M.length; i++) for (let j = i + 1; j < M.length; j++) w += Math.abs(M[i][j]); return w; };
@@ -22,7 +22,7 @@ describe("ATLAS-032 triangle-packing bounds (Lemmas 1–2)", () => {
     for (let t = 0; t < 250; t++) {
       const n = 3 + Math.floor(rnd() * 6);
       const M = randSkew(n, rnd, t % 4);
-      for (const p of [greedyPacking(M), fractionalPacking(M, { eps: 0.1 })]) {
+      for (const p of [greedyPacking(M), fractionalPacking(M, { eps: 0.1 }), withLongerCycles(M, greedyPacking(M))]) {
         expect(p.total / p.D).toBeLessThanOrEqual(optBeta(M) + 1e-12);
         for (let q = 0; q < 4; q++) {
           const R = [...Array(n).keys()].filter(() => rnd() < 0.7);
@@ -55,7 +55,8 @@ describe("ATLAS-032 strengthened prefix DP: β_S + cut(S) + ⌈L(V∖S)⌉ vs in
       const M = randSkew(n, rnd, t % 4);
       const ref = bruteForce(M).value;
       const g = n >= 3 ? greedyPacking(M) : null, f = n >= 3 ? fractionalPacking(M, { eps: 0.1 }) : null;
-      for (const o of [{ packing: g }, { packing: f }, { packing: f, strict: true }, { strict: true }]) {
+      const cy = n >= 3 ? withLongerCycles(M, fractionalPacking(M, { eps: 0.1 })) : null;
+      for (const o of [{ packing: g }, { packing: f }, { packing: f, strict: true }, { strict: true }, { packing: cy, strict: true }]) {
         const r = cutBoundedDP(M, [...Array(n).keys()], o);
         expect(r.value).toBe(ref);
         expect(scoreOf(M, r.order)).toBe(ref);
@@ -82,7 +83,7 @@ describe("ATLAS-032 strengthened prefix DP: β_S + cut(S) + ⌈L(V∖S)⌉ vs in
       const n = 9 + Math.floor(rnd() * 8);
       const M = randSkew(n, rnd, t % 4);
       const ref = subsetDPExact(M).value;
-      for (const bound of ["none", "greedy", "fractional"] as const) {
+      for (const bound of ["none", "greedy", "fractional", "cycles"] as const) {
         const r = solveAtlas(M, { subsetMax: 0, incumbentMs: 10, bound });
         expect(r.optimal).toBe(true);
         expect(r.value).toBe(ref);
@@ -94,6 +95,28 @@ describe("ATLAS-032 strengthened prefix DP: β_S + cut(S) + ⌈L(V∖S)⌉ vs in
     const M = generate("random-int", 10, 4).map((r) => r.map((x) => x * 0.5));
     const r = solveAtlas(M, { subsetMax: 0, incumbentMs: 10 });
     expect(Math.abs(r.value - subsetDPExact(M).value)).toBeLessThan(1e-9);
+  });
+});
+
+describe("ATLAS-032 longer-cycle packing on sparse / tie-heavy input", () => {
+  it("is admissible on sparse random digraphs where longer cycles exist without triangles", () => {
+    const rnd = mulberry32(64);
+    for (let t = 0; t < 150; t++) {
+      const n = 4 + Math.floor(rnd() * 5);
+      const M = Array.from({ length: n }, () => Array(n).fill(0));
+      for (let i = 0; i < n; i++) for (let j = i + 1; j < n; j++) if (rnd() < 0.45) { const v = (rnd() < 0.5 ? 1 : -1) * (1 + Math.floor(rnd() * 9)); M[i][j] = v; M[j][i] = -v; }
+      const p = withLongerCycles(M, greedyPacking(M));
+      expect(p.total / p.D).toBeLessThanOrEqual(optBeta(M));
+      const r = cutBoundedDP(M, [...Array(n).keys()], { packing: p, strict: true });
+      expect(r.value).toBe(bruteForce(M).value);
+    }
+  }, 120_000);
+  it("finds a 4-cycle with zero chords that no triangle packing can see", () => {
+    const M = Array.from({ length: 4 }, () => Array(4).fill(0));
+    for (const [u, v] of [[0, 1], [1, 2], [2, 3], [3, 0]]) { M[u][v] = 3; M[v][u] = -3; }
+    expect(greedyPacking(M).total).toBe(0);
+    expect(withLongerCycles(M, greedyPacking(M)).total).toBe(3);
+    expect(optBeta(M)).toBe(3);
   });
 });
 

@@ -1,7 +1,8 @@
 /**
  * ATLAS-032 benchmark. Every variant gets the same instances, time limit (ATLAS_TL_MS, default 30 s) and
  * state budget (4 M). Variants: A = ATLAS-031 rule (no residual bound, non-strict); S = strict only;
- * B = strict + greedy triangle bound; C = strict + fractional triangle bound (ATLAS-032 default).
+ * B = strict + greedy triangle bound; C = strict + fractional triangle bound; E = final ATLAS-032 default
+ * (C + greedy longer cycles on residual capacity + stronger incumbent; run with ATLAS_VARIANTS=E).
  * Run: npx vitest run --config bench/vitest.config.ts bench/atlas032.bench.test.ts
  */
 import { it } from "vitest";
@@ -42,11 +43,13 @@ const variants: [string, AtlasOptions][] = [
   ["S: strict only", { bound: "none", strict: true }],
   ["B: strict + greedy triangles", { bound: "greedy", strict: true }],
   ["C: ATLAS-032 (strict + fractional triangles)", { bound: "fractional", strict: true }],
+  ["E: ATLAS-032 final (C + longer cycles + stronger incumbent)", { bound: "cycles", strict: true }],
 ];
+const ONLY_VARIANTS = (process.env.ATLAS_VARIANTS ?? "A,S,B,C").split(",");
 
 it("ATLAS-032 benchmark", () => {
   const rows: Record<string, unknown>[] = [];
-  const out = path.resolve(__dirname, `../../benchmarks/atlas-032/results${SHARD[1] > 1 ? `.shard${SHARD[0]}` : ""}.json`);
+  const out = path.resolve(__dirname, `../../benchmarks/atlas-032/results${process.env.ATLAS_VARIANTS ? "." + process.env.ATLAS_VARIANTS.replace(/,/g, "") : ""}${SHARD[1] > 1 ? `.shard${SHARD[0]}` : ""}.json`);
   for (const [ii, inst] of instances.entries()) {
     if (ONLY && !inst.name.includes(ONLY)) continue;
     if (ii % SHARD[1] !== SHARD[0]) continue;
@@ -56,6 +59,7 @@ it("ATLAS-032 benchmark", () => {
     let lbBeta = 0;
     for (const c of strongComponents(inst.M).components) if (c.length >= 3) { const p = fractionalPacking(subMatrix(inst.M, c)); lbBeta += Math.ceil(p.total / p.D); }
     for (const [vname, opt] of variants) {
+      if (!ONLY_VARIANTS.includes(vname.split(":")[0])) continue;
       // ablations S and B only on the n = 24 dense families (the ATLAS-031 failure set); A and C everywhere
       if ((vname.startsWith("S") || vname.startsWith("B")) && !/^(random-int|ties) n=24/.test(inst.name)) continue;
       const t0 = now(); const rss0 = process.memoryUsage().rss;

@@ -90,7 +90,7 @@ export function cutBoundedDP(
   L0.a.push(new Float64Array(n)); L0.b.push(new Float64Array(n));
   // d[v] = Σ_{T∋v, T⊆R} y_T for R = V∖S: the packing weight lost when v leaves R (O(1) pruning test)
   const d0 = new Float64Array(n);
-  if (pk) for (let t = 0; t < pk.w.length; t++) { d0[pk.tri[3 * t]] += pk.w[t]; d0[pk.tri[3 * t + 1]] += pk.w[t]; d0[pk.tri[3 * t + 2]] += pk.w[t]; }
+  if (pk) for (let c = 0; c < pk.w.length; c++) for (let i = pk.start[c]; i < pk.start[c + 1]; i++) d0[pk.cyc[i]] += pk.w[c];
   L0.d.push(d0);
   layers.push(L0);
   let states = 1, expanded = 0, pruned = 0, maxLayer = 1;
@@ -119,10 +119,15 @@ export function cutBoundedDP(
           let d2 = dS;
           if (pk) {
             d2 = dS.slice();
+            // cycles through v that lie inside R = V∖S leave the residual set: every other vertex loses their weight
             const lst = pk.byVertex[v];
-            for (let q = 0; q < lst.length; q += 3) {
-              const x = lst[q], y = lst[q + 1];
-              if (!(mask[x >>> 5] & (1 << (x & 31))) && !(mask[y >>> 5] & (1 << (y & 31)))) { d2[x] -= lst[q + 2]; d2[y] -= lst[q + 2]; }
+            for (let q = 0; q < lst.length; q++) {
+              const c = lst[q], c0 = pk.start[c], c1 = pk.start[c + 1];
+              let inside = true;
+              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (mask[x >>> 5] & (1 << (x & 31))) { inside = false; break; } }
+              if (!inside) continue;
+              const wc = pk.w[c];
+              for (let i = c0; i < c1; i++) { const x = pk.cyc[i]; if (x !== v) d2[x] -= wc; }
             }
           }
           seen.set(k, next.masks.length);

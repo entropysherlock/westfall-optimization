@@ -8,10 +8,10 @@
   "beta": 206.0,
   "boundBeta": 206.0,
   "lpBoundBeta": 204.0,
-  "lp_s": 0.113,
-  "build_s": 0.008,
-  "solve_s": 0.307,
-  "end_to_end_s": 0.316,
+  "lp_s": 0.057,
+  "build_s": 0.004,
+  "solve_s": 0.211,
+  "end_to_end_s": 0.215,
   "nodes": 1
  },
  {
@@ -23,10 +23,10 @@
   "beta": 88.0,
   "boundBeta": 88.0,
   "lpBoundBeta": 87.0,
-  "lp_s": 0.046,
+  "lp_s": 0.037,
   "build_s": 0.002,
-  "solve_s": 0.285,
-  "end_to_end_s": 0.287,
+  "solve_s": 0.156,
+  "end_to_end_s": 0.158,
   "nodes": 1
  },
  {
@@ -38,26 +38,26 @@
   "beta": 366.0,
   "boundBeta": 350.0,
   "lpBoundBeta": 346.6666666666667,
-  "lp_s": 0.386,
-  "build_s": 0.013,
+  "lp_s": 0.236,
+  "build_s": 0.004,
   "solve_s": 30.002,
-  "end_to_end_s": 30.015,
-  "nodes": 12
+  "end_to_end_s": 30.006,
+  "nodes": 175
  },
  {
   "name": "ties n=30 s=1",
   "family": "ties n=30",
   "n": 30,
-  "status": "Time limit reached",
-  "F": 224,
-  "beta": 153.0,
-  "boundBeta": 148.0,
+  "status": "Optimal",
+  "F": 226,
+  "beta": 152.0,
+  "boundBeta": 151.99999999999997,
   "lpBoundBeta": 146.33333333333326,
-  "lp_s": 0.407,
-  "build_s": 0.005,
-  "solve_s": 30.009,
-  "end_to_end_s": 30.014,
-  "nodes": 74
+  "lp_s": 0.247,
+  "build_s": 0.004,
+  "solve_s": 25.73,
+  "end_to_end_s": 25.734,
+  "nodes": 123
  },
  {
   "name": "random-int n=35 s=1",
@@ -68,10 +68,10 @@
   "beta": 509.0,
   "boundBeta": 490.0,
   "lpBoundBeta": 487.6666666666667,
-  "lp_s": 1.265,
-  "build_s": 0.012,
-  "solve_s": 30.141,
-  "end_to_end_s": 30.153,
+  "lp_s": 0.698,
+  "build_s": 0.007,
+  "solve_s": 30.006,
+  "end_to_end_s": 30.013,
   "nodes": 2
  },
  {
@@ -83,10 +83,10 @@
   "beta": 206.0,
   "boundBeta": 206.0,
   "lpBoundBeta": 202.59789519842133,
-  "lp_s": 1.273,
-  "build_s": 0.015,
-  "solve_s": 26.876,
-  "end_to_end_s": 26.891,
+  "lp_s": 1.354,
+  "build_s": 0.007,
+  "solve_s": 28.355,
+  "end_to_end_s": 28.362,
   "nodes": 9
  },
  {
@@ -100,8 +100,8 @@
   "lpBoundBeta": 185.0,
   "lp_s": 0.014,
   "build_s": 0.002,
-  "solve_s": 0.053,
-  "end_to_end_s": 0.056,
+  "solve_s": 0.049,
+  "end_to_end_s": 0.051,
   "nodes": 1
  },
  {
@@ -113,10 +113,10 @@
   "beta": 282.0,
   "boundBeta": 281.99999999999994,
   "lpBoundBeta": 281.99999999999994,
-  "lp_s": 0.067,
+  "lp_s": 0.049,
   "build_s": 0.004,
-  "solve_s": 0.177,
-  "end_to_end_s": 0.181,
+  "solve_s": 0.115,
+  "end_to_end_s": 0.119,
   "nodes": 1
  },
  {
@@ -130,8 +130,8 @@
   "lpBoundBeta": 125.0,
   "lp_s": 0.006,
   "build_s": 0.002,
-  "solve_s": 0.041,
-  "end_to_end_s": 0.043,
+  "solve_s": 0.039,
+  "end_to_end_s": 0.041,
   "nodes": 1
  },
  {
@@ -143,9 +143,9 @@
   "beta": 319.0,
   "boundBeta": 319.0,
   "lpBoundBeta": 319.0,
-  "lp_s": 0.04,
+  "lp_s": 0.036,
   "build_s": 0.01,
-  "solve_s": 0.193,
+  "solve_s": 0.194,
   "end_to_end_s": 0.204,
   "nodes": 1
  },
@@ -158,10 +158,10 @@
   "beta": 76.0,
   "boundBeta": 76.0,
   "lpBoundBeta": 76.0,
-  "lp_s": 0.466,
-  "build_s": 0.167,
-  "solve_s": 3.942,
-  "end_to_end_s": 4.109,
+  "lp_s": 0.465,
+  "build_s": 0.162,
+  "solve_s": 2.871,
+  "end_to_end_s": 3.033,
   "nodes": 1
  },
  {
@@ -173,10 +173,10 @@
   "beta": 357.0,
   "boundBeta": 357.0,
   "lpBoundBeta": 357.0,
-  "lp_s": 1.696,
-  "build_s": 0.399,
-  "solve_s": 7.616,
-  "end_to_end_s": 8.015,
+  "lp_s": 1.025,
+  "build_s": 0.276,
+  "solve_s": 6.136,
+  "end_to_end_s": 6.412,
   "nodes": 1
  },
  {
@@ -189,9 +189,9 @@
   "boundBeta": 222.0,
   "lpBoundBeta": 217.99999999999991,
   "lp_s": 0.052,
-  "build_s": 0.004,
-  "solve_s": 5.832,
-  "end_to_end_s": 5.837,
+  "build_s": 0.002,
+  "solve_s": 6.348,
+  "end_to_end_s": 6.35,
   "nodes": 1
  },
  {
@@ -205,8 +205,8 @@
   "lpBoundBeta": 88.75,
   "lp_s": 0.044,
   "build_s": 0.002,
-  "solve_s": 3.011,
-  "end_to_end_s": 3.014,
+  "solve_s": 3.0,
+  "end_to_end_s": 3.002,
   "nodes": 1
  },
  {
@@ -218,11 +218,11 @@
   "beta": 382.0,
   "boundBeta": 375.0,
   "lpBoundBeta": 364.99999999999994,
-  "lp_s": 0.227,
-  "build_s": 0.004,
-  "solve_s": 30.002,
-  "end_to_end_s": 30.006,
-  "nodes": 204
+  "lp_s": 0.23,
+  "build_s": 0.005,
+  "solve_s": 30.054,
+  "end_to_end_s": 30.059,
+  "nodes": 202
  },
  {
   "name": "ties n=30 s=2",
@@ -233,10 +233,10 @@
   "beta": 158.0,
   "boundBeta": 158.0,
   "lpBoundBeta": 152.5981308411215,
-  "lp_s": 0.398,
-  "build_s": 0.005,
-  "solve_s": 24.842,
-  "end_to_end_s": 24.847,
+  "lp_s": 0.392,
+  "build_s": 0.004,
+  "solve_s": 26.989,
+  "end_to_end_s": 26.993,
   "nodes": 115
  },
  {
@@ -248,11 +248,11 @@
   "beta": 516.0,
   "boundBeta": 500.0,
   "lpBoundBeta": 495.666666666667,
-  "lp_s": 0.716,
-  "build_s": 0.007,
-  "solve_s": 30.076,
-  "end_to_end_s": 30.083,
-  "nodes": 110
+  "lp_s": 0.763,
+  "build_s": 0.011,
+  "solve_s": 30.002,
+  "end_to_end_s": 30.013,
+  "nodes": 102
  },
  {
   "name": "ties n=35 s=2",
@@ -263,10 +263,10 @@
   "beta": 218.0,
   "boundBeta": 210.0,
   "lpBoundBeta": 208.00000000000003,
-  "lp_s": 1.22,
+  "lp_s": 1.189,
   "build_s": 0.009,
-  "solve_s": 30.024,
-  "end_to_end_s": 30.034,
+  "solve_s": 30.006,
+  "end_to_end_s": 30.015,
   "nodes": 2
  },
  {
@@ -278,7 +278,7 @@
   "beta": 184.0,
   "boundBeta": 184.0,
   "lpBoundBeta": 184.00000000000003,
-  "lp_s": 0.015,
+  "lp_s": 0.016,
   "build_s": 0.002,
   "solve_s": 0.057,
   "end_to_end_s": 0.059,
@@ -293,10 +293,10 @@
   "beta": 300.0,
   "boundBeta": 300.0,
   "lpBoundBeta": 299.99999999999994,
-  "lp_s": 0.063,
+  "lp_s": 0.059,
   "build_s": 0.004,
-  "solve_s": 0.145,
-  "end_to_end_s": 0.15,
+  "solve_s": 0.135,
+  "end_to_end_s": 0.139,
   "nodes": 1
  },
  {
@@ -310,7 +310,7 @@
   "lpBoundBeta": 130.5,
   "lp_s": 0.007,
   "build_s": 0.002,
-  "solve_s": 0.041,
+  "solve_s": 0.04,
   "end_to_end_s": 0.043,
   "nodes": 1
  },
@@ -323,10 +323,10 @@
   "beta": 329.0,
   "boundBeta": 329.0,
   "lpBoundBeta": 329.0,
-  "lp_s": 0.051,
+  "lp_s": 0.048,
   "build_s": 0.01,
-  "solve_s": 0.212,
-  "end_to_end_s": 0.221,
+  "solve_s": 0.202,
+  "end_to_end_s": 0.212,
   "nodes": 1
  },
  {
@@ -338,10 +338,10 @@
   "beta": 93.0,
   "boundBeta": 93.0,
   "lpBoundBeta": 93.0,
-  "lp_s": 0.429,
-  "build_s": 0.179,
-  "solve_s": 3.044,
-  "end_to_end_s": 3.223,
+  "lp_s": 0.409,
+  "build_s": 0.169,
+  "solve_s": 2.814,
+  "end_to_end_s": 2.983,
   "nodes": 1
  },
  {
@@ -353,10 +353,10 @@
   "beta": 359.0,
   "boundBeta": 359.0,
   "lpBoundBeta": 357.83333333333303,
-  "lp_s": 1.126,
-  "build_s": 0.283,
-  "solve_s": 6.773,
-  "end_to_end_s": 7.056,
+  "lp_s": 1.165,
+  "build_s": 0.285,
+  "solve_s": 6.595,
+  "end_to_end_s": 6.88,
   "nodes": 1
  },
  {
@@ -368,10 +368,10 @@
   "beta": 165.0,
   "boundBeta": 165.0,
   "lpBoundBeta": 165.0,
-  "lp_s": 0.026,
+  "lp_s": 0.028,
   "build_s": 0.002,
-  "solve_s": 0.059,
-  "end_to_end_s": 0.061,
+  "solve_s": 0.062,
+  "end_to_end_s": 0.064,
   "nodes": 1
  },
  {
@@ -383,10 +383,10 @@
   "beta": 66.0,
   "boundBeta": 66.0,
   "lpBoundBeta": 66.0,
-  "lp_s": 0.014,
+  "lp_s": 0.015,
   "build_s": 0.002,
-  "solve_s": 0.051,
-  "end_to_end_s": 0.054,
+  "solve_s": 0.054,
+  "end_to_end_s": 0.056,
   "nodes": 1
  },
  {
@@ -398,10 +398,10 @@
   "beta": 302.0,
   "boundBeta": 302.0,
   "lpBoundBeta": 300.75000000000006,
-  "lp_s": 0.214,
+  "lp_s": 0.191,
   "build_s": 0.004,
-  "solve_s": 0.877,
-  "end_to_end_s": 0.881,
+  "solve_s": 0.913,
+  "end_to_end_s": 0.918,
   "nodes": 1
  },
  {
@@ -413,10 +413,10 @@
   "beta": 122.0,
   "boundBeta": 122.0,
   "lpBoundBeta": 122.0,
-  "lp_s": 0.131,
-  "build_s": 0.004,
-  "solve_s": 0.192,
-  "end_to_end_s": 0.196,
+  "lp_s": 0.146,
+  "build_s": 0.006,
+  "solve_s": 0.208,
+  "end_to_end_s": 0.214,
   "nodes": 1
  },
  {
@@ -428,26 +428,26 @@
   "beta": 428.0,
   "boundBeta": 428.0,
   "lpBoundBeta": 419.83333333333263,
-  "lp_s": 0.625,
+  "lp_s": 0.645,
   "build_s": 0.007,
-  "solve_s": 25.603,
-  "end_to_end_s": 25.61,
+  "solve_s": 25.403,
+  "end_to_end_s": 25.41,
   "nodes": 11
  },
  {
   "name": "ties n=35 s=3",
   "family": "ties n=35",
   "n": 35,
-  "status": "Time limit reached",
+  "status": "Optimal",
   "F": 347,
   "beta": 174.0,
-  "boundBeta": 171.0,
+  "boundBeta": 174.0,
   "lpBoundBeta": 170.22727272727272,
-  "lp_s": 0.733,
+  "lp_s": 0.73,
   "build_s": 0.007,
-  "solve_s": 30.003,
-  "end_to_end_s": 30.01,
-  "nodes": 11
+  "solve_s": 29.401,
+  "end_to_end_s": 29.408,
+  "nodes": 17
  },
  {
   "name": "weighted-cyclic n=24 s=3",
@@ -460,8 +460,8 @@
   "lpBoundBeta": 185.0,
   "lp_s": 0.012,
   "build_s": 0.002,
-  "solve_s": 0.05,
-  "end_to_end_s": 0.053,
+  "solve_s": 0.048,
+  "end_to_end_s": 0.05,
   "nodes": 1
  },
  {
@@ -473,10 +473,10 @@
   "beta": 291.0,
   "boundBeta": 291.0,
   "lpBoundBeta": 291.0,
-  "lp_s": 0.046,
+  "lp_s": 0.045,
   "build_s": 0.004,
-  "solve_s": 0.117,
-  "end_to_end_s": 0.121,
+  "solve_s": 0.12,
+  "end_to_end_s": 0.124,
   "nodes": 1
  },
  {
@@ -503,10 +503,10 @@
   "beta": 306.0,
   "boundBeta": 306.0,
   "lpBoundBeta": 306.0,
-  "lp_s": 0.027,
-  "build_s": 0.01,
-  "solve_s": 0.183,
-  "end_to_end_s": 0.193,
+  "lp_s": 0.026,
+  "build_s": 0.011,
+  "solve_s": 0.182,
+  "end_to_end_s": 0.192,
   "nodes": 1
  },
  {
@@ -518,10 +518,10 @@
   "beta": 92.0,
   "boundBeta": 92.0,
   "lpBoundBeta": 92.0,
-  "lp_s": 0.419,
-  "build_s": 0.168,
-  "solve_s": 2.901,
-  "end_to_end_s": 3.069,
+  "lp_s": 0.375,
+  "build_s": 0.154,
+  "solve_s": 2.94,
+  "end_to_end_s": 3.094,
   "nodes": 1
  },
  {
@@ -533,10 +533,10 @@
   "beta": 367.0,
   "boundBeta": 367.0,
   "lpBoundBeta": 367.0,
-  "lp_s": 1.344,
-  "build_s": 0.282,
-  "solve_s": 5.967,
-  "end_to_end_s": 6.249,
+  "lp_s": 1.144,
+  "build_s": 0.277,
+  "solve_s": 5.959,
+  "end_to_end_s": 6.236,
   "nodes": 1
  },
  {
@@ -549,9 +549,9 @@
   "boundBeta": 55.0,
   "lpBoundBeta": 55.0,
   "lp_s": 0.012,
-  "build_s": 0.002,
-  "solve_s": 0.032,
-  "end_to_end_s": 0.033,
+  "build_s": 0.001,
+  "solve_s": 0.033,
+  "end_to_end_s": 0.035,
   "nodes": 1
  },
  {
@@ -563,10 +563,10 @@
   "beta": 78.0,
   "boundBeta": 78.0,
   "lpBoundBeta": 77.99999999999997,
-  "lp_s": 0.038,
+  "lp_s": 0.03,
   "build_s": 0.002,
   "solve_s": 0.062,
-  "end_to_end_s": 0.065,
+  "end_to_end_s": 0.064,
   "nodes": 1
  },
  {
@@ -578,10 +578,10 @@
   "beta": 7786.0,
   "boundBeta": 7786.0,
   "lpBoundBeta": 7786.0,
-  "lp_s": 0.045,
-  "build_s": 0.019,
-  "solve_s": 0.433,
-  "end_to_end_s": 0.452,
+  "lp_s": 0.047,
+  "build_s": 0.02,
+  "solve_s": 0.438,
+  "end_to_end_s": 0.458,
   "nodes": 1
  },
  {
@@ -593,10 +593,10 @@
   "beta": 25636.0,
   "boundBeta": 25636.0,
   "lpBoundBeta": 25613.0,
-  "lp_s": 0.083,
-  "build_s": 0.019,
-  "solve_s": 1.564,
-  "end_to_end_s": 1.582,
+  "lp_s": 0.087,
+  "build_s": 0.02,
+  "solve_s": 1.649,
+  "end_to_end_s": 1.669,
   "nodes": 1
  },
  {
@@ -608,10 +608,10 @@
   "beta": 2823.0,
   "boundBeta": 2823.0,
   "lpBoundBeta": 2823.0,
-  "lp_s": 0.121,
+  "lp_s": 0.135,
   "build_s": 0.02,
-  "solve_s": 0.458,
-  "end_to_end_s": 0.478,
+  "solve_s": 0.564,
+  "end_to_end_s": 0.584,
   "nodes": 1
  },
  {
@@ -623,10 +623,10 @@
   "beta": 45488.0,
   "boundBeta": 45488.0,
   "lpBoundBeta": 45488.0,
-  "lp_s": 0.054,
-  "build_s": 0.019,
-  "solve_s": 0.549,
-  "end_to_end_s": 0.568,
+  "lp_s": 0.058,
+  "build_s": 0.02,
+  "solve_s": 0.58,
+  "end_to_end_s": 0.6,
   "nodes": 1
  },
  {
@@ -634,14 +634,14 @@
   "family": "LOLIB IO (real-world)",
   "n": 60,
   "status": "Optimal",
-  "F": 336764,
-  "beta": 25742.0,
-  "boundBeta": 25735.0,
+  "F": 336776,
+  "beta": 25736.0,
+  "boundBeta": 25736.0,
   "lpBoundBeta": 25734.5,
-  "lp_s": 0.257,
-  "build_s": 0.035,
-  "solve_s": 1.404,
-  "end_to_end_s": 1.439,
+  "lp_s": 0.274,
+  "build_s": 0.034,
+  "solve_s": 1.535,
+  "end_to_end_s": 1.569,
   "nodes": 1
  },
  {
@@ -653,10 +653,10 @@
   "beta": 33382.0,
   "boundBeta": 33382.0,
   "lpBoundBeta": 33382.0,
-  "lp_s": 0.25,
+  "lp_s": 0.243,
   "build_s": 0.033,
-  "solve_s": 0.994,
-  "end_to_end_s": 1.027,
+  "solve_s": 0.933,
+  "end_to_end_s": 0.967,
   "nodes": 1
  },
  {
@@ -668,10 +668,10 @@
   "beta": 35383.0,
   "boundBeta": 35383.0,
   "lpBoundBeta": 35383.0,
-  "lp_s": 0.164,
-  "build_s": 0.036,
-  "solve_s": 1.199,
-  "end_to_end_s": 1.234,
+  "lp_s": 0.172,
+  "build_s": 0.046,
+  "solve_s": 1.163,
+  "end_to_end_s": 1.209,
   "nodes": 1
  },
  {
@@ -681,12 +681,12 @@
   "status": "Optimal",
   "F": 198305,
   "beta": 11015.0,
-  "boundBeta": 11005.0,
+  "boundBeta": 11015.0,
   "lpBoundBeta": 11002.5,
-  "lp_s": 0.033,
-  "build_s": 0.014,
-  "solve_s": 0.313,
-  "end_to_end_s": 0.327,
+  "lp_s": 0.035,
+  "build_s": 0.013,
+  "solve_s": 0.428,
+  "end_to_end_s": 0.441,
   "nodes": 1
  },
  {
@@ -698,10 +698,10 @@
   "beta": 6080.0,
   "boundBeta": 6080.0,
   "lpBoundBeta": 6080.0,
-  "lp_s": 0.038,
-  "build_s": 0.014,
-  "solve_s": 0.288,
-  "end_to_end_s": 0.303,
+  "lp_s": 0.035,
+  "build_s": 0.013,
+  "solve_s": 0.297,
+  "end_to_end_s": 0.31,
   "nodes": 1
  },
  {
@@ -713,10 +713,10 @@
   "beta": 5668.0,
   "boundBeta": 5668.0,
   "lpBoundBeta": 5668.0,
-  "lp_s": 0.032,
-  "build_s": 0.013,
-  "solve_s": 0.256,
-  "end_to_end_s": 0.269,
+  "lp_s": 0.031,
+  "build_s": 0.014,
+  "solve_s": 0.264,
+  "end_to_end_s": 0.278,
   "nodes": 1
  },
  {
@@ -728,10 +728,10 @@
   "beta": 279139.0,
   "boundBeta": 279139.0,
   "lpBoundBeta": 279139.0,
-  "lp_s": 0.026,
+  "lp_s": 0.025,
   "build_s": 0.013,
-  "solve_s": 0.216,
-  "end_to_end_s": 0.229,
+  "solve_s": 0.22,
+  "end_to_end_s": 0.233,
   "nodes": 1
  },
  {
@@ -743,10 +743,10 @@
   "beta": 873.0,
   "boundBeta": 873.0,
   "lpBoundBeta": 873.0,
-  "lp_s": 0.03,
-  "build_s": 0.015,
-  "solve_s": 0.244,
-  "end_to_end_s": 0.259,
+  "lp_s": 0.029,
+  "build_s": 0.013,
+  "solve_s": 0.265,
+  "end_to_end_s": 0.279,
   "nodes": 1
  },
  {
@@ -758,10 +758,10 @@
   "beta": 17511.0,
   "boundBeta": 17511.0,
   "lpBoundBeta": 17511.0,
-  "lp_s": 0.044,
-  "build_s": 0.013,
-  "solve_s": 0.281,
-  "end_to_end_s": 0.295,
+  "lp_s": 0.055,
+  "build_s": 0.015,
+  "solve_s": 0.308,
+  "end_to_end_s": 0.323,
   "nodes": 1
  },
  {
@@ -773,10 +773,10 @@
   "beta": 11902.0,
   "boundBeta": 11902.0,
   "lpBoundBeta": 11902.0,
-  "lp_s": 0.066,
-  "build_s": 0.022,
-  "solve_s": 0.272,
-  "end_to_end_s": 0.293,
+  "lp_s": 0.042,
+  "build_s": 0.014,
+  "solve_s": 0.253,
+  "end_to_end_s": 0.267,
   "nodes": 1
  },
  {
@@ -788,10 +788,10 @@
   "beta": 9798.0,
   "boundBeta": 9798.0,
   "lpBoundBeta": 9798.0,
-  "lp_s": 0.031,
-  "build_s": 0.013,
-  "solve_s": 0.292,
-  "end_to_end_s": 0.305,
+  "lp_s": 0.032,
+  "build_s": 0.014,
+  "solve_s": 0.295,
+  "end_to_end_s": 0.309,
   "nodes": 1
  },
  {
@@ -803,10 +803,10 @@
   "beta": 789554.0,
   "boundBeta": 789554.0,
   "lpBoundBeta": 789554.0,
-  "lp_s": 0.035,
-  "build_s": 0.014,
-  "solve_s": 0.239,
-  "end_to_end_s": 0.252,
+  "lp_s": 0.042,
+  "build_s": 0.019,
+  "solve_s": 0.241,
+  "end_to_end_s": 0.259,
   "nodes": 1
  },
  {
@@ -818,10 +818,10 @@
   "beta": 219.0,
   "boundBeta": 219.0,
   "lpBoundBeta": 219.0,
-  "lp_s": 0.027,
+  "lp_s": 0.029,
   "build_s": 0.013,
-  "solve_s": 0.241,
-  "end_to_end_s": 0.254,
+  "solve_s": 0.25,
+  "end_to_end_s": 0.264,
   "nodes": 1
  },
  {
@@ -833,10 +833,10 @@
   "beta": 1528.0,
   "boundBeta": 1528.0,
   "lpBoundBeta": 1528.0,
-  "lp_s": 0.047,
-  "build_s": 0.015,
-  "solve_s": 0.281,
-  "end_to_end_s": 0.296,
+  "lp_s": 0.048,
+  "build_s": 0.013,
+  "solve_s": 0.27,
+  "end_to_end_s": 0.283,
   "nodes": 1
  },
  {
@@ -848,10 +848,10 @@
   "beta": 6330004.0,
   "boundBeta": 6330004.0,
   "lpBoundBeta": 6330004.0,
-  "lp_s": 0.027,
-  "build_s": 0.013,
-  "solve_s": 0.222,
-  "end_to_end_s": 0.235,
+  "lp_s": 0.03,
+  "build_s": 0.015,
+  "solve_s": 0.231,
+  "end_to_end_s": 0.246,
   "nodes": 1
  },
  {
@@ -863,10 +863,10 @@
   "beta": 25082.0,
   "boundBeta": 25082.0,
   "lpBoundBeta": 25082.0,
-  "lp_s": 0.032,
+  "lp_s": 0.033,
   "build_s": 0.013,
-  "solve_s": 0.281,
-  "end_to_end_s": 0.294,
+  "solve_s": 0.286,
+  "end_to_end_s": 0.3,
   "nodes": 1
  },
  {
@@ -878,10 +878,10 @@
   "beta": 22586.0,
   "boundBeta": 22586.0,
   "lpBoundBeta": 22586.0,
-  "lp_s": 0.029,
-  "build_s": 0.012,
-  "solve_s": 0.344,
-  "end_to_end_s": 0.357,
+  "lp_s": 0.031,
+  "build_s": 0.014,
+  "solve_s": 0.354,
+  "end_to_end_s": 0.367,
   "nodes": 1
  },
  {
@@ -895,8 +895,8 @@
   "lpBoundBeta": 23570.0,
   "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.253,
-  "end_to_end_s": 0.266,
+  "solve_s": 0.262,
+  "end_to_end_s": 0.275,
   "nodes": 1
  },
  {
@@ -908,10 +908,10 @@
   "beta": 16842.0,
   "boundBeta": 16842.0,
   "lpBoundBeta": 16834.0,
-  "lp_s": 0.032,
+  "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.34,
-  "end_to_end_s": 0.353,
+  "solve_s": 0.348,
+  "end_to_end_s": 0.361,
   "nodes": 1
  },
  {
@@ -923,10 +923,10 @@
   "beta": 18779.0,
   "boundBeta": 18779.0,
   "lpBoundBeta": 18779.0,
-  "lp_s": 0.03,
-  "build_s": 0.013,
-  "solve_s": 0.292,
-  "end_to_end_s": 0.305,
+  "lp_s": 0.029,
+  "build_s": 0.012,
+  "solve_s": 0.296,
+  "end_to_end_s": 0.308,
   "nodes": 1
  },
  {
@@ -938,10 +938,10 @@
   "beta": 1268664.0,
   "boundBeta": 1268664.0,
   "lpBoundBeta": 1268664.0,
-  "lp_s": 0.03,
+  "lp_s": 0.032,
   "build_s": 0.013,
-  "solve_s": 0.216,
-  "end_to_end_s": 0.229,
+  "solve_s": 0.223,
+  "end_to_end_s": 0.236,
   "nodes": 1
  },
  {
@@ -953,7 +953,7 @@
   "beta": 2327200.0,
   "boundBeta": 2327200.0,
   "lpBoundBeta": 2327200.0,
-  "lp_s": 0.03,
+  "lp_s": 0.028,
   "build_s": 0.013,
   "solve_s": 0.219,
   "end_to_end_s": 0.232,
@@ -970,8 +970,8 @@
   "lpBoundBeta": 335.0,
   "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.23,
-  "end_to_end_s": 0.244,
+  "solve_s": 0.235,
+  "end_to_end_s": 0.248,
   "nodes": 1
  },
  {
@@ -983,10 +983,10 @@
   "beta": 2034.0,
   "boundBeta": 2034.0,
   "lpBoundBeta": 2034.0,
-  "lp_s": 0.033,
+  "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.261,
-  "end_to_end_s": 0.274,
+  "solve_s": 0.27,
+  "end_to_end_s": 0.284,
   "nodes": 1
  },
  {
@@ -998,10 +998,10 @@
   "beta": 974800.0,
   "boundBeta": 974800.0,
   "lpBoundBeta": 974800.0,
-  "lp_s": 0.027,
-  "build_s": 0.013,
+  "lp_s": 0.026,
+  "build_s": 0.018,
   "solve_s": 0.215,
-  "end_to_end_s": 0.228,
+  "end_to_end_s": 0.233,
   "nodes": 1
  },
  {
@@ -1015,8 +1015,8 @@
   "lpBoundBeta": 9820323.0,
   "lp_s": 0.028,
   "build_s": 0.013,
-  "solve_s": 0.208,
-  "end_to_end_s": 0.221,
+  "solve_s": 0.222,
+  "end_to_end_s": 0.235,
   "nodes": 1
  },
  {
@@ -1028,10 +1028,10 @@
   "beta": 12361817.0,
   "boundBeta": 12361817.0,
   "lpBoundBeta": 12361817.0,
-  "lp_s": 0.026,
+  "lp_s": 0.027,
   "build_s": 0.013,
-  "solve_s": 0.208,
-  "end_to_end_s": 0.221,
+  "solve_s": 0.209,
+  "end_to_end_s": 0.222,
   "nodes": 1
  },
  {
@@ -1043,10 +1043,10 @@
   "beta": 28990.0,
   "boundBeta": 28990.0,
   "lpBoundBeta": 28990.0,
-  "lp_s": 0.04,
+  "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.263,
-  "end_to_end_s": 0.276,
+  "solve_s": 0.258,
+  "end_to_end_s": 0.271,
   "nodes": 1
  },
  {
@@ -1058,10 +1058,10 @@
   "beta": 33019.0,
   "boundBeta": 33019.0,
   "lpBoundBeta": 33019.0,
-  "lp_s": 0.032,
+  "lp_s": 0.031,
   "build_s": 0.013,
-  "solve_s": 0.274,
-  "end_to_end_s": 0.287,
+  "solve_s": 0.266,
+  "end_to_end_s": 0.279,
   "nodes": 1
  },
  {
@@ -1073,10 +1073,10 @@
   "beta": 77644.0,
   "boundBeta": 77644.0,
   "lpBoundBeta": 77644.0,
-  "lp_s": 0.032,
+  "lp_s": 0.034,
   "build_s": 0.013,
-  "solve_s": 0.327,
-  "end_to_end_s": 0.339,
+  "solve_s": 0.337,
+  "end_to_end_s": 0.35,
   "nodes": 1
  },
  {
@@ -1088,10 +1088,10 @@
   "beta": 3590183.0,
   "boundBeta": 3590183.0,
   "lpBoundBeta": 3590183.0,
-  "lp_s": 0.033,
-  "build_s": 0.013,
-  "solve_s": 0.224,
-  "end_to_end_s": 0.237,
+  "lp_s": 0.039,
+  "build_s": 0.014,
+  "solve_s": 0.233,
+  "end_to_end_s": 0.247,
   "nodes": 1
  },
  {
@@ -1103,10 +1103,10 @@
   "beta": 4196.0,
   "boundBeta": 4196.0,
   "lpBoundBeta": 4196.0,
-  "lp_s": 0.032,
+  "lp_s": 0.033,
   "build_s": 0.013,
-  "solve_s": 0.249,
-  "end_to_end_s": 0.262,
+  "solve_s": 0.289,
+  "end_to_end_s": 0.302,
   "nodes": 1
  },
  {
@@ -1118,10 +1118,10 @@
   "beta": 3374.0,
   "boundBeta": 3374.0,
   "lpBoundBeta": 3374.0,
-  "lp_s": 0.028,
-  "build_s": 0.013,
-  "solve_s": 0.291,
-  "end_to_end_s": 0.304,
+  "lp_s": 0.037,
+  "build_s": 0.016,
+  "solve_s": 0.302,
+  "end_to_end_s": 0.317,
   "nodes": 1
  },
  {
@@ -1133,10 +1133,10 @@
   "beta": 2688365.0,
   "boundBeta": 2688365.0,
   "lpBoundBeta": 2688365.0,
-  "lp_s": 0.036,
-  "build_s": 0.017,
-  "solve_s": 0.218,
-  "end_to_end_s": 0.235,
+  "lp_s": 0.032,
+  "build_s": 0.015,
+  "solve_s": 0.292,
+  "end_to_end_s": 0.307,
   "nodes": 1
  },
  {
@@ -1148,10 +1148,10 @@
   "beta": 4726.0,
   "boundBeta": 4726.0,
   "lpBoundBeta": 4726.0,
-  "lp_s": 0.136,
-  "build_s": 0.03,
-  "solve_s": 0.694,
-  "end_to_end_s": 0.725,
+  "lp_s": 0.145,
+  "build_s": 0.036,
+  "solve_s": 0.763,
+  "end_to_end_s": 0.799,
   "nodes": 1
  },
  {
@@ -1163,10 +1163,10 @@
   "beta": 5598.0,
   "boundBeta": 5598.0,
   "lpBoundBeta": 5598.0,
-  "lp_s": 0.084,
-  "build_s": 0.028,
-  "solve_s": 0.643,
-  "end_to_end_s": 0.672,
+  "lp_s": 0.09,
+  "build_s": 0.027,
+  "solve_s": 0.7,
+  "end_to_end_s": 0.727,
   "nodes": 1
  },
  {
@@ -1178,10 +1178,10 @@
   "beta": 8800.0,
   "boundBeta": 8800.0,
   "lpBoundBeta": 8800.0,
-  "lp_s": 0.099,
-  "build_s": 0.028,
-  "solve_s": 0.621,
-  "end_to_end_s": 0.649,
+  "lp_s": 0.1,
+  "build_s": 0.027,
+  "solve_s": 0.696,
+  "end_to_end_s": 0.723,
   "nodes": 1
  },
  {
@@ -1193,10 +1193,10 @@
   "beta": 10754.0,
   "boundBeta": 10754.0,
   "lpBoundBeta": 10754.0,
-  "lp_s": 0.097,
-  "build_s": 0.027,
-  "solve_s": 0.625,
-  "end_to_end_s": 0.652,
+  "lp_s": 0.106,
+  "build_s": 0.031,
+  "solve_s": 0.692,
+  "end_to_end_s": 0.723,
   "nodes": 1
  },
  {
@@ -1208,10 +1208,10 @@
   "beta": 13005.0,
   "boundBeta": 13005.0,
   "lpBoundBeta": 13005.0,
-  "lp_s": 0.171,
+  "lp_s": 0.17,
   "build_s": 0.027,
-  "solve_s": 0.719,
-  "end_to_end_s": 0.746,
+  "solve_s": 0.827,
+  "end_to_end_s": 0.854,
   "nodes": 1
  },
  {
@@ -1223,10 +1223,10 @@
   "beta": 19264.0,
   "boundBeta": 19264.0,
   "lpBoundBeta": 19264.0,
-  "lp_s": 0.117,
-  "build_s": 0.029,
-  "solve_s": 0.747,
-  "end_to_end_s": 0.775,
+  "lp_s": 0.101,
+  "build_s": 0.026,
+  "solve_s": 0.732,
+  "end_to_end_s": 0.758,
   "nodes": 1
  },
  {
@@ -1238,10 +1238,10 @@
   "beta": 5859.0,
   "boundBeta": 5859.0,
   "lpBoundBeta": 5859.0,
-  "lp_s": 0.093,
-  "build_s": 0.026,
-  "solve_s": 0.625,
-  "end_to_end_s": 0.651,
+  "lp_s": 0.097,
+  "build_s": 0.027,
+  "solve_s": 0.695,
+  "end_to_end_s": 0.722,
   "nodes": 1
  },
  {
@@ -1253,10 +1253,10 @@
   "beta": 6356.0,
   "boundBeta": 6356.0,
   "lpBoundBeta": 6356.0,
-  "lp_s": 0.077,
-  "build_s": 0.031,
-  "solve_s": 0.743,
-  "end_to_end_s": 0.774,
+  "lp_s": 0.093,
+  "build_s": 0.028,
+  "solve_s": 0.815,
+  "end_to_end_s": 0.843,
   "nodes": 1
  },
  {
@@ -1268,10 +1268,10 @@
   "beta": 9657.0,
   "boundBeta": 9657.0,
   "lpBoundBeta": 9657.0,
-  "lp_s": 0.065,
-  "build_s": 0.035,
-  "solve_s": 0.596,
-  "end_to_end_s": 0.631,
+  "lp_s": 0.075,
+  "build_s": 0.027,
+  "solve_s": 0.642,
+  "end_to_end_s": 0.67,
   "nodes": 1
  },
  {
@@ -1283,10 +1283,10 @@
   "beta": 12491.0,
   "boundBeta": 12491.0,
   "lpBoundBeta": 12491.0,
-  "lp_s": 0.102,
-  "build_s": 0.028,
-  "solve_s": 0.703,
-  "end_to_end_s": 0.731,
+  "lp_s": 0.105,
+  "build_s": 0.027,
+  "solve_s": 0.786,
+  "end_to_end_s": 0.813,
   "nodes": 1
  },
  {
@@ -1298,10 +1298,10 @@
   "beta": 14627.0,
   "boundBeta": 14627.0,
   "lpBoundBeta": 14627.0,
-  "lp_s": 0.117,
+  "lp_s": 0.146,
   "build_s": 0.027,
-  "solve_s": 0.83,
-  "end_to_end_s": 0.857,
+  "solve_s": 0.842,
+  "end_to_end_s": 0.87,
   "nodes": 1
  },
  {
@@ -1313,10 +1313,10 @@
   "beta": 134639.0,
   "boundBeta": 134639.0,
   "lpBoundBeta": 134639.0,
-  "lp_s": 4.961,
-  "build_s": 0.079,
-  "solve_s": 7.577,
-  "end_to_end_s": 7.656,
+  "lp_s": 5.172,
+  "build_s": 0.085,
+  "solve_s": 7.735,
+  "end_to_end_s": 7.82,
   "nodes": 1
  }
 ]

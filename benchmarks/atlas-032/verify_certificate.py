@@ -8,9 +8,9 @@ Checks
  2. Decomposition: no strict arc (A_uv > 0) from a later component to an earlier one (Lemma D).
  3. Per component: beta = backward weight of its order, recomputed exactly.
  4. Per component: the packing is non-negative and feasible: sum_{T containing e} w_T <= D * P_e for every arc
-    (triangles must be directed 3-cycles of the strict preference digraph).
+    (packed sequences must be directed cycles of the strict preference digraph).
  5. Per component: an independent exhaustive search over prefix sets, pruning S only when
-    beta_S + cut(S) + ceil(L(V\\S)/D) >= beta (Lemmas 1-3), finds NO complete ordering with backward weight
+    beta_S + cut(S) + ceil(L(V\\S)/D) >= beta (Lemmas 0-3; cycles of any length), finds NO complete ordering with backward weight
     < beta. If ceil(L(V)/D) == beta the packing alone certifies optimality and the search is skipped.
  6. The global objective equals W - 2 * sum(beta).
 Usage: python3 verify_certificate.py certificates.json"""
@@ -25,26 +25,25 @@ def verify_component(A, verts, order, beta, packing):
     pos = {v: i for i, v in enumerate(order)}
     b = sum(P[loc[order[t]]][loc[order[r]]] for r in range(k) for t in range(r + 1, k))
     assert b == beta, f"claimed beta {beta} but order has backward weight {b}"
-    D, tris = 1, []
+    D, cycles = 1, []
     if packing:
-        D = packing["D"]; tri = packing["tri"]; w = packing["w"]
+        D = packing["D"]; start = packing["start"]; cyc = packing["cyc"]; w = packing["w"]
         load = {}
-        for t in range(len(w)):
-            a, b_, c = tri[3 * t:3 * t + 3]  # indices local to the component
-            y = w[t]; assert isinstance(y, int) and y >= 0
-            cyc = None
-            if P[a][b_] > 0 and P[b_][c] > 0 and P[c][a] > 0: cyc = [(a, b_), (b_, c), (c, a)]
-            elif P[b_][a] > 0 and P[c][b_] > 0 and P[a][c] > 0: cyc = [(b_, a), (c, b_), (a, c)]
-            assert cyc is not None, "packing uses a triple that is not a directed 3-cycle"
-            for e in cyc: load[e] = load.get(e, 0) + y
-            tris.append((a, b_, c, y))
+        for c in range(len(w)):
+            vs = cyc[start[c]:start[c + 1]]; y = w[c]  # indices local to the component
+            assert isinstance(y, int) and y >= 0 and len(vs) >= 3 and len(set(vs)) == len(vs)
+            for i in range(len(vs)):
+                e = (vs[i], vs[(i + 1) % len(vs)])
+                assert P[e[0]][e[1]] > 0, "packing cycle uses a pair that is not a strict preference arc"
+                load[e] = load.get(e, 0) + y
+            cycles.append((vs, y))
         for (u, v), l in load.items(): assert l <= D * P[u][v], "packing exceeds an arc capacity"
-    total = sum(t[3] for t in tris)
+    total = sum(y for _, y in cycles)
     if ceil_div(total, D) >= beta: return "packing certificate (L(V) = beta)", 0
     # exhaustive pruned prefix search: does any ordering have backward weight <= beta - 1 ?
     byv = [[] for _ in range(k)]
-    for a, b_, c, y in tris:
-        byv[a].append((b_, c, y)); byv[b_].append((a, c, y)); byv[c].append((a, b_, y))
+    for vs, y in cycles:
+        for v in vs: byv[v].append((vs, y))
     colP = [sum(P[u][v] for u in range(k)) for v in range(k)]
     layer = {0: (0, 0, total)}  # mask -> (min beta_S, cut(S), L(V\S))
     states = 1
@@ -57,7 +56,7 @@ def verify_component(A, verts, order, beta, packing):
                 add = sum(P[v][x] for x in range(k) if inS(x))
                 into = sum(P[x][v] for x in range(k) if inS(x))
                 nb = bS + add; nc = cS - add + colP[v] - into
-                nL = L - sum(y for (x1, x2, y) in byv[v] if not inS(x1) and not inS(x2))
+                nL = L - sum(y for (vs, y) in byv[v] if not any(inS(x) for x in vs))
                 if nb + nc + ceil_div(nL, D) >= beta: continue
                 T = S | 1 << v
                 if T not in nxt or nb < nxt[T][0]: nxt[T] = (nb, nc, nL)

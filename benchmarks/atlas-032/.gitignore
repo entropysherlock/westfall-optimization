@@ -3,3 +3,4 @@ lolib_io.json
 instances.json
 _rplib/
 results.shard*.json
+results.E*.json
