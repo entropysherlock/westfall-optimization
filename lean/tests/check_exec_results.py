@@ -4,9 +4,12 @@ from fractions import Fraction as F
 from exact_reference import all_optima, lam_brute, K0, cut, partitions_P
 inst = json.load(open('exec_instances.json'))
 rows = {}
-for line in open('exec_raw_results.txt'):
-    parts = line.strip().split('|')
-    if len(parts) == 7: rows[int(parts[0])] = parts[1:]
+import os
+for fn in ('exec_raw_results.txt', 'exec_raw_results_manuscript.txt', 'exec_raw_results_small.txt'):
+    if not os.path.exists(fn): continue
+    for line in open(fn):
+        parts = line.strip().split('|')
+        if len(parts) == 7: rows[int(parts[0])] = parts[1:]
 def plist(s): return [int(x) for x in s.strip('[]').split(',') if x.strip()]
 def reach_counts(A, k):
     n = len(A); layer = {0}; total = 1
@@ -24,7 +27,7 @@ out = []; fails = 0
 for d in inst:
     i = d['id']; A = [[F(x) for x in r] for r in d['A']]; n = len(A)
     rec = dict(id=i, family=d['family'], n=n)
-    if i not in rows: rec['status'] = 'NO OUTPUT'; out.append(rec); fails += 1; continue
+    if i not in rows: rec['status'] = 'NOT COMPLETED (time limit)'; out.append(rec); continue
     val, order, obj, part, lamB, k = rows[i]
     order = plist(order); part = plist(part); k = int(k); lamB = int(lamB)
     OPT, opts = all_optima(A); lam, _ = lam_brute(A)
@@ -42,4 +45,7 @@ for d in inst:
 json.dump(out, open('exec_comparison.json', 'w'), indent=1)
 by = {}
 for r in out: by.setdefault(r['family'], [0, 0]); by[r['family']][0] += r['status'] == 'PASS'; by[r['family']][1] += 1
-print(json.dumps(dict(instances=len(out), passed=len(out) - fails, failed=fails, by_family=by)))
+done = [r for r in out if r['status'] != 'NOT COMPLETED (time limit)']
+print(json.dumps(dict(instances=len(out), completed=len(done), passed=sum(r['status'] == 'PASS' for r in done),
+                      failed=fails, not_completed=[(r['id'], r['family'], r['n']) for r in out if r not in done],
+                      by_family=by)))

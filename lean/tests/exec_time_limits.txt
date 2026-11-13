@@ -1,0 +1,5 @@
+Run stopped manually after the time limit.
+exec_raw_results.txt: instances 0-59 completed; instance 60 (first n=5 instance, uniform) ran ~29 minutes of CPU without completing; 61-69 not started.
+exec_raw_results_manuscript.txt: instances 70-73 completed; 74 rerun in the small harness; 75 (D2 matrix, n=5) did not complete within ~16 minutes.
+exec_raw_results_small.txt: instances 72, 74, 76 completed.
+Cause: dist and cutDP are evaluated without memoisation (see Complexity.lean).

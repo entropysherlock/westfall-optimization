@@ -13,7 +13,7 @@ rev = "v4.32.0"
 [[lean_lib]]
 name = "Tests"
 srcDir = "."
-roots = ["tests.ExecHarness", "tests.ExecHarness2"]
+roots = ["tests.ExecHarness", "tests.ExecHarness2", "tests.ExecHarness3"]
 
 [[lean_exe]]
 name = "westfall-exec-tests"
@@ -22,3 +22,7 @@ root = "tests.ExecHarness"
 [[lean_exe]]
 name = "westfall-exec-tests-manuscript"
 root = "tests.ExecHarness2"
+
+[[lean_exe]]
+name = "westfall-exec-tests-small"
+root = "tests.ExecHarness3"
