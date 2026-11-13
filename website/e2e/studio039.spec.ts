@@ -166,3 +166,28 @@ test("039: keyboard shortcuts and light theme", async ({ page }) => {
   await page.locator("body").press("Control+Enter");
   await expect(page.getByTestId("job-state")).toHaveText("COMPLETED", { timeout: 60_000 });
 });
+
+test("039: Reset — clear results keeps the problem; start over restores defaults without a page refresh", async ({ page }) => {
+  await open(page);
+  await expect(page.getByTestId("reset")).toHaveCount(0); // nothing to reset yet
+  await page.getByTestId("data-input").fill("0,4,-1\n-4,0,2\n1,-2,0\n");
+  await page.selectOption("#interp", "skew");
+  await page.getByTestId("run").click();
+  await expect(page.getByTestId("status-badge")).toBeVisible();
+  // clear results: the edited problem stays
+  await page.getByTestId("reset").click();
+  await page.getByTestId("clear-results").click();
+  await expect(page.getByTestId("results")).toHaveCount(0);
+  await expect(page.getByTestId("job-state")).toHaveCount(0);
+  await go(page, "problem");
+  await expect(page.getByTestId("data-input")).toHaveValue("0,4,-1\n-4,0,2\n1,-2,0\n");
+  // run again, then start over: first example, default settings, Problem workspace
+  await page.getByTestId("run").click();
+  await expect(page.getByTestId("status-badge")).toBeVisible();
+  await page.getByTestId("reset").click();
+  await page.getByTestId("start-over").click();
+  await expect(page.getByTestId("validation-ok")).toContainText("7 items");
+  await expect(page.getByTestId("reset")).toHaveCount(0);
+  await go(page, "results");
+  await expect(page.getByTestId("results")).toHaveCount(0);
+});

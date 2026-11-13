@@ -143,7 +143,7 @@ Pioneers,Harbor,1`}</Code>
           <Tex block>{"\\beta_S+\\operatorname{cut}(S)+\\lceil L(V\\setminus S)\\rceil\\ \\ge\\ B,"}</Tex>
           <p>where β<sub>S</sub> is the least backward weight inside S, cut(S) the weight that must point backward across S, L a directed-cycle packing lower bound on the remaining items, and B the incumbent&apos;s backward weight. These are standard techniques; proofs are in <a className="text-accent-600 underline" href="https://github.com/entropysherlock/westfall-optimization/blob/main/benchmarks/atlas-032/PROOFS.md">PROOFS.md</a>.</p>
           <ul className="list-disc space-y-1.5 pl-5">
-            <li><strong>Residual lower bound</strong>: fractional triangles + longer cycles (default; matters on tie-heavy and sparse input), fractional triangles, greedy triangles, or none (the ATLAS-031 rule). Used only for exact integer models.</li>
+            <li><strong>Residual lower bound</strong>: fractional triangles + longer cycles (default; matters on tie-heavy and sparse input), fractional triangles, greedy triangles, or none (no residual bound). Used only for exact integer models.</li>
             <li><strong>State budget</strong> (per component): caps memory. A component that exceeds it is reported, not silently approximated.</li>
             <li><strong>Local search per component</strong>: time for the incumbent; blank chooses a size-dependent default.</li>
             <li><strong>Strict incumbent proving</strong>: keep only prefixes that could beat the incumbent; if none survives, the incumbent is proved optimal.</li>

@@ -62,6 +62,12 @@ export function useComparison() {
       return { ...s, rows: f.rows, inconsistencies: f.inconsistencies, running: false, current: null, queue: [] };
     });
   }, []);
-  return { c, start, cancel };
+  /** Stop any comparison and forget its results. */
+  const clear = useCallback(() => {
+    cancelled.current = true;
+    job.current?.cancel(); job.current = null;
+    setC({ problem: null, conditions: null, queue: [], current: null, currentStart: 0, rows: [], inconsistencies: [], running: false });
+  }, []);
+  return { c, start, cancel, clear };
 }
 

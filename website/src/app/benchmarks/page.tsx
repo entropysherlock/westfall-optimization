@@ -8,7 +8,7 @@ import { BenchTable, SpeedScatter, type BenchRow } from "@/components/AutoCutBen
 import { ButtonLink, Callout, EvidenceTag, PageHeader, Section, Stat } from "@/components/ui";
 import { blob, leanBlob, tree } from "@/lib/site";
 
-export const metadata = { title: "Benchmarks", description: "Measured results with provenance, time limits and unsolved cases: ATLAS-032 versus ATLAS-031 and HiGHS, AutoCut algorithm generations, exact oracle comparisons and the historical BLX series." };
+export const metadata = { title: "Benchmarks", description: "Measured results with provenance, time limits and unsolved cases: ATLAS-032 versus HiGHS, AutoCut algorithm generations, exact oracle comparisons and the historical BLX series." };
 
 interface BenchFile { source: string; time_limit_s: number; hardware: string; summary: Record<string, unknown>; rows: BenchRow[] }
 
@@ -22,8 +22,9 @@ export default function Benchmarks() {
   const notDone = rows.filter((r) => r.status !== "PASS");
   const a32: A32Data = atlasData();
   const ac = atlasCounts(a32);
-  // pass only what the component displays: A, E and HiGHS rows, plus S/B/C rows of the n = 24 ablation
-  const a32view: A32Data = { ...a32, rows: a32.rows.filter((r) => ["A", "E", "H"].includes(r.solver) || /^(random-int|ties) n=24/.test(r.name)) };
+  // the page showcases the current engine: only ATLAS-032 (E) and HiGHS (H) rows are displayed.
+  // Earlier-variant records stay in benchmarks/atlas-032/ and public/data/atlas-032.json for provenance.
+  const a32view: A32Data = { ...a32, solvers: { E: a32.solvers.E, H: a32.solvers.H }, rows: a32.rows.filter((r) => r.solver === "E" || r.solver === "H").map((r) => ({ ...r, family: r.family.replace(/\s*\[031 regression\]/, "") })) };
   return (
     <>
       <PageHeader kicker="Benchmarks · measured, with provenance" title="Empirical evaluation">
@@ -31,7 +32,7 @@ export default function Benchmarks() {
         <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="observed" /></div>
       </PageHeader>
 
-      <Section id="atlas-032" kicker="A · Current exact solver" title="ATLAS-032 versus ATLAS-031 and HiGHS"
+      <Section id="atlas-032" kicker="A · Current exact solver" title="ATLAS-032 versus HiGHS"
         intro={<>{ac.E.total} identical instances: adversarial synthetic families (dense random, tie-heavy, weighted cyclic, near-transitive, planted, multi-component) and {ac.Ereal.total} real-world LOLIB input–output instances. Exact optimality only, 30 s per run, one thread. ATLAS-032 uses standard techniques (cycle-packing lower bounds, prefix dynamic programming); it is not Lean-verified, and its certificates are checked by independent programs, not proofs. {ac.unprovedE.length} instances remain unproved by ATLAS-032 (listed below).</>}>
         <Atlas032Bench data={a32view} />
         <div className="mt-6 flex flex-wrap gap-3">

@@ -66,7 +66,7 @@ export default function Research() {
         <div className="grid gap-6 lg:grid-cols-[1.15fr_1fr]">
           <div className="space-y-3 text-[15px] leading-relaxed text-fog-300">
             <p>ATLAS-032 combines strong-component decomposition, a cut-bounded prefix dynamic program and lower bounds from directed-cycle packings (triangles plus longer cycles), and proves its incumbent optimal when no prefix can beat it. These are established techniques from the linear-ordering literature, implemented natively in the browser with exact integer arithmetic.</p>
-            <p>On the {ac.E.total}-instance benchmark it proved {ac.E.proved} instances against {ac.A.proved} for ATLAS-031 and {ac.H.proved} for HiGHS with an exact gap, including {ac.Ereal.proved} of {ac.Ereal.total} real LOLIB input–output instances. HiGHS is faster on several families, and {ac.unprovedE.length} dense instances remain unproved.</p>
+            <p>On the {ac.E.total}-instance benchmark it proved {ac.E.proved} instances, against {ac.H.proved} for HiGHS with an exact gap, including {ac.Ereal.proved} of {ac.Ereal.total} real LOLIB input–output instances. HiGHS is faster on several families, and {ac.unprovedE.length} dense instances remain unproved.</p>
           </div>
           <div className="flex flex-wrap content-start gap-3">
             <ButtonLink href="/studio/" primary>Try it in the Studio</ButtonLink>
