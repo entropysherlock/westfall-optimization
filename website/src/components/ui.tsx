@@ -29,7 +29,7 @@ const evStyle: Record<Evidence, [string, string]> = {
 };
 export function EvidenceTag({ kind, children }: { kind: Evidence; children?: ReactNode }) {
   const [label, cls] = evStyle[kind];
-  return <span className={`inline-block rounded-md border px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-wider ${cls}`}>{children ?? label}</span>;
+  return <span className={`inline-block whitespace-nowrap rounded-md border px-2 py-0.5 font-mono text-[10.5px] font-medium uppercase tracking-wider ${cls}`}>{children ?? label}</span>;
 }
 
 export function Section({ id, kicker, title, intro, children, muted = false }: { id?: string; kicker?: string; title?: ReactNode; intro?: ReactNode; children?: ReactNode; muted?: boolean }) {

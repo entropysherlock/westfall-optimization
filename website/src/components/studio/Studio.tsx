@@ -56,6 +56,7 @@ export default function Studio() {
   const [tab, setTab] = useState<"ordering" | "matrix" | "graph" | "pairs" | "structure">("ordering");
   const [now, setNow] = useState(0);
   const workerRef = useRef<Worker | null>(null);
+  const resultsRef = useRef<HTMLDivElement | null>(null);
   const watchdog = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // ---------- parse + build (pure, synchronous; bounded by LIMITS) ----------
@@ -148,6 +149,11 @@ export default function Studio() {
         setResult({ problem: snapshot, r: fromWire(d.result!) });
         setJob((j) => (j && j.id === id ? { ...j, state: "completed", finishedAt: performance.now() } : j));
         setTab(d.result!.structure ? "structure" : "ordering");
+        // bring the results into view (they may be off-screen after scrolling to the Run button)
+        requestAnimationFrame(() => {
+          const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+          resultsRef.current?.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+        });
       } else if (d.type === "error") {
         stopWorker();
         setJob((j) => (j && j.id === id ? { ...j, state: "failed", error: d.message, finishedAt: performance.now() } : j));
@@ -278,7 +284,7 @@ export default function Studio() {
       </div>
 
       {/* ------------------------------ right: results ------------------------------ */}
-      <div className="min-w-0">
+      <div className="min-w-0 scroll-mt-20" ref={resultsRef}>
         {result ? (
           <Results problem={result.problem} r={result.r} tab={tab} setTab={setTab}
             useAsInitial={() => { setInitialOverride(result.r.order.slice()); }} />
@@ -441,7 +447,7 @@ function Results({ problem: p, r, tab, setTab, useAsInitial }: { problem: Proble
         </div>
         <div className="mt-3 grid gap-3 sm:grid-cols-2">
           <Metric label="Backward weight β (disagreement)" value={`${r.backwardInitial.toDecimal(4)} → ${r.backwardFinal.toDecimal(4)}`}
-            hint={bred !== null ? `${bred.toFixed(2)}% reduction (β ≥ 0, so this ratio is always meaningful when β₀ > 0)` : "β₀ = 0: the initial order already agrees with every pair"} />
+            hint={`${bred !== null ? `${bred.toFixed(2)}% reduction` : "β₀ = 0: the initial order already agrees with every pair"}. Measured in units of the transformed matrix A; β ≥ 0, so the ratio is meaningful whenever β₀ > 0.`} />
           <div className="rounded-lg border border-line bg-white p-4 text-sm">
             <p className="label">Verification</p>
             <ul className="mt-1.5 space-y-1 text-[13px] text-fog-300" data-testid="verification">

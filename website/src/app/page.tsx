@@ -25,7 +25,7 @@ export default function Home() {
               <Link href="/studio/" className="btn bg-white text-navy-900 hover:bg-slate-100">Open the Optimization Studio</Link>
               <Link href="/technology/" className="btn border border-white/25 text-white hover:border-white/60">How it works</Link>
             </div>
-            <dl className="mt-12 grid max-w-xl grid-cols-3 gap-6 border-t border-white/10 pt-6 text-sm">
+            <dl className="mt-12 grid max-w-xl grid-cols-1 gap-5 border-t border-white/10 pt-6 text-sm sm:grid-cols-3 sm:gap-6">
               <div><dt className="text-slate-400">Lean kernel-checked</dt><dd className="mt-1 font-mono text-xl text-white">8 / 8</dd><dd className="text-xs text-slate-500">flagship declarations</dd></div>
               <div><dt className="text-slate-400">Correspondence tests</dt><dd className="mt-1 font-mono text-xl text-white">103 / 103</dd><dd className="text-xs text-slate-500">browser AutoCut vs Lean</dd></div>
               <div><dt className="text-slate-400">Runs in</dt><dd className="mt-1 font-mono text-xl text-white">browser</dd><dd className="text-xs text-slate-500">your data stays local</dd></div>

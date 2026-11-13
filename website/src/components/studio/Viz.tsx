@@ -46,7 +46,7 @@ export function MatrixHeatmap({ M, order, names, blocks, size = 420, label }: { 
       for (const B of blocks) {
         const ps = B.map((v) => pos.get(v)!);
         const lo = Math.min(...ps), hi = Math.max(...ps);
-        if (hi - lo + 1 === B.length) g.strokeRect(lo * cell + 0.5, lo * cell + 0.5, (hi - lo + 1) * cell - 1, (hi - lo + 1) * cell - 1);
+        if (B.length >= 2 && hi - lo + 1 === B.length) g.strokeRect(lo * cell + 0.5, lo * cell + 0.5, (hi - lo + 1) * cell - 1, (hi - lo + 1) * cell - 1);
       }
     }
     g.strokeStyle = "#cbd5e1";
