@@ -1,21 +1,29 @@
 # Mission 042: independent algorithm derivation audit
 
-Assumptions: finite loopless simple digraph, antiparallel pairs permitted, unit arcs; back(X) counts arcs entering X. Mission 040/041 counting theorems are taken as conditional inputs; this file does not rebuild Lean.
+This is a conditional mathematical audit of the counting-to-algorithm transformation, not a verified implementation.
 
-## Exact k-cut enumeration
-For a partial binary assignment (A fixed inside X, B fixed outside X), finding min back(X) over A subset X subset V\B is a directed minimum cut with sources B and sinks A. Enumerate feasible partial assignments depth-first; a feasible parent has at least one feasible child, so each branch has an output. Between leaves, depth-first search traverses O(n) steps and each child feasibility test uses one cut calculation. Truncating flow at k+1 yields an O((k+1)n^2)-type oracle with elementary unit-capacity augmenting paths on dense graphs. Thus a polynomial-delay enumeration can halt after threshold T+1 cuts.
+## Counting / enumeration
 
-## Correct stopping threshold
-If there is an ordering with width <= k, take it as reference with c<=k. Mission 041 Theorem C then says N_k <= (n+1) min{R_h(2k),(n+1)^h} H(2k). Consequently outputting >T cuts certifies NO. Otherwise list all cuts and construct edges X->X union {v}. A path from empty to V is equivalent to a width <=k ordering. No false NO is introduced by the counting threshold *if* the counting theorem is correct.
+For a partial assignment (A inside X, B outside X), deciding whether there is a k-cut X extending it is an s-t minimum cut with source B, sink A, unit arc capacities. Feasible-prefix branching has polynomial delay (depth n, two feasibility checks per node); k+1 augmenting paths suffice to decide whether the minimum is <=k.
+
+If ctw(D)<=k, take a width<=k reference ordering. By Mission 041 Theorem C and the improved Mission 042 inequality:
+
+    N_k(D) <= (n+1) R_h(2k) H(2k)
+           <= (n+1) binomial(2h,h) H(2k)^2
+           <= (n+1) 4^h exp(4*pi*sqrt(2k)).
+
+Stop enumerating after more than this threshold: then D cannot have cutwidth<=k. Otherwise enumerate all k-cuts, form the inclusion DAG X -> X union {v}, and search empty -> V. A path gives exactly an ordering with all prefix back-values <=k. The flow-pruned enumeration and DAG traversal have time polynomial in n and k per enumerated cut. A safe target complexity is 2^{O(sqrt(k)+h)} n^{O(1)}; the originally reported O((k+1) n^4 times the counting factor) requires implementation-level accounting.
 
 ## OLA
-Let total backward-arc length <= k. For a width-w cut, at most d crossing ordered pairs have length exactly d. The minimum total length of w distinct crossing arcs is Omega(w^(3/2)), hence every prefix width is O(k^(2/3)). Enumerate W-cuts at W=O(k^(2/3)); a minimum-sum path in the inclusion DAG minimizes sum of back(prefix). Hence conditional runtime 2^{O(k^(1/3)+h log(k+h))} n^{O(1)}.
 
-## Complexity qualification
-The written O(R_h(2k) H(2k) k n^4) is appropriate under the claimed oracle model and counting theorem, up to polynomial factors for bit-set hashing and big-integer threshold computation. The factor k requires careful interpretation at k=0 (write k+1). The algorithm is FPT in k+h, and for fixed h its k-exponent is O(sqrt(k)). Claims are conditional on the unformalized analytic bound H(K) <= exp(2pi sqrt(K)), R_h(K) inequality, and a full executable algorithm audit. The 400 small prototype checks do NOT formally certify time complexity.
+Every backward arc crossing a fixed cut has a distinct (length, position) pair; at most d crossing arcs have length d. Thus total backward-arc length >= Omega(w^(3/2)) where w is any prefix width. Therefore any OLA solution of cost<=k has cutwidth <= W=O(k^(2/3)). Enumerate W-cuts with threshold derived from the same 041+042 counting bound at 2W, and find a minimum-weight path in the W-cut DAG with vertex weight back(X). Conditional runtime:
 
-## New conditional consequence
-If S is a size-b vertex cover of the non-adjacency graph, the new counting theorem in GENERALIZATION.md yields k-cut enumeration algorithms for directed cutwidth in 2^{O(b+sqrt(k))} poly(n), and OLA in 2^{O(b+k^(1/3))} poly(n). Vertex cover S can be found in O(2^b poly(n)) by branching on uncovered nonadjacency edges. These consequences are mathematically derived, not Lean checked or independently benchmarked.
+    2^{O(k^(1/3)+h)} n^{O(1)}.
 
-## To verify before publication
-Audit actual min-cut implementation, bit-set storage, integer-overflow boundaries and all NO cases; produce machine-checked algorithm semantics or independently implemented executable audit. No claim of complete formal algorithm verification.
+## Independent alternative parameter
+
+GENERALIZATION.md proves if deleting b vertices leaves a semicomplete digraph, N_k <= 2^b(n-b+1)H(c+k), giving CW 2^{O(b+sqrt(k))} poly(n) and OLA 2^{O(b+k^(1/3))} poly(n). These are separate structural parameterizations.
+
+## Verification qualification
+
+The h improvement is a self-contained PAPER proof recorded in H_DEPENDENCE.md, not machine-verified. The k-cut counting theorem is reported Lean checked in Mission 041. The analytic estimate H(K)<=exp(2*pi*sqrt(K)) and algorithms are not machine-checked. No independent clean Lean rebuild, full algorithm verification, or expert novelty signoff was completed in this audit.
