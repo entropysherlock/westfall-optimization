@@ -5,7 +5,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: { default: "Westfall Optimization — Discover the structure. Prove the optimum.", template: "%s · Westfall Optimization" },
-  description: "Independent research in exact weighted linear ordering, BLX 2.0, the provisional partition-free Discovery 022 theorem, reproducible experiments and formal verification.",
+  description: "Independent research in exact weighted linear ordering, BLX 2.0, the provisional Westfall Structural Optimization Theorem, reproducible experiments and formal verification.",
   keywords: ["weighted linear ordering","exact algorithms","parameterized complexity","BLX","cut dynamic programming","formal verification"],
 };
 

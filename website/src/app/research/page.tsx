@@ -10,14 +10,14 @@ const timeline = [
   ["018", "BLX 1.0", "Hybrid hereditary bounds and block-localized exclusion; early benchmarks exposed weaknesses on LOLIB."],
   ["019", "Square-root localization", "Supplied-partition counting bound |S_K| ≤ (n+1)P(2K+b²)."],
   ["021", "Gap-free localization", "Computable K₀ for a supplied partition. Manuscript and code reported on a local branch."],
-  ["022", "Partition-free candidate", "Intrinsic λ and proposed exact recognition of a minimizing partition; internal Level 3 candidate."],
+  ["022", "Westfall Partition Recovery Theorem", "Intrinsic λ and proposed exact recognition of a minimizing partition; internal Level 3 candidate."],
 ];
 export default function Research() {
   return <>
     <PageHeader kicker="Research archive · 2026" title="A research program in exact ordering">
-      A transparent record of theorems, algorithms, falsified ideas, and computational evidence. Current theoretical flagship: Discovery 022 (provisional, not machine-verified).
+      A transparent record of theorems, algorithms, falsified ideas, and computational evidence. Current theoretical flagship: the Westfall Structural Optimization Theorem (Discovery 022; provisional, not machine-verified).
       <div className="mt-6 flex flex-wrap gap-3">
-        <ButtonLink href="/research/discovery-022/" primary>Discovery 022 →</ButtonLink>
+        <ButtonLink href="/research/discovery-022/" primary>Westfall Structural Optimization Theorem →</ButtonLink>
         <ButtonLink href="/research/paper/">Discovery 019 manuscript</ButtonLink>
         <ButtonLink href="/formal-verification/">Formal proof tracker</ButtonLink>
       </div>
@@ -32,7 +32,7 @@ export default function Research() {
         <div className="card p-7">
           <p className="font-mono text-xs text-cyan-300">CURRENT RESEARCH QUESTION</p>
           <h3 className="mt-4 text-xl font-semibold">Can the method recover its own structure?</h3>
-          <p className="mt-3 text-sm leading-relaxed text-fog-400">Discovery 019 needs a supplied ordered partition. Discovery 022 proposes that the optimal partition witness for a specific structural parameter can itself be recovered in subexponential parameterized time.</p>
+          <p className="mt-3 text-sm leading-relaxed text-fog-400">Discovery 019 needs a supplied ordered partition. The Westfall Partition Recovery Theorem proposes that the optimal partition witness for a specific structural parameter can itself be recovered in subexponential parameterized time.</p>
           <Link href="/research/discovery-022/" className="mt-6 inline-block text-sm text-cyan-300 hover:underline">Read the formal statements →</Link>
         </div>
       </div>
@@ -61,7 +61,7 @@ export default function Research() {
         </div>
         <div className="card border-cyan-400/30 p-7">
           <div className="flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
-          <h3 className="mt-4 text-xl font-semibold">Discovery 022 · partition-free candidate</h3>
+          <h3 className="mt-4 text-xl font-semibold">Westfall Structural Optimization Theorem · Discovery 022</h3>
           <Tex block>{"T(A)=\\operatorname{poly}(n)2^{O(\\sqrt{\\lambda(A)})}"}</Tex>
           <p className="mt-3 text-sm text-fog-400">A reported recognition procedure computes λ and a minimizing partition. The written proof and small-instance tests are promising; no verified Lean implementation or specialist novelty decision exists.</p>
           <Link href="/research/discovery-022/" className="mt-5 inline-block text-sm text-cyan-300">Examine Theorems 1–7 →</Link>

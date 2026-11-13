@@ -1,8 +1,8 @@
-# Discovery 022 — Formal Verification Protocol
+# Westfall Structural Optimization Theorem — Formal Verification Protocol
 
 **Status on November 12, 2026: incomplete.**
 
-The public repository does **not** yet contain a completed Lean 4 proof of Discovery 022. The research workflow has proposed a Colab foundation module, but no successful pinned clean-build evidence for that module was supplied for inclusion here.
+The public repository does **not** yet contain a completed Lean 4 proof of the Westfall Structural Optimization Theorem (Discovery 022). The research workflow has proposed a Colab foundation module, but no successful pinned clean-build evidence for that module was supplied for inclusion here.
 
 ## Verification layers
 
@@ -26,6 +26,6 @@ The public repository does **not** yet contain a completed Lean 4 proof of Disco
 
 ## Not the same thing
 
-The project's existing Python/TypeScript integer-certificate verifier rechecks optimality of supported BLX instances. It **does not** machine-check the general Discovery 022 theorem or the asymptotic complexity proof.
+The project's existing Python/TypeScript integer-certificate verifier rechecks optimality of supported BLX instances. It **does not** machine-check the general Westfall Structural Optimization Theorem or the asymptotic complexity proof.
 
 Lean verification cannot establish **novelty**. Literature comparison and scholarly evaluation remain separate tasks.

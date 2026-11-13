@@ -8,11 +8,11 @@ import { REPO } from "@/lib/site";
 const milestones = [
   { number: "019", label: "Block localization", detail: "A square-root bound for prefix-state enumeration when an ordered partition is supplied.", status: "Written proof · provisional" },
   { number: "021", label: "Gap-free localization", detail: "An incumbent-independent structural parameter for a supplied partition.", status: "Research report · unreviewed" },
-  { number: "022", label: "Partition discovery", detail: "A proposed intrinsic parameter and a partition-free exact algorithm based on cut enumeration.", status: "Level 3 candidate · not formalized" },
+  { number: "022", label: "Westfall Partition Recovery", detail: "A proposed intrinsic parameter and a partition-free exact algorithm based on cut enumeration.", status: "Level 3 candidate · not formalized" },
 ];
 
 const research = [
-  { title: "A structural theory", category: "THEOREM DEVELOPMENT", description: "From block-localized search to a proposed intrinsic parameter: λ(A) = min over ordered partitions of b² + 3K₀.", href: "/research/discovery-022/", label: "Read Discovery 022" },
+  { title: "A structural theory", category: "THEOREM DEVELOPMENT", description: "From block-localized search to a proposed intrinsic parameter: λ(A) = min over ordered partitions of b² + 3K₀.", href: "/research/discovery-022/", label: "Explore the theorem" },
   { title: "Proof status, without ambiguity", category: "FORMAL VERIFICATION", description: "Track written arguments, independent checks, exact certificates, and Lean kernel verification as separate forms of evidence.", href: "/formal-verification/", label: "View proof status" },
   { title: "The algorithm in your browser", category: "INTERACTIVE LAB", description: "Explore weighted ordering, compare exact subset DP and exclusion DP, and inspect small-instance behavior.", href: "/lab/", label: "Open the lab" },
 ];
@@ -38,11 +38,11 @@ export default function Home() {
               WESTFALL OPTIMIZATION studies why hard weighted-ordering problems sometimes admit exact, checkable solutions—and how hidden structure can be discovered algorithmically.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <ButtonLink href="/research/discovery-022/" primary>Explore Discovery 022 →</ButtonLink>
+              <ButtonLink href="/research/discovery-022/" primary>Explore the Westfall theorem →</ButtonLink>
               <ButtonLink href="/lab/">Try the interactive lab</ButtonLink>
             </div>
             <p className="mt-5 max-w-xl text-xs leading-relaxed text-fog-500">
-              Discovery 022 is a provisional mathematical result, not peer-reviewed or Lean-verified. Its prototype is slower than existing project solvers on the reported benchmark.
+              The Westfall Structural Optimization Theorem (Discovery 022) is provisional, not peer-reviewed or Lean-verified. Its prototype is slower than existing project solvers on the reported benchmark.
             </p>
             <div className="mt-11 grid grid-cols-3 gap-4 border-t border-line pt-7">
               <div><div className="font-mono text-2xl text-fog-100">019→022</div><div className="mt-1 text-xs text-fog-500">Research progression</div></div>
@@ -89,9 +89,9 @@ export default function Home() {
       <section className="border-y border-line bg-ink-900/50">
         <div className="mx-auto grid max-w-page items-center gap-10 px-5 py-20 sm:px-8 lg:grid-cols-[1fr_1fr]">
           <div>
-            <p className="kicker">Proposed headline theorem · Discovery 022</p>
+            <p className="kicker">Westfall Structural Optimization Theorem · Research 022</p>
             <h2 className="mt-4 text-3xl font-semibold tracking-tight text-fog-100 sm:text-4xl">What if the algorithm finds the partition itself?</h2>
-            <p className="mt-5 leading-relaxed text-fog-400">The reported Robust Condorcet parameter minimizes block size and cross-block disagreement over all ordered partitions. The proposed recognition algorithm searches for a witness without receiving one as input.</p>
+            <p className="mt-5 leading-relaxed text-fog-400">The proposed Westfall Partition Recovery Theorem uses a Robust Condorcet parameter that minimizes block size and cross-block disagreement over all ordered partitions. The proposed recognition algorithm searches for a witness without receiving one as input.</p>
             <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="provisional" /><EvidenceTag kind="proved" /></div>
             <p className="mt-3 text-xs text-fog-500">“Proved” means written in the research report. Novelty, complete formal correctness, and practical advantage are not established.</p>
             <div className="mt-7"><ButtonLink href="/research/discovery-022/">Examine the claim and evidence →</ButtonLink></div>
@@ -125,7 +125,7 @@ export default function Home() {
         <div className="mx-auto max-w-page px-5 py-20 sm:px-8">
           <p className="kicker">Reality check</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-tight">No benchmark cherry-picking.</h2>
-          <p className="mt-4 max-w-3xl leading-relaxed text-fog-400">The Discovery 022 AutoCut prototype proved only 7 of 20 reported instances, versus 20 of 20 for both BLX 2.0 and packing SLDP. It was slower wherever it finished. This is a proposed theoretical contribution, not a claim of state-of-the-art speed.</p>
+          <p className="mt-4 max-w-3xl leading-relaxed text-fog-400">The research prototype for the Westfall Structural Optimization Theorem proved only 7 of 20 reported instances, versus 20 of 20 for both BLX 2.0 and packing SLDP. It was slower wherever it finished. This is a proposed theoretical contribution, not a claim of state-of-the-art speed.</p>
           <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/benchmarks/" primary>BLX benchmark dashboard</ButtonLink><ButtonLink href="/research/discovery-022/">022 experimental details</ButtonLink></div>
         </div>
       </section>

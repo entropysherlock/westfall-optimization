@@ -1,8 +1,10 @@
-# WESTFALL Discovery 022 — Research Summary (provisional)
+# Westfall Structural Optimization Theorem — Discovery 022 (provisional)
 
 **Research lead:** Caleb Westfall  
 **Date:** November 12, 2026  
-**Title:** Recovering Hidden Block Structure in Exact Weighted Linear Ordering via Subexponential Cut Enumeration  
+**Public theorem name:** Westfall Structural Optimization Theorem  
+**Partition recognition result:** Westfall Partition Recovery Theorem  
+**Proposed paper title:** Automatic Structural Decomposition for Exact Weighted Linear Ordering  
 **Status:** Written-proof research candidate; **not** peer-reviewed, **not** Lean-verified, and **not** independently established as novel.
 
 > This is a public, editorial summary of the original \`WESTFALL_Discovery_022_Report.md\` supplied in the research conversation. The original report's implementation, test suite and detailed benchmark logs were reported on a local, **not pushed** branch named \`discovery-022\`. This summary is not a claim that its numerical results have been independently reproduced from public code.
@@ -31,7 +33,7 @@ with the threshold \(\infty\) also considered, where \(N^-\) is the number of ne
 \lambda(A)=\min_{\mathcal B}\{b(\mathcal B)^2+3K_0(\mathcal B)\}.
 \]
 
-**Proposed main theorem:** An exact algorithm takes **only the matrix \(A\)**, determines its optimum, and recovers a minimizing ordered partition with
+**Westfall Structural Optimization Theorem (proposed):** An exact algorithm takes **only the matrix \(A\)**, determines its optimum, and recovers a minimizing ordered partition with
 
 \[
 T(A)=\operatorname{poly}(n)\,2^{O(\sqrt{\lambda(A)})}.
@@ -43,7 +45,7 @@ A computational input model must be stated precisely for arbitrary real coeffici
 
 1. **Optimal-prefix localization.** In the weak majority digraph, a cut counts outside-to-inside pairs \((w,u)\) with \(a_{wu}\ge0\), including ties. Every prefix of every optimal permutation is claimed to have cut at most \(\lambda(A)\).
 2. **Cut counting.** If \(\lambda(A)\le k\), at most \((n+1)P(3k)\) low-cut subsets occur, where \(P(M)=\sum_{j\le M}p(j)\).
-3. **Automatic partition recognition.** A shortest-path search over a DAG of low-cut prefix sets is claimed to decide \(\lambda(A)\le k\) and recover a minimum-\(\lambda\) partition within \(\operatorname{poly}(n)2^{O(\sqrt k)}\) time.
+3. **Westfall Partition Recovery Theorem (automatic partition recognition).** A shortest-path search over a DAG of low-cut prefix sets is claimed to decide \(\lambda(A)\le k\) and recover a minimum-\(\lambda\) partition within \(\operatorname{poly}(n)2^{O(\sqrt k)}\) time.
 4. **Partition-free exactness.** Repeatedly doubling \(k\), combined with a restricted cut-DP, is claimed to find the globally optimal order with the structural bound above.
 5. **Comparison to classical parameters.** The report claims \(\lambda\le1+18\,C^*\) in Karpinski–Schudy's normalized weighted FAST model.
 6. **ETH bound.** A claimed \(2^{o(\sqrt\lambda)}\) exclusion under ETH is derived from an existing reduction. The reduction transfer requires independent audit.

@@ -9,10 +9,10 @@ export default function Footer() {
       <p className="mt-6 font-mono text-xs text-fog-500">© 2026 · Research in progress</p>
     </div>
     <div><p className="mb-4 font-mono text-xs tracking-widest text-fog-300">EXPLORE</p><div className="grid grid-cols-2 gap-x-4 gap-y-3 text-sm">
-      {([["/research/","Research"],["/research/discovery-022/","Discovery 022"],["/lab/","BLX Lab"],["/explainer/","Explainer"],["/benchmarks/","Benchmarks"],["/verify/","Certificates"],["/formal-verification/","Lean status"],["/roadmap/","Roadmap"]] as const).map(([href,label])=><Link key={href} href={href} className="text-fog-400 hover:text-cyan-300">{label}</Link>)}
+      {([["/research/","Research"],["/research/discovery-022/","Westfall Theorem"],["/lab/","BLX Lab"],["/explainer/","Explainer"],["/benchmarks/","Benchmarks"],["/verify/","Certificates"],["/formal-verification/","Lean status"],["/roadmap/","Roadmap"]] as const).map(([href,label])=><Link key={href} href={href} className="text-fog-400 hover:text-cyan-300">{label}</Link>)}
     </div></div>
     <div><p className="mb-4 font-mono text-xs tracking-widest text-fog-300">TRANSPARENCY</p>
-      <p className="text-sm leading-relaxed text-fog-500">Discovery 022 is an unreviewed Level 3 candidate. It is not Lean-verified. The BLX integer certificate checker does not substitute for theorem formalization.</p>
+      <p className="text-sm leading-relaxed text-fog-500">The Westfall Structural Optimization Theorem (Discovery 022) is an unreviewed Level 3 candidate. It is not Lean-verified. The BLX integer certificate checker does not substitute for theorem formalization.</p>
       <a className="mt-5 inline-block text-sm text-cyan-300 hover:underline" href={REPO}>Source and limitations ↗</a>
       <p className="mt-4 text-xs text-fog-500">Repository license selection pending.</p>
     </div>

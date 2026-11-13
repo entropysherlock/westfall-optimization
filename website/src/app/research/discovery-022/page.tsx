@@ -3,19 +3,19 @@ import { Tex } from "@/components/Tex";
 import { blob } from "@/lib/site";
 import Link from "next/link";
 
-export const metadata = { title: "Discovery 022 — Partition-free exact optimization" };
+export const metadata = { title: "Westfall Structural Optimization Theorem" };
 const theorem = [
   ["01", "Optimal-prefix localization", "Every prefix of every optimal order is a λ-cut of the weak-majority digraph."],
   ["02", "Cut counting", "If λ ≤ k, the number of relevant k-cuts is bounded by (n+1)P(3k)."],
-  ["03", "Partition recognition", "A shortest-path search over candidate cuts reportedly detects λ ≤ k and recovers a minimizing partition."],
+  ["03", "Westfall Partition Recovery Theorem", "A shortest-path search over candidate cuts reportedly detects λ ≤ k and recovers a minimizing partition."],
   ["04", "Partition-free algorithm", "Doubling the radius and applying the cut DP gives a claimed poly(n)·2^{O(√λ)} exact algorithm."],
   ["05–06", "Classical comparison and ETH", "The parameter is related to weighted FAST cost, with a claimed ETH-optimal square-root exponent."],
   ["07", "Finding versus certifying", "A band-family example reportedly separates small optimal cut width from a much larger partition parameter."],
 ];
 export default function Discovery022() {
  return <>
-  <PageHeader kicker="Discovery 022 · November 12, 2026" title="Recovering hidden block structure in exact weighted ordering">
-    A proposed partition-free parameterized algorithm through the Robust Condorcet number. Written arguments and computational tests are available in the supplied research report; the original prototype remains on an unpublished local branch.
+  <PageHeader kicker="Westfall Structural Optimization Theorem · Discovery 022" title="Automatic Structural Decomposition for Exact Weighted Linear Ordering">
+    The proposed Westfall Structural Optimization Theorem introduces a partition-free parameterized algorithm through the Robust Condorcet number. Its central partition-recognition result is named the Westfall Partition Recovery Theorem. Written arguments and computational tests are available in the supplied research report; the original prototype remains on an unpublished local branch.
     <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="proved"/><EvidenceTag kind="provisional"/></div>
     <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/formal-verification/" primary>Verification status →</ButtonLink><ButtonLink href="/research/">Research archive</ButtonLink><ButtonLink href={blob("papers/discovery-022-research-summary.md")} external>Research summary source ↗</ButtonLink></div>
   </PageHeader>
@@ -26,7 +26,7 @@ export default function Discovery022() {
     </div>
   </section>
   <Section kicker="Precise claims" title="Seven mathematical statements, one main theorem."
-    intro="These are reported in the Discovery 022 manuscript, not yet Lean-kernel-checked. The center of the potential originality claim is Theorem 3.">
+    intro="These are reported in the Discovery 022 manuscript, not yet Lean-kernel-checked. The center of the potential originality claim is the Westfall Partition Recovery Theorem (Theorem 3).">
     <div className="grid gap-4 md:grid-cols-2">{theorem.map(([id,title,body])=><div className="card p-6" key={id}><p className="font-mono text-xs tracking-wider text-cyan-300">THEOREM / {id}</p><h3 className="mt-3 text-lg font-semibold">{title}</h3><p className="mt-3 text-sm leading-relaxed text-fog-400">{body}</p></div>)}</div>
   </Section>
   <section className="border-y border-line bg-ink-900/40">
@@ -48,7 +48,7 @@ export default function Discovery022() {
   </Section>
   <Section kicker="Related work" title="The work we build on">
     <div className="flex flex-wrap gap-4 text-sm"><a className="text-cyan-300 underline" href="https://arxiv.org/abs/1301.7314">Fomin–Pilipczuk (cut enumeration) ↗</a><a className="text-cyan-300 underline" href="https://arxiv.org/abs/1006.4396">Karpinski–Schudy (FAST) ↗</a><a className="text-cyan-300 underline" href="https://arxiv.org/abs/2609.19593">Kawashima–Sukegawa (Condorcet decomposition) ↗</a></div>
-    <p className="mt-5 text-sm text-fog-400">The cut-DP engine is not original to Westfall Optimization. The parameter and exact recognition theorem are the specific potential novel contribution. <Link className="text-cyan-300 underline" href="/research/">Compare the rest of the literature</Link>.</p>
+    <p className="mt-5 text-sm text-fog-400">The cut-DP engine is not original to Westfall Optimization. The intrinsic parameter and Westfall Partition Recovery Theorem are the specific potential novel contributions. <Link className="text-cyan-300 underline" href="/research/">Compare the rest of the literature</Link>.</p>
   </Section>
  </>;
 }

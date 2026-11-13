@@ -5,7 +5,7 @@
 An independent research project in **exact weighted linear ordering, parameterized algorithms, block-localized exclusion, and checkable optimality certificates**.
 
 - **Research website:** https://entropysherlock.github.io/westfall-optimization/
-- **Discovery 022:** https://entropysherlock.github.io/westfall-optimization/research/discovery-022/
+- **Westfall Structural Optimization Theorem (Discovery 022):** https://entropysherlock.github.io/westfall-optimization/research/discovery-022/
 - **Formal verification status:** https://entropysherlock.github.io/westfall-optimization/formal-verification/
 - **Interactive laboratory:** https://entropysherlock.github.io/westfall-optimization/lab/
 - **Benchmarks:** https://entropysherlock.github.io/westfall-optimization/benchmarks/
@@ -18,9 +18,9 @@ Independent research led by **Caleb Westfall**, using AI-assisted discovery, adv
 |---|---|---|
 | **019** | Square-root block-localization counting for a supplied ordered partition | Written public provisional manuscript; tests reported |
 | **021** | Gap-free localization quantity \(K_0\) for a supplied partition | Research report and code reported on unpublished local branch |
-| **022** | Candidate intrinsic \(\lambda(A)\), minimum-partition recognition and partition-free exact algorithm | **Internal Level 3 candidate**, unreviewed and **not Lean-verified** |
+| **022 — Westfall Structural Optimization Theorem** | Candidate intrinsic \(\lambda(A)\), minimum-partition recognition and partition-free exact algorithm | **Internal Level 3 candidate**, unreviewed and **not Lean-verified** |
 
-The latest report proposes
+The provisional Westfall Structural Optimization Theorem proposes
 
 \[
 \lambda(A)=\min_{\mathcal B}\bigl(b(\mathcal B)^2+3K_0(\mathcal B)\bigr)
@@ -28,13 +28,13 @@ The latest report proposes
 T(A)=\mathrm{poly}(n)2^{O(\sqrt{\lambda(A)})}.
 \]
 
-This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the claimed recognition of its minimizing partition. The original 022 report and executable code have **not yet been pushed** from the reported local research branch; [this public summary](papers/discovery-022-research-summary.md) records the statements and limitations.
+This algorithm is based on existing **Fomin–Pilipczuk cut enumeration and dynamic programming**. The potential novelty lies in the structural parameter and the **Westfall Partition Recovery Theorem**, which claims recognition of its minimizing partition. The original 022 report and executable code have **not yet been pushed** from the reported local research branch; [this public summary](papers/discovery-022-research-summary.md) records the statements and limitations.
 
 **Level 3** is the program's own research classification, **not an external endorsement**. Neither the new theorem nor its asymptotic runtime claim has passed a Lean kernel check. See [the formal verification protocol](docs/formal-verification.md).
 
 ### Negative results matter
 
-Discovery 022's AutoCut prototype reportedly proved **7/20** benchmark cases, while BLX 2.0 and packing SLDP each proved **20/20**, and AutoCut was slower wherever it succeeded. The new claim is theoretical, not a new fastest solver. The original published benchmarks also include cases where generic HiGHS MILP beats BLX.
+The Westfall Structural Optimization Theorem's AutoCut prototype reportedly proved **7/20** benchmark cases, while BLX 2.0 and packing SLDP each proved **20/20**, and AutoCut was slower wherever it succeeded. The new claim is theoretical, not a new fastest solver. The original published benchmarks also include cases where generic HiGHS MILP beats BLX.
 
 ## What you can run today
 
@@ -90,7 +90,7 @@ GitHub Actions runs the Python and website checks and deploys a static Next.js e
 ## Mathematical manuscripts and documentation
 
 - [Discovery 019: Square-Root Block Localization](papers/square-root-block-localization-v2.md)
-- [Discovery 022: Provisional Research Summary](papers/discovery-022-research-summary.md)
+- [Westfall Structural Optimization Theorem: Provisional Research Summary](papers/discovery-022-research-summary.md)
 - [Formal verification protocol and tracker](docs/formal-verification.md)
 - [Architecture](docs/architecture.md)
 - [Certificates](docs/certificates.md)

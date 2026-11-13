@@ -8,8 +8,8 @@ const proofs = [
   ["Discovery 021: weighted exchange / K₀ localization", "Not verified", "Written mathematical argument; needs formalization before it can support the headline result."],
   ["Discovery 022 Theorem 1: optimal-prefix width", "Not verified", "The core inequality should be proven with the exact report definitions."],
   ["Discovery 022 Lemma 2: cut counting", "Not verified", "Requires a formal proof of the integer-partition counting result."],
-  ["Discovery 022 Theorem 3: minimum-partition recovery", "Not verified", "This is the flagship potential novelty claim and highest-priority kernel proof."],
-  ["Discovery 022 Theorem 4: AutoCut exactness", "Not verified", "Must refer to the real algorithm, not an unrestricted brute-force substitute."],
+  ["Westfall Partition Recovery Theorem (022, Theorem 3)", "Not verified", "This is the flagship potential novelty claim and highest-priority kernel proof."],
+  ["Westfall Structural Optimization Theorem (022, Theorem 4)", "Not verified", "Must refer to the real algorithm, not an unrestricted brute-force substitute."],
   ["Discovery 022: parameterized runtime bound", "Not verified", "Must separately formalize state-count and asymptotic complexity; exactness alone is insufficient."],
   ["ETH lower bound", "Not verified", "Requires a precise reduction and computational-complexity formalization or a clearly documented external theorem assumption."],
 ];
@@ -17,12 +17,12 @@ const proofs = [
 export default function FormalVerification() {
  return <>
   <PageHeader kicker="Research integrity · Lean 4" title="Proof status, claim by claim">
-    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no publicly confirmed Lean verification of the Discovery 022 flagship theorem.</strong>
-    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Discovery 022 theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink></div>
+    A written proof, small-instance tests, an integer certificate checker, and a Lean kernel proof are different kinds of evidence. This page keeps them separate. There is currently <strong>no publicly confirmed Lean verification of the Westfall Structural Optimization Theorem.</strong>
+    <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href="/research/discovery-022/" primary>Westfall theorem →</ButtonLink><ButtonLink href={blob("docs/formal-verification.md")} external>Verification protocol ↗</ButtonLink></div>
   </PageHeader>
   <section className="border-b border-line bg-ink-900/40">
     <div className="mx-auto grid max-w-page gap-4 px-5 py-12 sm:px-8 sm:grid-cols-3">
-      {[["0","022 flagship theorems kernel-verified"],["8","proof obligations tracked"],["1","critical recognition theorem"]].map(([v,k])=><div className="card p-6" key={k}><div className="font-mono text-4xl text-fog-100">{v}</div><div className="mt-2 text-sm text-fog-400">{k}</div></div>)}
+      {[["0","Westfall flagship theorems kernel-verified"],["8","proof obligations tracked"],["1","critical recognition theorem"]].map(([v,k])=><div className="card p-6" key={k}><div className="font-mono text-4xl text-fog-100">{v}</div><div className="mt-2 text-sm text-fog-400">{k}</div></div>)}
     </div>
   </section>
   <Section kicker="Formalization backlog" title="A proof means the complete statement">
@@ -42,7 +42,7 @@ export default function FormalVerification() {
     </div>
   </Section>
   <Section kicker="Existing certificate checker" title="What already works">
-    <p className="max-w-3xl leading-relaxed text-fog-400">The public BLX solver generates exact arithmetic optimality certificates, and a separate Python verifier and browser BigInt implementation can inspect supported certificates. This is valuable computational evidence, but it is not Lean verification of Discovery 022.</p>
+    <p className="max-w-3xl leading-relaxed text-fog-400">The public BLX solver generates exact arithmetic optimality certificates, and a separate Python verifier and browser BigInt implementation can inspect supported certificates. This is valuable computational evidence, but it is not Lean verification of the Westfall Structural Optimization Theorem.</p>
     <div className="mt-7 flex flex-wrap gap-3"><ButtonLink href="/verify/" primary>Try the certificate checker</ButtonLink><ButtonLink href="/roadmap/">Roadmap and research priorities</ButtonLink></div>
   </Section>
  </>;
