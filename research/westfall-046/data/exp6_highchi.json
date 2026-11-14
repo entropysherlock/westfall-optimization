@@ -1,0 +1,146 @@
+[
+ {
+  "graph": "Petersen (n=10, chi=3)",
+  "n": 10,
+  "k": 1,
+  "max_found": 49,
+  "two_tournaments_found": 84,
+  "ratio": 0.5833
+ },
+ {
+  "graph": "Petersen (n=10, chi=3)",
+  "n": 10,
+  "k": 2,
+  "max_found": 90,
+  "two_tournaments_found": 172,
+  "ratio": 0.5233
+ },
+ {
+  "graph": "Petersen (n=10, chi=3)",
+  "n": 10,
+  "k": 4,
+  "max_found": 238,
+  "two_tournaments_found": 448,
+  "ratio": 0.5312
+ },
+ {
+  "graph": "Petersen (n=10, chi=3)",
+  "n": 10,
+  "k": 6,
+  "max_found": 442,
+  "two_tournaments_found": 740,
+  "ratio": 0.5973
+ },
+ {
+  "graph": "Petersen (n=10, chi=3)",
+  "n": 10,
+  "k": 8,
+  "max_found": 664,
+  "two_tournaments_found": 936,
+  "ratio": 0.7094
+ },
+ {
+  "graph": "Groetzsch (n=11, chi=4)",
+  "n": 11,
+  "k": 1,
+  "max_found": 61,
+  "two_tournaments_found": 100,
+  "ratio": 0.61
+ },
+ {
+  "graph": "Groetzsch (n=11, chi=4)",
+  "n": 11,
+  "k": 2,
+  "max_found": 121,
+  "two_tournaments_found": 210,
+  "ratio": 0.5762
+ },
+ {
+  "graph": "Groetzsch (n=11, chi=4)",
+  "n": 11,
+  "k": 4,
+  "max_found": 333,
+  "two_tournaments_found": 590,
+  "ratio": 0.5644
+ },
+ {
+  "graph": "Groetzsch (n=11, chi=4)",
+  "n": 11,
+  "k": 6,
+  "max_found": 658,
+  "two_tournaments_found": 1104,
+  "ratio": 0.596
+ },
+ {
+  "graph": "Groetzsch (n=11, chi=4)",
+  "n": 11,
+  "k": 8,
+  "max_found": 1037,
+  "two_tournaments_found": 1586,
+  "ratio": 0.6538
+ },
+ {
+  "graph": "Chvatal (n=12, chi=4)",
+  "n": 12,
+  "k": 1,
+  "max_found": 73,
+  "two_tournaments_found": 119,
+  "ratio": 0.6134
+ },
+ {
+  "graph": "Chvatal (n=12, chi=4)",
+  "n": 12,
+  "k": 2,
+  "max_found": 148,
+  "two_tournaments_found": 256,
+  "ratio": 0.5781
+ },
+ {
+  "graph": "Chvatal (n=12, chi=4)",
+  "n": 12,
+  "k": 4,
+  "max_found": 407,
+  "two_tournaments_found": 770,
+  "ratio": 0.5286
+ },
+ {
+  "graph": "Chvatal (n=12, chi=4)",
+  "n": 12,
+  "k": 6,
+  "max_found": 879,
+  "two_tournaments_found": 1595,
+  "ratio": 0.5511
+ },
+ {
+  "graph": "Chvatal (n=12, chi=4)",
+  "n": 12,
+  "k": 8,
+  "max_found": 1489,
+  "two_tournaments_found": 2540,
+  "ratio": 0.5862
+ },
+ {
+  "graph": "Clebsch (n=16, chi=4)",
+  "n": 16,
+  "k": 1,
+  "max_found": 95,
+  "two_tournaments_found": 207,
+  "ratio": 0.4589
+ },
+ {
+  "graph": "Clebsch (n=16, chi=4)",
+  "n": 16,
+  "k": 2,
+  "max_found": 206,
+  "two_tournaments_found": 472,
+  "ratio": 0.4364
+ },
+ {
+  "graph": "Clebsch (n=16, chi=4)",
+  "n": 16,
+  "k": 4,
+  "max_found": 619,
+  "two_tournaments_found": 1642,
+  "ratio": 0.377
+ }
+]
