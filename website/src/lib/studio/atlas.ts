@@ -124,11 +124,15 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
     let rep: ComponentReport;
     if (emit) emit({ kind: "component", index: ci, size: s, phase: s <= subsetMax ? "exact-search" : "incumbent", method: s <= subsetMax ? "subset-dp" : "local-search", bounds: bounds() });
     if (s <= subsetMax && !expired()) {
-      const r = subsetDPExact(sub);
+      const r = subsetDPExact(sub, { deadline: opts.deadline });
       local = r.order;
       rep = { size: s, method: "subset-dp", optimal: true, states: r.states, ms: 0 };
     } else {
-      const inc = localSearch(sub, [...Array(s).keys()], { timeMs: opts.incumbentMs ?? Math.min(1500, 20 + 4 * s + (s > 40 ? 20 * s : 0)), seed: opts.seed ?? 1, maxStarts: s > 40 ? 2000 : 200 });
+      const inc = localSearch(sub, [...Array(s).keys()], {
+        timeMs: opts.incumbentMs ?? Math.min(1500, 20 + 4 * s + (s > 40 ? 20 * s : 0)),
+        deadline: opts.deadline,
+        seed: opts.seed ?? 1, maxStarts: s > 40 ? 2000 : 200,
+      });
       local = inc.order;
       rep = { size: s, method: "local-search", optimal: false, states: 0, ms: 0 };
       if (emit) { compUpper[ci] = Math.min(compUpper[ci], betaOf(sub, inc.order)); emit({ kind: "component", index: ci, size: s, phase: "packing", bounds: bounds() }); }
@@ -138,12 +142,25 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
           const integral = sub.every((row) => row.every((x) => Number.isInteger(x)));
           if (integral && boundKind !== "none") {
             try {
-              packing = boundKind === "greedy" ? greedyPacking(sub) : fractionalPacking(sub, { eps: 0.05 });
-              if (boundKind === "cycles") packing = withLongerCycles(sub, packing);
-            } catch { packing = null; }
+              // A bounded triangle count prevents an O(n^3) temporary list from
+              // exhausting memory on huge instances. No bound is safer than an
+              // incomplete one. The normal (unlimited) path is unchanged.
+              const guard = { deadline: opts.deadline, maxTriangles: opts.deadline === undefined ? undefined : 250_000 };
+              packing = boundKind === "greedy"
+                ? greedyPacking(sub, guard)
+                : fractionalPacking(sub, { eps: 0.05, ...guard });
+              if (boundKind === "cycles") {
+                try { packing = withLongerCycles(sub, packing, { deadline: opts.deadline }); }
+                catch (e) { if (!(e instanceof Interrupted)) throw e; } // preserve completed triangle packing
+              }
+            } catch (e) {
+              if (!(e instanceof Interrupted)) throw e;
+              packing = null; // zero is a universally valid residual lower bound
+            }
           }
           if (packing) compRootLB = Math.ceil(packing.total / packing.D);
           if (emit) { if (integral) compLower[ci] = Math.max(compLower[ci], compRootLB); emit({ kind: "component", index: ci, size: s, phase: "exact-search", method: "cut-bounded DP", bounds: bounds() }); }
+          if (expired()) throw new Interrupted("deadline passed before exact search");
           const r = cutBoundedDP(sub, inc.order, {
             maxStates: opts.maxStates ?? 1_500_000, deadline: opts.deadline, packing, strict,
             onLayer: emit ? (e) => emit({ kind: "layer", index: ci, ...e }) : undefined,
