@@ -128,8 +128,14 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
   let starts = 1;
   const maxStarts = opts.maxStarts ?? 10_000;
   // a Copeland-style start (sort by row sums) is usually strong
-  const copeland = [...Array(n).keys()].sort((a, b) => M[b].reduce((s, x) => s + x, 0) - M[a].reduce((s, x) => s + x, 0) || a - b);
-  const c = now() < stop ? insert(copeland) : best;
+  const rowSum = now() < stop
+    ? M.map((r) => r.reduce((sum, x) => sum + x, 0))
+    : [];
+  // Do not sort O(n) row sums inside a comparator after the deadline.
+  const c = now() < stop
+    ? insert([...Array(n).keys()].sort((a, b) =>
+        rowSum[b] - rowSum[a] || a - b))
+    : best;
   const cv = scoreOf(M, c);
   starts++;
   if (cv > bestVal) { best = c; bestVal = cv; }
