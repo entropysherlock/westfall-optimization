@@ -26,12 +26,22 @@ Both values are public URLs, never secrets. Set them as repository **variables**
 | Variable | Effect when set | When empty (default) |
 |---|---|---|
 | `STUDIO_API_URL` | the Studio shows a "Remote solver service" panel that submits jobs to this URL | the panel states that no remote service is configured |
-| `CONTACT_ENDPOINT` | the contact form POSTs JSON to this endpoint (for example a Formspree form URL `https://formspree.io/f/<id>`) | the form is disabled, with an explanation, and GitHub issues are offered instead |
+| `CONTACT_ENDPOINT` | the contact form POSTs JSON to this endpoint (a FormSubmit AJAX URL `https://formsubmit.co/ajax/<address-or-alias>` or a Formspree URL `https://formspree.io/f/<id>`) | the deploy falls back to the owner's FormSubmit address in `.github/workflows/pages.yml`; CI and local builds without the variable show the form disabled |
 
-To set up the contact form, create a form at a form-delivery provider (Formspree, Basin, Getform or similar) that
-accepts JSON POSTs and forwards to the owner's mailbox. Put its endpoint URL in `CONTACT_ENDPOINT`. Then submit a test
-inquiry from the live site and confirm it arrives **before** announcing the form. The owner's email address is
-configured only at the provider and never appears in this repository.
+The contact form uses **FormSubmit** (no account or API key). The deploy workflow posts to
+`https://formsubmit.co/ajax/calebwestfall1989@gmail.com` unless `CONTACT_ENDPOINT` overrides it.
+
+1. **One-time activation.** The first submission from the live site is not delivered: FormSubmit emails an
+   "Activate Form" link to the address instead, and the form shows "Not sent" with that reason. Click the link once.
+   Every later submission is delivered.
+2. **Keep the address out of the public page (recommended).** The activation email also gives a random alias string.
+   Set the repository variable `CONTACT_ENDPOINT` to `https://formsubmit.co/ajax/<alias>`
+   (Settings → Secrets and variables → Actions → Variables), and replace the fallback in `pages.yml` with an empty
+   string. Then re-run the deploy. Until then, the address is visible in the site's JavaScript.
+3. **Verify.** Submit a test inquiry from the live site and confirm it arrives.
+
+The form checks FormSubmit's JSON `success` field as well as the HTTP status, so a rejected message (for example
+before activation) is reported as not sent, never as sent.
 
 ### Local preview
 

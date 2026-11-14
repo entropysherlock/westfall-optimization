@@ -30,7 +30,7 @@ jobs:
           NEXT_TELEMETRY_DISABLED: "1"
           # optional public configuration (repository Settings → Variables); empty by default
           NEXT_PUBLIC_STUDIO_API_URL: ${{ vars.STUDIO_API_URL }}
-          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT }}
+          NEXT_PUBLIC_CONTACT_ENDPOINT: ${{ vars.CONTACT_ENDPOINT || 'https://formsubmit.co/ajax/calebwestfall1989@gmail.com' }}
       - run: touch out/.nojekyll
       - uses: actions/upload-pages-artifact@v3
         with:
