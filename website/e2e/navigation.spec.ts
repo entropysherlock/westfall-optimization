@@ -57,7 +57,7 @@ test("navigation works from the menu (desktop links or mobile menu)", async ({ p
   } else {
     await page.getByRole("link", { name: "Open Studio" }).click();
   }
-  await expect(page.locator("h1")).toHaveText("Optimization Studio");
+  await expect(page.locator("h1")).toHaveText("WESTFALL Studio");
 });
 
 test("moved pages redirect", async ({ page }) => {
