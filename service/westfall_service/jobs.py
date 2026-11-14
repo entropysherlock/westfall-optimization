@@ -132,9 +132,13 @@ class JobManager:
             if job.status == "queued":
                 self.queue.remove(job.id)
                 job.status, job.finished_at = "cancelled", time.time()
-            elif job.status == "running" and job.process is not None:
-                job.status = "cancelled"  # the monitor thread sees this and terminates the process
-                job.process.terminate()
+            elif job.status == "running":
+                # The runner thread sees this status and stops. A process is only published (under this
+                # lock) after it has started, so terminate() is never called on an unstarted process;
+                # if none is published yet, the runner skips starting it.
+                job.status = "cancelled"
+                if job.process is not None:
+                    job.process.terminate()
         return job
 
     def stats(self) -> dict:
@@ -159,11 +163,13 @@ class JobManager:
         parent, child = self.ctx.Pipe(duplex=False)
         state = {"M": job.model.M}
         proc = self.ctx.Process(target=_run_solver, args=(state, job.solver, job.time_limit, child), daemon=True)
-        job.process = proc
         try:
-            proc.start()
+            with self.lock:  # start and publish atomically with respect to cancel()
+                if job.status != "cancelled":
+                    proc.start()
+                    job.process = proc
             child.close()
-            got = parent.poll(job.time_limit + 2.0)
+            got = parent.poll(job.time_limit + 2.0) if job.process is not None else False
             if job.status == "cancelled":
                 pass
             elif not got:

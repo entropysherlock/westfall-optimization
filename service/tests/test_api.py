@@ -168,3 +168,35 @@ def test_model_identity_cost():
         assert m.user_from_fa(m.fa(list(p))) == m.user_objective(list(p))
     with pytest.raises(InstanceError):
         build_model({"interpretation": "cost", "matrix": [[0, None], [1, 0]]})
+
+
+def test_cancel_during_process_start_is_safe(monkeypatch):
+    """Regression: cancelling a job while its worker process is still starting used to call terminate()
+    on an unstarted process (AttributeError on '_popen' None). Force that window with a slow start().
+    start() is patched on the real process class, so the process object stays picklable under spawn."""
+    mgr = JobManager(1, 2)
+    proc_cls = mgr.ctx.Process
+    real_start = proc_cls.start
+
+    def slow_start(self):
+        time.sleep(0.6)
+        real_start(self)
+
+    monkeypatch.setattr(proc_cls, "start", slow_start)
+    c = TestClient(create_app(Settings(api_key_hashes=frozenset(), allowed_origins=()), mgr))
+    n = 40
+    rng = random.Random(5)
+    M = [[0] * n for _ in range(n)]
+    for i in range(n):
+        for j in range(i + 1, n):
+            v = rng.randint(-9, 9)
+            M[i][j], M[j][i] = v, -v
+    jid = c.post("/v1/jobs", json={"instance": {"interpretation": "skew", "matrix": M}, "solver": "milp", "time_limit_s": 120}).json()["id"]
+    time.sleep(0.2)  # the runner is now inside the slow start()
+    assert c.delete(f"/v1/jobs/{jid}").json()["status"] == "cancelled"
+    job = wait(c, jid)
+    assert job["status"] == "cancelled" and job["result"] is None
+    t0 = time.time()
+    while mgr.stats()["running"] and time.time() - t0 < 10:
+        time.sleep(0.1)
+    assert mgr.stats()["running"] == 0
