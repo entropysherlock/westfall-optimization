@@ -1,0 +1,46 @@
+name: ATLAS-033 large-instance timeout smoke
+on:
+  push:
+    branches: [fix/atlas-033-memory-budget]
+    paths: [".github/workflows/atlas033-smoke.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+        working-directory: website
+      - name: Reproduce pinned benchmark inputs
+        run: python3 benchmarks/lolib-full/fetch_suite.py
+      - name: Build isolated ATLAS-033 benchmark runner
+        run: sh benchmarks/lolib-full/build_runner.sh
+      - name: Test hard 10-second wall limits across size classes
+        run: |
+          cd benchmarks/lolib-full
+          python3 run_suite.py atlas --tl 10 --families MB,RandA1,RandA2,xLOLIB2 --sample 1 --tag atlas033-smoke
+      - name: Report all smoke outcomes and detect excessive wall-time
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json, os
+          path="benchmarks/lolib-full/results/atlas.atlas033-smoke.jsonl"
+          if not os.path.exists(path):
+              raise RuntimeError("no benchmark output written")
+          rows=[json.loads(x) for x in open(path) if x.strip()]
+          print("runs:",len(rows))
+          for r in rows:
+              print(r["id"],"n=",r["n"],r["status"],"wall=",r.get("wall_s"),"best=",r.get("benefit"))
+          bad=[r for r in rows if r.get("wall_s") is not None and r["wall_s"]>11]
+          if bad:
+              raise RuntimeError(f"{len(bad)} instances exceeded 10+1 s, see rows above")
+          if not rows:
+              raise RuntimeError("zero cases tested")
+          print("PASS: all observed wall times <= 11s (not yet all 685 instances)")
+          PY

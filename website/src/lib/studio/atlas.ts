@@ -46,6 +46,8 @@ export interface AtlasOptions {
   seed?: number;
   /** State budget per component for the cut-bounded DP. */
   maxStates?: number;
+  /** Working-memory cap for exact prefix-search (bytes); default 800 MiB for timed runs. */
+  maxMemoryBytes?: number;
   /** Local-search time per component (ms). */
   incumbentMs?: number;
   /** Disable decomposition (benchmark ablation). */
@@ -169,7 +171,7 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
           if (emit) { if (integral) compLower[ci] = Math.max(compLower[ci], compRootLB); emit({ kind: "component", index: ci, size: s, phase: "exact-search", method: "cut-bounded DP", bounds: bounds() }); }
           if (expired()) throw new Interrupted("deadline passed before exact search");
           const r = cutBoundedDP(sub, inc.order, {
-            maxStates: opts.maxStates ?? 1_500_000, deadline: opts.deadline, packing, strict,
+            maxStates: opts.maxStates ?? 1_500_000, maxBytes: opts.maxMemoryBytes ?? (opts.deadline === undefined ? undefined : 800 * 1024 * 1024), deadline: opts.deadline, packing, strict,
             onLayer: emit ? (e) => emit({ kind: "layer", index: ci, ...e }) : undefined,
             onTick: emit ? (e) => emit({ kind: "tick", index: ci, ...e }) : undefined,
           });
