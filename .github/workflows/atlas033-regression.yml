@@ -1,0 +1,42 @@
+name: ATLAS-033 232-case no-regression validation
+on:
+  push:
+    branches: [fix/atlas-033-memory-budget]
+    paths: [".github/workflows/atlas033-regression.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  benchmark:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        shard: [0, 1, 2, 3, 4, 5, 6, 7]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+        working-directory: website
+      - name: Obtain pinned LOLIB data and BKS hashes
+        run: python3 benchmarks/lolib-full/fetch_suite.py
+      - name: Build updated ATLAS runner
+        run: sh benchmarks/lolib-full/build_runner.sh
+      - name: Run exact-family 30s benchmark shard
+        run: |
+          cd benchmarks/lolib-full
+          python3 run_suite.py atlas --tl 30 --families IO,SGB,RandB,MB,Spec --shard ${{ matrix.shard }}/8 --tag v033
+      - name: Compare every old proven optimum with new output
+        if: always()
+        run: |
+          python3 benchmarks/lolib-full/compare_v033.py benchmarks/lolib-full/results/atlas.v033.shard${{ matrix.shard }}.jsonl
+      - name: Preserve unfiltered per-instance raw results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v033-shard-${{ matrix.shard }}
+          path: benchmarks/lolib-full/results/atlas.v033.shard${{ matrix.shard }}.jsonl
+          if-no-files-found: warn
