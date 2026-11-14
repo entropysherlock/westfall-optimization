@@ -58,7 +58,7 @@ export default function Research() {
       </Section>
 
       <Section id="in-progress" kicker="Research in progress · not established results" title="Proof drafts, conjectures and experimental capabilities"
-        intro={<>These items are under active investigation. None is peer reviewed, and none is claimed as a solved problem. In particular, the 2013 Fomin–Pilipczuk question is <strong>not</strong> claimed as answered: the candidate proof is a draft awaiting independent mathematical and literature review, and the Airy asymptotic is an unproved conjecture. The full status of every result is on the <Link className="text-accent-600 underline" href="/formal-verification/#status">verification page</Link>.</>}>
+        intro={<>These items are under active investigation. None is peer reviewed, and none is claimed as a solved problem. In particular, the 2013 Fomin–Pilipczuk question is <strong>not</strong> claimed as answered. The k-cut counting inequalities are Lean kernel-checked, but the analytic estimate and the algorithms built on them are paper-only and await independent mathematical and literature review. The Airy asymptotic is an unproved conjecture. The full status of every result is on the <Link className="text-accent-600 underline" href="/formal-verification/#status">verification page</Link>.</>}>
         <InProgressCards />
       </Section>
 

@@ -382,7 +382,7 @@ export default function Studio() {
       <div className="flex flex-col lg:flex-row">
         {/* ------------------------------------------------------------ rail */}
         <nav aria-label="Studio workspaces" className="ws-noprint shrink-0 border-b px-2 py-2 lg:sticky lg:top-[64px] lg:h-[calc(100vh-128px)] lg:w-[188px] lg:border-b-0 lg:border-r lg:px-2.5 lg:py-4" style={{ borderColor: "var(--ws-line)" }}>
-          <ul className="ws-scroll flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible">
+          <ul className="ws-scroll ws-tabs-fade flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible">
             {VIEWS.map((v) => {
               const d = dot(v.id);
               return (

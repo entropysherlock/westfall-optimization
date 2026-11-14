@@ -197,7 +197,7 @@ function Transparency() {
           </li>
         ))}
       </ul>
-      <p className="ws-sub mt-3">The semicomplete-digraph cut-counting result (draft PR #10) is a candidate proof pending independent review, and the Airy K^1/6 correction (draft PR #11) is an unproved conjecture; the Studio relies on neither. No comparison here supports a claim of general superiority over Gurobi, SCIP, HiGHS or specialised linear-ordering solvers.</p>
+      <p className="ws-sub mt-3">The semicomplete-digraph cut-counting inequality is Lean kernel-checked but not peer reviewed, and only the optional cutwidth state cap relies on it. The Airy K^1/6 correction (draft PR #11) is an unproved conjecture that the Studio does not use. No comparison here supports a claim of general superiority over Gurobi, SCIP, HiGHS or specialised linear-ordering solvers.</p>
       <p className="ws-sub mt-2"><Link className="ws-accent underline" href="/formal-verification/">Lean formalization status</Link> · <Link className="ws-accent underline" href="/benchmarks/">Benchmark conditions</Link> · <Link className="ws-accent underline" href="/research/">Research</Link> · <Link className="ws-accent underline" href="/verify/">Certificate verification center</Link></p>
     </Panel>
   );

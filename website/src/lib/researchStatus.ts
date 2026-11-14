@@ -67,10 +67,17 @@ export const RESEARCH: ResearchItem[] = [
   },
   {
     id: "kcut-counting", title: "k-cuts of semicomplete digraphs: N_k(D) ≤ (n+1)·H(c+k)",
-    statement: "If a semicomplete digraph has an ordering of width ≤ c, it has at most (n+1)·H(c+k) k-cuts, where H(K) counts partitions with iλ_i ≤ K; with H(K) ≤ e^{2π√K} this would give n·2^{O(√k)} for cutwidth ≤ k, the bound asked for by Fomin and Pilipczuk (2013).",
-    level: "draft", also: ["partial", "computational"], inProgress: true,
-    status: "Candidate proof in draft PR #10 (not merged). A supporting cut inequality was reported Lean-checked on research/discovery-028; the injection itself is not formalized. Exhaustively tested on all semicomplete digraphs with n ≤ 5. Not externally reviewed; novelty not established. The 2013 question is NOT claimed as solved.",
-    source: `${REPO}/pull/10`, sourceLabel: "Draft PR #10",
+    statement: "If a semicomplete digraph has an ordering of width ≤ c, it has at most (n+1)·H(c+k) k-cuts, where H(K) counts partitions with iλ_i ≤ K. Combined with H(K) ≤ e^{2π√K}, this would give n·2^{O(√k)} for cutwidth ≤ k, the bound asked for by Fomin and Pilipczuk (2013).",
+    level: "lean", also: ["draft", "computational"], inProgress: true,
+    status: "The counting inequality, including the injection, is Lean kernel-checked (Mission 040, merged in PR #16; standard axioms only). Still paper-only: the analytic estimate H(K) ≤ e^{2π√K} and the cutwidth and OLA running times. Exhaustively tested on all semicomplete digraphs with n ≤ 5. Not peer reviewed; novelty not established. The 2013 question is NOT claimed as solved.",
+    source: `${REPO}/tree/main/research/westfall-040`, sourceLabel: "Mission 040",
+  },
+  {
+    id: "kcut-defect", title: "Defect-robust k-cuts: N_k(D) ≤ (n+1)·4^h·H(c+k)²",
+    statement: "If every vertex of a digraph has at most h non-neighbours and some ordering has width ≤ c, it has at most (n+1)·R_h(c+k)·H(c+k) ≤ (n+1)·C(2h,h)·H(c+k)² ≤ (n+1)·4^h·H(c+k)² k-cuts. h = 0 is the semicomplete bound above.",
+    level: "lean", also: ["draft", "computational"], inProgress: true,
+    status: "Both inequalities are Lean kernel-checked (Missions 041 and 044, merged in PRs #19 and #22; standard axioms only; CI run 43533991215). Still paper-only: the analytic estimate for H and the resulting 2^{O(√k+h)} cutwidth algorithm. Not peer reviewed; novelty not established. The bounded-independence case is open and is NOT claimed.",
+    source: `${REPO}/tree/main/research/westfall-044`, sourceLabel: "Mission 044",
   },
   {
     id: "hyperbola-leading", title: "Hyperbola partitions: log H(K) = 2π√K + o(√K)",
@@ -96,7 +103,7 @@ export const RESEARCH: ResearchItem[] = [
     id: "cutwidth-solver", title: "Directed cutwidth solver for semicomplete digraphs",
     statement: "Exact minimum cutwidth by prefix-state search; for semicomplete inputs the k-cut count above is used as an optional early-stop certificate.",
     level: "experimental", also: ["computational"], inProgress: true,
-    status: "Agrees with an independent subset DP on 300 random digraphs. The state cap depends on the unreviewed k-cut bound and is only applied to semicomplete input; it never triggered in benchmarks.",
+    status: "Agrees with an independent subset DP on 300 random digraphs. The state cap uses the Lean-checked k-cut bound with H computed exactly; the TypeScript implementation itself is not verified. The cap is only applied to semicomplete input and never triggered in benchmarks.",
     source: blob("website/src/lib/studio/cutwidth.ts"), sourceLabel: "Source",
   },
 ];

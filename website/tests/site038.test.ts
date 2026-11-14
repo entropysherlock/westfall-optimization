@@ -12,13 +12,24 @@ const byId = (id: string) => RESEARCH.find((r) => r.id === id)!;
 
 describe("research-status labels cannot overstate", () => {
   it("draft and conjectural work is never labelled Lean-checked or proved", () => {
-    for (const id of ["kcut-counting", "hyperbola-leading", "airy-representation", "airy-conjecture"]) {
+    for (const id of ["hyperbola-leading", "airy-representation", "airy-conjecture"]) {
       expect(["draft", "conjecture"]).toContain(byId(id).level);
       expect(byId(id).inProgress).toBe(true);
     }
     expect(byId("airy-conjecture").level).toBe("conjecture");
     expect(byId("airy-conjecture").status).toMatch(/UNPROVED/);
+  });
+  it("Lean-checked k-cut counting stays in progress and names what is still paper-only", () => {
+    for (const id of ["kcut-counting", "kcut-defect"]) {
+      const r = byId(id);
+      expect(r.level).toBe("lean");                 // the counting inequality is kernel-checked on main
+      expect(r.also).toContain("draft");            // the analytic estimate and algorithms are not
+      expect(r.inProgress).toBe(true);              // novelty and peer review are open
+      expect(r.status).toMatch(/paper-only/);
+      expect(r.status).toMatch(/Not peer reviewed; novelty not established/);
+    }
     expect(byId("kcut-counting").status).toMatch(/NOT claimed as solved/);
+    expect(byId("kcut-defect").status).toMatch(/bounded-independence case is open and is NOT claimed/);
   });
   it("ATLAS-032 is not described as machine-verified", () => {
     const a = byId("atlas-032");

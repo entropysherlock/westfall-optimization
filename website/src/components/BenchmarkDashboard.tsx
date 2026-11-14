@@ -7,7 +7,7 @@ interface Rec { source: string; family: string; instance: string; seed: number |
 interface Data { environment: Record<string, string>; records: Rec[] }
 
 const SOLVERS = ["Packing SLDP", "BLX 1.0", "BLX 2.0", "HiGHS MILP"] as const;
-const COLORS: Record<string, string> = { "Packing SLDP": "#5b3fb8", "BLX 1.0": "#b7791f", "BLX 2.0": "#0f766e", "HiGHS MILP": "#15803d" };
+const COLORS: Record<string, string> = { "Packing SLDP": "#5b3fb8", "BLX 1.0": "#8a5a12", "BLX 2.0": "#0f766e", "HiGHS MILP": "#15803d" };
 const DATASETS = {
   test: { label: "Out-of-sample evaluation", sources: ["Original out-of-sample test"] },
   insample: { label: "In-sample BLX 2.0 evaluation", sources: ["Grid instances (portfolio training set)", "LOLIB instances (training set)", "BLX 2.0 on historical in-sample instances"] },
@@ -84,12 +84,12 @@ export default function BenchmarkDashboard() {
     <div className="space-y-6">
       <div className="card flex flex-wrap items-end gap-4 p-5">
         <label className="min-w-0 max-w-full text-xs text-fog-500">Dataset
-          <select value={ds} onChange={(e) => { setDs(e.target.value as keyof typeof DATASETS); setFam("all"); }} className="mt-1 block rounded-lg border border-line bg-ink-850 px-3 py-2 text-sm">
+          <select value={ds} onChange={(e) => { setDs(e.target.value as keyof typeof DATASETS); setFam("all"); }} className="mt-1 block rounded-lg border border-line bg-ink-850 px-3 py-2 text-sm text-fog-300">
             {Object.entries(DATASETS).map(([k, v]) => <option key={k} value={k}>{v.label}</option>)}
           </select>
         </label>
         <label className="text-xs text-fog-500">Family
-          <select value={fam} onChange={(e) => setFam(e.target.value)} className="mt-1 block rounded-lg border border-line bg-ink-850 px-3 py-2 text-sm">
+          <select value={fam} onChange={(e) => setFam(e.target.value)} className="mt-1 block rounded-lg border border-line bg-ink-850 px-3 py-2 text-sm text-fog-300">
             {families.map((f) => <option key={f} value={f}>{f}</option>)}
           </select>
         </label>
