@@ -7,7 +7,7 @@ describe("ATLAS-033 memory-safe interruptions", () => {
   it("returns an incumbent without claiming optimality when byte budget is exhausted", () => {
     const M = generate("random-int", 15, 22);
     const r = solveAtlas(M, {
-      subsetMax: 0, maxMemoryBytes: 1024,
+      subsetMax: 0, bound: "none", maxMemoryBytes: 1024,
       deadline: performance.now() + 20_000,
     });
     expect(r.optimal).toBe(false);
