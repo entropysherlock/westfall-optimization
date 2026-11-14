@@ -1,5 +1,6 @@
 import Westfall044
 import Mathlib.Data.Sym.Card
+import Mathlib.Data.Nat.Choose.Bounds
 import Mathlib.Data.List.Sort
 
 /-!
@@ -46,15 +47,18 @@ theorem B_le_choose (h : ℕ) : B h ≤ (2 * h).choose h := by
     _ = (2 * h).choose h := by
       rw [card_univ]
       have hc := Sym.card_sym_eq_choose (α := Fin (h + 1)) h
-      simpa only [Fintype.card_fin] using
-        (show Fintype.card (Sym (Fin (h + 1)) h) = (2 * h).choose h from
-          hc.trans (by congr 1; omega))
+      rw [Sym.card_sym_eq_choose]
+      simp only [Fintype.card_fin]
+      congr 1
+      omega
 
 /-- The central binomial coefficient is at most 4^h. -/
 theorem choose_le_four_pow (h : ℕ) : (2 * h).choose h ≤ 4 ^ h := by
   calc
     (2 * h).choose h ≤ 2 ^ (2 * h) := Nat.choose_le_two_pow _ _
-    _ = 4 ^ h := by ring
+    _ = 4 ^ h := by
+      rw [pow_mul]
+      norm_num
 
 /-- THE MAIN SHARP DEFECT PROFILE BOUND. -/
 theorem R_le_choose_mul_H (h K : ℕ) :
