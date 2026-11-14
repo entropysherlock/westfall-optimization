@@ -1,9 +1,10 @@
+import Westfall041
+
 /-!
 WESTFALL Mission 042 — elementary coordinate lemmas for the profile-splitting proof.
 This is NOT the complete Lean proof of R h K <= choose (2*h) h * H K.
 No unverified theorem or axiom is introduced. See research/westfall-042/LEAN_AUDIT.md.
 -/
-import Westfall041
 
 namespace Westfall042
 
