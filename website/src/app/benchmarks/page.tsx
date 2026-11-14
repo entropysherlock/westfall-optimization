@@ -1,6 +1,8 @@
 import fs from "fs";
 import path from "path";
 import BenchmarkDashboard from "@/components/BenchmarkDashboard";
+import LolibBench, { type LolibData } from "@/components/LolibBench";
+import ChallengeBench, { type ChallengeData } from "@/components/ChallengeBench";
 import Atlas032Bench from "@/components/Atlas032Bench";
 import type { A32Data } from "@/lib/atlas032Summary";
 import { atlasCounts, atlasData } from "@/lib/atlasData";
@@ -8,7 +10,7 @@ import { BenchTable, SpeedScatter, type BenchRow } from "@/components/AutoCutBen
 import { ButtonLink, Callout, EvidenceTag, PageHeader, Section, Stat } from "@/components/ui";
 import { blob, leanBlob, tree } from "@/lib/site";
 
-export const metadata = { title: "Benchmarks", description: "Measured results with provenance, time limits and unsolved cases: ATLAS-032 versus HiGHS, AutoCut algorithm generations, exact oracle comparisons and the historical BLX series." };
+export const metadata = { title: "Benchmarks", description: "Measured results with provenance, time limits and unsolved cases: the full LOLIB library (ATLAS-060, ATLAS-032, HiGHS, SCIP), the GPT-6 challenge, ATLAS-032 versus HiGHS, AutoCut algorithm generations, exact oracle comparisons and the historical BLX series." };
 
 interface BenchFile { source: string; time_limit_s: number; hardware: string; summary: Record<string, unknown>; rows: BenchRow[] }
 
@@ -20,6 +22,7 @@ export default function Benchmarks() {
   const speed = shared.map((r) => r.ms_memo! / r.ms_costed!).sort((a, b) => a - b);
   const median = speed.length ? speed[Math.floor(speed.length / 2)] : 0;
   const notDone = rows.filter((r) => r.status !== "PASS");
+  const lolib: LolibData & { challenge: ChallengeData } = JSON.parse(fs.readFileSync(path.join(process.cwd(), "public/data/lolib-full.json"), "utf8"));
   const a32: A32Data = atlasData();
   const ac = atlasCounts(a32);
   // the page showcases the current engine: only ATLAS-032 (E) and HiGHS (H) rows are displayed.
@@ -28,11 +31,28 @@ export default function Benchmarks() {
   return (
     <>
       <PageHeader kicker="Benchmarks · measured, with provenance" title="Empirical evaluation">
-        Each data set below has its own provenance, hardware and time limit, and they are never pooled into one headline number. Unsolved cases are listed. Comparisons are with our own earlier solvers and with one open-source general-purpose MILP solver (HiGHS) on our benchmark suite. They are <strong>not</strong> evidence of superiority over commercial or specialized linear-ordering software, which has not been tested.
+        Each data set below has its own provenance, hardware and time limit, and they are never pooled into one headline number. Unsolved cases are listed. Comparisons are with our own earlier solvers and with two open-source general-purpose MIP solvers (HiGHS and SCIP). They are <strong>not</strong> evidence of superiority over commercial MIP solvers or dedicated linear-ordering branch-and-cut codes, which have not been tested.
         <div className="mt-4 flex flex-wrap gap-2"><EvidenceTag kind="observed" /></div>
       </PageHeader>
 
-      <Section id="atlas-032" kicker="A · Current exact solver" title="ATLAS-032 versus HiGHS"
+      <Section id="lolib" kicker="A · Full LOLIB library" title="232 standard instances: ATLAS-060, ATLAS-032, HiGHS and SCIP"
+        intro={<>Every LOLIB instance with an attainable optimum (families IO, SGB, RandB, MB and Spec), run with one protocol for all solvers: one thread, 30 s including preparation, exact optimality only. <strong>ATLAS-060 is an experimental prototype</strong>, not the production solver: it adds exact integer bounds from the standard 3-cycle relaxation, uses the open-source HiGHS LP solver as an LP engine (every bound it uses is re-checked in exact integer arithmetic), and hands dense random instances to the unchanged ATLAS-032. Its techniques are established ones and no novelty is claimed. ATLAS-032 appears twice: the published run, and an unchanged rerun on the machine used for ATLAS-060, which is about 30 % slower.</>}>
+        <div className="mb-6 flex flex-wrap gap-2"><EvidenceTag kind="observed" /><EvidenceTag kind="provisional">Not independently replicated</EvidenceTag></div>
+        <LolibBench data={lolib} />
+        <div className="mt-6 flex flex-wrap gap-3">
+          <ButtonLink href={blob("benchmarks/atlas-060/REPORT.md")} external>ATLAS-060 report ↗</ButtonLink>
+          <ButtonLink href={blob("benchmarks/lolib-full/REPORT.md")} external>LOLIB protocol and published study ↗</ButtonLink>
+          <ButtonLink href={tree("benchmarks/atlas-060/results")} external>Raw records ↗</ButtonLink>
+        </div>
+      </Section>
+
+      <Section muted id="gpt6-challenge" kicker="B · Blind challenge" title="Two instances supplied by GPT-6"
+        intro={<>GPT-6 supplied a 20-item and a 50-item weighted ordering instance; ATLAS-032 was run on them in the Studio before ATLAS-060 existed. We re-scored every ordering from the raw matrices and reran all solvers on one core. One instance is an anecdote, not a benchmark, and GPT-6&apos;s time and 50-item score are self-reported.</>}>
+        <ChallengeBench data={lolib.challenge} />
+        <div className="mt-6 flex flex-wrap gap-3"><ButtonLink href={blob("benchmarks/gpt6-challenge/REPORT.md")} external>Challenge report and instances ↗</ButtonLink></div>
+      </Section>
+
+      <Section id="atlas-032" kicker="C · ATLAS-032 on our own suite" title="ATLAS-032 versus HiGHS"
         intro={<>{ac.E.total} identical instances: adversarial synthetic families (dense random, tie-heavy, weighted cyclic, near-transitive, planted, multi-component) and {ac.Ereal.total} real-world LOLIB input–output instances. Exact optimality only, 30 s per run, one thread. ATLAS-032 uses standard techniques (cycle-packing lower bounds, prefix dynamic programming); it is not Lean-verified, and its certificates are checked by independent programs, not proofs. {ac.unprovedE.length} instances remain unproved by ATLAS-032 (listed below).</>}>
         <Atlas032Bench data={a32view} />
         <div className="mt-6 flex flex-wrap gap-3">
@@ -42,7 +62,7 @@ export default function Benchmarks() {
         </div>
       </Section>
 
-      <Section muted kicker="B · Internal algorithm generations" title="Verified AutoCut: three implementations of one algorithm"
+      <Section muted kicker="D · Internal algorithm generations" title="Verified AutoCut: three implementations of one algorithm"
         intro={<>The same 119 adversarial instances (fixed seeds) run through the deterministic executable (<span className="font-mono text-base">autoCutX</span>), the memoised version (<span className="font-mono text-base">autoCutM</span>) and the costed, re-engineered version (<span className="font-mono text-base">autoCutC</span>). All three are proved to return identical outputs. Time limit {data.time_limit_s} s per run; hardware: Intel Xeon @ 2.10 GHz container, 2 vCPU, 7.8 GB RAM, one process per core.</>}>
         <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
           <Stat label="Completed (autoCutC)" value={`${done.length} / ${rows.length}`} hint={`${notDone.length} not completed within ${data.time_limit_s} s`} />
@@ -65,7 +85,7 @@ export default function Benchmarks() {
         <div className="mt-10"><BenchTable rows={rows} /></div>
       </Section>
 
-      <Section kicker="C · Exact oracle comparisons" title="Correctness checks against independent references">
+      <Section kicker="E · Exact oracle comparisons" title="Correctness checks against independent references">
         <div className="grid gap-4 md:grid-cols-3">
           <div className="card p-6"><p className="font-mono text-2xl">103 / 103</p><h3 className="mt-2 font-semibold">Lean executable vs exhaustive oracle</h3><p className="mt-2 text-sm text-fog-400">For every completed run: optimum, ordering, λ(A), partition certificate and the k-bound were recomputed by exhaustive enumeration in exact arithmetic.</p></div>
           <div className="card p-6"><p className="font-mono text-2xl">103 / 103</p><h3 className="mt-2 font-semibold">Browser AutoCut vs Lean executable</h3><p className="mt-2 text-sm text-fog-400">The Studio&apos;s TypeScript port reproduces the Lean output exactly (value, ordering, partition, λ, k, cut counts). It is a test in the website&apos;s CI, and it is not a proof.</p></div>
@@ -73,7 +93,7 @@ export default function Benchmarks() {
         </div>
       </Section>
 
-      <Section muted kicker="D · Reported study (original manuscript)" title="AutoCut prototype versus BLX 2.0 and packing SLDP"
+      <Section muted kicker="F · Reported study (original manuscript)" title="AutoCut prototype versus BLX 2.0 and packing SLDP"
         intro="These figures are transcribed from the original research report. They were not regenerated from its original code, so they stay separate from the reproducible data sets.">
         <div className="grid gap-4 md:grid-cols-3">
           {[["BLX 2.0", "20 / 20"], ["Packing SLDP", "20 / 20"], ["AutoCut prototype", "7 / 20"]].map(([s, v]) => (
@@ -86,7 +106,7 @@ export default function Benchmarks() {
 
       <section className="border-t border-line bg-ink-900">
         <div className="mx-auto max-w-page px-5 pt-16 sm:px-8">
-          <p className="kicker">E · Historical BLX series and baseline methods</p>
+          <p className="kicker">G · Historical BLX series and baseline methods</p>
           <h2 className="h-display mt-3 text-[28px] sm:text-[34px]">BLX, packing SLDP and HiGHS MILP</h2>
           <p className="lede mt-4 max-w-3xl">This dashboard is generated from raw logs published in <a className="text-accent-600 underline" href={tree("benchmarks/data")}>benchmarks/data</a> by <a className="text-accent-600 underline" href={blob("scripts/build_site_data.py")}>build_site_data.py</a>. It compares our exact solvers with a general-purpose MILP baseline (HiGHS) on the earlier benchmark series. It contains no AutoCut measurements.</p>
         </div>
@@ -101,14 +121,17 @@ export default function Benchmarks() {
             <li><strong>Time</strong>: wall-clock time of a native Lean binary, with the two generations run concurrently on separate cores.</li>
             <li>Inputs are fixed by the seeds 23023 and 24024 (<span className="font-mono">memo_instances.json</span>).</li>
           </ul>
-          <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 text-[12.5px] leading-relaxed text-fog-300">{`# ATLAS-032 (section A): see benchmarks/atlas-032/REPRODUCE.md
+          <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 text-[12.5px] leading-relaxed text-fog-300">{`# LOLIB (section A): see benchmarks/lolib-full/REPORT.md
+# rebuild the page data: cd website && node scripts/build-lolib-data.mjs
+
+# ATLAS-032 (section C): see benchmarks/atlas-032/REPRODUCE.md
 cd website && npm ci && npx vitest run
 python3 ../benchmarks/atlas-032/fetch_lolib_io.py
 npx vitest run --config bench/vitest.config.ts bench/atlas032.bench.test.ts
 python3 ../benchmarks/atlas-032/verify_certificate.py \
         ../benchmarks/atlas-032/certificates.json
 
-# AutoCut generations (section B)
+# AutoCut generations (section D)
 git checkout formal/westfall-theorem && cd lean
 lake build westfall-costed-bench westfall-memo-bench
 python tests/run_with_rss.py .lake/build/bin/westfall-costed-bench \\
