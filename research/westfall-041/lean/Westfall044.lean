@@ -59,11 +59,11 @@ theorem encode_residual_mem (h K : ℕ) (r : Fin h → Fin (K + h + 1))
   · intro i
     by_cases hi : i.val < h
     · have hb := hbound ⟨i.val, hi⟩
-      simp only [encode, dif_pos hi]
+      change (i.val + 1) * min ((r ⟨i.val, hi⟩).val - h) K ≤ K
       have hm : (i.val + 1) * min ((r ⟨i.val, hi⟩).val - h) K ≤
           (i.val + 1) * ((r ⟨i.val, hi⟩).val - h) :=
         Nat.mul_le_mul_left _ (min_le_left _ _)
-      omega
+      exact hm.trans (by simpa using hb)
     · simp only [encode, dif_neg hi, Fin.val_zero, Nat.mul_zero]
       exact Nat.zero_le _
 
