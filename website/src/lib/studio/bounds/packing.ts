@@ -19,6 +19,8 @@
  * integer arithmetic (all quantities < 2^53, enforced) before a packing is accepted.
  */
 
+import { Interrupted } from "../solvers";
+
 export interface TrianglePacking {
   n: number;
   /** directed cycles (triangles and, optionally, longer cycles): vertices of cycle c are cyc[start[c] .. start[c+1]) */
@@ -40,12 +42,14 @@ export interface TrianglePacking {
 const now = () => (typeof performance !== "undefined" ? performance.now() : Date.now());
 
 /** Directed 3-cycles of the strict preference digraph, each as three arc ids u*n+v. */
-export function directedTriangles(M: number[][]): { verts: number[][]; arcs: number[][] } {
+export function directedTriangles(M: number[][], opts: { deadline?: number; maxTriangles?: number } = {}): { verts: number[][]; arcs: number[][] } {
   const n = M.length;
   const verts: number[][] = [], arcs: number[][] = [];
   for (let i = 0; i < n; i++)
     for (let j = i + 1; j < n; j++)
       for (let k = j + 1; k < n; k++) {
+        if ((k & 31) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("triangle enumeration deadline");
+        if (verts.length >= (opts.maxTriangles ?? Infinity)) throw new Interrupted("triangle enumeration memory budget");
         if (M[i][j] > 0 && M[j][k] > 0 && M[k][i] > 0) { verts.push([i, j, k]); arcs.push([i * n + j, j * n + k, k * n + i]); }
         else if (M[j][i] > 0 && M[k][j] > 0 && M[i][k] > 0) { verts.push([i, k, j]); arcs.push([j * n + i, k * n + j, i * n + k]); }
       }
@@ -94,7 +98,7 @@ function finalize(M: number[][], verts: number[][], _arcs: number[][], yUnits: n
  * packing greedily: repeatedly take a shortest directed cycle (BFS, ≤ maxLen arcs) in the residual-capacity digraph
  * and give it the bottleneck residual capacity. Exactness is re-checked by `finalize`.
  */
-export function withLongerCycles(M: number[][], base: TrianglePacking, opts: { maxLen?: number } = {}): TrianglePacking {
+export function withLongerCycles(M: number[][], base: TrianglePacking, opts: { maxLen?: number; deadline?: number } = {}): TrianglePacking {
   const t0 = now();
   const n = M.length, D = base.D, maxLen = opts.maxLen ?? 12;
   const res = M.map((r) => r.map((x) => (x > 0 ? x * D : 0)));
@@ -106,11 +110,14 @@ export function withLongerCycles(M: number[][], base: TrianglePacking, opts: { m
   }
   let improved = true;
   while (improved) {
+    if (opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("long-cycle packing deadline");
     improved = false;
     for (let s = 0; s < n; s++) {
+      if (opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("long-cycle packing deadline");
       const prev = new Int32Array(n).fill(-1), dist = new Int32Array(n).fill(-1);
       dist[s] = 0; const q = [s]; let found = -1;
       for (let h = 0; h < q.length && found < 0; h++) {
+        if ((h & 31) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("long-cycle packing deadline");
         const u = q[h];
         if (dist[u] >= maxLen - 1) continue;
         for (let v = 0; v < n; v++) {
@@ -142,12 +149,12 @@ function scaledCaps(M: number[][], D: number): boolean {
 }
 
 /** Greedy integral packing: repeatedly take y_T = min residual capacity, triangles in a fixed order. */
-export function greedyPacking(M: number[][]): TrianglePacking {
+export function greedyPacking(M: number[][], opts: { deadline?: number; maxTriangles?: number } = {}): TrianglePacking {
   const t0 = now();
   const n = M.length;
   const D = 1;
   if (!scaledCaps(M, D)) throw new Error("triangle packing requires an integral matrix (exact arithmetic)");
-  const { verts, arcs } = directedTriangles(M);
+  const { verts, arcs } = directedTriangles(M, opts);
   const res = new Map<number, number>();
   for (const a of arcs) for (const e of a) res.set(e, M[Math.floor(e / n)][e % n]);
   // order: smallest bottleneck first tends to leave more capacity for others
@@ -156,6 +163,7 @@ export function greedyPacking(M: number[][]): TrianglePacking {
   idx.sort((a, b) => bott(a) - bott(b) || a - b);
   const y = new Array(verts.length).fill(0);
   for (const t of idx) {
+    if ((t & 1023) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("greedy packing deadline");
     const m = Math.min(res.get(arcs[t][0])!, res.get(arcs[t][1])!, res.get(arcs[t][2])!);
     if (m > 0) { y[t] = m; for (const e of arcs[t]) res.set(e, res.get(e)! - m); }
   }
@@ -167,14 +175,14 @@ export function greedyPacking(M: number[][]): TrianglePacking {
  * the maximum fractional triangle packing = the dual of the triangle LP restricted to 3-cycles), then
  * rounded down to units of 1/D, made exactly feasible, and topped up greedily on residual capacity.
  */
-export function fractionalPacking(M: number[][], opts: { eps?: number; D?: number; maxIters?: number } = {}): TrianglePacking {
+export function fractionalPacking(M: number[][], opts: { eps?: number; D?: number; maxIters?: number; deadline?: number; maxTriangles?: number } = {}): TrianglePacking {
   const t0 = now();
   const n = M.length;
   const eps = opts.eps ?? 0.05;
   let D = opts.D ?? 1 << 12;
   while (D > 1 && !scaledCaps(M, D)) D >>= 1;
   if (!scaledCaps(M, D)) throw new Error("triangle packing requires an integral matrix (exact arithmetic)");
-  const { verts, arcs } = directedTriangles(M);
+  const { verts, arcs } = directedTriangles(M, { deadline: opts.deadline, maxTriangles: opts.maxTriangles });
   const T = verts.length;
   if (T === 0) return finalize(M, verts, arcs, [], D, "fractional", t0);
   const arcIds = [...new Set(arcs.flat())];
@@ -206,6 +214,7 @@ export function fractionalPacking(M: number[][], opts: { eps?: number; D?: numbe
   for (let t = 0; t < T; t++) push(tlen(t), t);
   const maxIters = opts.maxIters ?? 5_000_000;
   while (Dval < 1 && iters < maxIters) {
+    if ((iters & 255) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("fractional packing deadline");
     const [k, best] = pop();
     const cur = tlen(best);
     if (cur > k * (1 + 1e-12)) { push(cur, best); continue; }
@@ -227,6 +236,7 @@ export function fractionalPacking(M: number[][], opts: { eps?: number; D?: numbe
       if (over > 0) { const d = Math.min(over, yu[t]); yu[t] -= d; for (let q = 0; q < 3; q++) load[ta[3 * t + q]] -= d; }
     }
   for (let t = 0; t < T; t++) {
+    if ((t & 1023) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("fractional packing finalization deadline");
     const s = Math.min(cap[ta[3 * t]] * D - load[ta[3 * t]], cap[ta[3 * t + 1]] * D - load[ta[3 * t + 1]], cap[ta[3 * t + 2]] * D - load[ta[3 * t + 2]]);
     if (s > 0) { yu[t] += s; for (let q = 0; q < 3; q++) load[ta[3 * t + q]] += s; }
   }
