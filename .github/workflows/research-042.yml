@@ -39,10 +39,16 @@ jobs:
         run: lake exe cache get
       - name: Build Mission 042 coordinate lemmas
         working-directory: research/westfall-041/lean
-        run: lake build Westfall042 Westfall043
+        run: lake build Westfall042 Westfall043 Westfall044 Westfall044Sharp
       - name: Print axioms of compiled coordinate lemmas
         working-directory: research/westfall-041/lean
         run: lake env lean Audit042.lean
       - name: Print axioms of Mission 043 decomposition
         working-directory: research/westfall-041/lean
         run: lake env lean Audit043.lean
+      - name: Print axioms of Mission 044 counting injection
+        working-directory: research/westfall-041/lean
+        run: lake env lean Audit044.lean
+      - name: Print axioms of sharp Mission 044 theorem
+        working-directory: research/westfall-041/lean
+        run: lake env lean Audit044Sharp.lean
