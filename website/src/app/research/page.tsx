@@ -23,7 +23,7 @@ export default function Research() {
         The central question: when can an exact algorithm for weighted linear ordering discover and exploit hidden structure on its own? The program runs from block-localized search with a supplied partition to an intrinsic structural parameter, an algorithm that recovers it, and machine-checked proofs.
         <div className="mt-6 flex flex-wrap gap-3">
           <ButtonLink href="/research/theorem/" primary>The structural theorem</ButtonLink>
-          <ButtonLink href="/research/manuscript/">Full manuscript</ButtonLink>
+          <ButtonLink href="/research/manuscript/">White paper</ButtonLink>
           <ButtonLink href="/roadmap/">Open questions</ButtonLink>
         </div>
       </PageHeader>
@@ -79,7 +79,8 @@ export default function Research() {
       <Section kicker="Publications" title="Manuscripts and technical notes"
         intro="These manuscripts are provisional. They have not been peer reviewed and have not been submitted for publication. The original reports are preserved verbatim as an archival record.">
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          <FeatureCard kicker="Manuscript" title="Automatic structural decomposition for exact weighted linear ordering" href="/research/manuscript/" cta="Read">The full original report of the structural theorem, partition recovery, the cut DP and the experimental study.</FeatureCard>
+          <FeatureCard kicker="White paper · v1.0" title="Exact weighted linear ordering with verifiable guarantees" href="/research/manuscript/" cta="Read">The whole program in one document: structural theory, cut counting, the ATLAS engine, certificates, the case study and open problems, each with its status.</FeatureCard>
+          <FeatureCard kicker="Original report" title="Automatic structural decomposition for exact weighted linear ordering" href="/research/report-022/" cta="Read">The full original report of the structural theorem, partition recovery, the cut DP and the experimental study, with complete proofs.</FeatureCard>
           <FeatureCard kicker="Manuscript" title="Square-root block localization" href="/research/paper/" cta="Read">The earlier counting bound for block-localized prefix states when a partition is supplied.</FeatureCard>
           <FeatureCard kicker="Manuscript" title="Block-localized exclusion (v1)" href={blob("papers/block-localized-exclusion-v1.md")} cta="Source">Hybrid hereditary bounds and pairwise block certificates: the BLX solver&apos;s foundations.</FeatureCard>
           <FeatureCard kicker="Technical note" title="Formal verification report" href={leanBlob("MISSION_025_REPORT.md")} cta="Read">Cost semantics, the running-time theorem, and an explicit list of what is not established.</FeatureCard>

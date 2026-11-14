@@ -23,7 +23,8 @@ export default function Theorem() {
         The theorem identifies an intrinsic parameter λ(A) of a weighted ordering instance and gives an algorithm that recovers a partition attaining it and solves the instance exactly, in {"poly(n)·2^{O(√λ)}"} time, which is polynomial in n and subexponential in λ. Its correctness and its operation-count bound are kernel-checked in Lean. The original manuscript is published in full. Novelty and significance have not been externally reviewed.
         <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="lean" /><EvidenceTag kind="provisional" /></div>
         <div className="mt-6 flex flex-wrap gap-3">
-          <ButtonLink href="/research/manuscript/" primary>Full manuscript</ButtonLink>
+          <ButtonLink href="/research/report-022/" primary>Full proofs (original report)</ButtonLink>
+          <ButtonLink href="/research/manuscript/">White paper</ButtonLink>
           <ButtonLink href="/formal-verification/">Verification details</ButtonLink>
           <ButtonLink href={blob("papers/discovery-022-research-summary.md")} external>Research summary (source) ↗</ButtonLink>
         </div>
@@ -74,7 +75,7 @@ export default function Theorem() {
             <li key={t} className="card p-6"><p className="font-mono text-xs text-fog-500">Step {i + 1}</p><h3 className="mt-1 font-semibold">{t}</h3><p className="mt-2 text-sm leading-relaxed text-fog-400">{d}</p></li>
           ))}
         </ol>
-        <p className="mt-6 text-sm text-fog-500">Full proofs: the <Link className="text-accent-600 underline" href="/research/manuscript/">manuscript</Link> (written arguments) and the <a className="text-accent-600 underline" href={leanBlob("Westfall022/Main.lean")}>Lean development</a> (machine-checked forms).</p>
+        <p className="mt-6 text-sm text-fog-500">Full proofs: the <Link className="text-accent-600 underline" href="/research/report-022/">original report</Link> (written arguments) and the <a className="text-accent-600 underline" href={leanBlob("Westfall022/Main.lean")}>Lean development</a> (machine-checked forms).</p>
       </Section>
 
       <Section muted kicker="Evidence and limitations" title="What has been measured">
