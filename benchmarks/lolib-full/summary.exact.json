@@ -1,0 +1,287 @@
+{
+ "tag": "exact",
+ "solvers": [
+  "atlas",
+  "highs",
+  "scip"
+ ],
+ "families": {
+  "IO": {
+   "instances": 50,
+   "n": "44\u201379",
+   "solved": {
+    "atlas": 50,
+    "highs": 50,
+    "scip": 50
+   },
+   "sgm": {
+    "atlas": 1.5634261264890643,
+    "highs": 0.7469843655135193,
+    "scip": 0.9311217364809732
+   }
+  },
+  "SGB": {
+   "instances": 25,
+   "n": "75",
+   "solved": {
+    "atlas": 0,
+    "highs": 12,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 30.0,
+    "highs": 28.491602918293218,
+    "scip": 30.0
+   }
+  },
+  "RandB": {
+   "instances": 90,
+   "n": "40\u201350",
+   "solved": {
+    "atlas": 21,
+    "highs": 15,
+    "scip": 15
+   },
+   "sgm": {
+    "atlas": 20.79088884114575,
+    "highs": 25.24775944267222,
+    "scip": 25.224995323913213
+   }
+  },
+  "MB": {
+   "instances": 30,
+   "n": "100\u2013250",
+   "solved": {
+    "atlas": 5,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 29.813365782716396,
+    "highs": 30.0,
+    "scip": 30.0
+   }
+  },
+  "Spec": {
+   "instances": 37,
+   "n": "11\u2013452",
+   "solved": {
+    "atlas": 13,
+    "highs": 13,
+    "scip": 11
+   },
+   "sgm": {
+    "atlas": 16.105766528926036,
+    "highs": 17.748736897620557,
+    "scip": 19.579294261766254
+   }
+  },
+  "All": {
+   "instances": 232,
+   "n": "11\u2013452",
+   "solved": {
+    "atlas": 89,
+    "highs": 90,
+    "scip": 76
+   },
+   "sgm": {
+    "atlas": 15.822587062115538,
+    "highs": 16.953338727501414,
+    "scip": 17.435794599307222
+   }
+  }
+ },
+ "problems": [],
+ "new_best": [],
+ "status": {
+  "atlas": {
+   "SOLVED": 89,
+   "LIMIT": 105,
+   "KILLED_AT_LIMIT": 33,
+   "OUT_OF_MEMORY": 5,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 0,
+   "ERROR": 0
+  },
+  "highs": {
+   "SOLVED": 90,
+   "LIMIT": 130,
+   "KILLED_AT_LIMIT": 11,
+   "OUT_OF_MEMORY": 0,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 1,
+   "ERROR": 0
+  },
+  "scip": {
+   "SOLVED": 76,
+   "LIMIT": 139,
+   "KILLED_AT_LIMIT": 16,
+   "OUT_OF_MEMORY": 0,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 1,
+   "ERROR": 0
+  }
+ },
+ "only": {
+  "atlas": [
+   "RandB/N-p44-31",
+   "RandB/N-p44-36",
+   "RandB/N-p44-41",
+   "RandB/N-p44-45",
+   "MB/N-r100a2",
+   "MB/N-r100b2",
+   "MB/N-r100c2",
+   "MB/N-r100d2",
+   "MB/N-r100e2",
+   "Spec/N-pal19"
+  ],
+  "highs": [
+   "SGB/N-sgb75.06",
+   "SGB/N-sgb75.07",
+   "SGB/N-sgb75.08",
+   "SGB/N-sgb75.09",
+   "SGB/N-sgb75.10",
+   "SGB/N-sgb75.13",
+   "SGB/N-sgb75.14",
+   "SGB/N-sgb75.19",
+   "SGB/N-sgb75.20",
+   "SGB/N-sgb75.22",
+   "SGB/N-sgb75.24",
+   "SGB/N-sgb75.25",
+   "Spec/N-econ59"
+  ],
+  "scip": []
+ },
+ "unsolved_by_all": [
+  "SGB/N-sgb75.01",
+  "SGB/N-sgb75.02",
+  "SGB/N-sgb75.03",
+  "SGB/N-sgb75.04",
+  "SGB/N-sgb75.05",
+  "SGB/N-sgb75.11",
+  "SGB/N-sgb75.12",
+  "SGB/N-sgb75.15",
+  "SGB/N-sgb75.16",
+  "SGB/N-sgb75.17",
+  "SGB/N-sgb75.18",
+  "SGB/N-sgb75.21",
+  "SGB/N-sgb75.23",
+  "RandB/N-p40-02",
+  "RandB/N-p40-03",
+  "RandB/N-p40-04",
+  "RandB/N-p40-05",
+  "RandB/N-p40-06",
+  "RandB/N-p40-07",
+  "RandB/N-p40-08",
+  "RandB/N-p40-09",
+  "RandB/N-p40-10",
+  "RandB/N-p40-11",
+  "RandB/N-p40-12",
+  "RandB/N-p40-14",
+  "RandB/N-p40-15",
+  "RandB/N-p44-01",
+  "RandB/N-p44-02",
+  "RandB/N-p44-03",
+  "RandB/N-p44-04",
+  "RandB/N-p44-05",
+  "RandB/N-p44-06",
+  "RandB/N-p44-07",
+  "RandB/N-p44-08",
+  "RandB/N-p44-09",
+  "RandB/N-p44-10",
+  "RandB/N-p44-11",
+  "RandB/N-p44-12",
+  "RandB/N-p44-13",
+  "RandB/N-p44-14",
+  "RandB/N-p44-15",
+  "RandB/N-p44-16",
+  "RandB/N-p44-17",
+  "RandB/N-p44-18",
+  "RandB/N-p44-19",
+  "RandB/N-p44-20",
+  "RandB/N-p44-21",
+  "RandB/N-p44-22",
+  "RandB/N-p44-23",
+  "RandB/N-p44-24",
+  "RandB/N-p44-25",
+  "RandB/N-p44-26",
+  "RandB/N-p44-27",
+  "RandB/N-p44-28",
+  "RandB/N-p44-29",
+  "RandB/N-p44-30",
+  "RandB/N-p44-32",
+  "RandB/N-p44-33",
+  "RandB/N-p44-34",
+  "RandB/N-p44-35",
+  "RandB/N-p44-37",
+  "RandB/N-p44-38",
+  "RandB/N-p50-01",
+  "RandB/N-p50-02",
+  "RandB/N-p50-03",
+  "RandB/N-p50-04",
+  "RandB/N-p50-05",
+  "RandB/N-p50-06",
+  "RandB/N-p50-07",
+  "RandB/N-p50-08",
+  "RandB/N-p50-09",
+  "RandB/N-p50-10",
+  "RandB/N-p50-11",
+  "RandB/N-p50-12",
+  "RandB/N-p50-13",
+  "RandB/N-p50-14",
+  "RandB/N-p50-15",
+  "RandB/N-p50-16",
+  "RandB/N-p50-17",
+  "RandB/N-p50-18",
+  "RandB/N-p50-19",
+  "RandB/N-p50-20",
+  "MB/N-r150a0",
+  "MB/N-r150a1",
+  "MB/N-r150b0",
+  "MB/N-r150b1",
+  "MB/N-r150c0",
+  "MB/N-r150c1",
+  "MB/N-r150d0",
+  "MB/N-r150d1",
+  "MB/N-r150e0",
+  "MB/N-r150e1",
+  "MB/N-r200a0",
+  "MB/N-r200a1",
+  "MB/N-r200b0",
+  "MB/N-r200b1",
+  "MB/N-r200c0",
+  "MB/N-r200c1",
+  "MB/N-r200d0",
+  "MB/N-r200d1",
+  "MB/N-r200e0",
+  "MB/N-r200e1",
+  "MB/N-r250a0",
+  "MB/N-r250b0",
+  "MB/N-r250c0",
+  "MB/N-r250d0",
+  "MB/N-r250e0",
+  "Spec/N-EX1",
+  "Spec/N-EX2",
+  "Spec/N-EX3",
+  "Spec/N-EX4",
+  "Spec/N-EX5",
+  "Spec/N-EX6",
+  "Spec/N-atp111",
+  "Spec/N-atp134",
+  "Spec/N-atp163",
+  "Spec/N-atp452",
+  "Spec/N-atp66",
+  "Spec/N-atp76",
+  "Spec/N-econ67",
+  "Spec/N-econ68",
+  "Spec/N-econ71",
+  "Spec/N-econ72",
+  "Spec/N-econ73",
+  "Spec/N-econ76",
+  "Spec/N-econ77",
+  "Spec/N-pal23",
+  "Spec/N-pal31",
+  "Spec/N-pal43",
+  "Spec/N-pal55"
+ ]
+}

@@ -1,0 +1,216 @@
+{"id": "IO/N-be75eec", "n": 50, "lambda_lb": 265, "lambda_ub": 2176, "witness": {"b": 40, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-be75np", "n": 50, "lambda_lb": 186, "lambda_ub": 2133, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-be75oi", "n": 50, "lambda_lb": 293, "lambda_ub": 2251, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-be75tot", "n": 50, "lambda_lb": 196, "lambda_ub": 2175, "witness": {"b": 24, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-stabu70", "n": 60, "lambda_lb": 334, "lambda_ub": 3505, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-stabu74", "n": 60, "lambda_lb": 326, "lambda_ub": 3466, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-stabu75", "n": 60, "lambda_lb": 357, "lambda_ub": 3442, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t59b11xx", "n": 44, "lambda_lb": 292, "lambda_ub": 1848, "witness": {"b": 15, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t59d11xx", "n": 44, "lambda_lb": 273, "lambda_ub": 1747, "witness": {"b": 20, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t59f11xx", "n": 44, "lambda_lb": 288, "lambda_ub": 1837, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t59i11xx", "n": 44, "lambda_lb": 288, "lambda_ub": 1750, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t59n11xx", "n": 44, "lambda_lb": 306, "lambda_ub": 1776, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65b11xx", "n": 44, "lambda_lb": 155, "lambda_ub": 1675, "witness": {"b": 20, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65d11xx", "n": 44, "lambda_lb": 185, "lambda_ub": 1687, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65f11xx", "n": 44, "lambda_lb": 136, "lambda_ub": 1737, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65i11xx", "n": 44, "lambda_lb": 138, "lambda_ub": 1726, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65l11xx", "n": 44, "lambda_lb": 436, "lambda_ub": 1770, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65n11xx", "n": 44, "lambda_lb": 215, "lambda_ub": 1752, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t65w11xx", "n": 44, "lambda_lb": 114, "lambda_ub": 1684, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t69r11xx", "n": 44, "lambda_lb": 269, "lambda_ub": 1791, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70b11xx", "n": 44, "lambda_lb": 210, "lambda_ub": 1738, "witness": {"b": 16, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70d11xx", "n": 44, "lambda_lb": 140, "lambda_ub": 1858, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70d11xxb", "n": 44, "lambda_lb": 124, "lambda_ub": 1636, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70f11xx", "n": 44, "lambda_lb": 162, "lambda_ub": 1725, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70i11xx", "n": 44, "lambda_lb": 115, "lambda_ub": 1708, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70k11xx", "n": 44, "lambda_lb": 188, "lambda_ub": 1776, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70l11xx", "n": 44, "lambda_lb": 411, "lambda_ub": 1761, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70n11xx", "n": 44, "lambda_lb": 188, "lambda_ub": 1665, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70u11xx", "n": 44, "lambda_lb": 384, "lambda_ub": 1837, "witness": {"b": 20, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70w11xx", "n": 44, "lambda_lb": 103, "lambda_ub": 1618, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t70x11xx", "n": 44, "lambda_lb": 99, "lambda_ub": 1618, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t74d11xx", "n": 44, "lambda_lb": 138, "lambda_ub": 1780, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75d11xx", "n": 44, "lambda_lb": 147, "lambda_ub": 1777, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75e11xx", "n": 44, "lambda_lb": 109, "lambda_ub": 1663, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75i11xx", "n": 44, "lambda_lb": 113, "lambda_ub": 1702, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75k11xx", "n": 44, "lambda_lb": 222, "lambda_ub": 1780, "witness": {"b": 20, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75n11xx", "n": 44, "lambda_lb": 211, "lambda_ub": 1603, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-t75u11xx", "n": 44, "lambda_lb": 228, "lambda_ub": 1684, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n54", "n": 56, "lambda_lb": 306, "lambda_ub": 2926, "witness": {"b": 29, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n58", "n": 56, "lambda_lb": 297, "lambda_ub": 2959, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n62", "n": 56, "lambda_lb": 288, "lambda_ub": 3025, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n66", "n": 56, "lambda_lb": 287, "lambda_ub": 2937, "witness": {"b": 30, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n67", "n": 56, "lambda_lb": 295, "lambda_ub": 3106, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56n72", "n": 56, "lambda_lb": 306, "lambda_ub": 3004, "witness": {"b": 31, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56r54", "n": 56, "lambda_lb": 309, "lambda_ub": 3124, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56r58", "n": 56, "lambda_lb": 299, "lambda_ub": 2959, "witness": {"b": 31, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56r66", "n": 56, "lambda_lb": 288, "lambda_ub": 2916, "witness": {"b": 30, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56r67", "n": 56, "lambda_lb": 301, "lambda_ub": 3061, "witness": {"b": 31, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-tiw56r72", "n": 56, "lambda_lb": 295, "lambda_ub": 2935, "witness": {"b": 29, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "IO/N-usa79", "n": 79, "lambda_lb": 480, "lambda_ub": 5782, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r100a2", "n": 100, "lambda_lb": 885, "lambda_ub": 8100, "witness": {"b": 48, "blocks": 5}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r100b2", "n": 100, "lambda_lb": 846, "lambda_ub": 7980, "witness": {"b": 48, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r100c2", "n": 100, "lambda_lb": 846, "lambda_ub": 7950, "witness": {"b": 48, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r100d2", "n": 100, "lambda_lb": 860, "lambda_ub": 8193, "witness": {"b": 48, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r100e2", "n": 100, "lambda_lb": 833, "lambda_ub": 7944, "witness": {"b": 48, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "MB/N-r150a0", "n": 150, "lambda_lb": null, "lambda_ub": 14790, "witness": {"b": 48, "blocks": 5}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150a1", "n": 150, "lambda_lb": null, "lambda_ub": 16782, "witness": {"b": 48, "blocks": 6}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150b0", "n": 150, "lambda_lb": null, "lambda_ub": 14289, "witness": {"b": 48, "blocks": 5}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150b1", "n": 150, "lambda_lb": null, "lambda_ub": 16728, "witness": {"b": 48, "blocks": 5}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150c0", "n": 150, "lambda_lb": null, "lambda_ub": 14343, "witness": {"b": 48, "blocks": 4}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150c1", "n": 150, "lambda_lb": null, "lambda_ub": 16764, "witness": {"b": 48, "blocks": 4}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150d0", "n": 150, "lambda_lb": null, "lambda_ub": 14637, "witness": {"b": 48, "blocks": 4}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150d1", "n": 150, "lambda_lb": null, "lambda_ub": 17028, "witness": {"b": 48, "blocks": 6}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150e0", "n": 150, "lambda_lb": null, "lambda_ub": 14256, "witness": {"b": 48, "blocks": 6}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "MB/N-r150e1", "n": 150, "lambda_lb": null, "lambda_ub": 16827, "witness": {"b": 48, "blocks": 6}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p40-01", "n": 40, "lambda_lb": 186, "lambda_ub": 1492, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-02", "n": 40, "lambda_lb": null, "lambda_ub": 1582, "witness": {"b": 20, "blocks": 2}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p40-03", "n": 40, "lambda_lb": null, "lambda_ub": 1582, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-04", "n": 40, "lambda_lb": null, "lambda_ub": 1579, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-05", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-06", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-07", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-08", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-09", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p40-10", "n": 40, "lambda_lb": null, "lambda_ub": 1579, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-11", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-12", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-13", "n": 40, "lambda_lb": 136, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-14", "n": 40, "lambda_lb": null, "lambda_ub": 1585, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-15", "n": 40, "lambda_lb": null, "lambda_ub": 1600, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p40-16", "n": 40, "lambda_lb": 133, "lambda_ub": 1579, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-17", "n": 40, "lambda_lb": 118, "lambda_ub": 1495, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-18", "n": 40, "lambda_lb": 121, "lambda_ub": 1546, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-19", "n": 40, "lambda_lb": 120, "lambda_ub": 1483, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p40-20", "n": 40, "lambda_lb": 115, "lambda_ub": 1477, "witness": {"b": 20, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-01", "n": 44, "lambda_lb": null, "lambda_ub": 1902, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-02", "n": 44, "lambda_lb": null, "lambda_ub": 1795, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-03", "n": 44, "lambda_lb": null, "lambda_ub": 1843, "witness": {"b": 23, "blocks": 2}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p44-04", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-05", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-06", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p44-07", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-08", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-09", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-10", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-11", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-12", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-13", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-14", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-15", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-16", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-17", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-18", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-19", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-20", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-21", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-22", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-23", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-24", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-25", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-26", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-27", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-28", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p44-29", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-30", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-31", "n": 44, "lambda_lb": 146, "lambda_ub": 1935, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-32", "n": 44, "lambda_lb": null, "lambda_ub": 1923, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-33", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-34", "n": 44, "lambda_lb": null, "lambda_ub": 1903, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-35", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-36", "n": 44, "lambda_lb": 149, "lambda_ub": 1849, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-37", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-38", "n": 44, "lambda_lb": null, "lambda_ub": 1936, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p44-39", "n": 44, "lambda_lb": 125, "lambda_ub": 1663, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-40", "n": 44, "lambda_lb": 147, "lambda_ub": 1932, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-41", "n": 44, "lambda_lb": 131, "lambda_ub": 1830, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-42", "n": 44, "lambda_lb": 150, "lambda_ub": 1887, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-43", "n": 44, "lambda_lb": 135, "lambda_ub": 1845, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-44", "n": 44, "lambda_lb": 135, "lambda_ub": 1845, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-45", "n": 44, "lambda_lb": 148, "lambda_ub": 1833, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-46", "n": 44, "lambda_lb": 147, "lambda_ub": 1807, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-47", "n": 44, "lambda_lb": 136, "lambda_ub": 1744, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-48", "n": 44, "lambda_lb": 123, "lambda_ub": 1612, "witness": {"b": 22, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-49", "n": 44, "lambda_lb": 113, "lambda_ub": 1630, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p44-50", "n": 44, "lambda_lb": 123, "lambda_ub": 1693, "witness": {"b": 23, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "RandB/N-p50-01", "n": 50, "lambda_lb": null, "lambda_ub": 2469, "witness": {"b": 24, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-02", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-03", "n": 50, "lambda_lb": null, "lambda_ub": 2409, "witness": {"b": 24, "blocks": 4}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p50-04", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-05", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p50-06", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-07", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-08", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p50-09", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-10", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-11", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-12", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "RandB/N-p50-13", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-14", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-15", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-16", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-17", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-18", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-19", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "RandB/N-p50-20", "n": 50, "lambda_lb": null, "lambda_ub": 2500, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.01", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.02", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.03", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.04", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.05", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.06", "n": 75, "lambda_lb": 903, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.07", "n": 75, "lambda_lb": 1084, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.08", "n": 75, "lambda_lb": 414, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.09", "n": 75, "lambda_lb": 460, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.10", "n": 75, "lambda_lb": 606, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.11", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.12", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.13", "n": 75, "lambda_lb": 449, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.14", "n": 75, "lambda_lb": 947, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.15", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.16", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.17", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "scip", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.18", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.19", "n": 75, "lambda_lb": 608, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.20", "n": 75, "lambda_lb": 766, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.21", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.22", "n": 75, "lambda_lb": 763, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.23", "n": 75, "lambda_lb": null, "lambda_ub": 5625, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "SGB/N-sgb75.24", "n": 75, "lambda_lb": 480, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "SGB/N-sgb75.25", "n": 75, "lambda_lb": 611, "lambda_ub": 5625, "witness": null, "order_from": "highs", "order_proved_optimal": true}
+{"id": "Spec/N-EX1", "n": 50, "lambda_lb": null, "lambda_ub": 2301, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-EX2", "n": 50, "lambda_lb": null, "lambda_ub": 2307, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-EX3", "n": 50, "lambda_lb": null, "lambda_ub": 2328, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-EX4", "n": 50, "lambda_lb": null, "lambda_ub": 2286, "witness": {"b": 24, "blocks": 4}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-EX5", "n": 50, "lambda_lb": null, "lambda_ub": 2346, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-EX6", "n": 50, "lambda_lb": null, "lambda_ub": 2250, "witness": {"b": 24, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-atp111", "n": 111, "lambda_lb": null, "lambda_ub": 12103, "witness": {"b": 64, "blocks": 2}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "Spec/N-atp134", "n": 134, "lambda_lb": null, "lambda_ub": 17167, "witness": {"b": 64, "blocks": 3}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "Spec/N-atp163", "n": 163, "lambda_lb": null, "lambda_ub": 26569, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "Spec/N-atp24", "n": 24, "lambda_lb": 83, "lambda_ub": 438, "witness": {"b": 12, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-atp48", "n": 48, "lambda_lb": 417, "lambda_ub": 1977, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-atp66", "n": 66, "lambda_lb": null, "lambda_ub": 3835, "witness": {"b": 32, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-atp76", "n": 76, "lambda_lb": null, "lambda_ub": 5251, "witness": {"b": 40, "blocks": 2}, "order_from": "highs", "order_proved_optimal": false}
+{"id": "Spec/N-econ36", "n": 36, "lambda_lb": 162, "lambda_ub": 1276, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ43", "n": 43, "lambda_lb": 200, "lambda_ub": 1738, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ47", "n": 47, "lambda_lb": 213, "lambda_ub": 2199, "witness": {"b": 24, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ58", "n": 58, "lambda_lb": 274, "lambda_ub": 3337, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ59", "n": 59, "lambda_lb": 317, "lambda_ub": 3439, "witness": {"b": 32, "blocks": 2}, "order_from": "highs", "order_proved_optimal": true}
+{"id": "Spec/N-econ61", "n": 61, "lambda_lb": 321, "lambda_ub": 3592, "witness": {"b": 31, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ62", "n": 62, "lambda_lb": 352, "lambda_ub": 3736, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ64", "n": 64, "lambda_lb": 367, "lambda_ub": 3922, "witness": {"b": 32, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-econ67", "n": 67, "lambda_lb": null, "lambda_ub": 4489, "witness": null, "order_from": "highs", "order_proved_optimal": false}
+{"id": "Spec/N-econ68", "n": 68, "lambda_lb": null, "lambda_ub": 4624, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-econ71", "n": 71, "lambda_lb": null, "lambda_ub": 5041, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-econ72", "n": 72, "lambda_lb": null, "lambda_ub": 5158, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-econ73", "n": 73, "lambda_lb": null, "lambda_ub": 5044, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-econ76", "n": 76, "lambda_lb": null, "lambda_ub": 5659, "witness": {"b": 40, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-econ77", "n": 77, "lambda_lb": null, "lambda_ub": 5559, "witness": {"b": 39, "blocks": 2}, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-pal11", "n": 11, "lambda_lb": 15, "lambda_ub": 118, "witness": {"b": 4, "blocks": 3}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-pal13", "n": 13, "lambda_lb": 17, "lambda_ub": 127, "witness": {"b": 1, "blocks": 13}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-pal19", "n": 19, "lambda_lb": 45, "lambda_ub": 361, "witness": null, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-pal23", "n": 23, "lambda_lb": null, "lambda_ub": 529, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-pal27", "n": 27, "lambda_lb": 83, "lambda_ub": 574, "witness": {"b": 8, "blocks": 5}, "order_from": "atlas", "order_proved_optimal": true}
+{"id": "Spec/N-pal31", "n": 31, "lambda_lb": null, "lambda_ub": 961, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-pal43", "n": 43, "lambda_lb": null, "lambda_ub": 1849, "witness": null, "order_from": "atlas", "order_proved_optimal": false}
+{"id": "Spec/N-pal55", "n": 55, "lambda_lb": null, "lambda_ub": 2358, "witness": {"b": 24, "blocks": 3}, "order_from": "scip", "order_proved_optimal": false}
