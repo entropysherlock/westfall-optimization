@@ -68,6 +68,20 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
     A = as_skew(A)
     n = A.shape[0]
     t0 = time.time()
+    if mode == "native_highs":
+        # Experimental direct HiGHS backend: no unnecessary heuristic pre-run.
+        from ..solvers.highs_native import native_highs_solve
+        m = native_highs_solve(A, time_limit=milp_time_limit)
+        result = dict(n=n, mode=mode, route="native_highs", order=m["order"],
+                      time=time.time() - t0, backend="highspy",
+                      independent_optimality_certificate=False)
+        if m["proved"]:
+            result.update(status=PROVED, OPT=m["OPT"], proved_by="native_highs")
+        else:
+            result.update(status=UNRESOLVED, OPT=None,
+                          best_found=m["best_found"], upper_bound=m["upper_bound"])
+        return result
+
     if mode == "adaptive_milp":
         # Avoid speculative heuristic-startup cost before the MILP router.
         from ..solvers.milp_cuts import adaptive_milp_solve
