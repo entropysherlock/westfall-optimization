@@ -118,8 +118,9 @@ export default function Technology() {
       </Section>
 
       <Section kicker="Go further" title="See it in practice">
-        <ul className="grid gap-4 sm:grid-cols-3">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {([
+            ["/case-studies/forty-items/", "Case study: 40 items", "One sequence, proved optimal, with every number reproducible."],
             ["/benchmarks/", "Benchmarks", "Measured comparisons with HiGHS, including the cases HiGHS wins."],
             ["/applications/", "Applications", "Sequencing, ranking and prioritization problems the solvers address."],
             ["/verify/", "Certificate verifier", "Check an optimality certificate independently in your browser."],

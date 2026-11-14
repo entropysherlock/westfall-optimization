@@ -3,6 +3,9 @@ import { ButtonLink, Callout, EvidenceTag, FeatureCard, Section } from "@/compon
 import { Tex } from "@/components/Tex";
 import HeroDemo from "@/components/HeroDemo";
 import { REPO, RESEARCH_CI } from "@/lib/site";
+import { greedy as CS_GREEDY, n as CS_N, optimum as CS_OPT, reductionPct } from "@/lib/caseStudy40";
+
+const CS_PCT = reductionPct.toFixed(1);
 
 const capabilities = [
   ["Exact optimization", "Dynamic programming and exclusion search that establish optimality when they complete, never just “good enough” without saying so."],
@@ -61,6 +64,27 @@ export default function Home() {
           </div>
         </div>
       </Section>
+
+      <section className="border-b border-line bg-white">
+        <div className="mx-auto grid max-w-page gap-8 px-5 py-14 sm:px-8 lg:grid-cols-[1.2fr_1fr] lg:items-center">
+          <div>
+            <p className="kicker mb-3">Case study</p>
+            <h2 className="h-display text-[28px] leading-tight sm:text-[34px]">{CS_N} items. One proven best sequence.</h2>
+            <p className="mt-4 max-w-2xl leading-relaxed text-fog-400">
+              On a reproducible benchmark, ATLAS found the lowest-penalty ordering of {CS_N} items, {CS_PCT}% below a greedy baseline, and exported a proof that no better ordering exists. The page shows every number, including where an open-source solver is faster.
+            </p>
+            <div className="mt-6"><ButtonLink href="/case-studies/forty-items/" primary>Read the case study</ButtonLink></div>
+          </div>
+          <div>
+            <dl className="grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-lg border border-line p-4"><dt className="label">Greedy</dt><dd className="mt-1 font-mono text-2xl text-fog-100">{CS_GREEDY}</dd></div>
+              <div className="rounded-lg border border-accent-600/30 bg-accent-50 p-4"><dt className="label !text-accent-700">Optimal</dt><dd className="mt-1 font-mono text-2xl text-accent-700">{CS_OPT}</dd></div>
+              <div className="rounded-lg border border-line p-4"><dt className="label">Lower</dt><dd className="mt-1 font-mono text-2xl text-fog-100">{CS_PCT}%</dd></div>
+            </dl>
+            <p className="mt-3 text-center text-xs text-fog-500">Penalty = total weight of broken pairwise preferences. Synthetic benchmark; proof verified independently.</p>
+          </div>
+        </div>
+      </section>
 
       <Section muted kicker="Formal verification" title="A verified algorithm, with its limits stated"
         intro="The core structural results, the partition-recovery procedure and the AutoCut algorithm's correctness and running-time bound are proved in Lean 4 with Mathlib. The kernel checks them on every build.">
