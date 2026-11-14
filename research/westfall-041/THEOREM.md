@@ -1,5 +1,8 @@
 # Mission 041 — Statements
 
+> **Mission 044 machine-verified upgrade:** Pinned Lean 4.32.0/Mathlib v4.32.0 now checks `R h K ≤ (2*h).choose h * H K ≤ 4^h * H K` and `card_kcuts_le_defect_sharp`, giving **N_k ≤ (n+1)4^h H(c+k)^2**. Source: `lean/Westfall044.lean`, `lean/Westfall044Sharp.lean`; successful CI https://github.com/entropysherlock/westfall-optimization/actions/runs/43533991215 . The asymptotic H estimate and algorithms remain paper-only. These notes exist only on the stacked research branch.
+
+
 > **Mission 042 sharper addendum (research branch only; paper proof, not yet Lean checked):** The profile count satisfies R_h(K) ≤ binomial(2h,h) H(K) ≤ 4^h H(K), by splitting each row length into (λ_i−h)_+ and min(λ_i,h). Thus Theorem C also implies N_k ≤ (n+1)4^h H(c+k)². See ../westfall-042/MANUSCRIPT_ADDENDUM.md and H_DEPENDENCE.md. Original Mission 041 Lean-verified statements below remain unchanged.
 
 
