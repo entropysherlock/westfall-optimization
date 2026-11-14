@@ -116,6 +116,23 @@ export default function Technology() {
         </div>
         <div className="mt-8 flex flex-wrap gap-3"><ButtonLink href="/formal-verification/" primary>Formal verification</ButtonLink><ButtonLink href="/research/">Research program</ButtonLink><ButtonLink href="/studio/">Try it in the Studio</ButtonLink></div>
       </Section>
+
+      <Section kicker="Go further" title="See it in practice">
+        <ul className="grid gap-4 sm:grid-cols-3">
+          {([
+            ["/benchmarks/", "Benchmarks", "Measured comparisons with HiGHS, including the cases HiGHS wins."],
+            ["/applications/", "Applications", "Sequencing, ranking and prioritization problems the solvers address."],
+            ["/verify/", "Certificate verifier", "Check an optimality certificate independently in your browser."],
+          ] as const).map(([href, title, text]) => (
+            <li key={href}>
+              <Link href={href} className="card block h-full p-5 hover:border-accent-600/40">
+                <span className="font-semibold text-fog-100">{title}</span>
+                <span className="mt-1 block text-sm text-fog-400">{text}</span>
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </Section>
     </>
   );
 }
