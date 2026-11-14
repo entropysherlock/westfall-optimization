@@ -126,9 +126,16 @@ export function solveAtlas(M: number[][], opts: AtlasOptions = {}): AtlasResult 
     let rep: ComponentReport;
     if (emit) emit({ kind: "component", index: ci, size: s, phase: s <= subsetMax ? "exact-search" : "incumbent", method: s <= subsetMax ? "subset-dp" : "local-search", bounds: bounds() });
     if (s <= subsetMax && !expired()) {
-      const r = subsetDPExact(sub, { deadline: opts.deadline });
-      local = r.order;
-      rep = { size: s, method: "subset-dp", optimal: true, states: r.states, ms: 0 };
+      try {
+        const r = subsetDPExact(sub, { deadline: opts.deadline });
+        local = r.order;
+        rep = { size: s, method: "subset-dp", optimal: true, states: r.states, ms: 0 };
+      } catch (e) {
+        if (!(e instanceof Interrupted)) throw e;
+        local = [...Array(s).keys()]; // still a feasible fallback
+        rep = { size: s, method: "subset-dp", optimal: false, states: 0, ms: 0,
+          note: "subset DP stopped: " + e.message };
+      }
     } else {
       const inc = localSearch(sub, [...Array(s).keys()], {
         timeMs: opts.incumbentMs ?? Math.min(1500, 20 + 4 * s + (s > 40 ? 20 * s : 0)),
