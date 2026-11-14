@@ -28,7 +28,7 @@ theorem split_profile_antitone {h K : ℕ}
     (hr : ∀ i j : Fin h, i ≤ j → r j ≤ r i)
     (i j : Fin h) (hij : i ≤ j) :
     residual r j ≤ residual r i ∧ boxed r j ≤ boxed r i := by
-  have hval : (r j).val ≤ (r i).val := (hr i j hij).val
+  have hval : (r j).val ≤ (r i).val := Fin.le_def.mp (hr i j hij)
   constructor
   · unfold residual
     omega
