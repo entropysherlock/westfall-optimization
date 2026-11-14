@@ -1,0 +1,15 @@
+⚠ [761/763] Replayed Westfall040.CutCount
+warning: Westfall040/CutCount.lean:50:0: automatically included section variable(s) unused in theorem `Westfall040.rectangle`:
+  [LinearOrder V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [LinearOrder V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+warning: Westfall040/CutCount.lean:141:0: automatically included section variable(s) unused in theorem `Westfall040.card_split`:
+  [Fintype V]
+consider restructuring your `variable` declarations so that the variables are not in scope or explicitly omit them:
+  omit [Fintype V] in theorem ...
+
+Note: This linter can be disabled with `set_option linter.unusedSectionVars false`
+Build completed successfully (763 jobs).
+exit 0

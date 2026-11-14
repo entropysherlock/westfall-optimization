@@ -1,0 +1,217 @@
+{
+ "correctness": {
+  "instances": 300,
+  "mismatches": 0
+ },
+ "benchmark": [
+  {
+   "n": 16,
+   "flips": 2,
+   "ctw": 2,
+   "cuts_enumerated_total": 37,
+   "flow_calls": 566,
+   "ms": 20.6,
+   "final_limit_(n+1)H(2k)": 442,
+   "subset_dp_ctw": 2,
+   "subset_dp_ms": 58.8,
+   "ordering_width_verified": 2
+  },
+  {
+   "n": 16,
+   "flips": 4,
+   "ctw": 3,
+   "cuts_enumerated_total": 61,
+   "flow_calls": 850,
+   "ms": 33.0,
+   "final_limit_(n+1)H(2k)": 2006,
+   "subset_dp_ctw": 3,
+   "subset_dp_ms": 57.7,
+   "ordering_width_verified": 3
+  },
+  {
+   "n": 16,
+   "flips": 8,
+   "ctw": 6,
+   "cuts_enumerated_total": 193,
+   "flow_calls": 2306,
+   "ms": 119.2,
+   "final_limit_(n+1)H(2k)": 94078,
+   "subset_dp_ctw": 6,
+   "subset_dp_ms": 67.3,
+   "ordering_width_verified": 6
+  },
+  {
+   "n": 20,
+   "flips": 2,
+   "ctw": 2,
+   "cuts_enumerated_total": 76,
+   "flow_calls": 1230,
+   "ms": 102.6,
+   "final_limit_(n+1)H(2k)": 546,
+   "subset_dp_ctw": 2,
+   "subset_dp_ms": 1266.4,
+   "ordering_width_verified": 2
+  },
+  {
+   "n": 20,
+   "flips": 4,
+   "ctw": 4,
+   "cuts_enumerated_total": 256,
+   "flow_calls": 3484,
+   "ms": 216.4,
+   "final_limit_(n+1)H(2k)": 8169,
+   "subset_dp_ctw": 4,
+   "subset_dp_ms": 1135.7,
+   "ordering_width_verified": 4
+  },
+  {
+   "n": 20,
+   "flips": 8,
+   "ctw": 6,
+   "cuts_enumerated_total": 260,
+   "flow_calls": 3118,
+   "ms": 245.9,
+   "final_limit_(n+1)H(2k)": 116214,
+   "subset_dp_ctw": 6,
+   "subset_dp_ms": 1143.9,
+   "ordering_width_verified": 6
+  },
+  {
+   "n": 30,
+   "flips": 2,
+   "ctw": 2,
+   "cuts_enumerated_total": 116,
+   "flow_calls": 2906,
+   "ms": 376.5,
+   "final_limit_(n+1)H(2k)": 806,
+   "ordering_width_verified": 2
+  },
+  {
+   "n": 30,
+   "flips": 4,
+   "ctw": 4,
+   "cuts_enumerated_total": 231,
+   "flow_calls": 5290,
+   "ms": 702.8,
+   "final_limit_(n+1)H(2k)": 12059,
+   "ordering_width_verified": 4
+  },
+  {
+   "n": 30,
+   "flips": 8,
+   "ctw": 7,
+   "cuts_enumerated_total": 731,
+   "flow_calls": 11706,
+   "ms": 1979.3,
+   "final_limit_(n+1)H(2k)": 369210,
+   "ordering_width_verified": 7
+  },
+  {
+   "n": 40,
+   "flips": 2,
+   "ctw": 3,
+   "cuts_enumerated_total": 226,
+   "flow_calls": 7086,
+   "ms": 1551.3,
+   "final_limit_(n+1)H(2k)": 4838,
+   "ordering_width_verified": 3
+  },
+  {
+   "n": 40,
+   "flips": 4,
+   "ctw": 5,
+   "cuts_enumerated_total": 426,
+   "flow_calls": 12412,
+   "ms": 2971.6,
+   "final_limit_(n+1)H(2k)": 59122,
+   "ordering_width_verified": 5
+  },
+  {
+   "n": 40,
+   "flips": 8,
+   "ctw": 8,
+   "cuts_enumerated_total": 1578,
+   "flow_calls": 27978,
+   "ms": 9005.2,
+   "final_limit_(n+1)H(2k)": 1815398,
+   "ordering_width_verified": 8
+  },
+  {
+   "n": 60,
+   "flips": 2,
+   "ctw": 3,
+   "cuts_enumerated_total": 210,
+   "flow_calls": 11692,
+   "ms": 5331.6,
+   "final_limit_(n+1)H(2k)": 7198,
+   "ordering_width_verified": 3
+  },
+  {
+   "n": 60,
+   "flips": 4,
+   "ctw": 4,
+   "cuts_enumerated_total": 440,
+   "flow_calls": 20522,
+   "ms": 10538.1,
+   "final_limit_(n+1)H(2k)": 23729,
+   "ordering_width_verified": 4
+  },
+  {
+   "n": 60,
+   "flips": 8,
+   "ctw": 7,
+   "cuts_enumerated_total": 2001,
+   "flow_calls": 72838,
+   "ms": 49946.4,
+   "final_limit_(n+1)H(2k)": 726510,
+   "ordering_width_verified": 7
+  }
+ ],
+ "thresholds": [
+  {
+   "k": 1,
+   "log_H_2k": 1.61,
+   "log_FP_without_A": 6.68
+  },
+  {
+   "k": 2,
+   "log_H_2k": 3.26,
+   "log_FP_without_A": 11.21
+  },
+  {
+   "k": 5,
+   "log_H_2k": 7.27,
+   "log_FP_without_A": 20.85
+  },
+  {
+   "k": 10,
+   "log_H_2k": 12.61,
+   "log_FP_without_A": 32.43
+  },
+  {
+   "k": 20,
+   "log_H_2k": 21.07,
+   "log_FP_without_A": 49.68
+  },
+  {
+   "k": 50,
+   "log_H_2k": 39.26,
+   "log_FP_without_A": 85.88
+  },
+  {
+   "k": 100,
+   "log_H_2k": 61.0,
+   "log_FP_without_A": 128.75
+  },
+  {
+   "k": 200,
+   "log_H_2k": 92.96,
+   "log_FP_without_A": 191.84
+  },
+  {
+   "k": 500,
+   "log_H_2k": 158.49,
+   "log_FP_without_A": 322.59
+  }
+ ]
+}
