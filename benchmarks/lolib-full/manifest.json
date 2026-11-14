@@ -1,0 +1,6174 @@
+{
+ "suite_repo": "https://github.com/F-a-b-r-i-z-i-o/Lop-Time-For-a-Change",
+ "suite_commit": "a32e2cb24a9cb7bf3b754ebe4435adeaf34ffd9f",
+ "bks_repo": "https://github.com/carlossegurag/LOP_MA-EDM",
+ "bks_commit": "0572185bcb7bddc8059eee2dbf8c6b3d549932ba",
+ "objective": "maximise sum_{r<s} C[pi_r][pi_s]",
+ "instances": [
+  {
+   "family": "IO",
+   "name": "N-be75eec",
+   "n": 50,
+   "sha256": "170a25163de0cd7580380bfe535c13ea6dea05f893e5067bfc5a9589d0a6f198",
+   "path": "_data/suite/classic_benchmarks/IO/N-be75eec",
+   "bks": 236464,
+   "bks_stated": 236464
+  },
+  {
+   "family": "IO",
+   "name": "N-be75np",
+   "n": 50,
+   "sha256": "cb4b61408b1f7683157db540641ba84e04a3dfe032aa4538b3e32d8de73495af",
+   "path": "_data/suite/classic_benchmarks/IO/N-be75np",
+   "bks": 716994,
+   "bks_stated": 716994
+  },
+  {
+   "family": "IO",
+   "name": "N-be75oi",
+   "n": 50,
+   "sha256": "b599c323967e01b822566040529f1b5d64a1918e0899f0e58d95e11a39319c36",
+   "path": "_data/suite/classic_benchmarks/IO/N-be75oi",
+   "bks": 111171,
+   "bks_stated": 111171
+  },
+  {
+   "family": "IO",
+   "name": "N-be75tot",
+   "n": 50,
+   "sha256": "e81da75eb1b3d10a6e99834dbb536319abfc0fd3ff2bbb0feeb7c92221408bec",
+   "path": "_data/suite/classic_benchmarks/IO/N-be75tot",
+   "bks": 980516,
+   "bks_stated": 980516
+  },
+  {
+   "family": "IO",
+   "name": "N-stabu70",
+   "n": 60,
+   "sha256": "3badb5dbacb2c3ceb31a1ad392f85862d84a28525ac192f2b9aec06b3cd4669c",
+   "path": "_data/suite/classic_benchmarks/IO/N-stabu70",
+   "bks": 362512,
+   "bks_stated": 362512
+  },
+  {
+   "family": "IO",
+   "name": "N-stabu74",
+   "n": 60,
+   "sha256": "ff8492d78577138e07bee73ae8ea8db96ac3f66dd69ab4b2aea33288f0c9c4e7",
+   "path": "_data/suite/classic_benchmarks/IO/N-stabu74",
+   "bks": 541393,
+   "bks_stated": 541393
+  },
+  {
+   "family": "IO",
+   "name": "N-stabu75",
+   "n": 60,
+   "sha256": "ed6f91b965a6cbfd509a562e988e6283754797c0b9429012d34acce2dbc51f1d",
+   "path": "_data/suite/classic_benchmarks/IO/N-stabu75",
+   "bks": 553303,
+   "bks_stated": 553303
+  },
+  {
+   "family": "IO",
+   "name": "N-t59b11xx",
+   "n": 44,
+   "sha256": "3b640ef61ca81fda8547bcfaf6a98792361ff962d9ea74cd41bbf5bb05980f3f",
+   "path": "_data/suite/classic_benchmarks/IO/N-t59b11xx",
+   "bks": 209320,
+   "bks_stated": 209320
+  },
+  {
+   "family": "IO",
+   "name": "N-t59d11xx",
+   "n": 44,
+   "sha256": "1b1345d9c2950a2b4e62de3c8d28b879ede397f2d5008e6929bd498b14ab37b8",
+   "path": "_data/suite/classic_benchmarks/IO/N-t59d11xx",
+   "bks": 147354,
+   "bks_stated": 147354
+  },
+  {
+   "family": "IO",
+   "name": "N-t59f11xx",
+   "n": 44,
+   "sha256": "6c91ccb408126b3ae056c400ca5f42b65b411c74f097209c319bb13b19c4fd65",
+   "path": "_data/suite/classic_benchmarks/IO/N-t59f11xx",
+   "bks": 122520,
+   "bks_stated": 122520
+  },
+  {
+   "family": "IO",
+   "name": "N-t59i11xx",
+   "n": 44,
+   "sha256": "33accae5601e881d41084649d84f09511bfb3abfad5dbcd48e90e33a798bc512",
+   "path": "_data/suite/classic_benchmarks/IO/N-t59i11xx",
+   "bks": 8261545,
+   "bks_stated": 8261545
+  },
+  {
+   "family": "IO",
+   "name": "N-t59n11xx",
+   "n": 44,
+   "sha256": "667e99f70c679820254b1bf9784b57e65eaa7cd39b90ecb958a85f225389f392",
+   "path": "_data/suite/classic_benchmarks/IO/N-t59n11xx",
+   "bks": 20928,
+   "bks_stated": 20928
+  },
+  {
+   "family": "IO",
+   "name": "N-t65b11xx",
+   "n": 44,
+   "sha256": "dce60335ec16c70cf736199d2dc5dd65eebe99f4795572bef978dd6feb1ac70d",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65b11xx",
+   "bks": 356758,
+   "bks_stated": 356758
+  },
+  {
+   "family": "IO",
+   "name": "N-t65d11xx",
+   "n": 44,
+   "sha256": "e330e43ba0189dde50485c77656276cf0fb58381e3a1acc56f1fd8c59d663165",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65d11xx",
+   "bks": 237739,
+   "bks_stated": 237739
+  },
+  {
+   "family": "IO",
+   "name": "N-t65f11xx",
+   "n": 44,
+   "sha256": "cbe71d6c592b73d32923dbc4cce46d01fd6776da02ae4ca45e95ec250e3826aa",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65f11xx",
+   "bks": 217295,
+   "bks_stated": 217295
+  },
+  {
+   "family": "IO",
+   "name": "N-t65i11xx",
+   "n": 44,
+   "sha256": "b498e28a62aaa159850a3d1e5c088519a8f5c49607498dd0d125a8a21f8bdf8c",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65i11xx",
+   "bks": 14469163,
+   "bks_stated": 14469163
+  },
+  {
+   "family": "IO",
+   "name": "N-t65l11xx",
+   "n": 44,
+   "sha256": "0c7858ff4caa33d7850bf3ba09611b3ed6b0ba62ec63f958cb366d5aa999c807",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65l11xx",
+   "bks": 16719,
+   "bks_stated": 16719
+  },
+  {
+   "family": "IO",
+   "name": "N-t65n11xx",
+   "n": 44,
+   "sha256": "a33ac56bbbca0b00c963e7ca6fc2a05561bde1bae1c7366c9e57c1f450d93302",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65n11xx",
+   "bks": 32157,
+   "bks_stated": 32157
+  },
+  {
+   "family": "IO",
+   "name": "N-t65w11xx",
+   "n": 44,
+   "sha256": "1676f105aee3f70c9716fb7b0dc13cc0ee103cd15ef3b02c62f7a02f13eb664d",
+   "path": "_data/suite/classic_benchmarks/IO/N-t65w11xx",
+   "bks": 138181029,
+   "bks_stated": 138181029
+  },
+  {
+   "family": "IO",
+   "name": "N-t69r11xx",
+   "n": 44,
+   "sha256": "480250467c84510de46c0be21d04338634322044b4fbc88350714f1f6fb4c615",
+   "path": "_data/suite/classic_benchmarks/IO/N-t69r11xx",
+   "bks": 771149,
+   "bks_stated": 771149
+  },
+  {
+   "family": "IO",
+   "name": "N-t70b11xx",
+   "n": 44,
+   "sha256": "f19552d20549479789e0dfed780dff080e1f715104212106cf2b6092b84b7cc8",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70b11xx",
+   "bks": 528419,
+   "bks_stated": 528419
+  },
+  {
+   "family": "IO",
+   "name": "N-t70d11xx",
+   "n": 44,
+   "sha256": "7b5164025f9bf1be8077c7260343092378de7720bcf469d79ce13eb54545da5c",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70d11xx",
+   "bks": 376725,
+   "bks_stated": 376725
+  },
+  {
+   "family": "IO",
+   "name": "N-t70d11xxb",
+   "n": 44,
+   "sha256": "ccaeb2b6829feafa5ff95b84381c701cb1369c0ae5940af44773edea4a8841a0",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70d11xxb",
+   "bks": 366469,
+   "bks_stated": 366469
+  },
+  {
+   "family": "IO",
+   "name": "N-t70f11xx",
+   "n": 44,
+   "sha256": "60ce11984fbcdf8e5ddc233893c5c4c5c4727696ba2c7d17e54f4a931736bfd9",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70f11xx",
+   "bks": 360336,
+   "bks_stated": 360336
+  },
+  {
+   "family": "IO",
+   "name": "N-t70i11xx",
+   "n": 44,
+   "sha256": "8d1fd25b0122b9be264486d4285cae25c533fabbdc4dae0c770df7bddb77627d",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70i11xx",
+   "bks": 24785782,
+   "bks_stated": 24785782
+  },
+  {
+   "family": "IO",
+   "name": "N-t70k11xx",
+   "n": 44,
+   "sha256": "0767579314f46a9496e89f6bf0be8783726b287bfb748ab5c41c3e5888980472",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70k11xx",
+   "bks": 60659200,
+   "bks_stated": 60659200
+  },
+  {
+   "family": "IO",
+   "name": "N-t70l11xx",
+   "n": 44,
+   "sha256": "686983cc909be178e2e9c712e3105eb4f2d35fe13a49aaf9a828fc62c8918fbd",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70l11xx",
+   "bks": 25253,
+   "bks_stated": 25253
+  },
+  {
+   "family": "IO",
+   "name": "N-t70n11xx",
+   "n": 44,
+   "sha256": "2b1f883f390866eefb091cf1e576a298496f13c5a9384991c37c8f5c96d48636",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70n11xx",
+   "bks": 52704,
+   "bks_stated": 52704
+  },
+  {
+   "family": "IO",
+   "name": "N-t70u11xx",
+   "n": 44,
+   "sha256": "a312c415a999d81a0bc67beac06930aadecd0942c06f9d1ecce546a1191977e4",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70u11xx",
+   "bks": 21716400,
+   "bks_stated": 21716400
+  },
+  {
+   "family": "IO",
+   "name": "N-t70w11xx",
+   "n": 44,
+   "sha256": "6f93847733384422ba3a5e8d171eab8ced7b34d22b8df376157590ce41de9eba",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70w11xx",
+   "bks": 224319954,
+   "bks_stated": 224319954
+  },
+  {
+   "family": "IO",
+   "name": "N-t70x11xx",
+   "n": 44,
+   "sha256": "ed21cde3f224aeb5651b75571b91b6823cdab1a93a162675767dacaaaf4437a8",
+   "path": "_data/suite/classic_benchmarks/IO/N-t70x11xx",
+   "bks": 283808865,
+   "bks_stated": 283808865
+  },
+  {
+   "family": "IO",
+   "name": "N-t74d11xx",
+   "n": 44,
+   "sha256": "d9bffb06fdcc8216ec2cdd1fd740058aeb9a98e31969555cd8ce9e3b634bb143",
+   "path": "_data/suite/classic_benchmarks/IO/N-t74d11xx",
+   "bks": 566089,
+   "bks_stated": 566089
+  },
+  {
+   "family": "IO",
+   "name": "N-t75d11xx",
+   "n": 44,
+   "sha256": "c7ffa116c0b223f19747d1dad62fffeab9e6478574f912352111a0006dae96c6",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75d11xx",
+   "bks": 578304,
+   "bks_stated": 578304
+  },
+  {
+   "family": "IO",
+   "name": "N-t75e11xx",
+   "n": 44,
+   "sha256": "e07b6c63a7aa7a423f1d0834a856466e89daabee4c770bdf43e4ece997fd9d6a",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75e11xx",
+   "bks": 2739219,
+   "bks_stated": 2739219
+  },
+  {
+   "family": "IO",
+   "name": "N-t75i11xx",
+   "n": 44,
+   "sha256": "206dea9f3cc13287d6165e401cd257fbf357dae24c82417e573177665a02be79",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75i11xx",
+   "bks": 63567735,
+   "bks_stated": 63567735
+  },
+  {
+   "family": "IO",
+   "name": "N-t75k11xx",
+   "n": 44,
+   "sha256": "151ea103ef6a3bfd91d5bef8343222c7b466b024ef72d17801ecb1702f87e765",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75k11xx",
+   "bks": 108844,
+   "bks_stated": 108844
+  },
+  {
+   "family": "IO",
+   "name": "N-t75n11xx",
+   "n": 44,
+   "sha256": "ad56b3bacca2b1a0f010c1437437ec1cdcd51c0f37a517ba058c1efe256779f5",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75n11xx",
+   "bks": 93777,
+   "bks_stated": 93777
+  },
+  {
+   "family": "IO",
+   "name": "N-t75u11xx",
+   "n": 44,
+   "sha256": "15d104a17c226727fcff56403b3f6bffaf90dc9e362306aa3b6291be1aa0b1f0",
+   "path": "_data/suite/classic_benchmarks/IO/N-t75u11xx",
+   "bks": 52708323,
+   "bks_stated": 52708323
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n54",
+   "n": 56,
+   "sha256": "c2b890dafdca74b2b7383e8f9e2df1c4b30f5b67d12c3107d710faf5f0528204",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n54",
+   "bks": 91554,
+   "bks_stated": 91554
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n58",
+   "n": 56,
+   "sha256": "52e38073889676c59218726ad9811ff03b3018adcab484f48f2b3ad15c81e3b6",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n58",
+   "bks": 125224,
+   "bks_stated": 125224
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n62",
+   "n": 56,
+   "sha256": "121cfeb89d3d20b9ac18a8fcedf7280b8e5199bd748a3871ddd75fa9979d7713",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n62",
+   "bks": 176715,
+   "bks_stated": 176715
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n66",
+   "n": 56,
+   "sha256": "95a4f74c14df88d0a9acd21610aca4966a0650ed39d27e9d94d135dcbb11f6a1",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n66",
+   "bks": 226547,
+   "bks_stated": 226547
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n67",
+   "n": 56,
+   "sha256": "08d6be2e5bde86c9f3ab78f9eeb30fe97cc0bc1c5b1eed8a386286fccbbbc64a",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n67",
+   "bks": 226033,
+   "bks_stated": 226033
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56n72",
+   "n": 56,
+   "sha256": "804567bde1f668e8a1a5ca69768717589c097a8cba0ba66ee98d71afc4688c2c",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56n72",
+   "bks": 365146,
+   "bks_stated": 365146
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56r54",
+   "n": 56,
+   "sha256": "40c6b4b69b3a8ffa30bc430964370e8c68c0e362ad9f1bfd837f9a8f90695b1b",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56r54",
+   "bks": 102948,
+   "bks_stated": 102948
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56r58",
+   "n": 56,
+   "sha256": "88b0241c5e57f93628f1aac4dca070f4db17226cb940735d01774922987fe26a",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56r58",
+   "bks": 129568,
+   "bks_stated": 129568
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56r66",
+   "n": 56,
+   "sha256": "7ff44f00a36f3e769be7a7b044832a9210c2faef7ce7308d599aaf885951e851",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56r66",
+   "bks": 209491,
+   "bks_stated": 209491
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56r67",
+   "n": 56,
+   "sha256": "ff35cb606f4680e5fc4c5c70e9ea96d554ed48229241413765b3e004a5bf14c8",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56r67",
+   "bks": 222810,
+   "bks_stated": 222810
+  },
+  {
+   "family": "IO",
+   "name": "N-tiw56r72",
+   "n": 56,
+   "sha256": "c765f4008dfaa749c1a63cc3e4ebb27766d673217df41abb6daaee00196ffb83",
+   "path": "_data/suite/classic_benchmarks/IO/N-tiw56r72",
+   "bks": 270663,
+   "bks_stated": 270663
+  },
+  {
+   "family": "IO",
+   "name": "N-usa79",
+   "n": 79,
+   "sha256": "e7820596df8eca1ade48320691e6abcdb423febbcb9dee7bedc98d70f77467fa",
+   "path": "_data/suite/classic_benchmarks/IO/N-usa79",
+   "bks": 1813986,
+   "bks_stated": 1813986
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.01",
+   "n": 75,
+   "sha256": "6ecd450f744b30e37fb0a630b9650fe6253529f36f75d5dc510c64517df84d55",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.01",
+   "bks": 2724126,
+   "bks_stated": 2724126
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.02",
+   "n": 75,
+   "sha256": "3c2aa44239dace51d58ed0a7624de64c77e5d69f78f8eca423bd5c563eb84f8e",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.02",
+   "bks": 2616392,
+   "bks_stated": 2616392
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.03",
+   "n": 75,
+   "sha256": "a9cd491605b07f47a666f555f9e8f80cb48d4d5e2bbfa8e98ce7145a48b9f5bb",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.03",
+   "bks": 2747384,
+   "bks_stated": 2747384
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.04",
+   "n": 75,
+   "sha256": "24b9ab03a12c773ac3825cd2bfec72479fefce6b83c7dd34bf00b3527385bde1",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.04",
+   "bks": 2734169,
+   "bks_stated": 2734169
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.05",
+   "n": 75,
+   "sha256": "d2f2644af0eae688000b5bbb62aa88e3ffefc05741d7a7431b0d02084ce6fcc4",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.05",
+   "bks": 2707863,
+   "bks_stated": 2707863
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.06",
+   "n": 75,
+   "sha256": "eb6431cd3907a338f0f6e03a98e10ae1ebde0310dd6580209ea66bfbfb95ba06",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.06",
+   "bks": 2707280,
+   "bks_stated": 2707280
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.07",
+   "n": 75,
+   "sha256": "81004fd21e09d226b18d299044ea61ed43e402963ae34373248d2d66de09e7ac",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.07",
+   "bks": 2727928,
+   "bks_stated": 2727928
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.08",
+   "n": 75,
+   "sha256": "a54e73d489830eee009248837448fbbb78bbdea4a003a2aa1769912a401a5741",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.08",
+   "bks": 2712837,
+   "bks_stated": 2712837
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.09",
+   "n": 75,
+   "sha256": "902cf81d9c15149efb2143b2f5f9a6c26615af6a3a6ee9e830aa7747a7e61970",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.09",
+   "bks": 2687364,
+   "bks_stated": 2687364
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.10",
+   "n": 75,
+   "sha256": "9a6f8d760e1a4cb0c7749d6054c788774a59d952cff820bb79a9d3f068e05319",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.10",
+   "bks": 2733387,
+   "bks_stated": 2733387
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.11",
+   "n": 75,
+   "sha256": "7f077913ae0ee2bad86fe6c97518f4819950c78bb80d735cd0fb3f2ce6c34fdc",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.11",
+   "bks": 2732686,
+   "bks_stated": 2732686
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.12",
+   "n": 75,
+   "sha256": "492c080095d9053db5c5324de2451b0adf9308357152d6c40c3253ffddf35ed3",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.12",
+   "bks": 2692548,
+   "bks_stated": 2692548
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.13",
+   "n": 75,
+   "sha256": "98a7d9aab433726af0954460bf71aebd4c276dc9e09b3c8968500ea77df17476",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.13",
+   "bks": 2714591,
+   "bks_stated": 2714591
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.14",
+   "n": 75,
+   "sha256": "1c8ff4f99ce2080497ac89ef1d4956a0471532944e8269729a45d6c20d5fd2a2",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.14",
+   "bks": 2733926,
+   "bks_stated": 2733926
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.15",
+   "n": 75,
+   "sha256": "016bbb9b3783c8d1aa6658730094d7c5a9d6c4ea4af19d45e31e4d4217241fff",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.15",
+   "bks": 2732810,
+   "bks_stated": 2732810
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.16",
+   "n": 75,
+   "sha256": "21599f4fe21f6810845e4b12667a72a872807a30eb96d9a8608e7426b7c624ff",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.16",
+   "bks": 2747797,
+   "bks_stated": 2747797
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.17",
+   "n": 75,
+   "sha256": "0788457d52e04e9638ea239e9728056a6f1e12db9113bcbbcccc62df6d595ea6",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.17",
+   "bks": 2747864,
+   "bks_stated": 2747864
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.18",
+   "n": 75,
+   "sha256": "2153dfc0f3c0b8de84273e847d4cfb30adfffd480319d1ec125e8fb0a3422a70",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.18",
+   "bks": 2579344,
+   "bks_stated": 2579344
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.19",
+   "n": 75,
+   "sha256": "c580807e2492efc4a7ac7d9034144c39b346584215db61d3c04c35c7be4d2f08",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.19",
+   "bks": 2736221,
+   "bks_stated": 2736221
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.20",
+   "n": 75,
+   "sha256": "624fa55bd1d23dd30de338517105076540e702efc84208054f74beb457683b5c",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.20",
+   "bks": 2732021,
+   "bks_stated": 2732021
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.21",
+   "n": 75,
+   "sha256": "ed26ca8d0eb79f9f6849e94c2ccff99c14a731bc3a351dcf27a9faf935c16e5f",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.21",
+   "bks": 2740289,
+   "bks_stated": 2740289
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.22",
+   "n": 75,
+   "sha256": "e785250038a6b88c602c2d3bef169a9121b27b13539a1edadd1ff89ce2e1593d",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.22",
+   "bks": 2710122,
+   "bks_stated": 2710122
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.23",
+   "n": 75,
+   "sha256": "29d438077f82cdb1d83d5e890f2bf54881fc185519b5ad2e1a1878357bd726c7",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.23",
+   "bks": 2720981,
+   "bks_stated": 2720981
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.24",
+   "n": 75,
+   "sha256": "db9b47168b55ac6c1da7998c84c16ea79c93ad0dd3294c52417fddffaeda4f8b",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.24",
+   "bks": 2743879,
+   "bks_stated": 2743879
+  },
+  {
+   "family": "SGB",
+   "name": "N-sgb75.25",
+   "n": 75,
+   "sha256": "5617cc5a6d5fcf27f3ba8b2b6ca1c29b0fc1e3cc9e5f3341860d0ad5e1c22993",
+   "path": "_data/suite/classic_benchmarks/SGB/N-sgb75.25",
+   "bks": 2731542,
+   "bks_stated": 2731542
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-01",
+   "n": 40,
+   "sha256": "0671aa2b11737a22fc32c5df082bd8f8eeb11dfe9d2526c4c0d8e026f4f2297e",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-01",
+   "bks": 29457,
+   "bks_stated": 29457
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-02",
+   "n": 40,
+   "sha256": "b4eb60d011b29aff511f4c155860f35c0e4ed91b54de3191aac778057c2b3814",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-02",
+   "bks": 27482,
+   "bks_stated": 27482
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-03",
+   "n": 40,
+   "sha256": "b437989f6be6e303f268a6953757cee1a1ca79c53ae12c4d017eb420d030e4ac",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-03",
+   "bks": 28061,
+   "bks_stated": 28061
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-04",
+   "n": 40,
+   "sha256": "a138f86d3f0f404adffc8a8c3dad081e3fc16b38ad8d603f84fb88ef4092747d",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-04",
+   "bks": 28740,
+   "bks_stated": 28740
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-05",
+   "n": 40,
+   "sha256": "2c700345b649b80382a6d07e41129f96368f9081aeb02978b4db2ac7b7ce0229",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-05",
+   "bks": 27450,
+   "bks_stated": 27450
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-06",
+   "n": 40,
+   "sha256": "03a391a1f0627f54aaabe8e13c77df1f7069af26e53416f9779f3518b75dbe7c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-06",
+   "bks": 29164,
+   "bks_stated": 29164
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-07",
+   "n": 40,
+   "sha256": "d1e9388aef8f874d534558b00d1f035886bfd404ac74b60de16b3c5c3ed43409",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-07",
+   "bks": 28379,
+   "bks_stated": 28379
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-08",
+   "n": 40,
+   "sha256": "5cf80ee072450497c8e06cdfa643e813be0f6501d98f04836edeb8fe66366841",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-08",
+   "bks": 28267,
+   "bks_stated": 28267
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-09",
+   "n": 40,
+   "sha256": "4b4711ae45b5da0ec68aef5e3f5323b64fac8061e1e2ff56c0a80922980d85c4",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-09",
+   "bks": 30578,
+   "bks_stated": 30578
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-10",
+   "n": 40,
+   "sha256": "625d83e34589b5189c9ba912b50ab9a71427150cb06bb39b5ef32585d1b3aabd",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-10",
+   "bks": 31737,
+   "bks_stated": 31737
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-11",
+   "n": 40,
+   "sha256": "16df6a44c575a9eb29df38a0f938bc129e7997715350e5f4c29fe736e32613bd",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-11",
+   "bks": 30658,
+   "bks_stated": 30658
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-12",
+   "n": 40,
+   "sha256": "2fef9f5396213f46358eb35392c64b5ae552688cf39dbbf6c4d97b884ff8357f",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-12",
+   "bks": 30986,
+   "bks_stated": 30986
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-13",
+   "n": 40,
+   "sha256": "9d40e94a14b1ef7d01fdc355bdf3584ea62d4ec8a899f47881f1cda6ea455d68",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-13",
+   "bks": 33903,
+   "bks_stated": 33903
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-14",
+   "n": 40,
+   "sha256": "1a5afe9cc747c66fd37396524f700c4f054af970257c14aa22350c523ab3c238",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-14",
+   "bks": 34078,
+   "bks_stated": 34078
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-15",
+   "n": 40,
+   "sha256": "85e222ea31f768fde31d27eb7c35d123680877e3c6edbc3a87ed3cd922220f91",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-15",
+   "bks": 34659,
+   "bks_stated": 34659
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-16",
+   "n": 40,
+   "sha256": "df2386ed2db20e778b4d4be403ba44504527cc7150f8dd21045191c46b3f8efb",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-16",
+   "bks": 36044,
+   "bks_stated": 36044
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-17",
+   "n": 40,
+   "sha256": "e92e80d02b848156743a135a05c565965efce4e7b5b6e44ae905738ffc8aa930",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-17",
+   "bks": 38201,
+   "bks_stated": 38201
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-18",
+   "n": 40,
+   "sha256": "cfbfeced922499f63b4354dd6caea96bf87b60136af86834f5d32000b925a04b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-18",
+   "bks": 37562,
+   "bks_stated": 37562
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-19",
+   "n": 40,
+   "sha256": "829b02e58518b6fce0925444187cff67c06bd631e931ee49bc2044f320d653e2",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-19",
+   "bks": 38956,
+   "bks_stated": 38956
+  },
+  {
+   "family": "RandB",
+   "name": "N-p40-20",
+   "n": 40,
+   "sha256": "0c694d51ad5b287b6d95d227185b64728ef8e86d4938107e39c703cbcb6c9c2a",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p40-20",
+   "bks": 39658,
+   "bks_stated": 39658
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-01",
+   "n": 44,
+   "sha256": "93a29409a8c882a82be764e162f8a094458d33527a05c553aa9cd47f43537c69",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-01",
+   "bks": 35948,
+   "bks_stated": 35948
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-02",
+   "n": 44,
+   "sha256": "499addb1db53ff61b998d4885c46ca8d0c85a10cf2324de286a6e80f0606d69c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-02",
+   "bks": 35314,
+   "bks_stated": 35314
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-03",
+   "n": 44,
+   "sha256": "dfa48f4f7154b9b46732fc674dc78ee15dbbb0c5a64b20aedbd433f6996bf8e8",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-03",
+   "bks": 34335,
+   "bks_stated": 34335
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-04",
+   "n": 44,
+   "sha256": "4dd0e758ab2d15ce8f7309295c2ecb8dc7a9c2f7145158bc8e788d75e9c9d9c8",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-04",
+   "bks": 33551,
+   "bks_stated": 33551
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-05",
+   "n": 44,
+   "sha256": "5f7f486adbeac8a88514934077792e9983a70c9e9b7e45ccf4eb7edc671a3600",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-05",
+   "bks": 34827,
+   "bks_stated": 34827
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-06",
+   "n": 44,
+   "sha256": "e3701c313612ef9c9337c176517bb205d218cc679fb00542f90108edff23040e",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-06",
+   "bks": 33962,
+   "bks_stated": 33962
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-07",
+   "n": 44,
+   "sha256": "ecc869676d4199a9549879e9eec73a552a77558dc591f746e643b617897130e3",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-07",
+   "bks": 33171,
+   "bks_stated": 33171
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-08",
+   "n": 44,
+   "sha256": "27e55c82193e1577d3214a73c186b7997cec0084fdbf4e8a0583367aa6fbd1eb",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-08",
+   "bks": 34127,
+   "bks_stated": 34127
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-09",
+   "n": 44,
+   "sha256": "0e3d152708d074f8feee8d432c7d8e925bfa13c6cad77394b786582109fbff42",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-09",
+   "bks": 33403,
+   "bks_stated": 33403
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-10",
+   "n": 44,
+   "sha256": "57524beedfa7a0e1adb475603460b1aa50e06db8b4b586d5bc57a08f0d1328a4",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-10",
+   "bks": 33778,
+   "bks_stated": 33778
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-11",
+   "n": 44,
+   "sha256": "5168787d4be1f915abb76c2470b48505d90a52d2c3443dc5e9cfee9fc6980dba",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-11",
+   "bks": 34016,
+   "bks_stated": 34016
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-12",
+   "n": 44,
+   "sha256": "633b3879af5e44f1a2ae96f3670f189d42ff12af0c379950d8ae076c653c9a1c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-12",
+   "bks": 33850,
+   "bks_stated": 33850
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-13",
+   "n": 44,
+   "sha256": "3c227ae80f0ddf0b07fc235080cf881001f539067dfc01bcf6e4410e9851ef15",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-13",
+   "bks": 35385,
+   "bks_stated": 35385
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-14",
+   "n": 44,
+   "sha256": "b63101319172bc9c183bd699e074e946d2d574be40e7d490c001b99959750e27",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-14",
+   "bks": 35801,
+   "bks_stated": 35801
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-15",
+   "n": 44,
+   "sha256": "1101ed5b0f5bdf05aac8317eb56b25eca60da9efee2c43bd742ac82990161134",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-15",
+   "bks": 33827,
+   "bks_stated": 33827
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-16",
+   "n": 44,
+   "sha256": "3b17f1ff4f1d8e7eaa56a893064db1c894046f2006fba33ef6bc9604366f11fc",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-16",
+   "bks": 36188,
+   "bks_stated": 36188
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-17",
+   "n": 44,
+   "sha256": "5218bbbc98c4611a0f8a76e72742e569a44ba17c8bff5327f7ef61b5dda11cb7",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-17",
+   "bks": 35454,
+   "bks_stated": 35454
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-18",
+   "n": 44,
+   "sha256": "339077c7156377b37cff6297f211db845ab344643834fc1a8888c6289248e55e",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-18",
+   "bks": 36669,
+   "bks_stated": 36669
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-19",
+   "n": 44,
+   "sha256": "0a4fdd6af206efdd55818e3ea3e1efd682802cd2cace73c970d5f379d7c91503",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-19",
+   "bks": 36436,
+   "bks_stated": 36436
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-20",
+   "n": 44,
+   "sha256": "4f866569a3871b7fddc79c3c3962e462f2957e97efcd35883a4e571689f1b931",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-20",
+   "bks": 37438,
+   "bks_stated": 37438
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-21",
+   "n": 44,
+   "sha256": "d2a9966d8f7394bc1b3e9e5fbff3507c92d13844d4de3ccb570634d5103bed9f",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-21",
+   "bks": 37786,
+   "bks_stated": 37786
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-22",
+   "n": 44,
+   "sha256": "6b067de850c4375b9251708d22dfc046c3d619e8f66b82b0295f399812c5a9a9",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-22",
+   "bks": 36722,
+   "bks_stated": 36722
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-23",
+   "n": 44,
+   "sha256": "baf643cc97c97f7d8efb0447f1ca498f7988b21606b25346f70929d1d10acc4b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-23",
+   "bks": 36605,
+   "bks_stated": 36605
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-24",
+   "n": 44,
+   "sha256": "3e7f6ea47567857da1d7ef0f02b6d4abbdf1c6df86a47de9efda26c23d585c35",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-24",
+   "bks": 38286,
+   "bks_stated": 38286
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-25",
+   "n": 44,
+   "sha256": "e0566eae53dbe47bc18c4a82c799c34ba115e7fb4dccf9a9151f1b69fd0d1869",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-25",
+   "bks": 38129,
+   "bks_stated": 38129
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-26",
+   "n": 44,
+   "sha256": "16e3b6f11a50a61e1584cf1377a71ad888f72d61076f7ab5b907173dedba9467",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-26",
+   "bks": 39107,
+   "bks_stated": 39107
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-27",
+   "n": 44,
+   "sha256": "b0c9e320038460e2e81e8c1dd9221ff5982c2573d3173c977ff108ff6432ef53",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-27",
+   "bks": 39170,
+   "bks_stated": 39170
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-28",
+   "n": 44,
+   "sha256": "465a44620cd233e2fb506d0310211a2a658b5ee880d456fcb4022b9843b9f888",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-28",
+   "bks": 40264,
+   "bks_stated": 40264
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-29",
+   "n": 44,
+   "sha256": "5cd325ad4fb58821ce5532d732edd95afd780edced3cf5a48bb9c9da58096081",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-29",
+   "bks": 41819,
+   "bks_stated": 41819
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-30",
+   "n": 44,
+   "sha256": "24cbe58e8386c9ffea68fece3e80a24796e88d64195db8dcc099359929a164eb",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-30",
+   "bks": 40387,
+   "bks_stated": 40387
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-31",
+   "n": 44,
+   "sha256": "4269184e3410350b0d7e66058a7867ae5262f4b3edd353cb9e7e69535fdedd93",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-31",
+   "bks": 43817,
+   "bks_stated": 43817
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-32",
+   "n": 44,
+   "sha256": "83e131c1a5a06acb8c409f3568454d14f2d4a610564acd871ebef06f9894261a",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-32",
+   "bks": 42545,
+   "bks_stated": 42545
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-33",
+   "n": 44,
+   "sha256": "a4b01c0b85c284574d40f44bf54df551c551ad01dc866170baca791be34fe9dc",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-33",
+   "bks": 42355,
+   "bks_stated": 42355
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-34",
+   "n": 44,
+   "sha256": "a845b6369573669df6a32a868ea572179eb56794f9608257af616db04025a305",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-34",
+   "bks": 44988,
+   "bks_stated": 44988
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-35",
+   "n": 44,
+   "sha256": "07eb008aeea404583d2d1c7e9577950c50aec2a221a9173759b31567cde6aab1",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-35",
+   "bks": 44114,
+   "bks_stated": 44114
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-36",
+   "n": 44,
+   "sha256": "95a53d90bea968257e72e3919680cb3fd14d19b8d1ff73d0539e780a45d1e2e4",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-36",
+   "bks": 45575,
+   "bks_stated": 45575
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-37",
+   "n": 44,
+   "sha256": "e9ddb8f08aaf7432242f2f1a4f5c3e4c2e60abfdce9aa0198cc43a80e4dd113b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-37",
+   "bks": 45297,
+   "bks_stated": 45297
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-38",
+   "n": 44,
+   "sha256": "85bbc5c16e2a0dd33fdcacc889d709ea56ef9815c75ab87131a6c77c44e9c083",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-38",
+   "bks": 47414,
+   "bks_stated": 47414
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-39",
+   "n": 44,
+   "sha256": "eee0326748cc644ed7743233b1c67ddd1adf4d96cacfd568bdbcde506d0cd820",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-39",
+   "bks": 48979,
+   "bks_stated": 48979
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-40",
+   "n": 44,
+   "sha256": "5920065f1de656aede5dba383b4dbf4c74b4ce9999d24720a81fe847ca43b9bf",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-40",
+   "bks": 47774,
+   "bks_stated": 47774
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-41",
+   "n": 44,
+   "sha256": "d404c5ffc2c394a5b61af5baf7039b448da08ac9439e2f1af85a1ae114edf02f",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-41",
+   "bks": 48137,
+   "bks_stated": 48137
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-42",
+   "n": 44,
+   "sha256": "dc3b756f574a6b6955adb284b647d639d3df434989e84fc98ed9f8e7b99777c4",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-42",
+   "bks": 49511,
+   "bks_stated": 49511
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-43",
+   "n": 44,
+   "sha256": "2f318d2703a7e1d5fd19686d1049d8ca7b7f91b44d5e0bca8ce8d195ee3976a3",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-43",
+   "bks": 51014,
+   "bks_stated": 51014
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-44",
+   "n": 44,
+   "sha256": "6a851c981d18fce51703ad83265cfe1b972e84cc7d00932e44d7500803e34da6",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-44",
+   "bks": 51949,
+   "bks_stated": 51949
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-45",
+   "n": 44,
+   "sha256": "197ddf5220b9adbc0538c1fd168ad15379e397491bc1cbb1f47379843ebc3a9c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-45",
+   "bks": 52857,
+   "bks_stated": 52857
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-46",
+   "n": 44,
+   "sha256": "b2b2ff41a4b929956fafe80db5c8388e6059d79286c49720407c34745fb55c41",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-46",
+   "bks": 52776,
+   "bks_stated": 52776
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-47",
+   "n": 44,
+   "sha256": "3f4ae9a089ec7678d23024d80e7275906293d6142245ce3e19f837947ba1600b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-47",
+   "bks": 54122,
+   "bks_stated": 54122
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-48",
+   "n": 44,
+   "sha256": "23acb47d3c336d2a2a19deb333ff13a6bc906599a10579ddc4dffb3593cb8848",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-48",
+   "bks": 54355,
+   "bks_stated": 54355
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-49",
+   "n": 44,
+   "sha256": "b51e8fc61c52d8bd8d020d4e4dd66c1503d3fb62a239670898860b1073794f5b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-49",
+   "bks": 57279,
+   "bks_stated": 57279
+  },
+  {
+   "family": "RandB",
+   "name": "N-p44-50",
+   "n": 44,
+   "sha256": "fa2bb64a79ab4ef8c6610b151d507f6744110b0a7a4ea62575089c2b3f663a30",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p44-50",
+   "bks": 56444,
+   "bks_stated": 56444
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-01",
+   "n": 50,
+   "sha256": "7ab24bf9a8d3ebf3f2ccf5a72b8627dda69289870b5027ba5c69fa883c857284",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-01",
+   "bks": 44667,
+   "bks_stated": 44667
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-02",
+   "n": 50,
+   "sha256": "a1fd70687b69aefc9d5adc1ab5a2dc9a6a324d344c68f9f9e0b9a4f52073bacd",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-02",
+   "bks": 43835,
+   "bks_stated": 43835
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-03",
+   "n": 50,
+   "sha256": "ec7ff9fdb4e33f85a5e8064077c7e67a37a6244d70116eb5e16ea135030c45e8",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-03",
+   "bks": 44256,
+   "bks_stated": 44256
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-04",
+   "n": 50,
+   "sha256": "3e43c71e35b75e719401e960a3ae7a07a0fb3e7f5c5c94d65600f7233acf8ded",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-04",
+   "bks": 43928,
+   "bks_stated": 43928
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-05",
+   "n": 50,
+   "sha256": "1807a023908dc358682d3bad5dfe571bf9d5f1bcc6b1b441884bf7de27dcedd8",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-05",
+   "bks": 42907,
+   "bks_stated": 42907
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-06",
+   "n": 50,
+   "sha256": "5bb3178b2566356e77f6cb78f9959141d7ba811fc9cc4a4ad9861db3f81c679b",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-06",
+   "bks": 42325,
+   "bks_stated": 42325
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-07",
+   "n": 50,
+   "sha256": "cd604af8614480d69e8c459b704a49da3f2a39db1b72b37da157c2bb47efe4bd",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-07",
+   "bks": 42640,
+   "bks_stated": 42640
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-08",
+   "n": 50,
+   "sha256": "f00f11f1ff282531e0fd94f46453bf31447ee47501296713ed4d3d071b25d413",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-08",
+   "bks": 42666,
+   "bks_stated": 42666
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-09",
+   "n": 50,
+   "sha256": "865e5d4a63ccaf552a882448aafd15d61f9f6e8c2fbcae642e76fe73ab6a754e",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-09",
+   "bks": 43711,
+   "bks_stated": 43711
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-10",
+   "n": 50,
+   "sha256": "f2ef06c8a01cc6662dbb9524a277941bb1a44fa0db0bc5f1840b1bb924ff66e8",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-10",
+   "bks": 43575,
+   "bks_stated": 43575
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-11",
+   "n": 50,
+   "sha256": "a49888a8ace77404b5e400489376baa888dc6cf35fd33850e7b2dee57f7d1a26",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-11",
+   "bks": 43527,
+   "bks_stated": 43527
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-12",
+   "n": 50,
+   "sha256": "a801f0e5f8ba38f9e25521c70fff8df1b4d7e4bdac1200bb5d223065ca82a56c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-12",
+   "bks": 42809,
+   "bks_stated": 42809
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-13",
+   "n": 50,
+   "sha256": "aa4ad699d199c69e9ff02784e4f4febdcf4343d952f62086d5f754777424fc6c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-13",
+   "bks": 43169,
+   "bks_stated": 43169
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-14",
+   "n": 50,
+   "sha256": "bf54e9587a06e64de646ebf136315f70f316572b74dc4882d994c3872cd0289c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-14",
+   "bks": 44519,
+   "bks_stated": 44519
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-15",
+   "n": 50,
+   "sha256": "5e63c035526e8d0ba9cb9461bfa0123a84bcae9b0d181f48055e114f9820a19e",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-15",
+   "bks": 44866,
+   "bks_stated": 44866
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-16",
+   "n": 50,
+   "sha256": "c1ba66102425ff5a24bb11197aced68a0640ffa6a18302fb279dbdae706ffed6",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-16",
+   "bks": 45310,
+   "bks_stated": 45310
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-17",
+   "n": 50,
+   "sha256": "1966214c1a5bd604d48963b7b7524645de7237e290807301ba9416ac47f01c6a",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-17",
+   "bks": 46011,
+   "bks_stated": 46011
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-18",
+   "n": 50,
+   "sha256": "6cb558eda258255183411a87a59037195fb6c74c8c32e8ca44fa573cf4f48b4c",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-18",
+   "bks": 46897,
+   "bks_stated": 46897
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-19",
+   "n": 50,
+   "sha256": "5d413555e83c5a714fbe73b6e0b088871184b37156882b499832ef8087e37515",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-19",
+   "bks": 47212,
+   "bks_stated": 47212
+  },
+  {
+   "family": "RandB",
+   "name": "N-p50-20",
+   "n": 50,
+   "sha256": "590ecda953dba60b67cad9012faddbbe407fdff95fdf6aa7068368f50caa53e2",
+   "path": "_data/suite/classic_benchmarks/RandB/N-p50-20",
+   "bks": 46779,
+   "bks_stated": 46779
+  },
+  {
+   "family": "MB",
+   "name": "N-r100a2",
+   "n": 100,
+   "sha256": "95bb128a8434c5cd1d86f06d2a34da266775b340d65e7954a897d265d311d7e6",
+   "path": "_data/suite/classic_benchmarks/MB/N-r100a2",
+   "bks": 145270,
+   "bks_stated": 145270
+  },
+  {
+   "family": "MB",
+   "name": "N-r100b2",
+   "n": 100,
+   "sha256": "bbaf0fb7da3154ffe5d3aa07be560899eaaba58df7b9e312019c86502c481529",
+   "path": "_data/suite/classic_benchmarks/MB/N-r100b2",
+   "bks": 143271,
+   "bks_stated": 143271
+  },
+  {
+   "family": "MB",
+   "name": "N-r100c2",
+   "n": 100,
+   "sha256": "4ad3d820b6fbe8d3211c8de4b0d61e5a0b41e7419a6fe883109a6ac2adaa7dcf",
+   "path": "_data/suite/classic_benchmarks/MB/N-r100c2",
+   "bks": 141702,
+   "bks_stated": 141702
+  },
+  {
+   "family": "MB",
+   "name": "N-r100d2",
+   "n": 100,
+   "sha256": "a1816bf6a319e6e2bfb8d4056474e8bc7b4696d8081b59c89e3b6a364a12b5a3",
+   "path": "_data/suite/classic_benchmarks/MB/N-r100d2",
+   "bks": 142630,
+   "bks_stated": 142630
+  },
+  {
+   "family": "MB",
+   "name": "N-r100e2",
+   "n": 100,
+   "sha256": "ed2c3cd995b9ebff013f02ffbe0eb3bf9a3df18e7c82713469f5c8b9bb74186e",
+   "path": "_data/suite/classic_benchmarks/MB/N-r100e2",
+   "bks": 147416,
+   "bks_stated": 147416
+  },
+  {
+   "family": "MB",
+   "name": "N-r150a0",
+   "n": 150,
+   "sha256": "15a046fdfa3fa30be06eb824992afdc46a4a3c823993b52014d66d584c83aa1a",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150a0",
+   "bks": 360978,
+   "bks_stated": 360978
+  },
+  {
+   "family": "MB",
+   "name": "N-r150a1",
+   "n": 150,
+   "sha256": "3a4078bdd70914c97bb905fce6071d367e5bfa019b3e91c368bfcb4ff4c7da0a",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150a1",
+   "bks": 349251,
+   "bks_stated": 349251
+  },
+  {
+   "family": "MB",
+   "name": "N-r150b0",
+   "n": 150,
+   "sha256": "d272b60a7ca68271b0d98f54ec463e4cf4f7c7d7efa8397a9b1f7e09c86673dd",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150b0",
+   "bks": 367635,
+   "bks_stated": 367635
+  },
+  {
+   "family": "MB",
+   "name": "N-r150b1",
+   "n": 150,
+   "sha256": "7187754d2c3f530f20e9320296c6630673b781eeba64e5bac6c7dd7b758d8d1c",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150b1",
+   "bks": 347627,
+   "bks_stated": 347627
+  },
+  {
+   "family": "MB",
+   "name": "N-r150c0",
+   "n": 150,
+   "sha256": "12e45e194b5dea87e6a18734c367ca2e0f851cb6a89fd95a6c774971f3786e1e",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150c0",
+   "bks": 363895,
+   "bks_stated": 363895
+  },
+  {
+   "family": "MB",
+   "name": "N-r150c1",
+   "n": 150,
+   "sha256": "5486f714cd89f9ab0080338602f33feddc642dff6c81499c12403c76282ce814",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150c1",
+   "bks": 346492,
+   "bks_stated": 346492
+  },
+  {
+   "family": "MB",
+   "name": "N-r150d0",
+   "n": 150,
+   "sha256": "8179660882698c693149dd272d61427ba9c871541e2222888a51afb217885862",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150d0",
+   "bks": 363180,
+   "bks_stated": 363180
+  },
+  {
+   "family": "MB",
+   "name": "N-r150d1",
+   "n": 150,
+   "sha256": "c24a1f0009076626a8c7a4cf452732f18c912da5182e3dd180adda56c02d4e5f",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150d1",
+   "bks": 348902,
+   "bks_stated": 348902
+  },
+  {
+   "family": "MB",
+   "name": "N-r150e0",
+   "n": 150,
+   "sha256": "2c0e34699efce613ebd0e93330dce58b00365161787f303f6fec5850ba6a1b8e",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150e0",
+   "bks": 367181,
+   "bks_stated": 367181
+  },
+  {
+   "family": "MB",
+   "name": "N-r150e1",
+   "n": 150,
+   "sha256": "8fad23f2eb918f88820c111705eea917fd582a611f322195309eecfe71c05fad",
+   "path": "_data/suite/classic_benchmarks/MB/N-r150e1",
+   "bks": 349910,
+   "bks_stated": 349910
+  },
+  {
+   "family": "MB",
+   "name": "N-r200a0",
+   "n": 200,
+   "sha256": "999cbed7b310547e82bcbbfbcb1e6270e9ea275ca8da5dc60b15e86fff32d729",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200a0",
+   "bks": 654604,
+   "bks_stated": 654604
+  },
+  {
+   "family": "MB",
+   "name": "N-r200a1",
+   "n": 200,
+   "sha256": "45602c72a0fd93e1beeb615739022018964f55fdca1ccb458a639718426ca872",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200a1",
+   "bks": 616399,
+   "bks_stated": 616399
+  },
+  {
+   "family": "MB",
+   "name": "N-r200b0",
+   "n": 200,
+   "sha256": "1b0e5b4d6e4bbab46acf29ac16124936f06fa8b32ae10125d786909c5da6f34b",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200b0",
+   "bks": 651237,
+   "bks_stated": 651237
+  },
+  {
+   "family": "MB",
+   "name": "N-r200b1",
+   "n": 200,
+   "sha256": "13c745043b44bd36642e973644ddce64876c6d1530254e04897b8222706303bb",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200b1",
+   "bks": 622112,
+   "bks_stated": 622112
+  },
+  {
+   "family": "MB",
+   "name": "N-r200c0",
+   "n": 200,
+   "sha256": "fa24323c2ceb92cc894dd5d7ef9b645af42e658ce63140087d7cea021ee420af",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200c0",
+   "bks": 657441,
+   "bks_stated": 657441
+  },
+  {
+   "family": "MB",
+   "name": "N-r200c1",
+   "n": 200,
+   "sha256": "54e41a5185f8e52d904f15b0f9631c7abb29effd1a8946e301f0aa22d7f626e7",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200c1",
+   "bks": 611956,
+   "bks_stated": 611956
+  },
+  {
+   "family": "MB",
+   "name": "N-r200d0",
+   "n": 200,
+   "sha256": "1993899d640323b0037b2a04ff513812e99fa24eeea22035b1b90ef78074bd46",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200d0",
+   "bks": 654375,
+   "bks_stated": 654375
+  },
+  {
+   "family": "MB",
+   "name": "N-r200d1",
+   "n": 200,
+   "sha256": "899c394d280f7530a8a994cfe136a65ebf7868d75ebaee98eef9bf361c0d4b4a",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200d1",
+   "bks": 616617,
+   "bks_stated": 616617
+  },
+  {
+   "family": "MB",
+   "name": "N-r200e0",
+   "n": 200,
+   "sha256": "29d9a33b5273ef2f8a82f88114f36b47633a1de8867617853c192b1498f3013d",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200e0",
+   "bks": 645207,
+   "bks_stated": 645207
+  },
+  {
+   "family": "MB",
+   "name": "N-r200e1",
+   "n": 200,
+   "sha256": "1a35f5800f292555669fa8a54d4b90c23b0bf3eccc80cbffce4d7ae07cdb3b0b",
+   "path": "_data/suite/classic_benchmarks/MB/N-r200e1",
+   "bks": 611306,
+   "bks_stated": 611306
+  },
+  {
+   "family": "MB",
+   "name": "N-r250a0",
+   "n": 250,
+   "sha256": "31c1f9f568a6f0bae86b97649da9c94c7414c385663bfcb82b86bdf7494f0c34",
+   "path": "_data/suite/classic_benchmarks/MB/N-r250a0",
+   "bks": 1019120,
+   "bks_stated": 1019120
+  },
+  {
+   "family": "MB",
+   "name": "N-r250b0",
+   "n": 250,
+   "sha256": "65152bdae36fd658c1ea1077e089a13eef0749fdbc0aad7dc66481fd051a394e",
+   "path": "_data/suite/classic_benchmarks/MB/N-r250b0",
+   "bks": 1013737,
+   "bks_stated": 1013737
+  },
+  {
+   "family": "MB",
+   "name": "N-r250c0",
+   "n": 250,
+   "sha256": "4c4249796ee0c5c63c047ffb35f023683e7f0033e6aaea3658d37ae212612211",
+   "path": "_data/suite/classic_benchmarks/MB/N-r250c0",
+   "bks": 1010961,
+   "bks_stated": 1010961
+  },
+  {
+   "family": "MB",
+   "name": "N-r250d0",
+   "n": 250,
+   "sha256": "5403c816551b9b8c3deb77fd8ee4eb83473c4c39428c4060e813bb87b44c0415",
+   "path": "_data/suite/classic_benchmarks/MB/N-r250d0",
+   "bks": 1015041,
+   "bks_stated": 1015041
+  },
+  {
+   "family": "MB",
+   "name": "N-r250e0",
+   "n": 250,
+   "sha256": "4f97afb8b53b208d9b48a170ddb3d8841ad75b24f4777bc5d65a0c8e1bddd438",
+   "path": "_data/suite/classic_benchmarks/MB/N-r250e0",
+   "bks": 1008267,
+   "bks_stated": 1008267
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX1",
+   "n": 50,
+   "sha256": "aa7495fe1da57e08b3d35e603046bb1793db1722b2bfaefb7f986dc12294523c",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX1",
+   "bks": 449,
+   "bks_stated": 449
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX2",
+   "n": 50,
+   "sha256": "05baa98583dea97b96cf308fa9cf53ac4b57237bcf930f6f46f6d1f018004d4c",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX2",
+   "bks": 441,
+   "bks_stated": 441
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX3",
+   "n": 50,
+   "sha256": "e12d5297eb25fb65eaaeaeea8af7dbccf44c6673d637bfae014645b24d1eb1f9",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX3",
+   "bks": 438,
+   "bks_stated": 438
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX4",
+   "n": 50,
+   "sha256": "c2629f3bb1f1e03143ff8c41bef0e69e7c6cce6e48ac3fbedabf5c84ac2a6853",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX4",
+   "bks": 390,
+   "bks_stated": 390
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX5",
+   "n": 50,
+   "sha256": "128bb298be8dea5b07e062ab41c9324b7ec4d9580dbd9729eae98352e1d07dad",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX5",
+   "bks": 405,
+   "bks_stated": 405
+  },
+  {
+   "family": "Spec",
+   "name": "N-EX6",
+   "n": 50,
+   "sha256": "a04039805969430cd41d0210ae5c533e6c02866e480959ca831623c46b125c56",
+   "path": "_data/suite/classic_benchmarks/Spec/N-EX6",
+   "bks": 395,
+   "bks_stated": 395
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp111",
+   "n": 111,
+   "sha256": "9cb3f34f4ba54c7255f8cc2ce940c300b562923434a0a19c6c819507e286960c",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp111",
+   "bks": 1495,
+   "bks_stated": 1495
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp134",
+   "n": 134,
+   "sha256": "b891998f01c6369efcd61280c9639e53905dd534abf4290fdf84b202d8cf1af5",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp134",
+   "bks": 1797,
+   "bks_stated": 1797
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp163",
+   "n": 163,
+   "sha256": "411d1925834a2503c3269823e77efae6e62f274898146cb5f32c403f1b96e4ac",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp163",
+   "bks": 2075,
+   "bks_stated": 2075
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp24",
+   "n": 24,
+   "sha256": "a5003c88625c2cc5a0fa7e0ee2cbfede198cc3e9750d6c9578bf4994dccda059",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp24",
+   "bks": 172,
+   "bks_stated": 172
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp452",
+   "n": 452,
+   "sha256": "6c316f469125e258cd66d313616e429d9bbe3c2d3fe889521cf68e78d24c1f8a",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp452",
+   "bks": 2713,
+   "bks_stated": 2713
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp48",
+   "n": 48,
+   "sha256": "14e374c2a218e7eaa52f280833fbd71546f1bb3d783771fee2acf1736a2426f9",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp48",
+   "bks": 483,
+   "bks_stated": 483
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp66",
+   "n": 66,
+   "sha256": "55d115c91df54c4c7cd0e35dd33a1daa0a3d8ef0d193dc140b694410f0505930",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp66",
+   "bks": 761,
+   "bks_stated": 761
+  },
+  {
+   "family": "Spec",
+   "name": "N-atp76",
+   "n": 76,
+   "sha256": "983cf6cf1a74462caa662347f2e8d9be3345d26ef2bfe5eb72ad64709f6d64f7",
+   "path": "_data/suite/classic_benchmarks/Spec/N-atp76",
+   "bks": 934,
+   "bks_stated": 934
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ36",
+   "n": 36,
+   "sha256": "7363dec6732499bc9cc1b9d97b44b359719f1ded997d49f91e3be52e3077ce38",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ36",
+   "bks": 548574,
+   "bks_stated": 548574
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ43",
+   "n": 43,
+   "sha256": "dfed1e5d51abe97a70ff0d1a39fdfb1df2b889e9135b27c5389df6bd42c2ad24",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ43",
+   "bks": 667369,
+   "bks_stated": 667369
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ47",
+   "n": 47,
+   "sha256": "6321b3d9dbb14233e5f9485343b2c83985d4ef39f25a4309f3d97c54b715f0b3",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ47",
+   "bks": 828816,
+   "bks_stated": 828816
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ58",
+   "n": 58,
+   "sha256": "102f722b4f5b1a50560756e593845bd3812978d9cac08736db7b16df019e8f23",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ58",
+   "bks": 1221888,
+   "bks_stated": 1221888
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ59",
+   "n": 59,
+   "sha256": "fff08e02bf0fa5923fd7e96b8caafd4a2c31ca434e8d3c875ca239daef90e133",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ59",
+   "bks": 1209683,
+   "bks_stated": 1209683
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ61",
+   "n": 61,
+   "sha256": "0125977d5f6c54a9325c88ed6ec82df3a31b377f46473e9e4d2380963c052065",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ61",
+   "bks": 1218023,
+   "bks_stated": 1218023
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ62",
+   "n": 62,
+   "sha256": "7c84831ba4022a45e9105aae8f8fbb90db5456afa5576383e169e5dcbb0b7740",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ62",
+   "bks": 1235677,
+   "bks_stated": 1235677
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ64",
+   "n": 64,
+   "sha256": "ebc4d726ae5bd132c2ed0588e298fc6829d20952a1add962d3c105c5dc8733af",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ64",
+   "bks": 1272461,
+   "bks_stated": 1272461
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ67",
+   "n": 67,
+   "sha256": "7f3f1e4444c8ce5965183cad5c5e94a4957e9d6984158c2e5d9d1a65b6a8d6c5",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ67",
+   "bks": 1388317,
+   "bks_stated": 1388317
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ68",
+   "n": 68,
+   "sha256": "a63b7db32acf2ed2a52532ec9be783fc74542654ee14ff4109157b087480df56",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ68",
+   "bks": 1438378,
+   "bks_stated": 1438378
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ71",
+   "n": 71,
+   "sha256": "a6bdda90ff23ba4c8c82dcbf782695c20bbac2353edabb52c47ffe8608733e86",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ71",
+   "bks": 1558292,
+   "bks_stated": 1558292
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ72",
+   "n": 72,
+   "sha256": "e3271146b11aa3b497fbaad69dc56ea58883309aee91f5f67b59fdafb3fadb13",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ72",
+   "bks": 1835631,
+   "bks_stated": 1835631
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ73",
+   "n": 73,
+   "sha256": "eb6ffdc7505aa89be6812beae441184477d2990eb9b1503c0b86279997b77e7f",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ73",
+   "bks": 2046112,
+   "bks_stated": 2046112
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ76",
+   "n": 76,
+   "sha256": "bfcb0d93b5329ccf286a8fe8e825d5be3b980e8d5a085e7479c6f4e22d5f4340",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ76",
+   "bks": 2649134,
+   "bks_stated": 2649134
+  },
+  {
+   "family": "Spec",
+   "name": "N-econ77",
+   "n": 77,
+   "sha256": "7084954090472fb3c6e8bfd630d150753f154a242d150a760b52f7f86a888cb6",
+   "path": "_data/suite/classic_benchmarks/Spec/N-econ77",
+   "bks": 2674732,
+   "bks_stated": 2674732
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal11",
+   "n": 11,
+   "sha256": "f0ef18923bb71a490400ec26f834e64012bf00f9ea34e7d931d2f9229a01071f",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal11",
+   "bks": 35,
+   "bks_stated": 35
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal13",
+   "n": 13,
+   "sha256": "d09095f59aebda78ee2600bbb79fb54efcdb1dfe2f1975a96512f859e18f6abc",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal13",
+   "bks": 57,
+   "bks_stated": 57
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal19",
+   "n": 19,
+   "sha256": "129e4e17228d398a5a06b0f248cac7f022cabd6f0f08011e4493b1c48d3ea578",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal19",
+   "bks": 107,
+   "bks_stated": 107
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal23",
+   "n": 23,
+   "sha256": "6c703665a63d1f52545b3becf112ed5f97d2e8b78900ecd0e73b569a56888491",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal23",
+   "bks": 161,
+   "bks_stated": 161
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal27",
+   "n": 27,
+   "sha256": "ac273ab5d4257cfaf996cbe333710eb8983bb543a37c376c8dfc653ceedaa007",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal27",
+   "bks": 252,
+   "bks_stated": 252
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal31",
+   "n": 31,
+   "sha256": "b533ce1b66a75cbebeb41ddbdaf993f0f98e8cdd8bca7fe122d782f8a03b3b0b",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal31",
+   "bks": 285,
+   "bks_stated": 285
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal43",
+   "n": 43,
+   "sha256": "98e387103264a08b468431ade4dd4557779d0fabc4053b4d59a7aa0d0ed87ee6",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal43",
+   "bks": 543,
+   "bks_stated": 543
+  },
+  {
+   "family": "Spec",
+   "name": "N-pal55",
+   "n": 55,
+   "sha256": "c3b4cec1c79bc300da33ead0484bcafe84b5af34fdc8d7868697b8924010be19",
+   "path": "_data/suite/classic_benchmarks/Spec/N-pal55",
+   "bks": 1045,
+   "bks_stated": 1045
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.01",
+   "n": 100,
+   "sha256": "60baeca292c5ae20617e58c8bf8b838f78bec8cdc2d3862aa265f2a95b19bcf1",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.01",
+   "bks": 25362,
+   "bks_stated": 25362
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.02",
+   "n": 100,
+   "sha256": "c8a2be13a1caec9bfb86ae292aedd999e032a8f5d0f0305947946d27f801db5d",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.02",
+   "bks": 28326,
+   "bks_stated": 28326
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.03",
+   "n": 100,
+   "sha256": "2afc72773dfc73a1b24b0e65db3e6bf78313e3ac8cb08e1284c767d74c1b2e75",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.03",
+   "bks": 25886,
+   "bks_stated": 25886
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.04",
+   "n": 100,
+   "sha256": "bc82e1aa39af04d8769368426a1d97249fd015279cda7aeecd26556e250ebfc4",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.04",
+   "bks": 26076,
+   "bks_stated": 26076
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.05",
+   "n": 100,
+   "sha256": "22ab437bed0c7a48eb58ded82927bfedd5ec25a3068e3b2eb401fc6491173137",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.05",
+   "bks": 25118,
+   "bks_stated": 25118
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.06",
+   "n": 100,
+   "sha256": "67b9135fbf013b0ef0f75bb811c2ef4a5031e231c0c7396ad34783887937a189",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.06",
+   "bks": 25380,
+   "bks_stated": 25380
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.07",
+   "n": 100,
+   "sha256": "a985f05531f9451ea0953a4b6b8e06c0c1fd0e0ea24d3cb723881c87726648e4",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.07",
+   "bks": 27144,
+   "bks_stated": 27144
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.08",
+   "n": 100,
+   "sha256": "6bf2ba9c284bcd06fa7fd033ec7f21dfbcef4bb565ebbadfdc8b8f22eadd12d8",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.08",
+   "bks": 23784,
+   "bks_stated": 23784
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.09",
+   "n": 100,
+   "sha256": "b3d26655381e86edafdae0773743b7ca65d94829b2e27b3121dd4257876e990e",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.09",
+   "bks": 27752,
+   "bks_stated": 27752
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.10",
+   "n": 100,
+   "sha256": "888df52a0736730a71a5bae0e05c8480325e708654d0d64223c4fc4773094766",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.10",
+   "bks": 26690,
+   "bks_stated": 26690
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.11",
+   "n": 100,
+   "sha256": "686bc38e67373a04790d0e6a68698607d603bfc01dcd817c843ed94c047d4f6a",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.11",
+   "bks": 25106,
+   "bks_stated": 25106
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.12",
+   "n": 100,
+   "sha256": "0db328573889c7d9cc6ed3a977a7aa42a810a7ccd60b9c4dd315bb2100b37391",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.12",
+   "bks": 26782,
+   "bks_stated": 26782
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.13",
+   "n": 100,
+   "sha256": "7f61e8a74ed31c25f01f612177c797057e73f4ce33196571288fe2bfb0626537",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.13",
+   "bks": 27878,
+   "bks_stated": 27878
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.14",
+   "n": 100,
+   "sha256": "7d8964cd53d68fc13bcd2856c8e5db2c5d647d4650a328de4beac830dfa8fb05",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.14",
+   "bks": 25878,
+   "bks_stated": 25878
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.15",
+   "n": 100,
+   "sha256": "1feb7ec711780e04b7533ca70be344a05f08ed547056d781aa871e4814ca4b9a",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.15",
+   "bks": 24232,
+   "bks_stated": 24232
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.16",
+   "n": 100,
+   "sha256": "32fa2c38c3e5dd4091b797eac566984293fa47dcc6eefc938f76c2986b1ffdb4",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.16",
+   "bks": 28206,
+   "bks_stated": 28206
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.17",
+   "n": 100,
+   "sha256": "3abf00e02e36afedac620f7270d0ab0cf8dff123086067222c9eab4e4fec26e2",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.17",
+   "bks": 26704,
+   "bks_stated": 26704
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.18",
+   "n": 100,
+   "sha256": "069a1ee5eb85b4aada132fc4e238ab4af01f1102619ef5d714328bf272c8dba7",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.18",
+   "bks": 26928,
+   "bks_stated": 26928
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.19",
+   "n": 100,
+   "sha256": "83bd9bb6bfff8eabd562e8ff4b93a170d6e941f42dde77ddaf077df8df8a48bc",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.19",
+   "bks": 28760,
+   "bks_stated": 28760
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.20",
+   "n": 100,
+   "sha256": "23b18edc5246ae6b7592786230fe1286ac1756f9bc7851abebb78c7d1edcc561",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.20",
+   "bks": 25220,
+   "bks_stated": 25220
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.21",
+   "n": 100,
+   "sha256": "33e1b3abf94e3eb69a720ed97ae8a48cba80098afcce54e9f74c6e6341d1e9ec",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.21",
+   "bks": 24452,
+   "bks_stated": 24452
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.22",
+   "n": 100,
+   "sha256": "2c941102289b06110c4a11b9cdaf5dbcb8e3ee8379153f256735610b7ea4c7f8",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.22",
+   "bks": 27230,
+   "bks_stated": 27230
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.23",
+   "n": 100,
+   "sha256": "26bbee9133b3271f0d00d9833859d4140891f52c27dfca73322ed11bbe91d196",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.23",
+   "bks": 25588,
+   "bks_stated": 25588
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.24",
+   "n": 100,
+   "sha256": "4ca9e9d71be759be982ef337352c4bcbbc90e0d769867135c00b88ba363f75ed",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.24",
+   "bks": 24800,
+   "bks_stated": 24800
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d100.25",
+   "n": 100,
+   "sha256": "02b41439f183a09c86648d80e7411803cf2a757601f0519a87bbdb2bb030a169",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d100.25",
+   "bks": 23742,
+   "bks_stated": 23742
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.01",
+   "n": 150,
+   "sha256": "897e31f981b784b0266ad2cab2c118044229a6f81dd7a8524449ce596605a972",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.01",
+   "bks": 76041,
+   "bks_stated": 76041
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.02",
+   "n": 150,
+   "sha256": "40d314f66efdf0211d8858dc96d59027990388f542f11adf249c5a9c386ef630",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.02",
+   "bks": 73624,
+   "bks_stated": 73624
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.03",
+   "n": 150,
+   "sha256": "3624aabb4a7ba44612ce80a185faa73d8f4b5179af4db8f9f02d61ca1d25f256",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.03",
+   "bks": 69705,
+   "bks_stated": 69705
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.04",
+   "n": 150,
+   "sha256": "a5d93d5b45372ec60d0563e8cfe14c26e496e05f4943306d9aa04479f620f6ab",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.04",
+   "bks": 73963,
+   "bks_stated": 73963
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.05",
+   "n": 150,
+   "sha256": "6734a15cf0d08a0c3ffcaa6cace8f03e5bae7368b6803cade9257b1226e7560d",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.05",
+   "bks": 79723,
+   "bks_stated": 79723
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.06",
+   "n": 150,
+   "sha256": "17b2e82964d7620e64377aa8123773f887ca486192a9fc0546d17adbc1f4acb7",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.06",
+   "bks": 75440,
+   "bks_stated": 75440
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.07",
+   "n": 150,
+   "sha256": "56f5582212147c564f16bc9b530226e36b4c4b0b551c922e3e68d7e6342af4b4",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.07",
+   "bks": 73858,
+   "bks_stated": 73858
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.08",
+   "n": 150,
+   "sha256": "7a2f69b3ababcf863afbbe06d1a3ede8add9d9879b567c8019bbb7bca6d53cc2",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.08",
+   "bks": 67463,
+   "bks_stated": 67463
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.09",
+   "n": 150,
+   "sha256": "7506556de7a148228835ffe70e7dfab13259db57e147993b689a96608824be03",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.09",
+   "bks": 70739,
+   "bks_stated": 70739
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.10",
+   "n": 150,
+   "sha256": "5008b8ba4f24e6b2a88fa2822b15b3060db1ff118ead0dcba93b778e872c5490",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.10",
+   "bks": 69029,
+   "bks_stated": 69029
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.11",
+   "n": 150,
+   "sha256": "a6c6dcbdeb04914ec6a262b06b2e8749f8e9b70b7304b4f4f71760589b4eab02",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.11",
+   "bks": 72800,
+   "bks_stated": 72800
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.12",
+   "n": 150,
+   "sha256": "23ad6c5450baf1224af8ea43fb8eb712d6b7b281169ca183b77ebf943c9d92da",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.12",
+   "bks": 72181,
+   "bks_stated": 72181
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.13",
+   "n": 150,
+   "sha256": "fd2b9b8703fe97b7f6ca3f7a0c1ffd24809d1feb5d6946e05468417d8900326b",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.13",
+   "bks": 74580,
+   "bks_stated": 74580
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.14",
+   "n": 150,
+   "sha256": "29e38aad42f2cc383f7792c506637153db3a07ede5dddb2cf8007853baf49f3a",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.14",
+   "bks": 68132,
+   "bks_stated": 68132
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.15",
+   "n": 150,
+   "sha256": "87492fcf3424b6b1477dbda4240aeaf64515dd013743e0cff8cb93b367d40b96",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.15",
+   "bks": 76831,
+   "bks_stated": 76831
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.16",
+   "n": 150,
+   "sha256": "211101d8621d66b15c391e461b9fbec66010b63ff445e10e8c113b0259c7b014",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.16",
+   "bks": 72018,
+   "bks_stated": 72018
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.17",
+   "n": 150,
+   "sha256": "5536ba8379965a1d31061951884949987496dc6700700777bdfcce337dd1b4bb",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.17",
+   "bks": 70185,
+   "bks_stated": 70185
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.18",
+   "n": 150,
+   "sha256": "6245a96a8d3ddcb4881b530bb4193dfc47945532e01e51ac7f65f8b84e2615fa",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.18",
+   "bks": 73191,
+   "bks_stated": 73191
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.19",
+   "n": 150,
+   "sha256": "888388d2f6184517778ff1b5f1f08370525e7e50d0ddd903f6096e8d1f44dfff",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.19",
+   "bks": 75958,
+   "bks_stated": 75958
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.20",
+   "n": 150,
+   "sha256": "748d89cb27fe6aa499eda06dae95d189d6a3126331513a2ff61b837f2b67fad0",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.20",
+   "bks": 67370,
+   "bks_stated": 67370
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.21",
+   "n": 150,
+   "sha256": "e1617dbcdd5405ca20ef68f06b53b2295aad509ca4cafa0c68a76685d23f81ef",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.21",
+   "bks": 70297,
+   "bks_stated": 70297
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.22",
+   "n": 150,
+   "sha256": "75bbe2bc7e6228702bbc8260036a9c38c7471a96ea8ad7ec7bb3a30c2d587dfc",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.22",
+   "bks": 69287,
+   "bks_stated": 69287
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.23",
+   "n": 150,
+   "sha256": "87c34f27e337ef0eda1ffad36515344b1449392413a04deebfdcfb21d5acb6a2",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.23",
+   "bks": 74799,
+   "bks_stated": 74799
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.24",
+   "n": 150,
+   "sha256": "8ae307f0b2d0bfa09f11b938f29d921b5e9b72432f9e6b03c3757bd3b45997e1",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.24",
+   "bks": null,
+   "bks_stated": null
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d150.25",
+   "n": 150,
+   "sha256": "d43c1abee7ca3e39cd9b875fc656216ed351bf0fbb0dcde913105c199fc8fba4",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d150.25",
+   "bks": 73853,
+   "bks_stated": 73853
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.01",
+   "n": 200,
+   "sha256": "91be177afe7e47bd7f4ff3b99774671f251c5d1138248e58905770cd9f593059",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.01",
+   "bks": 147742,
+   "bks_stated": 147742
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.02",
+   "n": 200,
+   "sha256": "ae137c5168c14ce65d9b0e5b30ef246fa40d2db3053a9c846627f6e20397bb0e",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.02",
+   "bks": 144218,
+   "bks_stated": 144218
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.03",
+   "n": 200,
+   "sha256": "b0e7f36b36d658c911718e611c9dd549cdbd679a1b2d151989c21df5d0f02042",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.03",
+   "bks": 141378,
+   "bks_stated": 141378
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.04",
+   "n": 200,
+   "sha256": "a6cf123c89b68d27ab80f3b72be219344aebb0ca4b9f018d88321f11aedc1494",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.04",
+   "bks": 150878,
+   "bks_stated": 150878
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.05",
+   "n": 200,
+   "sha256": "58d309b8f72e4926524f4c78e509aacb20c9cf645fa292f497be740998247338",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.05",
+   "bks": 150236,
+   "bks_stated": 150236
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.06",
+   "n": 200,
+   "sha256": "88c9ef1fc1852b127f414af3961f62756db9678ca5d8d443fb9e3981fde8cfad",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.06",
+   "bks": 141254,
+   "bks_stated": 141254
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.07",
+   "n": 200,
+   "sha256": "07085528efe7bb3c7d1196fa21171865ee27631925e63b01c0403246613b4473",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.07",
+   "bks": 149752,
+   "bks_stated": 149752
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.08",
+   "n": 200,
+   "sha256": "6dd51b8cb97aaa8688757529b39806fe21fa173cead76fa92ee9d67bd8227513",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.08",
+   "bks": 149910,
+   "bks_stated": 149910
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.09",
+   "n": 200,
+   "sha256": "a0f5ef145b77550279c888199f51da9342d9077d0b7761d6204423573b63cec7",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.09",
+   "bks": 141958,
+   "bks_stated": 141958
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.10",
+   "n": 200,
+   "sha256": "635eccac80750d8dbecba9a47bd5b9fd106dc938dae8f51e2cd875f65ac625b6",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.10",
+   "bks": 149630,
+   "bks_stated": 149630
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.11",
+   "n": 200,
+   "sha256": "7ff685c8b97687bd04decf3c6afe75e129d3dadb59aab5bc91506f6a4459949c",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.11",
+   "bks": 147542,
+   "bks_stated": 147542
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.12",
+   "n": 200,
+   "sha256": "f5dee4d717f47cd02b3c29bb6faf8c12e45835bccb05976dc2de109d83309d00",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.12",
+   "bks": 152470,
+   "bks_stated": 152470
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.13",
+   "n": 200,
+   "sha256": "978f3fd2602eeab0375bbd172fc992794c9e0825ac93b2743f31ac62b007558f",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.13",
+   "bks": 137618,
+   "bks_stated": 137618
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.14",
+   "n": 200,
+   "sha256": "ebea4e0064a0c6322afb0f50dca2493b60e5779348975eb53060e97de8d4d696",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.14",
+   "bks": 144384,
+   "bks_stated": 144384
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.15",
+   "n": 200,
+   "sha256": "1ddac3bfb5f5b2f665f4941675d564333d9aeb312f7dac03cf18fb9a42e2f0c9",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.15",
+   "bks": 140442,
+   "bks_stated": 140442
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.16",
+   "n": 200,
+   "sha256": "f3a0af471f3dccaf48d910ee81cabce06428f50390eb569e941fdb986db5f01d",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.16",
+   "bks": 147448,
+   "bks_stated": 147448
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.17",
+   "n": 200,
+   "sha256": "f425ab02dd88f7c677ff05588ed9cf67f98324227b98bf61e76b2631dd9dce7c",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.17",
+   "bks": 131874,
+   "bks_stated": 131874
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.18",
+   "n": 200,
+   "sha256": "0cb8a8ea53070b0d1076220db15bf074327118a6c72fbadbed744f3ce4c7497a",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.18",
+   "bks": 151196,
+   "bks_stated": 151196
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.19",
+   "n": 200,
+   "sha256": "14ab9dd2ddbf208f88fff60a670b50cb5a8bc4def50018b8c50c54c855c17669",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.19",
+   "bks": 137314,
+   "bks_stated": 137314
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.20",
+   "n": 200,
+   "sha256": "1c4081ad8e62e6dd2171bc5d3a55c380574adca740eff410a8f53e70a945c3a8",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.20",
+   "bks": 146508,
+   "bks_stated": 146508
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.21",
+   "n": 200,
+   "sha256": "24e4f78ee572ae7a67e1b266a89f605f890711340d72f29a50be8f439ed0bb7d",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.21",
+   "bks": 143568,
+   "bks_stated": 143568
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.22",
+   "n": 200,
+   "sha256": "980fb4bdf16f720f0173041e0ad5a5542d769e0a1489ff1789441f703e6ec12f",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.22",
+   "bks": 146920,
+   "bks_stated": 146920
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.23",
+   "n": 200,
+   "sha256": "80aa319598087787a458dc95b5f4a86b47ff521db72fc15ddce7451eac3f5c9c",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.23",
+   "bks": 145034,
+   "bks_stated": 145034
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.24",
+   "n": 200,
+   "sha256": "b28f3762282da5f0d3261d402f5f79800bc30a73a1d2548b9727bc9cc9bb4fee",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.24",
+   "bks": 151260,
+   "bks_stated": 151260
+  },
+  {
+   "family": "RandA2",
+   "name": "N-t2d200.25",
+   "n": 200,
+   "sha256": "eeb84c582b8800531b2cc8af9fb16b26f2ec08645d08fc528a064e76547c7f0d",
+   "path": "_data/suite/classic_benchmarks/RandA2/N-t2d200.25",
+   "bks": 149128,
+   "bks_stated": 149128
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.01",
+   "n": 100,
+   "sha256": "4f024cd6d824cca3b0675298220a9c8ad2624cadf472586be5497c2a1f601b89",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.01",
+   "bks": 106852,
+   "bks_stated": 106852
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.02",
+   "n": 100,
+   "sha256": "95bf7d927100090dc37420da9f8d67518467c8257ff41b8feae06b22948b82b7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.02",
+   "bks": 105947,
+   "bks_stated": 105947
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.03",
+   "n": 100,
+   "sha256": "af94bdaf4e81f9449a8ab5a10fdc8c0be018647e1983ba6e1b2dcad6efb3ae1f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.03",
+   "bks": 109819,
+   "bks_stated": 109819
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.04",
+   "n": 100,
+   "sha256": "c2f018dfdc50c6b61aa7fa18b9d31790e7f6e08830a6e0fddd56a09a48286ab5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.04",
+   "bks": 109252,
+   "bks_stated": 109252
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.05",
+   "n": 100,
+   "sha256": "1d320eb17a4c6d2da13819023d302716e208f38b1f1cb70ae91acc5806818f1c",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.05",
+   "bks": 108859,
+   "bks_stated": 108859
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.06",
+   "n": 100,
+   "sha256": "06f4f80751d9affda1234bf04495c5b1e4829c5f8ba11ac217a70b578ea5dbd1",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.06",
+   "bks": 108201,
+   "bks_stated": 108201
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.07",
+   "n": 100,
+   "sha256": "2b216dbd3b45e625d10b938eef307aef9dbd265bd9fa7119429024cfab0a2f31",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.07",
+   "bks": 108803,
+   "bks_stated": 108803
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.08",
+   "n": 100,
+   "sha256": "ccf4f6b61fd1f82ee2ceae0ff318a6a2abba4452eabfe69d766188ee7c0c5a42",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.08",
+   "bks": 107480,
+   "bks_stated": 107480
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.09",
+   "n": 100,
+   "sha256": "d6196e2e2d00b6354765440c55a21fbff7bb155ecf0ae1193c967294c41519bf",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.09",
+   "bks": 108549,
+   "bks_stated": 108549
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.10",
+   "n": 100,
+   "sha256": "3b0435616c237a8aae17b7b76b33e7d1e862bdef295ac6f251e80632042c48aa",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.10",
+   "bks": 108771,
+   "bks_stated": 108771
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.11",
+   "n": 100,
+   "sha256": "85d2b7b6280f55eb7e15422691753dbe168e5525013c5bc86608e9f078a6fec8",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.11",
+   "bks": 107920,
+   "bks_stated": 107920
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.12",
+   "n": 100,
+   "sha256": "c9996ca21ab9b1b5cfa38883cc3aa9d3092dc1edf26c47f6b4f529465516e4d5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.12",
+   "bks": 108389,
+   "bks_stated": 108389
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.13",
+   "n": 100,
+   "sha256": "59325381a20baa2c6ffd151f197a9f02f7aeef3ead6de9baa9a43656dd3ed06b",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.13",
+   "bks": 108702,
+   "bks_stated": 108702
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.14",
+   "n": 100,
+   "sha256": "ec7f5877810efdc8139685aa756fe5830bf21445ec40c2dade0bf6565977720f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.14",
+   "bks": 105583,
+   "bks_stated": 105583
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.15",
+   "n": 100,
+   "sha256": "9f3915b368db86e6d40e8f0972f8263b5b8acfadab8ff85cfc6440bda0f0da18",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.15",
+   "bks": 108667,
+   "bks_stated": 108667
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.16",
+   "n": 100,
+   "sha256": "6433a750fc761c51c45300fe24adcfdbc5fa66ddf5ece6eb3e44e1eb45d0dcb4",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.16",
+   "bks": 107426,
+   "bks_stated": 107426
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.17",
+   "n": 100,
+   "sha256": "118106e10f002d2740fa5b7c3c2f83982a6f3099e264abc8842d9925c0d3d854",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.17",
+   "bks": 105612,
+   "bks_stated": 105612
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.18",
+   "n": 100,
+   "sha256": "b332e80d924377124b621f14afd234adb0942963630d36d576479445d1dc1191",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.18",
+   "bks": 107861,
+   "bks_stated": 107861
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.19",
+   "n": 100,
+   "sha256": "221ef618feedeb8c55b05f8846cce9f831cde74d997ab853f0b5c31ecb5f71bc",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.19",
+   "bks": 108026,
+   "bks_stated": 108026
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.20",
+   "n": 100,
+   "sha256": "89dc746de733f221f11ffc01793f8dc9f897c743a53d9e6c211996762ab92961",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.20",
+   "bks": 109968,
+   "bks_stated": 109968
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.21",
+   "n": 100,
+   "sha256": "5a63726b23b332f8e3bf323f605e382e44a834c3a2426db1588d38fcddf66fb1",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.21",
+   "bks": 107255,
+   "bks_stated": 107255
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.22",
+   "n": 100,
+   "sha256": "f46ea8c198cfc25b5dcc86dfbdf626e7a8e08832fd47b24955d47b6c39d4d1d0",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.22",
+   "bks": 108250,
+   "bks_stated": 108250
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.23",
+   "n": 100,
+   "sha256": "180b0159dddc4381b4da3c2e7237ef549c76df4a2667850dc0abb725e02b8323",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.23",
+   "bks": 106146,
+   "bks_stated": 106146
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.24",
+   "n": 100,
+   "sha256": "684768d1f5c2b407cd5ae8e51a52605e53ddd8ff064bc8763f10ac261eb8c93e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.24",
+   "bks": 108782,
+   "bks_stated": 108782
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d100.25",
+   "n": 100,
+   "sha256": "27f28e5a14d80c8012d5834e22f1b633899bf87274b3426432d52186decc2a8d",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d100.25",
+   "bks": 106933,
+   "bks_stated": 106933
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.01",
+   "n": 150,
+   "sha256": "b45f3ae04cbc9218ad9b9fc5f8fd6e9f9cabc218e4c1b1c430cfd1b6b1aaa2b2",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.01",
+   "bks": 235056,
+   "bks_stated": 235056
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.02",
+   "n": 150,
+   "sha256": "8ba3928fde89da993f7b7c9c63c2682fa9222b0ccb4c9cca4b6724fa512997fb",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.02",
+   "bks": 234421,
+   "bks_stated": 234421
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.03",
+   "n": 150,
+   "sha256": "c827fff364fb7b7bc347edc69c8ab97a400d17bb7454807d77a2b366a577731e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.03",
+   "bks": 236319,
+   "bks_stated": 236319
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.04",
+   "n": 150,
+   "sha256": "7e7bf61ed838bc595dce1da56d5b5f19ec0c74b052e52924fa0e95c776e62eaa",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.04",
+   "bks": 234510,
+   "bks_stated": 234510
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.05",
+   "n": 150,
+   "sha256": "0f7940bcf8c4b40d1dcc08e1c42b4ef86e529cdca4cd6c27355b84137be18f83",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.05",
+   "bks": 234601,
+   "bks_stated": 234601
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.06",
+   "n": 150,
+   "sha256": "818215f84e8ac730c5765bf69fa0e51d5317f83c6e0f92ecb2d01a445175933f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.06",
+   "bks": 234465,
+   "bks_stated": 234465
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.07",
+   "n": 150,
+   "sha256": "b4886dc52daba606f0c75b3f11335fafec383e31bb00734d7d77ec808dd2e90a",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.07",
+   "bks": 235283,
+   "bks_stated": 235283
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.08",
+   "n": 150,
+   "sha256": "d8b36ce1fba696da746cb184bd2183965e5f5abf84e837fb1d5ee2f1f03485c3",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.08",
+   "bks": 237230,
+   "bks_stated": 237230
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.09",
+   "n": 150,
+   "sha256": "78db185900b4d0a8afe717962d23bedfdcdddae3480b922e7aeeba1c4f9d965d",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.09",
+   "bks": 237253,
+   "bks_stated": 237253
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.10",
+   "n": 150,
+   "sha256": "4e6d850dda6b98efe6b636f6f047bf1efd3ee02d6a7f47c9668621c7c5f49b88",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.10",
+   "bks": 234821,
+   "bks_stated": 234821
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.11",
+   "n": 150,
+   "sha256": "6af3cbab3fc8ad38442eb1c9092ede424b5a2404f3dd2c0323f43e1ba32b6af7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.11",
+   "bks": 234157,
+   "bks_stated": 234157
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.12",
+   "n": 150,
+   "sha256": "75a5c65d8cea6f3cf8549660d86c3564d57a60bf11f9cb27240e500b34facc14",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.12",
+   "bks": 236318,
+   "bks_stated": 236318
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.13",
+   "n": 150,
+   "sha256": "86ca1c723ec39eaa7c262acde9f9932bbde876014ff91fcf8f50f14f0efa6951",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.13",
+   "bks": 237116,
+   "bks_stated": 237116
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.14",
+   "n": 150,
+   "sha256": "aad75def996cb21cf60899948df73b4df4e5938f9daee54ffe3e951d3d5416dc",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.14",
+   "bks": 234453,
+   "bks_stated": 234453
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.15",
+   "n": 150,
+   "sha256": "a6dddae8654d15b95f654eb998e25d83e7cbcc96d07311bd4aeb9ccb14d10432",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.15",
+   "bks": 232065,
+   "bks_stated": 232065
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.16",
+   "n": 150,
+   "sha256": "5097be943b7f1dc5182ae2af1e3e4c21266f32908ecd8c226993b7716ff0a5ec",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.16",
+   "bks": 232948,
+   "bks_stated": 232948
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.17",
+   "n": 150,
+   "sha256": "d01503a12448835062f85b17795540aabe5a672f69f3e2e3b9abe8bdc6b06896",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.17",
+   "bks": 236656,
+   "bks_stated": 236656
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.18",
+   "n": 150,
+   "sha256": "fd1c037293a3acb562e78b4f5eaa189728298158acd825264815343e0cbc6f98",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.18",
+   "bks": null,
+   "bks_stated": null
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.19",
+   "n": 150,
+   "sha256": "c18e5ee718c567515e5bd8b2102f901c878ca23d100103da1fc3259ec0614ac0",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.19",
+   "bks": 234994,
+   "bks_stated": 234994
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.20",
+   "n": 150,
+   "sha256": "bb69aa25560042d85049bf24ecf110f44680ebdc482383a0b1092bd6a0b932e7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.20",
+   "bks": 235411,
+   "bks_stated": 235411
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.21",
+   "n": 150,
+   "sha256": "bf9a6028e92edc04b569f65058d116839796ee0ba32839cd7335d6facf55d2d7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.21",
+   "bks": 233988,
+   "bks_stated": 233988
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.22",
+   "n": 150,
+   "sha256": "64707f683948de320e5ae5c4c95271986fb8b191b697e46bce9c83e952d6540c",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.22",
+   "bks": 235415,
+   "bks_stated": 235415
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.23",
+   "n": 150,
+   "sha256": "49a58957c7f2843e6e25eb2369c30650a48a554e4bf167b40b3293c8db9fefc5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.23",
+   "bks": 233492,
+   "bks_stated": 233492
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.24",
+   "n": 150,
+   "sha256": "3449b2e5252aafcf7c16bf5a1a6d2b7e6b1667d63fa8f7e22547d7097e95268c",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.24",
+   "bks": 236016,
+   "bks_stated": 236016
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d150.25",
+   "n": 150,
+   "sha256": "a7e3cf1653cde012ae34e8f408999d1cb53f4fe062288bf0724b1ac9c20c1e63",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d150.25",
+   "bks": 236428,
+   "bks_stated": 236428
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.01",
+   "n": 200,
+   "sha256": "335872cf026bb4511b0bb807715331debd802111f827776f051fa76035b1619e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.01",
+   "bks": 410992,
+   "bks_stated": 410992
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.02",
+   "n": 200,
+   "sha256": "2acbac42b411adcfc56d4858e52c476858cae5454e6cf18dc0e7e7b69034d340",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.02",
+   "bks": 407735,
+   "bks_stated": 407735
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.03",
+   "n": 200,
+   "sha256": "9b3507b51a20d2b69db4a246b4b3812ce07d14a1f6cc06cf98152af1e684d182",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.03",
+   "bks": 407420,
+   "bks_stated": 407420
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.04",
+   "n": 200,
+   "sha256": "cc09be2b8f69bff5f57e11a731cfe1dc5be92edfefcf161e9146e986ad39d5cd",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.04",
+   "bks": 410120,
+   "bks_stated": 410120
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.05",
+   "n": 200,
+   "sha256": "24b7e8079378b7b64fa297f0807b6301ba3c7518410bf1b0febbdb00495f05d5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.05",
+   "bks": 411522,
+   "bks_stated": 411522
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.06",
+   "n": 200,
+   "sha256": "dd01b8c700839867ad07a2f48018017224c3d476e56bcaebcd9913b8fe6129cd",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.06",
+   "bks": 406451,
+   "bks_stated": 406451
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.07",
+   "n": 200,
+   "sha256": "bf9df1f9e5fdd28506b2b0ad4986eaf6485892956672e00d7367e877e8eefb99",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.07",
+   "bks": 412482,
+   "bks_stated": 412482
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.08",
+   "n": 200,
+   "sha256": "258b9ced53c692317ac1f45a17ea4dd531d3e6ded9a14eb09134303f6315e02e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.08",
+   "bks": 408952,
+   "bks_stated": 408952
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.09",
+   "n": 200,
+   "sha256": "12c9294602d9dc928eeaee67178f76109d05733ed587006627d976526770a13f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.09",
+   "bks": 409308,
+   "bks_stated": 409308
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.10",
+   "n": 200,
+   "sha256": "e4ab3f5f303f180739bd7768696dfb308564ecd57786e0115e519e0d079a3abd",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.10",
+   "bks": 406457,
+   "bks_stated": 406457
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.11",
+   "n": 200,
+   "sha256": "845502195477d1a9814caa4a7fd5dc1cafee93ceadd32e2661efb6f911398ed7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.11",
+   "bks": 410239,
+   "bks_stated": 410239
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.12",
+   "n": 200,
+   "sha256": "30e941963c8f19ab5b67336174f8cdd50cbea1623852e446001068afb5701b0e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.12",
+   "bks": 412838,
+   "bks_stated": 412838
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.13",
+   "n": 200,
+   "sha256": "c29a78f41b8299cb57adb8ea6b898447a100750846082da08df3283d6efc9bc8",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.13",
+   "bks": 409270,
+   "bks_stated": 409270
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.14",
+   "n": 200,
+   "sha256": "cc1c2463c1f0bd6666343141bd83ce922fad14cfab3c4a7e94a9c0bc4ca7793a",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.14",
+   "bks": 408879,
+   "bks_stated": 408879
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.15",
+   "n": 200,
+   "sha256": "2dc4348768ed43e4c85954308bf181bab968244e23ef79d88e03df142b883a1f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.15",
+   "bks": 409073,
+   "bks_stated": 409073
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.16",
+   "n": 200,
+   "sha256": "0a49462797916fde8e5d015af885cf3a4459d6d3beff82f8ed3eb588d8131454",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.16",
+   "bks": 408059,
+   "bks_stated": 408059
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.17",
+   "n": 200,
+   "sha256": "4d62492736226d37b73a96dd49f5e5a8cd37a44e025df860094f662f9f07febf",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.17",
+   "bks": 410280,
+   "bks_stated": 410280
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.18",
+   "n": 200,
+   "sha256": "0a5b7f435eff09613d0e07ec4b9928b1047de9b17fa86ca3ad1b93ad85cca015",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.18",
+   "bks": 407822,
+   "bks_stated": 407822
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.19",
+   "n": 200,
+   "sha256": "582c22626a3b0715820caa7193290c53085e2e0368cfc589f567ab1e51d65e74",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.19",
+   "bks": 412947,
+   "bks_stated": 412947
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.20",
+   "n": 200,
+   "sha256": "883830349f2b57fd52e18a6213fe4a374cc66bcfebfb66d1ab9948eea2102cc5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.20",
+   "bks": 406425,
+   "bks_stated": 406425
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.21",
+   "n": 200,
+   "sha256": "476038f82a5d18e84041f11ee1104ef1db3d7a93b2e9b39874c2dcc449ee6741",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.21",
+   "bks": 408037,
+   "bks_stated": 408037
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.22",
+   "n": 200,
+   "sha256": "7758097120656f763b05e4afb5d4c4abdad3c1132f6f8c4425c2b536e95df36f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.22",
+   "bks": 407459,
+   "bks_stated": 407459
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.23",
+   "n": 200,
+   "sha256": "e468681e963dc1015a22ddf3947a22040bf68445d4e8bc463af017d4216931a9",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.23",
+   "bks": 408552,
+   "bks_stated": 408552
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.24",
+   "n": 200,
+   "sha256": "9de912f034ec34251769f00ee879f8f99b2f3a0b047ebe4f6434d4eab61066db",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.24",
+   "bks": 410583,
+   "bks_stated": 410583
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d200.25",
+   "n": 200,
+   "sha256": "a39af72090c8d4c7301411d0950588a1dfd79159fabdc520487bb78fe940312f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d200.25",
+   "bks": 406478,
+   "bks_stated": 406478
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.01",
+   "n": 500,
+   "sha256": "d493bd6464bc2741fad15bd182856382ceb6b1c724b8fd6e20ecce92156d52f3",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.01",
+   "bks": null,
+   "bks_stated": null
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.02",
+   "n": 500,
+   "sha256": "c768fb62f6c89801cde220be7fdaf3255220b8b133589924dd773a62460d4f39",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.02",
+   "bks": null,
+   "bks_stated": null
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.10",
+   "n": 500,
+   "sha256": "055aa8e2c046c4af6fa90c3d70db0926f0a6769f2e76834d1aceacf60d0a8123",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.10",
+   "bks": 2407443,
+   "bks_stated": 2407443
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.11",
+   "n": 500,
+   "sha256": "1bf73581b3fa15c87c7c547431c2b3d946f6e53f6a232de3cdd3b3d6c3848d50",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.11",
+   "bks": 2418845,
+   "bks_stated": 2418845
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.12",
+   "n": 500,
+   "sha256": "d3f25a09b306cc84f2176a192243746a445c03665a1b9bcd79ddb1759eaec481",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.12",
+   "bks": 2403988,
+   "bks_stated": 2403988
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.13",
+   "n": 500,
+   "sha256": "01264b44f4a9a75e17c1a44a2cefa7081bdac5b9bc00e4b7d2f38c612651f6a7",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.13",
+   "bks": 2407348,
+   "bks_stated": 2407348
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.14",
+   "n": 500,
+   "sha256": "3f20fb690e76e102fabc7781e9ca0468dd7779de2c6b0987766d84aa730251f8",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.14",
+   "bks": 2411584,
+   "bks_stated": 2411584
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.15",
+   "n": 500,
+   "sha256": "5e8de4f22f831c9242e5df2d9aac45328c81a08b9d026d8a2beb08c75a9e3afa",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.15",
+   "bks": 2413942,
+   "bks_stated": 2413942
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.16",
+   "n": 500,
+   "sha256": "a1bda3f6bc34f1956fb50d4b96d8d5b3a4d39b08068a8b88caea6d44e17d8ae5",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.16",
+   "bks": 2418236,
+   "bks_stated": 2418236
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.17",
+   "n": 500,
+   "sha256": "0525ac3622e46ee176c153a3ddd48065d318e893edc0f487425bb7c9dab310be",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.17",
+   "bks": 2404510,
+   "bks_stated": 2404510
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.18",
+   "n": 500,
+   "sha256": "38b77d162db1a9ee20d8a1625366bf3e2ec19e0f13476922dd409ed23fc9632e",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.18",
+   "bks": 2423457,
+   "bks_stated": 2423457
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.19",
+   "n": 500,
+   "sha256": "a7013c6bf43e7521300e251b273958225cf7ca9095a67874272138d8799a2589",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.19",
+   "bks": 2405574,
+   "bks_stated": 2405574
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.20",
+   "n": 500,
+   "sha256": "3ea5d03c6e175e547a4404dac7029ff458903c65de233d5e2ddde0acd82b450f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.20",
+   "bks": 2416247,
+   "bks_stated": 2416247
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.21",
+   "n": 500,
+   "sha256": "ba8f1cc2e7b101cbd53c713ec619b58546b78dfe8408c59be7a5247544da26c9",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.21",
+   "bks": 2407797,
+   "bks_stated": 2407797
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.22",
+   "n": 500,
+   "sha256": "b9f48d6bd64c3eb6bf7f763cf93953e3deb439c056273e3a23a5ffc4430ac235",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.22",
+   "bks": 2410562,
+   "bks_stated": 2410562
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.23",
+   "n": 500,
+   "sha256": "7b1e0b59ac149a641eb612bf109cd59d5482e0c0d8299acae248493057baa708",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.23",
+   "bks": 2410106,
+   "bks_stated": 2410106
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.24",
+   "n": 500,
+   "sha256": "d628dff19d96f84f95ff99f9434f1ffc061dd0c0a18a715f78ebeff553e0fa44",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.24",
+   "bks": 2404715,
+   "bks_stated": 2404715
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.25",
+   "n": 500,
+   "sha256": "845ec25664608b9333ff2caccddca26e54cff1dc8bd17b0bf863046e51588108",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.25",
+   "bks": 2407443,
+   "bks_stated": 2407443
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.3",
+   "n": 500,
+   "sha256": "d45f1888403c95a42f6bdc748f7fcb5d387e619f05202caf80ef45f24e74b2b9",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.3",
+   "bks": 2406736,
+   "bks_stated": 2406736
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.4",
+   "n": 500,
+   "sha256": "26688e76e2b5d1c4d97c69eb44ac45f862f2008b702af330d28e7421599c214b",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.4",
+   "bks": 2416394,
+   "bks_stated": 2416394
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.5",
+   "n": 500,
+   "sha256": "0df54d75485dda968661deda84724181b01f6d78d197e2d1e2ccec9897eeb332",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.5",
+   "bks": 2393369,
+   "bks_stated": 2393369
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.6",
+   "n": 500,
+   "sha256": "5520c7124a47fc96e83c3c5796a1c7af8091a9c05d1af6d5f5337f9b877fa027",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.6",
+   "bks": 2402033,
+   "bks_stated": 2402033
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.7",
+   "n": 500,
+   "sha256": "f1ebb86b67e5a317389b5770d573556cbed6aeff148509cecd744c9eb018d13f",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.7",
+   "bks": 2402100,
+   "bks_stated": 2402100
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.8",
+   "n": 500,
+   "sha256": "566ddbd7db4685e6113f1eeebeff44d3e713d1a3f2319966d9e0a9b71cb5dfd3",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.8",
+   "bks": 2415545,
+   "bks_stated": 2415545
+  },
+  {
+   "family": "RandA1",
+   "name": "N-t1d500.9",
+   "n": 500,
+   "sha256": "3e86435c97da55be9710d3d4d4bf890302da1a3487018b7176ddc91dc5f57611",
+   "path": "_data/suite/classic_benchmarks/RandA1/N-t1d500.9",
+   "bks": 2408649,
+   "bks_stated": 2408649
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75eec_150",
+   "n": 150,
+   "sha256": "410a1c88684911423d2f9b2c4dd58b25aca0e25e401de68eae10936b602d147c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75eec_150",
+   "bks": 3482828,
+   "bks_stated": 3482828
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75eec_250",
+   "n": 250,
+   "sha256": "ebedcbac77994cf3f7ee66b49fae9f80d5815f9cd12ea729e6197c47e43e5e90",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75eec_250",
+   "bks": 8903348,
+   "bks_stated": 8903348
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75np_150",
+   "n": 150,
+   "sha256": "44127de2544c5cefed0cf4381b59b24791bb4c931f8f83956a0e69312ba3403c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75np_150",
+   "bks": 7182660,
+   "bks_stated": 7182660
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75np_250",
+   "n": 250,
+   "sha256": "be0cec929c350c03d7ba7154f35e9e57186be66ca23ec7aac95fdbcd9bceeefd",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75np_250",
+   "bks": 17833911,
+   "bks_stated": 17833911
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75oi_150",
+   "n": 150,
+   "sha256": "ce762bfac1711c02402958ea40553f5fa2df5c2136b6599521a36ba82faf8c28",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75oi_150",
+   "bks": 2246853,
+   "bks_stated": 2246853
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75oi_250",
+   "n": 250,
+   "sha256": "cf43753a95526cc861798631acd66b44f3f5c6ddaa0a2974f4d7f5557e3a8aad",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75oi_250",
+   "bks": 5912761,
+   "bks_stated": 5912761
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75tot_150",
+   "n": 150,
+   "sha256": "ed8a54b349a66b675d18a0869d50b01594c4c373d754fcad7c6dfcfa99d08c8c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75tot_150",
+   "bks": 12288855,
+   "bks_stated": 12288855
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-be75tot_250",
+   "n": 250,
+   "sha256": "95f9c0d104249c4c6bcb40715a8d121e118ff548ee04bd3d358ef7c9e8fdda15",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-be75tot_250",
+   "bks": 31007081,
+   "bks_stated": 31007081
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu1_150",
+   "n": 150,
+   "sha256": "085083a9fe7398fefd0a7ab63a2d7403ded0f9398ef512feae7100a80540d016",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu1_150",
+   "bks": 2875732,
+   "bks_stated": 2875732
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu1_250",
+   "n": 250,
+   "sha256": "ce3375945f155ed5f3c5da210bc3a1585206d6cd5a8a324edbc9e1d18ca3f119",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu1_250",
+   "bks": 7748569,
+   "bks_stated": 7748569
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu2_150",
+   "n": 150,
+   "sha256": "58ca8eb9ec245b8ec60bf86cc8e981e0edb3a83b02210a5327d4801078be83d0",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu2_150",
+   "bks": 4328514,
+   "bks_stated": 4328514
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu2_250",
+   "n": 250,
+   "sha256": "f5625856697499adeb4776de91e3077f730bddb8d7334daa07d875a40b9adf7b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu2_250",
+   "bks": 11520387,
+   "bks_stated": 11520387
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu3_150",
+   "n": 150,
+   "sha256": "0bead0024bff2313596286cbe57e61d0b3abcf768b943d7994b28e110de48470",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu3_150",
+   "bks": 4510445,
+   "bks_stated": 4510445
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-stabu3_250",
+   "n": 250,
+   "sha256": "58aa4ddb502fea88dc8d0156bc996b6702eaec7c774f97c5071f682459f07d8f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-stabu3_250",
+   "bks": 11914130,
+   "bks_stated": 11914130
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59b11xx_150",
+   "n": 150,
+   "sha256": "0792fcc06bb9f6ae99b469d4ea797532dba01c09fa39e37945753c83484b5492",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59b11xx_150",
+   "bks": 3239550,
+   "bks_stated": 3239550
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59b11xx_250",
+   "n": 250,
+   "sha256": "e8f79560fd08f160732c360cb18fea00bd0dc8813834e7904b3339781197912e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59b11xx_250",
+   "bks": 8419535,
+   "bks_stated": 8419535
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59d11xx_150",
+   "n": 150,
+   "sha256": "0d7862a192ab56aa31b6a1842a2e7d48941a5ad3e5348c3246e68c30f55f4cf1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59d11xx_150",
+   "bks": 1462697,
+   "bks_stated": 1462697
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59d11xx_250",
+   "n": 250,
+   "sha256": "a29f6ee64670fc4b22947d6d067cd5f40e1249aec0b6b2735b07885742422c58",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59d11xx_250",
+   "bks": 3844651,
+   "bks_stated": 3844651
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59f11xx_150",
+   "n": 150,
+   "sha256": "16921ed0f3dc804bf76a8a4975ba784d9fac884488c131920f4ee914ee5180d7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59f11xx_150",
+   "bks": 1543733,
+   "bks_stated": 1543733
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59f11xx_250",
+   "n": 250,
+   "sha256": "a08f671182cfa9e439fb978141a0cf9fb0c967b9488a3acbfff22397dd460625",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59f11xx_250",
+   "bks": 3995886,
+   "bks_stated": 3995886
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59n11xx_150",
+   "n": 150,
+   "sha256": "55e0c30ade347fe4938f8c81c3403e96f7573f2a7983ccd0791d1e16b1e80c14",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59n11xx_150",
+   "bks": 319001,
+   "bks_stated": 319001
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t59n11xx_250",
+   "n": 250,
+   "sha256": "2806a9bdbee72ec8661583ed3ec0a5d69e9acae3f70036c90b0e1c42c139a914",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t59n11xx_250",
+   "bks": 825827,
+   "bks_stated": 825827
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65b11xx_150",
+   "n": 150,
+   "sha256": "08b281603686bc1b6e78223cffd5c26124b7cb3fdd193659ac37ccbadbb56427",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65b11xx_150",
+   "bks": 6455861,
+   "bks_stated": 6455861
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65b11xx_250",
+   "n": 250,
+   "sha256": "8c1f7f76905440a934d652cdd2b113c9fc502c5233d95ad689c1e85253446004",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65b11xx_250",
+   "bks": 17276667,
+   "bks_stated": 17276667
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65d11xx_150",
+   "n": 150,
+   "sha256": "21d9ae29a4847da972ba5ed60207f79c77bc27468f02550f2f4a39ad24c9b95e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65d11xx_150",
+   "bks": 3559437,
+   "bks_stated": 3559437
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65d11xx_250",
+   "n": 250,
+   "sha256": "cadb3ec1f18aa21f444b6fe2191ecf001c9f14cb5425dc4674b34f4e8fa302f2",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65d11xx_250",
+   "bks": 9359469,
+   "bks_stated": 9359469
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65f11xx_150",
+   "n": 150,
+   "sha256": "e9fef65e7f315821f4114980c0610569b8dbf52cbe143358af280a264b55dd13",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65f11xx_150",
+   "bks": 3160165,
+   "bks_stated": 3160165
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65f11xx_250",
+   "n": 250,
+   "sha256": "f80453f1072921596a3a65ef4295eedc33c0ad952245bf0c7227a9527e6b723e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65f11xx_250",
+   "bks": 8421279,
+   "bks_stated": 8421279
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65l11xx_150",
+   "n": 150,
+   "sha256": "10eeb43a3e43865112ff022b1251b1055a17aa4ae3627a88fd9cc571e3e8fb25",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65l11xx_150",
+   "bks": 253417,
+   "bks_stated": 253417
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65l11xx_250",
+   "n": 250,
+   "sha256": "8f1434e507abd1cf7f02f63a920224e45be49b520e3900722fb1442c601b7a5e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65l11xx_250",
+   "bks": 667403,
+   "bks_stated": 667403
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65n11xx_150",
+   "n": 150,
+   "sha256": "e73ab4849baefffd8b7ba295385a212018460ef793c3cf193c3a6597af27d9ce",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65n11xx_150",
+   "bks": 550893,
+   "bks_stated": 550893
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t65n11xx_250",
+   "n": 250,
+   "sha256": "00a697022983c4a288ea5c59a97ec95e7e22cb82b415af6b958365366f089178",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t65n11xx_250",
+   "bks": 1432130,
+   "bks_stated": 1432130
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t69r11xx_150",
+   "n": 150,
+   "sha256": "106121ecbcf33b871ab36d9bebbd1bea89ad864b13f1bb31e69a5f7654037647",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t69r11xx_150",
+   "bks": 11858249,
+   "bks_stated": 11858249
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t69r11xx_250",
+   "n": 250,
+   "sha256": "2f562a92455a42daca4ce59d4a1fca0f36975b7a244a53ef8fb556b7d9f1493e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t69r11xx_250",
+   "bks": 31839590,
+   "bks_stated": 31839590
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70b11xx_150",
+   "n": 150,
+   "sha256": "d5b341eeb2f2054d27d1a5f20fed3c8b4f2db446d50b5cdb37229eb953fd633c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70b11xx_150",
+   "bks": 9649316,
+   "bks_stated": 9649316
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70b11xx_250",
+   "n": 250,
+   "sha256": "296a53750fd3df0c6ebd2c923eaeeb954551a130310e8d589ac876dd4dd48d6c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70b11xx_250",
+   "bks": 25416607,
+   "bks_stated": 25416607
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70d11xn_150",
+   "n": 150,
+   "sha256": "8df65cf59112814669db1798e6b3a58cd48d932d1f2fbe0206c5f6410c2e50b1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70d11xn_150",
+   "bks": 5825947,
+   "bks_stated": 5825947
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70d11xn_250",
+   "n": 250,
+   "sha256": "131e8ac8504b97818a1e1371faec8011c479e9a2fa751b43c9cae9e8f3847e5c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70d11xn_250",
+   "bks": 15216680,
+   "bks_stated": 15216680
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70d11xx_150",
+   "n": 150,
+   "sha256": "9481af034fe86c51763d18727571a492497b2827029ef2c259aa69a03c88c694",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70d11xx_150",
+   "bks": 6174178,
+   "bks_stated": 6174178
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70d11xx_250",
+   "n": 250,
+   "sha256": "e12417d0475f794b42e8a8820f3a2192debf451bbfc568261a45382456b53f71",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70d11xx_250",
+   "bks": 16051624,
+   "bks_stated": 16051624
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70f11xx_150",
+   "n": 150,
+   "sha256": "6fd90f57107b548c36eafd51158dd6586c82caf2e2d757b0b4aa98e9a79f4a02",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70f11xx_150",
+   "bks": 5150097,
+   "bks_stated": 5150097
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70f11xx_250",
+   "n": 250,
+   "sha256": "59bb22c2ee48d1388edd4d693dedcc1c55fc4ecfd2a22af3a6f115d0fdf146f3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70f11xx_250",
+   "bks": 13602981,
+   "bks_stated": 13602981
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70l11xx_150",
+   "n": 150,
+   "sha256": "31a58cd5eabaea94ee23aa0ce5f93fbf845e4ed3ba9e15ddffb5dcb9e6d25616",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70l11xx_150",
+   "bks": 436882,
+   "bks_stated": 436882
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70l11xx_250",
+   "n": 250,
+   "sha256": "01288be0862cccf0da55e3946c86aa67a7162f46470bdaa057a5268b3abbf517",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70l11xx_250",
+   "bks": 1114689,
+   "bks_stated": 1114689
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70n11xx_150",
+   "n": 150,
+   "sha256": "d0848f5f70cf2f2f41929d46ce384345e63d7f0a956aa63720c9450793b9e1c0",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70n11xx_150",
+   "bks": 948913,
+   "bks_stated": 948913
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t70n11xx_250",
+   "n": 250,
+   "sha256": "1e92b13a0f17256d995d82d115ea7e290017d3e0206f18330d33b794f71a76d7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t70n11xx_250",
+   "bks": 2447203,
+   "bks_stated": 2447203
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t74d11xx_150",
+   "n": 150,
+   "sha256": "b4c8ea19f00979f9e51fe335b628d8d04f38d29fa27b9f28d9e08eb8afa5aebd",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t74d11xx_150",
+   "bks": 9396044,
+   "bks_stated": 9396044
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t74d11xx_250",
+   "n": 250,
+   "sha256": "2f189c716b3cc645ce51ec282b023de0aad4a88f22c63859b8802aafa9a1343e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t74d11xx_250",
+   "bks": 24451465,
+   "bks_stated": 24451465
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75d11xx_150",
+   "n": 150,
+   "sha256": "363d4b7e1277ea0f0736b8a392a782541d2af0338ee0b52edb64d7a3c85cf180",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75d11xx_150",
+   "bks": 9645000,
+   "bks_stated": 9645000
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75d11xx_250",
+   "n": 250,
+   "sha256": "e2f04c2fdbc09ffef8bffaa53b1e170cbc8cb79588e67cebd0cb76cd4ff7188b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75d11xx_250",
+   "bks": 25056847,
+   "bks_stated": 25056847
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75e11xx_150",
+   "n": 150,
+   "sha256": "64893884535e839e60f3909789a2f57426080d846594e7752f801c8de16d2feb",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75e11xx_150",
+   "bks": 41571407,
+   "bks_stated": 41571407
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75e11xx_250",
+   "n": 250,
+   "sha256": "84203ebcb3ce27a07edbaa507a5f09d2b1d864f0824cf895c1f52c7491b7958b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75e11xx_250",
+   "bks": 106923099,
+   "bks_stated": 106923099
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75k11xx_150",
+   "n": 150,
+   "sha256": "0bb69199f97989d9af00f7bc962753df41880449eee368454b24d69f307f0528",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75k11xx_150",
+   "bks": 1541596,
+   "bks_stated": 1541596
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75k11xx_250",
+   "n": 250,
+   "sha256": "1e08dcc80039e37fa143a22889d336c421d31427b10d04e39b776496dccb49ef",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75k11xx_250",
+   "bks": 4098580,
+   "bks_stated": 4098580
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75n11xx_150",
+   "n": 150,
+   "sha256": "aaee50c8b0cfbb6ba2011f0be88ac17f9fcd09e9e6fae6082ca78e523cf9f0dc",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75n11xx_150",
+   "bks": 1743094,
+   "bks_stated": 1743094
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-t75n11xx_250",
+   "n": 250,
+   "sha256": "8f37203015f9462322db69a0649c92a08071bb8a796a137eeacd14b701c0b15f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-t75n11xx_250",
+   "bks": 4529853,
+   "bks_stated": 4529853
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n54_150",
+   "n": 150,
+   "sha256": "b126dc5dd82b68e644883988087475974d4d9e279d729ec774c911966db0b7d7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n54_150",
+   "bks": 837945,
+   "bks_stated": 837945
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n54_250",
+   "n": 250,
+   "sha256": "d53d09e63e22c3ea45733014d8f16b8edcead89464f497464d61c4b6602a48cf",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n54_250",
+   "bks": 2100929,
+   "bks_stated": 2100929
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n58_150",
+   "n": 150,
+   "sha256": "0fa18d556ff2008bdadd1107d27cf1a52f2b29d99758971495bcf27abd2397d3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n58_150",
+   "bks": 1155392,
+   "bks_stated": 1155392
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n58_250",
+   "n": 250,
+   "sha256": "52196dae1d4eadd42f794713061cffdccbfadb05151a30fb39a18cfc5b415c43",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n58_250",
+   "bks": 2907509,
+   "bks_stated": 2907509
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n62_150",
+   "n": 150,
+   "sha256": "0a20f3ca660af88c2ff1ef58d92fb18e9376615440506cf6e479b80c1570e8e3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n62_150",
+   "bks": 1627400,
+   "bks_stated": 1627400
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n62_250",
+   "n": 250,
+   "sha256": "c9c24bc34b7c358c576dc32f7eb8a72570cb7f90b0483a3f457557c4e324e89f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n62_250",
+   "bks": 4145968,
+   "bks_stated": 4145968
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n66_150",
+   "n": 150,
+   "sha256": "c1e7da0cac9ff537586c01eeb3f6fea44f85f83df3c224f20c64b0f5ce41054b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n66_150",
+   "bks": 2107619,
+   "bks_stated": 2107619
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n66_250",
+   "n": 250,
+   "sha256": "983a8a38aca7f4a962343abb34fba0786c93159696633fa27f6ad8f01fb49c21",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n66_250",
+   "bks": 5373238,
+   "bks_stated": 5373238
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n67_150",
+   "n": 150,
+   "sha256": "7aa92cf9ab6da452525f5c81b5095a80ef86db91386dd7b59566aab7f49549e7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n67_150",
+   "bks": 2372945,
+   "bks_stated": 2372945
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n67_250",
+   "n": 250,
+   "sha256": "80d371f1b97ac5f904dd31f1b66853bbf11ddc5f0a62a6edbfdd9b8dd177ccd1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n67_250",
+   "bks": 6326881,
+   "bks_stated": 6326881
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n72_150",
+   "n": 150,
+   "sha256": "d85062ac5c96a5053aa70283e675f77002ad788aeeb35c236533becd722e8eb2",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n72_150",
+   "bks": 4135952,
+   "bks_stated": 4135952
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56n72_250",
+   "n": 250,
+   "sha256": "aa652ee0df9c091f3a1a886e1751133c7c413d96c77dc8ace697a11fc7e4aa34",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56n72_250",
+   "bks": 11157434,
+   "bks_stated": 11157434
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r54_150",
+   "n": 150,
+   "sha256": "757879601a2b2388660205ff557d0c0e092f97b947ef17e3b7bbab7d10688766",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r54_150",
+   "bks": 958277,
+   "bks_stated": 958277
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r54_250",
+   "n": 250,
+   "sha256": "cc54a8968f34d2fba67e22d64f08ac1b4240ac1602c655de6e736eb4842c1a2c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r54_250",
+   "bks": 2389735,
+   "bks_stated": 2389735
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r58_150",
+   "n": 150,
+   "sha256": "5fb3ba00049c9b49d954c7fed17afb150ac8c984c693aab63636623fb4801a31",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r58_150",
+   "bks": 1219295,
+   "bks_stated": 1219295
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r58_250",
+   "n": 250,
+   "sha256": "ae29ccb08948c03f2e07e5b7d2dcacc2c9498a532144c17266c34234bc8aa373",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r58_250",
+   "bks": 3061948,
+   "bks_stated": 3061948
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r66_150",
+   "n": 150,
+   "sha256": "86ad4b97d36a14f25aa985b648bdcae01041445e72ff7f0a399415fdb10f9f40",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r66_150",
+   "bks": 1940755,
+   "bks_stated": 1940755
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r66_250",
+   "n": 250,
+   "sha256": "76c476341bc96722353cc6ac7d28fab8b761ce7a5459ae32d665dc1ae751848b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r66_250",
+   "bks": 4950654,
+   "bks_stated": 4950654
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r67_150",
+   "n": 150,
+   "sha256": "21b240d0e05dee10ffa78e9b654141df6133408218042bcc4f2a80e6486c4d1f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r67_150",
+   "bks": 2058095,
+   "bks_stated": 2058095
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r67_250",
+   "n": 250,
+   "sha256": "f525317151fc0d74f735e90b1033f8eabd60ddad87175814657d95a7203498a8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r67_250",
+   "bks": 5293925,
+   "bks_stated": 5293925
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r72_150",
+   "n": 150,
+   "sha256": "4ccc392f3c3b1bd10ffc75590b2f801fdaf39ab79a1de69626860329faa2dbee",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r72_150",
+   "bks": 2824014,
+   "bks_stated": 2824014
+  },
+  {
+   "family": "xLOLIB",
+   "name": "N-tiw56r72_250",
+   "n": 250,
+   "sha256": "248f014fe44078fcc3bf27399045e6a1350a451bced30026b24dcabcb530cba5",
+   "path": "_data/suite/classic_benchmarks/xLOLIB/N-tiw56r72_250",
+   "bks": 7458261,
+   "bks_stated": 7458261
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75eec_1000",
+   "n": 1000,
+   "sha256": "ee7e2f9cf49988f1525470a12ecad61497c38db91bef5b8c074a91d6497acf21",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75eec_1000",
+   "bks": 122927794,
+   "bks_stated": 122927794
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75eec_300",
+   "n": 300,
+   "sha256": "611fe6f83f010ee37d0bb80cec7a2d63d51375f38b2c4a7b84862355c8bd5bea",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75eec_300",
+   "bks": 12437701,
+   "bks_stated": 12437701
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75eec_500",
+   "n": 500,
+   "sha256": "34e940a0ecd9c0a054dfa87c0ad4d2b9286ba141d98be1dcb7ce463fe3f22437",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75eec_500",
+   "bks": 33464804,
+   "bks_stated": 33464804
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75eec_750",
+   "n": 750,
+   "sha256": "31a4bed81aae36ff871befda9ca7ddc6cfd9b1426c82b4f1ab292dfaee255f88",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75eec_750",
+   "bks": 71724346,
+   "bks_stated": 71724346
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75np_1000",
+   "n": 1000,
+   "sha256": "d750aa61556016aa353c1e443bd116313f2b5f8795afe672de5e02f2fc9e56f4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75np_1000",
+   "bks": 247827883,
+   "bks_stated": 247827883
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75np_300",
+   "n": 300,
+   "sha256": "76215f196230ee93816b34f423cc217754b48501ef96a71357b41bc10c208255",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75np_300",
+   "bks": 26127625,
+   "bks_stated": 26127625
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75np_500",
+   "n": 500,
+   "sha256": "4dd982a12d37ada7136ae0f58df3dd14709d848cef438f0b819eb669c98a655c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75np_500",
+   "bks": 66991918,
+   "bks_stated": 66991918
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75np_750",
+   "n": 750,
+   "sha256": "6f2fb4156f25fd041c0db8b45a3243dd580c43d1423292fd3f37cfa7539d801c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75np_750",
+   "bks": 143015205,
+   "bks_stated": 143015205
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75oi_1000",
+   "n": 1000,
+   "sha256": "942d1f0dde272707ca077770ecdbe572c1b433e6552bb878eef45c316e2d2dc1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75oi_1000",
+   "bks": 95603686,
+   "bks_stated": 95603686
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75oi_300",
+   "n": 300,
+   "sha256": "685ba99edbc20273d1a2fd9f9168bc1739a657a167b206ad1144d3136475b397",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75oi_300",
+   "bks": 9407042,
+   "bks_stated": 9407042
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75oi_500",
+   "n": 500,
+   "sha256": "512401ecb4d2cea0d3861dffdd7fd0f187784d8aded9ee8db24df526fa1efb01",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75oi_500",
+   "bks": 25423876,
+   "bks_stated": 25423876
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75oi_750",
+   "n": 750,
+   "sha256": "b26789f7047299d00585eb1a88a4a1cf4d65197fd5f2a42290a3fd5feb9377b4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75oi_750",
+   "bks": 57667942,
+   "bks_stated": 57667942
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75tot_1000",
+   "n": 1000,
+   "sha256": "92688cae20f6e662320dbe2142961afd8745be968e92e3d3faf95993c1f92740",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75tot_1000",
+   "bks": 423334547,
+   "bks_stated": 423334547
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75tot_300",
+   "n": 300,
+   "sha256": "c5b6f59bc3c3d6e292cdcfaa67a065880302208cad551d4c00c5deef5d61354d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75tot_300",
+   "bks": 43838792,
+   "bks_stated": 43838792
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75tot_500",
+   "n": 500,
+   "sha256": "bcdc31ba4b7b3057695cbeefdacc1751fa34b20c56afa3b142327fcb97653cb6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75tot_500",
+   "bks": 114378983,
+   "bks_stated": 114378983
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-be75tot_750",
+   "n": 750,
+   "sha256": "648698a674eea3373d65ea00fcd611e4bafa82e98629727256893fefd0220915",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-be75tot_750",
+   "bks": 248035898,
+   "bks_stated": 248035898
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu70_1000",
+   "n": 1000,
+   "sha256": "719dad36196c358718ea5a55f97ce0374cb0b824f37ad82e47d221ba6178cfaa",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu70_1000",
+   "bks": 101281394,
+   "bks_stated": 101281394
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu70_300",
+   "n": 300,
+   "sha256": "56104e8aa402e08c1f8be6b999a0fc9de0fc420a0ba33cd1afee1cb571e6313c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu70_300",
+   "bks": 10007371,
+   "bks_stated": 10007371
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu70_500",
+   "n": 500,
+   "sha256": "d7545e4c00790cf60fcb34d4f03da817e3ea6d716c0ffb112de051beadace267",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu70_500",
+   "bks": 27329658,
+   "bks_stated": 27329658
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu70_750",
+   "n": 750,
+   "sha256": "3b9944742d4faab12d06ebb51c35b917732dc22e0ca64c41385acde4f94a730e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu70_750",
+   "bks": 58591596,
+   "bks_stated": 58591596
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu74_1000",
+   "n": 1000,
+   "sha256": "86f34a893cc68bec48be636f0b447bf0631dc763ced727fd69dd645459424129",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu74_1000",
+   "bks": 151995659,
+   "bks_stated": 151995659
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu74_300",
+   "n": 300,
+   "sha256": "ebc2f2cb91b1cb3b8f8f2f9e19842aeeb76d41649f76e431204f1771e1b2ec3b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu74_300",
+   "bks": 15045552,
+   "bks_stated": 15045552
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu74_500",
+   "n": 500,
+   "sha256": "e90fbb06cb8573feb9af84328b2a2a252173e9a903890a58d33a302671449d4e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu74_500",
+   "bks": 41255113,
+   "bks_stated": 41255113
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu74_750",
+   "n": 750,
+   "sha256": "41169a6906c165dd29ade33f62b41fcd7e1794e9266478a21168cee0f17c1c94",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu74_750",
+   "bks": 88032483,
+   "bks_stated": 88032483
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu75_1000",
+   "n": 1000,
+   "sha256": "3c03bdc677dc7c3bd03b4015e81aa4357bdda429438c0be82fe20fa52e2db4d7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu75_1000",
+   "bks": 157509324,
+   "bks_stated": 157509324
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu75_300",
+   "n": 300,
+   "sha256": "0bef0d0c5c24fb7a1c1a8b47c2335a4420d2ae3148e495e3eaac83000da5d0a7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu75_300",
+   "bks": 15594987,
+   "bks_stated": 15594987
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu75_500",
+   "n": 500,
+   "sha256": "70fdb0f825fee67c91becfd66420a9fee51a8bceef208a4aef685deea615893e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu75_500",
+   "bks": 42811288,
+   "bks_stated": 42811288
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-stabu75_750",
+   "n": 750,
+   "sha256": "501afb9b6e5d33c9b6934a818bb6239cc7908c4972c0a930b9e76cdd296cb0b6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-stabu75_750",
+   "bks": 91056055,
+   "bks_stated": 91056055
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59b11xx_1000",
+   "n": 1000,
+   "sha256": "50074a3a2a5c323d2c282884d3ccc7aba0ab9d1035452be24793ff3684dff62d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59b11xx_1000",
+   "bks": 102552395,
+   "bks_stated": 102552395
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59b11xx_300",
+   "n": 300,
+   "sha256": "11f58303948fa8d2450e4b923141283e5260ffaba5da6a4382c7aedbe03f7dbe",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59b11xx_300",
+   "bks": 10418775,
+   "bks_stated": 10418775
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59b11xx_500",
+   "n": 500,
+   "sha256": "4a498bbc735df3daa2726e9ab4a7d89dbb0bad32bc8cd7a349489cfb2f3c285f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59b11xx_500",
+   "bks": 27765885,
+   "bks_stated": 27765885
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59b11xx_750",
+   "n": 750,
+   "sha256": "b0bb660a55218f277bd53196cf995a72eefdb4adb4cc115e0df30d3a178b79ca",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59b11xx_750",
+   "bks": 60155665,
+   "bks_stated": 60155665
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59d11xx_1000",
+   "n": 1000,
+   "sha256": "3dee282ba203625f82873f069f341cb078b932cef22d45cedd5808d7d7c63c59",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59d11xx_1000",
+   "bks": 51047439,
+   "bks_stated": 51047439
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59d11xx_300",
+   "n": 300,
+   "sha256": "67c4abf2dacd13d94bdd4d7f1a1e23a29de25728639a934c3e3f834a75d4e665",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59d11xx_300",
+   "bks": 5037176,
+   "bks_stated": 5037176
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59d11xx_500",
+   "n": 500,
+   "sha256": "902653cf41b222cdd2945a3d4a23d7ebd453b492e4ed9ba11f2c47dbfd332d8a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59d11xx_500",
+   "bks": 13294224,
+   "bks_stated": 13294224
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59d11xx_750",
+   "n": 750,
+   "sha256": "3271112b6465de25cdfa6c74d801c182df6b081dad99d9efab2e8891115abe85",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59d11xx_750",
+   "bks": 29957553,
+   "bks_stated": 29957553
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59f11xx_1000",
+   "n": 1000,
+   "sha256": "c7e339598b9a0a0a807c09a1e5bd9c0f46b185ac8e8d29096637bb209195bc5e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59f11xx_1000",
+   "bks": 49448787,
+   "bks_stated": 49448787
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59f11xx_300",
+   "n": 300,
+   "sha256": "e1bf631dbbc02c9d60438203d84171f6e97933b4d5a999edf50ca848490cca71",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59f11xx_300",
+   "bks": 5076782,
+   "bks_stated": 5076782
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59f11xx_500",
+   "n": 500,
+   "sha256": "b9c5ff0f58d768570e8253bfebd32e448143f15adb8b97b9cc17b818f44759c4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59f11xx_500",
+   "bks": 13506538,
+   "bks_stated": 13506538
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59f11xx_750",
+   "n": 750,
+   "sha256": "ea8aa9ed77265db36b37eacd67018b12cd95d66b08d768ee21b5d161c38f7cb8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59f11xx_750",
+   "bks": 29192928,
+   "bks_stated": 29192928
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59i11xx_1000",
+   "n": 1000,
+   "sha256": "9f151c2429f687ef4facd67b2a924ac51e833817723cdd458e8a2038508e2b5e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59i11xx_1000",
+   "bks": 3491553089,
+   "bks_stated": 3491553089
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59i11xx_300",
+   "n": 300,
+   "sha256": "e35a27a1e1e06f91a62cc14d13de1e8dfb7428f8bef95803d1408702c6c32872",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59i11xx_300",
+   "bks": 360944548,
+   "bks_stated": 360944548
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59i11xx_500",
+   "n": 500,
+   "sha256": "ea1f24cbcfa34a5ddbfa6ececd6cf59cf6e062c9e1c2161aeef9d51c23b12b77",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59i11xx_500",
+   "bks": 940518070,
+   "bks_stated": 940518070
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59i11xx_750",
+   "n": 750,
+   "sha256": "d02288c05e2a0a0e9c29c92ca7b8d04e0782c628b0f976a63f640614a7bf20cd",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59i11xx_750",
+   "bks": 2074252863,
+   "bks_stated": 2074252863
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59n11xx_1000",
+   "n": 1000,
+   "sha256": "a68035c0704294c4f1b472a382d4b4a197bb54a7ccbacdfd7d6eff2bfce80454",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59n11xx_1000",
+   "bks": 9617008,
+   "bks_stated": 9617008
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59n11xx_300",
+   "n": 300,
+   "sha256": "e21f346f1bf8fd1bda4dc7a6c3b5ae765e30400f2b263dcdc597309e59bc1f82",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59n11xx_300",
+   "bks": 1007084,
+   "bks_stated": 1007084
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59n11xx_500",
+   "n": 500,
+   "sha256": "0180696c738328031a8c7ef979ae84298d7656f9ee41b26cacc61fd5d20093c1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59n11xx_500",
+   "bks": 2620832,
+   "bks_stated": 2620832
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t59n11xx_750",
+   "n": 750,
+   "sha256": "bf5c6a56ef6a1154e443669f8ab148851dc54855e839eee5523caef264fb3c83",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t59n11xx_750",
+   "bks": 5695531,
+   "bks_stated": 5695531
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65b11xx_1000",
+   "n": 1000,
+   "sha256": "cb7ec8dac2320c1288759e1bcdbec2f7fd268dc15502b9a46e13d20e22a0a63e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65b11xx_1000",
+   "bks": 223853241,
+   "bks_stated": 223853241
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65b11xx_300",
+   "n": 300,
+   "sha256": "f44ad49d087974fd6cec4b601ad24477cf48062ed76410fe9f19d7580f69ebbc",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65b11xx_300",
+   "bks": 22177266,
+   "bks_stated": 22177266
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65b11xx_500",
+   "n": 500,
+   "sha256": "16c365add8c334bf9853b0b413056eeb7079733034bb8d483c1817b8b0ad1929",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65b11xx_500",
+   "bks": 59888768,
+   "bks_stated": 59888768
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65b11xx_750",
+   "n": 750,
+   "sha256": "5f61d1b0dceeded0245013e4de356ab99a663f6343ec0416e7f8d3e51ab0faec",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65b11xx_750",
+   "bks": 130054912,
+   "bks_stated": 130054912
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65d11xx_1000",
+   "n": 1000,
+   "sha256": "3bf7b7df13c0eb2a112fdd1922604406656182f1b815e3df640bc9dbcdfa0d51",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65d11xx_1000",
+   "bks": 117373026,
+   "bks_stated": 117373026
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65d11xx_300",
+   "n": 300,
+   "sha256": "4c457efcf81657d2fe2c2da4e6302c5c94cebbee7a565d3021c5cc737300e673",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65d11xx_300",
+   "bks": 11885049,
+   "bks_stated": 11885049
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65d11xx_500",
+   "n": 500,
+   "sha256": "52f8cee5a047e54c4ba695bc7bd2dcd4c1492263a430498981919107e8e6a93c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65d11xx_500",
+   "bks": 31838356,
+   "bks_stated": 31838356
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65d11xx_750",
+   "n": 750,
+   "sha256": "33f0bfebf26da980582c6e96edc2053ebf6571f0888a61ce275234eab443edcb",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65d11xx_750",
+   "bks": 67998198,
+   "bks_stated": 67998198
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65f11xx_1000",
+   "n": 1000,
+   "sha256": "567e5a1436663b9e4d242adf29cc2fa5cb26057758557ce731541179459b128d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65f11xx_1000",
+   "bks": 108745492,
+   "bks_stated": 108745492
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65f11xx_300",
+   "n": 300,
+   "sha256": "149f5518bbc548ca70b9a9686eb177e8509dde43eba8fd7babd82d0fe3b591ca",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65f11xx_300",
+   "bks": 11186549,
+   "bks_stated": 11186549
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65f11xx_500",
+   "n": 500,
+   "sha256": "83515945edc00a02ae280b3338a24a7e1c628ac554b652f46b21d3b3172bc119",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65f11xx_500",
+   "bks": 29384561,
+   "bks_stated": 29384561
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65f11xx_750",
+   "n": 750,
+   "sha256": "d35a6f6bcc7869aced9d33b0fce620fde630635033199dc8833dfe76b6759045",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65f11xx_750",
+   "bks": 63496233,
+   "bks_stated": 63496233
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65i11xx_1000",
+   "n": 1000,
+   "sha256": "5fdcfc18043e724c4b6e48235ccfee9769711fe95b1eff91f5e12e63c36c7263",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65i11xx_1000",
+   "bks": 8442803555,
+   "bks_stated": 8442803555
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65i11xx_300",
+   "n": 300,
+   "sha256": "69ed016b15597245e45be561686519b9d1dc3688797b010768c6741f695774f9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65i11xx_300",
+   "bks": 864223106,
+   "bks_stated": 864223106
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65i11xx_500",
+   "n": 500,
+   "sha256": "48b21857633cfdf82c63f67b6e4f839439cade3a594afb7c0468d21d970eb46c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65i11xx_500",
+   "bks": 2255031024,
+   "bks_stated": 2255031024
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65i11xx_750",
+   "n": 750,
+   "sha256": "daec9355c89956172ebbd29829fe16d99f53de2fba303dd1982e7f43488a02ca",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65i11xx_750",
+   "bks": 4951075948,
+   "bks_stated": 4951075948
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65l11xx_1000",
+   "n": 1000,
+   "sha256": "3050db3ce208709db2b576047d629d0f15b3c1c354b44b3d64b22087b2a0596e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65l11xx_1000",
+   "bks": 8724685,
+   "bks_stated": 8724685
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65l11xx_300",
+   "n": 300,
+   "sha256": "d34f94bd89c9628d3f80562540e52bb45ed668cdc3b6701deeda5daa40785382",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65l11xx_300",
+   "bks": 828676,
+   "bks_stated": 828676
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65l11xx_500",
+   "n": 500,
+   "sha256": "e60dc71b6f2fa59c26f00975624dddd1f1807d43ca8f51bf18f394ae1126b4f6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65l11xx_500",
+   "bks": 2335917,
+   "bks_stated": 2335917
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65l11xx_750",
+   "n": 750,
+   "sha256": "6df42df9c025e87db520a739acf99745b1729619f5fe1f506f35739a2fd32b17",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65l11xx_750",
+   "bks": 4944869,
+   "bks_stated": 4944869
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65n11xx_1000",
+   "n": 1000,
+   "sha256": "0cd53ee34eb1fe882ef225744a76891434ff0a4a5df00c7dab770acb54708547",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65n11xx_1000",
+   "bks": 17138665,
+   "bks_stated": 17138665
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65n11xx_300",
+   "n": 300,
+   "sha256": "1d983e554a8b574abcc83e88b626fb0e3b141796690e190ccd36b75ff2571a60",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65n11xx_300",
+   "bks": 1790515,
+   "bks_stated": 1790515
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65n11xx_500",
+   "n": 500,
+   "sha256": "eefca1b069cc0892464ddf7dd4da1e6ec470678b75340841b892c149d5dae167",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65n11xx_500",
+   "bks": 4667547,
+   "bks_stated": 4667547
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65n11xx_750",
+   "n": 750,
+   "sha256": "cdd7a1571cfda354ba73380b4812920106dee0f1d2209ef0698d0a0479829dde",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65n11xx_750",
+   "bks": 10094359,
+   "bks_stated": 10094359
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65w11xx_1000",
+   "n": 1000,
+   "sha256": "493b9e21ef80f409641d469a6715b0d0e4db7b824bf769850d32196b1e0d31a4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65w11xx_1000",
+   "bks": 72045429648,
+   "bks_stated": 72045429648
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65w11xx_300",
+   "n": 300,
+   "sha256": "2dd7413bae756d1bec9da33cff591b24aada9da107b42d6e81d8deac9a9bb14d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65w11xx_300",
+   "bks": 7349114518,
+   "bks_stated": 7349114518
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65w11xx_500",
+   "n": 500,
+   "sha256": "f90eb11bb772b0024e69e0c1d2100bd65280e669f0e704be3fe2a8a8b53488ca",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65w11xx_500",
+   "bks": 19444171547,
+   "bks_stated": 19444171547
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t65w11xx_750",
+   "n": 750,
+   "sha256": "f42aed6112c8c5ab9cf1b2404faa1a57c1c161dc0fa35fbcda164944a13c8a71",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t65w11xx_750",
+   "bks": 41955222364,
+   "bks_stated": 41955222364
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t69r11xx_1000",
+   "n": 1000,
+   "sha256": "dcd7d9691dbc286e05f0821a36a799efb4cfe67ba589341e53d295b1bcd80ae6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t69r11xx_1000",
+   "bks": 399611905,
+   "bks_stated": 399611905
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t69r11xx_300",
+   "n": 300,
+   "sha256": "5232f47a71bb1bfd15682fd5aa4509b16314736f9fc7e3c9214e40f687861631",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t69r11xx_300",
+   "bks": 41156777,
+   "bks_stated": 41156777
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t69r11xx_500",
+   "n": 500,
+   "sha256": "b619d2ae616a9627ca53cf17ab5caea2a20f5bd45931558c03811d8f55c0e038",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t69r11xx_500",
+   "bks": 109076028,
+   "bks_stated": 109076028
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t69r11xx_750",
+   "n": 750,
+   "sha256": "b25d58926a9c443fbb19d39edfc0a470c40e475c5efb83057cd07b839c69080e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t69r11xx_750",
+   "bks": 237138462,
+   "bks_stated": 237138462
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70b11xx_1000",
+   "n": 1000,
+   "sha256": "c36de4e9807e21bc722de29f4c16a75b5a1aeeb0e6e8f2e4b2653683b46af809",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70b11xx_1000",
+   "bks": 314603886,
+   "bks_stated": 314603886
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70b11xx_300",
+   "n": 300,
+   "sha256": "b8af906848d2273ace5c9ec9011263dc2c5f837be6169a5e0ae16a51377c1726",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70b11xx_300",
+   "bks": 31677663,
+   "bks_stated": 31677663
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70b11xx_500",
+   "n": 500,
+   "sha256": "73971e6c838518fcf7418044b77ceac0d869ee15d99b1bddd82f0898aca4ceb1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70b11xx_500",
+   "bks": 84625101,
+   "bks_stated": 84625101
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70b11xx_750",
+   "n": 750,
+   "sha256": "1088cfa5bac6c200a1d17dda88d81c30ab3f3b3e5838ae15350e2bc1f6cafb37",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70b11xx_750",
+   "bks": 182775821,
+   "bks_stated": 182775821
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xx_1000",
+   "n": 1000,
+   "sha256": "cdfe5e8b77da1bb560de8d3cfa4920fd54127a5368f838c3c0e28a6ba074ed81",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xx_1000",
+   "bks": 205598204,
+   "bks_stated": 205598204
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xx_300",
+   "n": 300,
+   "sha256": "d16341f3a6b25c589625c503b71dbd24c4806471ca0254db932010cd1b59efb8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xx_300",
+   "bks": 20852769,
+   "bks_stated": 20852769
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xx_500",
+   "n": 500,
+   "sha256": "b362affc7236be147f54a0fdd379ad741014b2f72242028a56d230d5f46a5457",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xx_500",
+   "bks": 55570973,
+   "bks_stated": 55570973
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xx_750",
+   "n": 750,
+   "sha256": "b7d0868a91a2f401daf271e39d9ac420046337344baafcc514cf139786bc2e84",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xx_750",
+   "bks": 118893744,
+   "bks_stated": 118893744
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xxb_1000",
+   "n": 1000,
+   "sha256": "a09c5964d3708bea8f6e51f2cec51f20e468ea30830bd593a8acc70d0ba50ed1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xxb_1000",
+   "bks": 194905650,
+   "bks_stated": 194905650
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xxb_300",
+   "n": 300,
+   "sha256": "2ca0c5233fa64b235dea5987388da826962ff27d38077115cef5fc4bfff0eecc",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xxb_300",
+   "bks": 19661816,
+   "bks_stated": 19661816
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xxb_500",
+   "n": 500,
+   "sha256": "03fad792c8ad2316b5035ae94d747ea6d8b95109aba9d70a47aa45372686c6f4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xxb_500",
+   "bks": 52284020,
+   "bks_stated": 52284020
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70d11xxb_750",
+   "n": 750,
+   "sha256": "fd968f477537e3988b65eae91ad13e26a06899eadacac39291487c0d6c58ab74",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70d11xxb_750",
+   "bks": 112657346,
+   "bks_stated": 112657346
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70f11xx_1000",
+   "n": 1000,
+   "sha256": "a503fbad38867407bd23b76b3e55ab756231a4e07f3d6fde52e7f9711f36885f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70f11xx_1000",
+   "bks": 178466412,
+   "bks_stated": 178466412
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70f11xx_300",
+   "n": 300,
+   "sha256": "3c40994cc8a0a196f1f3550f600d860eb64e1a1991fb03962e85e8760d622db6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70f11xx_300",
+   "bks": 17977681,
+   "bks_stated": 17977681
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70f11xx_500",
+   "n": 500,
+   "sha256": "f18ddf34cde66e07cf21b4742f441c2bac3a8bd6bf82d184ceb410d69b00b03a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70f11xx_500",
+   "bks": 48017411,
+   "bks_stated": 48017411
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70f11xx_750",
+   "n": 750,
+   "sha256": "53d32f37fff38119b45353c5a1318487800e73d02c06414d61867c04447a79fb",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70f11xx_750",
+   "bks": 103826457,
+   "bks_stated": 103826457
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70i11xx_1000",
+   "n": 1000,
+   "sha256": "993fc3c193bd775cb9ed6d9ef28ac0121f602540112989cf3dfb849545b9e9a9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70i11xx_1000",
+   "bks": 13086612063,
+   "bks_stated": 13086612063
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70i11xx_300",
+   "n": 300,
+   "sha256": "1def81b44fd4c0873726b1d64d21533ce06442819090164bc72e67c10167911f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70i11xx_300",
+   "bks": 1351074324,
+   "bks_stated": 1351074324
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70i11xx_500",
+   "n": 500,
+   "sha256": "a686c17fc57b9ffc9a28580546dfc055673022491a721e0f926ec12e1f0d1c38",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70i11xx_500",
+   "bks": 3502053016,
+   "bks_stated": 3502053016
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70i11xx_750",
+   "n": 750,
+   "sha256": "31e26c34c16148a6cc770a9f455013e4da93533418982e0a480c566b3930c803",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70i11xx_750",
+   "bks": 7649725442,
+   "bks_stated": 7649725442
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70k11xx_1000",
+   "n": 1000,
+   "sha256": "2332e0d9ee55a669255a1bed0aa3860449c856a69d7532dcfe1a4b46e47716bd",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70k11xx_1000",
+   "bks": 28520983800,
+   "bks_stated": 28520983800
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70k11xx_300",
+   "n": 300,
+   "sha256": "192780c11267e34f70ef7b1d15b702c5710889941a265cc542bf190ee8750b38",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70k11xx_300",
+   "bks": 2914281600,
+   "bks_stated": 2914281600
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70k11xx_500",
+   "n": 500,
+   "sha256": "3cbcc7e6ce2f04cc60694a7aac3ce50b3b2c7f719d64e4a7c49327cb21a3ed6c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70k11xx_500",
+   "bks": 7717672700,
+   "bks_stated": 7717672700
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70k11xx_750",
+   "n": 750,
+   "sha256": "c1d41f32c04ae5013b6d108d723012e3218c39620a72cec86962b015d8e3398c",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70k11xx_750",
+   "bks": 16728003100,
+   "bks_stated": 16728003100
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70l11xx_1000",
+   "n": 1000,
+   "sha256": "d4a3e291775877ba5784c365983beaae2fd2dd04496d486918732ddb009aeaba",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70l11xx_1000",
+   "bks": 14240524,
+   "bks_stated": 14240524
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70l11xx_300",
+   "n": 300,
+   "sha256": "61317c0a740ebe6e1e15b9c3ef883f0cb76d51aab87663f46420a4ae0733736e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70l11xx_300",
+   "bks": 1432455,
+   "bks_stated": 1432455
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70l11xx_500",
+   "n": 500,
+   "sha256": "967a4f2c5df3b800341f272cf8e48672cb51d6cedc853b290dee4348137bee55",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70l11xx_500",
+   "bks": 3816527,
+   "bks_stated": 3816527
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70l11xx_750",
+   "n": 750,
+   "sha256": "e8f7afffae71480eb8df3220fd57e795790b5869a4bd2d50bffdcf89d1ff5fdd",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70l11xx_750",
+   "bks": 7937768,
+   "bks_stated": 7937768
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70n11xx_1000",
+   "n": 1000,
+   "sha256": "ec4aff39a6ec8bf8b023b4ffc59a95c115011df26e1c091f3ad37c215c69f79a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70n11xx_1000",
+   "bks": 29033001,
+   "bks_stated": 29033001
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70n11xx_300",
+   "n": 300,
+   "sha256": "971c2bb6ec8b5a6b5ca1d096a1f575cfb43d4395fc262823e2aaa49131740166",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70n11xx_300",
+   "bks": 3063032,
+   "bks_stated": 3063032
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70n11xx_500",
+   "n": 500,
+   "sha256": "238f0c875470c35b2940e7feb24b3907892062b999208dd969bbd951d841a42e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70n11xx_500",
+   "bks": 7982676,
+   "bks_stated": 7982676
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70n11xx_750",
+   "n": 750,
+   "sha256": "7fedfdbf357dfd05259ab25e0d799260a71c92da0cfcd9c60febaac849b862a4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70n11xx_750",
+   "bks": 17039695,
+   "bks_stated": 17039695
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70u11xx_1000",
+   "n": 1000,
+   "sha256": "b0e54e55ada55cf5afb489425c3665c0723e858bf0a61a7ff9c2cdd6ac78d6d7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70u11xx_1000",
+   "bks": 10282938500,
+   "bks_stated": 10282938500
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70u11xx_300",
+   "n": 300,
+   "sha256": "2c09396e15080a1c165af93c483786bbd8728ff7fcda85ed7b35a6b928c9686f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70u11xx_300",
+   "bks": 1057062400,
+   "bks_stated": 1057062400
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70u11xx_500",
+   "n": 500,
+   "sha256": "027f4341f7787a1cfa1b53ba7e91be623b63ac513c5fbd5bd5819f8d4597d7cb",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70u11xx_500",
+   "bks": 2767279900,
+   "bks_stated": 2767279900
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70u11xx_750",
+   "n": 750,
+   "sha256": "8501b347bdaa755aafe6f91e8e80bac78d4879e4e70b287da8c33b37c0b6dbe2",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70u11xx_750",
+   "bks": 5961840000,
+   "bks_stated": 5961840000
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70w11xx_1000",
+   "n": 1000,
+   "sha256": "371c51912f2f8e06048f8a88153847bd281ee213bcb4ca45ad4e017ca85e9ade",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70w11xx_1000",
+   "bks": 117747387403,
+   "bks_stated": 117747387403
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70w11xx_300",
+   "n": 300,
+   "sha256": "cf219c15200ee3da68128810b517183b4049d1d0814883ca622dffae9adc1ba8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70w11xx_300",
+   "bks": 11947013574,
+   "bks_stated": 11947013574
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70w11xx_500",
+   "n": 500,
+   "sha256": "ee51dcce5dd2e530b068b5c8bb7418aac2afbc4e7999c661b1355219d86e821d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70w11xx_500",
+   "bks": 31596828947,
+   "bks_stated": 31596828947
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70w11xx_750",
+   "n": 750,
+   "sha256": "b3a7c1c48fa706b4d66158fccbc94d04dec51810912a6a78bbfad80fac101b52",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70w11xx_750",
+   "bks": 68352970427,
+   "bks_stated": 68352970427
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70x11xx_1000",
+   "n": 1000,
+   "sha256": "ae5e01fee1be83a12bd09868e594116fd1431afd9e6a348699093e9f5892c5d3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70x11xx_1000",
+   "bks": 145370973672,
+   "bks_stated": 145370973672
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70x11xx_300",
+   "n": 300,
+   "sha256": "bd73a65076abd8b343fc86fdbb8a7d807f3c4832e1bdf28076cc07ef5f4e4e35",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70x11xx_300",
+   "bks": 14737647379,
+   "bks_stated": 14737647379
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70x11xx_500",
+   "n": 500,
+   "sha256": "85a8ca7c0cf6b9c81dde0755ab98a02acad4401f0db1c432db1edf1150042d46",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70x11xx_500",
+   "bks": 38967606631,
+   "bks_stated": 38967606631
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t70x11xx_750",
+   "n": 750,
+   "sha256": "424e0bbebfea9375346463e823c78794f69fd6dfb14a205ce526946b4b0bdacf",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t70x11xx_750",
+   "bks": 84327965913,
+   "bks_stated": 84327965913
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t74d11xx_1000",
+   "n": 1000,
+   "sha256": "0dff91be56d301ff2b6533feab8ae0dc43201a6ee308ea54e48f0d5fdd11b6d3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t74d11xx_1000",
+   "bks": 312508883,
+   "bks_stated": 312508883
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t74d11xx_300",
+   "n": 300,
+   "sha256": "f61b698e669bc8bea734a31a21a3ebb321ef58ff1af628ce862ebccd576326d3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t74d11xx_300",
+   "bks": 31767090,
+   "bks_stated": 31767090
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t74d11xx_500",
+   "n": 500,
+   "sha256": "0a4ae598da57538a37be0bbd0000cfc10e4959d715e283b1371008914bc92303",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t74d11xx_500",
+   "bks": 84589925,
+   "bks_stated": 84589925
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t74d11xx_750",
+   "n": 750,
+   "sha256": "f5ddbd7088a661671eaa59cae4aff1585f85bfd253708162f438f29085ce730d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t74d11xx_750",
+   "bks": 180821368,
+   "bks_stated": 180821368
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75d11xx_1000",
+   "n": 1000,
+   "sha256": "299258bd27dcb09c41254eed0f8de50b58f47b1b2c349dd7f9aceb5396b34d53",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75d11xx_1000",
+   "bks": 320810536,
+   "bks_stated": 320810536
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75d11xx_300",
+   "n": 300,
+   "sha256": "017a63545d161cc8dd30bd09a654cd610c2ee94ec96f7ec804c3da80ecbe5b88",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75d11xx_300",
+   "bks": 32716899,
+   "bks_stated": 32716899
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75d11xx_500",
+   "n": 500,
+   "sha256": "a7d8d3d505d60af03253098de375032a2cca821013f92829008f79eba00ff47b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75d11xx_500",
+   "bks": 86902644,
+   "bks_stated": 86902644
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75d11xx_750",
+   "n": 750,
+   "sha256": "fc774979f941e99d5a544f9e3e5c0d8606ee15c2a74ce99f7afb4ad40424b751",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75d11xx_750",
+   "bks": 185166486,
+   "bks_stated": 185166486
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75e11xx_1000",
+   "n": 1000,
+   "sha256": "cd74188a80100510cc619a50474a7d1667ce0fa18bc2b44d967b27c85c489632",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75e11xx_1000",
+   "bks": 1395787333,
+   "bks_stated": 1395787333
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75e11xx_300",
+   "n": 300,
+   "sha256": "54ffbb4596a200539de7bcb236678a7fcdbfe9d59ee54409f528c307ae68603e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75e11xx_300",
+   "bks": 145389799,
+   "bks_stated": 145389799
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75e11xx_500",
+   "n": 500,
+   "sha256": "31acae14d016c66aeded09cdc608df33ad7fcfae13af7a265b97298139efa942",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75e11xx_500",
+   "bks": 376164905,
+   "bks_stated": 376164905
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75e11xx_750",
+   "n": 750,
+   "sha256": "6e2e9a6cb87078255ce1cece0acf0b5088ba6cffdeebdab77a5ae378bd9f8f6a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75e11xx_750",
+   "bks": 822729527,
+   "bks_stated": 822729527
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75i11xx_1000",
+   "n": 1000,
+   "sha256": "93c104547cf08d9ed39f1d18042964e57808abedc82d7cde6d039496c3f867a1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75i11xx_1000",
+   "bks": 36517061955,
+   "bks_stated": 36517061955
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75i11xx_300",
+   "n": 300,
+   "sha256": "f29de7c1a0dd4cb3348580f8354bb0ef5b27d2ae3d16330baee2fc38673c6ee6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75i11xx_300",
+   "bks": 3781259509,
+   "bks_stated": 3781259509
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75i11xx_500",
+   "n": 500,
+   "sha256": "481118b8adaa41b0157656f73ce9b56d68bddf5f709d68cd8699d37256b9db15",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75i11xx_500",
+   "bks": 9787845059,
+   "bks_stated": 9787845059
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75i11xx_750",
+   "n": 750,
+   "sha256": "8ff9b089e7e0786def613e1fa12f50660eb734005d317a636d7504f072b2c941",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75i11xx_750",
+   "bks": 21340353901,
+   "bks_stated": 21340353901
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75k11xx_1000",
+   "n": 1000,
+   "sha256": "7a7534ed244491e332d7ad379b7ae92837226ba0f636642855799a46726f730d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75k11xx_1000",
+   "bks": 52258096,
+   "bks_stated": 52258096
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75k11xx_300",
+   "n": 300,
+   "sha256": "e1ae6b783f9b2bbc39292135fe56490e7b806f1f71015ea02edbb54682954ccc",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75k11xx_300",
+   "bks": 5339512,
+   "bks_stated": 5339512
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75k11xx_500",
+   "n": 500,
+   "sha256": "0fdb2026f97096123757d9d9d8f5e7c682f8cdbc73bd158b6021d57bdfec73d4",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75k11xx_500",
+   "bks": 14221041,
+   "bks_stated": 14221041
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75k11xx_750",
+   "n": 750,
+   "sha256": "a6f16bdeb59dd0f3c822f1c8ce0cfa161da8c292c5d8fe41fe00924294f0c62b",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75k11xx_750",
+   "bks": 30587815,
+   "bks_stated": 30587815
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75n11xx_1000",
+   "n": 1000,
+   "sha256": "8b6a4045bb0e6240d610e1a662613185489ed5e38bc3f3eeadcec0a6e0127e01",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75n11xx_1000",
+   "bks": 54234000,
+   "bks_stated": 54234000
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75n11xx_300",
+   "n": 300,
+   "sha256": "e50a63e07b35bb4fd0bfdea19588902fbf85862509de4a9278330353a0b8b0d9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75n11xx_300",
+   "bks": 5774492,
+   "bks_stated": 5774492
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75n11xx_500",
+   "n": 500,
+   "sha256": "646ca27fe10e78c806006075ee94a3f07572a6fb2e34456c58ed5cb3c09ebc15",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75n11xx_500",
+   "bks": 14977389,
+   "bks_stated": 14977389
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75n11xx_750",
+   "n": 750,
+   "sha256": "430cec0ae28517090989e26fa6c5859d46396927865f93358911c1b40a6871a8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75n11xx_750",
+   "bks": 31978710,
+   "bks_stated": 31978710
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75u11xx_1000",
+   "n": 1000,
+   "sha256": "f592792f74111add3757609c0a599f385b1ae9d5b2cc1dfbd003e612b9b73732",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75u11xx_1000",
+   "bks": 29713770054,
+   "bks_stated": 29713770054
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75u11xx_300",
+   "n": 300,
+   "sha256": "732bce005b8236f1eef554069ca549d8b8d16aad049be96a3204741cb8b7dc63",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75u11xx_300",
+   "bks": 3086347621,
+   "bks_stated": 3086347621
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75u11xx_500",
+   "n": 500,
+   "sha256": "176eb0fa8387ff6c124925d2ab1aaa23fcacdbf90eaa39511be606bfb6c079db",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75u11xx_500",
+   "bks": 8092091464,
+   "bks_stated": 8092091464
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-t75u11xx_750",
+   "n": 750,
+   "sha256": "54076723b35902e0ba94a7249bf8e3443f5058f6ce79eaca5f5257cb3222e625",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-t75u11xx_750",
+   "bks": 17358027725,
+   "bks_stated": 17358027725
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n54_1000",
+   "n": 1000,
+   "sha256": "cb13a8ea1e53088667e5eb36a1f5c194a162f81dae5e6611d3891082b9906a2e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n54_1000",
+   "bks": 25958420,
+   "bks_stated": 25958420
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n54_300",
+   "n": 300,
+   "sha256": "085fd618e04b33b736245465c3be852b2b04c0cb25df15d91e397f166a5e5279",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n54_300",
+   "bks": 2663017,
+   "bks_stated": 2663017
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n54_500",
+   "n": 500,
+   "sha256": "eab380300e99ea05c204b3f6ba360e8f54426556d6f9e99295276d644dcee315",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n54_500",
+   "bks": 6992459,
+   "bks_stated": 6992459
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n54_750",
+   "n": 750,
+   "sha256": "e3ef7f4dccb4565ab4a44f7c2069ddb5d060bc439201c9bfb54d04fbdb868046",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n54_750",
+   "bks": 15180472,
+   "bks_stated": 15180472
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n58_1000",
+   "n": 1000,
+   "sha256": "eddcdc09018f874aadbcc42b3ed27512baad23343c94b3466fd6f3ea92da6628",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n58_1000",
+   "bks": 35451676,
+   "bks_stated": 35451676
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n58_300",
+   "n": 300,
+   "sha256": "18ab8c88170cb98e4e3301dfab36da3d3d74bb7decde20ea34270f45d3a4c852",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n58_300",
+   "bks": 3612583,
+   "bks_stated": 3612583
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n58_500",
+   "n": 500,
+   "sha256": "00142da768c1f67108e7631173de364149ca526e4dab1211ed643c140f327a6e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n58_500",
+   "bks": 9553212,
+   "bks_stated": 9553212
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n58_750",
+   "n": 750,
+   "sha256": "ac8120606a31dafe9e3ebed72a17e002fa594c627d27992ff5eb70077de3c2e5",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n58_750",
+   "bks": 20732188,
+   "bks_stated": 20732188
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n62_1000",
+   "n": 1000,
+   "sha256": "8023954458071feac52e86cac39519b6e3c373ce7dad6365cdb5721545e2e640",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n62_1000",
+   "bks": 50682462,
+   "bks_stated": 50682462
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n62_300",
+   "n": 300,
+   "sha256": "b28ae2db7a81fed0ed2d850b1c1f9ab7b342136df6fba4168a3ec7b359d3da23",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n62_300",
+   "bks": 5157281,
+   "bks_stated": 5157281
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n62_500",
+   "n": 500,
+   "sha256": "af353069bcc3e1cba4c1805a1766e008c3d4c9f72fa4026f6f783156030f8348",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n62_500",
+   "bks": 13626382,
+   "bks_stated": 13626382
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n62_750",
+   "n": 750,
+   "sha256": "965bbe388b33c27101fbe879c12f90c9ea91f07780b391e2da326b39c7c83b06",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n62_750",
+   "bks": 29552470,
+   "bks_stated": 29552470
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n66_1000",
+   "n": 1000,
+   "sha256": "c016809aca2bcc72efdf2dc842d061d48677a5b8c668dac4be6e37791d41a2f3",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n66_1000",
+   "bks": 65899344,
+   "bks_stated": 65899344
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n66_300",
+   "n": 300,
+   "sha256": "b0690be802981e84b0e55e5949ac9f2cfa230022060c36b71cdb1e782dc78e31",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n66_300",
+   "bks": 6694726,
+   "bks_stated": 6694726
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n66_500",
+   "n": 500,
+   "sha256": "a81f8ba1eca4f22109aa52ebd917014c88101a92130442f5e2bda30db840e0a1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n66_500",
+   "bks": 17689122,
+   "bks_stated": 17689122
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n66_750",
+   "n": 750,
+   "sha256": "3bfae68eb1ac3908d605f33c3e20962cf91c88d3da5d5535f3344cb95e37ba68",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n66_750",
+   "bks": 38393658,
+   "bks_stated": 38393658
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n67_1000",
+   "n": 1000,
+   "sha256": "f8f3869364be517a8702d0c687d382a307289549bf860c674101388689655d98",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n67_1000",
+   "bks": 76101128,
+   "bks_stated": 76101128
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n67_300",
+   "n": 300,
+   "sha256": "c25ca986c1f88366450119a3e3b1563fc0ee8aa702210bfed4d868763f48aab7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n67_300",
+   "bks": 7707409,
+   "bks_stated": 7707409
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n67_500",
+   "n": 500,
+   "sha256": "589944e0f149a0d1232410993ea30b67e41cfea29a3ba3c247329b6fcf5dc44d",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n67_500",
+   "bks": 20656350,
+   "bks_stated": 20656350
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n67_750",
+   "n": 750,
+   "sha256": "2ea017500e0b1c94f28ef564274c8c2a6243ba5c6384de7b7997c855d4e4f558",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n67_750",
+   "bks": 44858816,
+   "bks_stated": 44858816
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n72_1000",
+   "n": 1000,
+   "sha256": "4538e170d89a6536d0b15e1772e5d8bd9415445d042350cf1b92134f5afa2ea8",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n72_1000",
+   "bks": 130838722,
+   "bks_stated": 130838722
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n72_300",
+   "n": 300,
+   "sha256": "a5212d1e1e139d24fe931eec5c670c89df12086a9e647001228f62ac7eaf8b10",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n72_300",
+   "bks": 13215574,
+   "bks_stated": 13215574
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n72_500",
+   "n": 500,
+   "sha256": "6ea1fe7458a04c1eaa7d622adec2628a011bcfd5a63bc2a52df95b48ed6219fe",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n72_500",
+   "bks": 35345596,
+   "bks_stated": 35345596
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56n72_750",
+   "n": 750,
+   "sha256": "76c7affd4ee373e175a972a9c16556f4884e7ac49936a67849cf8a2b346a44c9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56n72_750",
+   "bks": 77300418,
+   "bks_stated": 77300418
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r54_1000",
+   "n": 1000,
+   "sha256": "64b19f412bd8d54169c06e320a392e9eb63e533112d58958ae4803b78d8b81a0",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r54_1000",
+   "bks": 29300654,
+   "bks_stated": 29300654
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r54_300",
+   "n": 300,
+   "sha256": "25fa544ab13175dd2f3cc9c62e0985fd4132dccdbb1cb73052e0c0974aa7d6cc",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r54_300",
+   "bks": 2994898,
+   "bks_stated": 2994898
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r54_500",
+   "n": 500,
+   "sha256": "e81561b8a61d116bfd1518dc8c0b1af598289b8126947f9adafb3c740659c431",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r54_500",
+   "bks": 7914629,
+   "bks_stated": 7914629
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r54_750",
+   "n": 750,
+   "sha256": "0797f996fcafb8f3829354e7effa93d5585ed141dac64240762528c23c731a6a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r54_750",
+   "bks": 17162918,
+   "bks_stated": 17162918
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r58_1000",
+   "n": 1000,
+   "sha256": "1ece494c275c3b4ac30e7ec9829ca56890e9f37786e98bc8cd0f871d0c9c24aa",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r58_1000",
+   "bks": 37078259,
+   "bks_stated": 37078259
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r58_300",
+   "n": 300,
+   "sha256": "08d322587cd5274409b26a50f5e1504884ea799db9dfc0c957720e3d09ee69a0",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r58_300",
+   "bks": 3770407,
+   "bks_stated": 3770407
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r58_500",
+   "n": 500,
+   "sha256": "a04af98c19b5640b0193f051f175c63e15c50e195961eb5af017fc30aba5ec3a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r58_500",
+   "bks": 9996792,
+   "bks_stated": 9996792
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r58_750",
+   "n": 750,
+   "sha256": "e6450effcdec9c6876b7a97fe6bc6d32b5dc3e4a4e24052834929d0500e8096a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r58_750",
+   "bks": 21690937,
+   "bks_stated": 21690937
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r66_1000",
+   "n": 1000,
+   "sha256": "faa56e12ad63004165793dca0abc5cc4c1f8f0053d59377f37e9e3d52ea80cb1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r66_1000",
+   "bks": 60883657,
+   "bks_stated": 60883657
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r66_300",
+   "n": 300,
+   "sha256": "8bbd263f77f279efe8edaf7febb6137abb3c5a9f402153f0b112757eb45047e1",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r66_300",
+   "bks": 6197206,
+   "bks_stated": 6197206
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r66_500",
+   "n": 500,
+   "sha256": "f815e8a5da5ac6043c0717aec110f2ba3b1d271821eb98bc7d819e93d9bb31db",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r66_500",
+   "bks": 16335662,
+   "bks_stated": 16335662
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r66_750",
+   "n": 750,
+   "sha256": "37ca90837c7dcdf414decb39315c618bdc44bad86bc9a4247c7abcdabf3a88f9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r66_750",
+   "bks": 35461293,
+   "bks_stated": 35461293
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r67_1000",
+   "n": 1000,
+   "sha256": "cbc31e98ac9099318b3bb99fde348bc5d3ee3ad28afd2767132a1cc770439cce",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r67_1000",
+   "bks": 66667742,
+   "bks_stated": 66667742
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r67_300",
+   "n": 300,
+   "sha256": "679c0510d76401c53685633d8d481359b550766f0ae11d0627c0550d74d5a0e7",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r67_300",
+   "bks": 6869832,
+   "bks_stated": 6869832
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r67_500",
+   "n": 500,
+   "sha256": "971dee913c4034002d10af75902e2e63426bbdeb6b3dfddf37ebb59f68281980",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r67_500",
+   "bks": 18055055,
+   "bks_stated": 18055055
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r67_750",
+   "n": 750,
+   "sha256": "e97428806f727c3898147c3e9390b8624be42dfa9eaf14e88ac05e2f290e7530",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r67_750",
+   "bks": 39808906,
+   "bks_stated": 39808906
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r72_1000",
+   "n": 1000,
+   "sha256": "7788375f486e50c1afa6ef387ca27916414b2b01d74e1b4f4e5ee9cbf34c78a6",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r72_1000",
+   "bks": 88102798,
+   "bks_stated": 88102798
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r72_300",
+   "n": 300,
+   "sha256": "c0f8932039e57ef03ad059fb0b2a25117bfaec9718cb57bab44915ba255b682a",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r72_300",
+   "bks": 8993229,
+   "bks_stated": 8993229
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r72_500",
+   "n": 500,
+   "sha256": "66e0f83e8a7d87c25b942e003b96a39f8e50710a3c435a98a1f65cef2a0d0a5e",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r72_500",
+   "bks": 23730810,
+   "bks_stated": 23730810
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-tiw56r72_750",
+   "n": 750,
+   "sha256": "7544114e14d98e5ae5662b02140010c8488ef1935668d9eb6020456bbeda7597",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-tiw56r72_750",
+   "bks": 51762990,
+   "bks_stated": 51762990
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-usa79_1000",
+   "n": 1000,
+   "sha256": "490a8233ad3e797d35d37e7d008abdaf736c866e73d0c966719f8be41d4591a9",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-usa79_1000",
+   "bks": 274403942,
+   "bks_stated": 274403942
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-usa79_300",
+   "n": 300,
+   "sha256": "2561a1d895680174991a815e492566fc4fe2b98d998fad8da434e09b2594103f",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-usa79_300",
+   "bks": 28569678,
+   "bks_stated": 28569678
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-usa79_500",
+   "n": 500,
+   "sha256": "a17d6db7b0d9a21dfa063f8944a2eed494623e80086b7080a27163a784aefbbb",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-usa79_500",
+   "bks": 76246074,
+   "bks_stated": 76246074
+  },
+  {
+   "family": "xLOLIB2",
+   "name": "N-usa79_750",
+   "n": 750,
+   "sha256": "13472230fedc1ab9ee4c030457584f12cf596972a3c69f25bae5cce2e1dcb708",
+   "path": "_data/suite/classic_benchmarks/xLOLIB2/N-usa79_750",
+   "bks": 158187746,
+   "bks_stated": 158187746
+  }
+ ]
+}

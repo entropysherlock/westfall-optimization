@@ -1,0 +1,9 @@
+{"id": "Spec/N-EX1", "family": "Spec", "name": "N-EX1", "n": 50, "bks": 449, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 26.420018320000054, "reason": ""}
+{"id": "Spec/N-EX2", "family": "Spec", "name": "N-EX2", "n": 50, "bks": 441, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 25.492960927999775, "reason": ""}
+{"id": "Spec/N-EX3", "family": "Spec", "name": "N-EX3", "n": 50, "bks": 438, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 24.894231475000197, "reason": ""}
+{"id": "Spec/N-EX5", "family": "Spec", "name": "N-EX5", "n": 50, "bks": 405, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 24.85686009499932, "reason": ""}
+{"id": "Spec/N-atp111", "family": "Spec", "name": "N-atp111", "n": 111, "bks": 1495, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 19.514343802999974, "reason": ""}
+{"id": "Spec/N-atp134", "family": "Spec", "name": "N-atp134", "n": 134, "bks": 1797, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 21.680390931999682, "reason": ""}
+{"id": "Spec/N-atp163", "family": "Spec", "name": "N-atp163", "n": 163, "bks": 2075, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 16.867468430999907, "reason": ""}
+{"id": "Spec/N-atp452", "family": "Spec", "name": "N-atp452", "n": 452, "bks": 2713, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 23.26782706999984, "reason": ""}
+{"id": "Spec/N-atp76", "family": "Spec", "name": "N-atp76", "n": 76, "bks": 934, "solver": "atlas", "tl_s": 30.0, "status": "ERROR", "solved": false, "wall_s": 27.43054989600023, "reason": ""}

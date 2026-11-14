@@ -1,0 +1,158 @@
+{
+ "tag": "large",
+ "solvers": [
+  "atlas",
+  "highs",
+  "scip"
+ ],
+ "families": {
+  "RandA2": {
+   "instances": 9,
+   "n": "100\u2013200",
+   "solved": {
+    "atlas": 3,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 19.959617854459985,
+    "highs": 29.99999999999998,
+    "scip": 29.99999999999998
+   }
+  },
+  "RandA1": {
+   "instances": 12,
+   "n": "100\u2013500",
+   "solved": {
+    "atlas": 0,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 30.0,
+    "highs": 30.0,
+    "scip": 30.0
+   }
+  },
+  "xLOLIB": {
+   "instances": 6,
+   "n": "150\u2013250",
+   "solved": {
+    "atlas": 0,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 30.0,
+    "highs": 30.0,
+    "scip": 30.0
+   }
+  },
+  "xLOLIB2": {
+   "instances": 12,
+   "n": "300\u20131000",
+   "solved": {
+    "atlas": 0,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 30.0,
+    "highs": 30.0,
+    "scip": 30.0
+   }
+  },
+  "All": {
+   "instances": 39,
+   "n": "100\u20131000",
+   "solved": {
+    "atlas": 3,
+    "highs": 0,
+    "scip": 0
+   },
+   "sgm": {
+    "atlas": 27.419069060327615,
+    "highs": 30.0,
+    "scip": 30.0
+   }
+  }
+ },
+ "problems": [],
+ "new_best": [],
+ "status": {
+  "atlas": {
+   "SOLVED": 3,
+   "LIMIT": 6,
+   "KILLED_AT_LIMIT": 30,
+   "OUT_OF_MEMORY": 0,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 0,
+   "ERROR": 0
+  },
+  "highs": {
+   "SOLVED": 0,
+   "LIMIT": 14,
+   "KILLED_AT_LIMIT": 10,
+   "OUT_OF_MEMORY": 0,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 15,
+   "ERROR": 0
+  },
+  "scip": {
+   "SOLVED": 0,
+   "LIMIT": 15,
+   "KILLED_AT_LIMIT": 9,
+   "OUT_OF_MEMORY": 0,
+   "OPTIMAL_OVER_LIMIT": 0,
+   "NOT_ATTEMPTED": 15,
+   "ERROR": 0
+  }
+ },
+ "only": {
+  "atlas": [
+   "RandA2/N-t2d100.01",
+   "RandA2/N-t2d100.02",
+   "RandA2/N-t2d100.03"
+  ],
+  "highs": [],
+  "scip": []
+ },
+ "unsolved_by_all": [
+  "RandA2/N-t2d150.01",
+  "RandA2/N-t2d150.02",
+  "RandA2/N-t2d150.03",
+  "RandA2/N-t2d200.01",
+  "RandA2/N-t2d200.02",
+  "RandA2/N-t2d200.03",
+  "RandA1/N-t1d100.01",
+  "RandA1/N-t1d100.02",
+  "RandA1/N-t1d100.03",
+  "RandA1/N-t1d150.01",
+  "RandA1/N-t1d150.02",
+  "RandA1/N-t1d150.03",
+  "RandA1/N-t1d200.01",
+  "RandA1/N-t1d200.02",
+  "RandA1/N-t1d200.03",
+  "RandA1/N-t1d500.01",
+  "RandA1/N-t1d500.02",
+  "RandA1/N-t1d500.10",
+  "xLOLIB/N-be75eec_150",
+  "xLOLIB/N-be75eec_250",
+  "xLOLIB/N-be75np_150",
+  "xLOLIB/N-be75np_250",
+  "xLOLIB/N-be75oi_150",
+  "xLOLIB/N-be75oi_250",
+  "xLOLIB2/N-be75eec_1000",
+  "xLOLIB2/N-be75eec_300",
+  "xLOLIB2/N-be75eec_500",
+  "xLOLIB2/N-be75eec_750",
+  "xLOLIB2/N-be75np_1000",
+  "xLOLIB2/N-be75np_300",
+  "xLOLIB2/N-be75np_500",
+  "xLOLIB2/N-be75np_750",
+  "xLOLIB2/N-be75oi_1000",
+  "xLOLIB2/N-be75oi_300",
+  "xLOLIB2/N-be75oi_500",
+  "xLOLIB2/N-be75oi_750"
+ ]
+}
