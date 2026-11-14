@@ -1,0 +1,30 @@
+name: ATLAS-033 peak memory smoke
+on:
+  push:
+    branches: [fix/atlas-033-memory-budget]
+    paths: [".github/workflows/atlas033-rss.yml"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  memory:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - run: npm ci
+        working-directory: website
+      - run: python3 benchmarks/lolib-full/fetch_suite.py
+      - run: sh benchmarks/lolib-full/build_runner.sh
+      - name: Measure actual peak RSS of previously OOM instances
+        run: python3 benchmarks/lolib-full/measure_v033_rss.py
+      - name: Preserve raw RSS measurements
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: atlas-v033-peak-rss
+          path: benchmarks/lolib-full/results/atlas.v033.rss-smoke.json
+          if-no-files-found: warn
