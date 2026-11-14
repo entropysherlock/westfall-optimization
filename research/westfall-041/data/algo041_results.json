@@ -1,0 +1,143 @@
+{
+ "correctness": {
+  "instances": 400,
+  "mismatches": 0,
+  "threshold_misfires": 0,
+  "max_count_over_threshold": 1.0
+ },
+ "tightness": [],
+ "benchmark": [
+  {
+   "n": 16,
+   "h": 0,
+   "ctw": 3,
+   "final_cuts": 42,
+   "final_threshold": 2006,
+   "ms": 46.4,
+   "subset_dp_ctw": 3
+  },
+  {
+   "n": 16,
+   "h": 1,
+   "ctw": 3,
+   "final_cuts": 58,
+   "final_threshold": 16048,
+   "ms": 71.7,
+   "subset_dp_ctw": 3
+  },
+  {
+   "n": 16,
+   "h": 2,
+   "ctw": 3,
+   "final_cuts": 51,
+   "final_threshold": 78234,
+   "ms": 63.5,
+   "subset_dp_ctw": 3
+  },
+  {
+   "n": 16,
+   "h": 3,
+   "ctw": 3,
+   "final_cuts": 55,
+   "final_threshold": 328984,
+   "ms": 49.9,
+   "subset_dp_ctw": 3
+  },
+  {
+   "n": 24,
+   "h": 0,
+   "ctw": 2,
+   "final_cuts": 42,
+   "final_threshold": 650,
+   "ms": 124.7
+  },
+  {
+   "n": 24,
+   "h": 1,
+   "ctw": 4,
+   "final_cuts": 101,
+   "final_threshold": 97250,
+   "ms": 471.4
+  },
+  {
+   "n": 24,
+   "h": 2,
+   "ctw": 4,
+   "final_cuts": 129,
+   "final_threshold": 544600,
+   "ms": 643.5
+  },
+  {
+   "n": 24,
+   "h": 3,
+   "ctw": 2,
+   "final_cuts": 75,
+   "final_threshold": 61750,
+   "ms": 152.8
+  },
+  {
+   "n": 32,
+   "h": 0,
+   "ctw": 4,
+   "final_cuts": 100,
+   "final_threshold": 12837,
+   "ms": 1039.6
+  },
+  {
+   "n": 32,
+   "h": 1,
+   "ctw": 4,
+   "final_cuts": 138,
+   "final_threshold": 128370,
+   "ms": 1465.2
+  },
+  {
+   "n": 32,
+   "h": 2,
+   "ctw": 1,
+   "final_cuts": 58,
+   "final_threshold": 2310,
+   "ms": 329.3
+  },
+  {
+   "n": 32,
+   "h": 3,
+   "ctw": 5,
+   "final_cuts": 332,
+   "final_threshold": 17654406,
+   "ms": 3936.8
+  },
+  {
+   "n": 48,
+   "h": 0,
+   "ctw": 4,
+   "final_cuts": 213,
+   "final_threshold": 19061,
+   "ms": 8028.8
+  },
+  {
+   "n": 48,
+   "h": 1,
+   "ctw": 4,
+   "final_cuts": 237,
+   "final_threshold": 190610,
+   "ms": 7715.8
+  },
+  {
+   "n": 48,
+   "h": 2,
+   "ctw": 3,
+   "final_cuts": 291,
+   "final_threshold": 225498,
+   "ms": 6939.2
+  },
+  {
+   "n": 48,
+   "h": 3,
+   "ctw": 5,
+   "final_cuts": 334,
+   "final_threshold": 26214118,
+   "ms": 14254.4
+  }
+ ]
+}

@@ -1,0 +1,269 @@
+{
+ "digraphs": 843887,
+ "by_h": {
+  "0": 59820,
+  "1": 297403,
+  "2": 482010,
+  "3": 4240,
+  "4": 414
+ },
+ "rect_checks": 3389005892,
+ "shift_checks": 1011837854,
+ "inj_checks": 190504438,
+ "bound_checks": 10096162,
+ "violations": [],
+ "h0_bound_failures": 21206,
+ "h0_first_failure": {
+  "family": "all digraphs n=2",
+  "n": 2,
+  "h": 1,
+  "k": 0,
+  "c": 0,
+  "N_k": 4,
+  "h0_bound": 3,
+  "arcs": []
+ },
+ "max_ratio_new": 1.0,
+ "max_ratio_new_case": {
+  "family": "all digraphs n=1",
+  "n": 1,
+  "h": 0,
+  "k": 0,
+  "c": 0,
+  "N_k": 2,
+  "bound": 2
+ },
+ "max_ratio_conj": 1.0,
+ "lower_bound_blocks": [
+  {
+   "h": 0,
+   "n": 6,
+   "ctw": 0,
+   "N_0": 7,
+   "new_bound": 7,
+   "conjecture": 7
+  },
+  {
+   "h": 0,
+   "n": 8,
+   "ctw": 0,
+   "N_0": 9,
+   "new_bound": 9,
+   "conjecture": 9
+  },
+  {
+   "h": 0,
+   "n": 10,
+   "ctw": 0,
+   "N_0": 11,
+   "new_bound": 11,
+   "conjecture": 11
+  },
+  {
+   "h": 0,
+   "n": 12,
+   "ctw": 0,
+   "N_0": 13,
+   "new_bound": 13,
+   "conjecture": 13
+  },
+  {
+   "h": 1,
+   "n": 6,
+   "ctw": 0,
+   "N_0": 10,
+   "new_bound": 14,
+   "conjecture": 343
+  },
+  {
+   "h": 1,
+   "n": 8,
+   "ctw": 0,
+   "N_0": 13,
+   "new_bound": 18,
+   "conjecture": 729
+  },
+  {
+   "h": 1,
+   "n": 10,
+   "ctw": 0,
+   "N_0": 16,
+   "new_bound": 22,
+   "conjecture": 1331
+  },
+  {
+   "h": 1,
+   "n": 12,
+   "ctw": 0,
+   "N_0": 19,
+   "new_bound": 26,
+   "conjecture": 2197
+  },
+  {
+   "h": 2,
+   "n": 6,
+   "ctw": 0,
+   "N_0": 15,
+   "new_bound": 42,
+   "conjecture": 16807
+  },
+  {
+   "h": 2,
+   "n": 8,
+   "ctw": 0,
+   "N_0": 18,
+   "new_bound": 54,
+   "conjecture": 59049
+  },
+  {
+   "h": 2,
+   "n": 10,
+   "ctw": 0,
+   "N_0": 23,
+   "new_bound": 66,
+   "conjecture": 161051
+  },
+  {
+   "h": 2,
+   "n": 12,
+   "ctw": 0,
+   "N_0": 29,
+   "new_bound": 78,
+   "conjecture": 371293
+  },
+  {
+   "h": 3,
+   "n": 6,
+   "ctw": 0,
+   "N_0": 19,
+   "new_bound": 140,
+   "conjecture": 823543
+  },
+  {
+   "h": 3,
+   "n": 8,
+   "ctw": 0,
+   "N_0": 31,
+   "new_bound": 180,
+   "conjecture": 4782969
+  },
+  {
+   "h": 3,
+   "n": 10,
+   "ctw": 0,
+   "N_0": 34,
+   "new_bound": 220,
+   "conjecture": 19487171
+  },
+  {
+   "h": 3,
+   "n": 12,
+   "ctw": 0,
+   "N_0": 46,
+   "new_bound": 260,
+   "conjecture": 62748517
+  },
+  {
+   "h": 4,
+   "n": 6,
+   "ctw": 0,
+   "N_0": 33,
+   "new_bound": 490,
+   "conjecture": 40353607
+  },
+  {
+   "h": 4,
+   "n": 8,
+   "ctw": 0,
+   "N_0": 39,
+   "new_bound": 630,
+   "conjecture": 387420489
+  },
+  {
+   "h": 4,
+   "n": 10,
+   "ctw": 0,
+   "N_0": 63,
+   "new_bound": 770,
+   "conjecture": 2357947691
+  },
+  {
+   "h": 4,
+   "n": 12,
+   "ctw": 0,
+   "N_0": 66,
+   "new_bound": 910,
+   "conjecture": 10604499373
+  }
+ ],
+ "families": {
+  "all digraphs n=1": {
+   "digraphs": 1,
+   "max_n": 1,
+   "max_h": 0,
+   "max_ctw": 0
+  },
+  "all digraphs n=2": {
+   "digraphs": 4,
+   "max_n": 2,
+   "max_h": 1,
+   "max_ctw": 1
+  },
+  "all digraphs n=3": {
+   "digraphs": 64,
+   "max_n": 3,
+   "max_h": 2,
+   "max_ctw": 2
+  },
+  "all digraphs n=4": {
+   "digraphs": 4096,
+   "max_n": 4,
+   "max_h": 3,
+   "max_ctw": 4
+  },
+  "all digraphs n=5 (h<=2, +2% sample of h>=3)": {
+   "digraphs": 838972,
+   "max_n": 5,
+   "max_h": 4,
+   "max_ctw": 6
+  },
+  "random bounded-defect": {
+   "digraphs": 238,
+   "max_n": 11,
+   "max_h": 3,
+   "max_ctw": 16
+  },
+  "transitive minus matching": {
+   "digraphs": 238,
+   "max_n": 11,
+   "max_h": 1,
+   "max_ctw": 3
+  },
+  "transitive minus star": {
+   "digraphs": 238,
+   "max_n": 11,
+   "max_h": 3,
+   "max_ctw": 0
+  },
+  "independent blocks (lower bound)": {
+   "digraphs": 24,
+   "max_n": 11,
+   "max_h": 3,
+   "max_ctw": 0
+  },
+  "cyclic minus matching": {
+   "digraphs": 6,
+   "max_n": 11,
+   "max_h": 2,
+   "max_ctw": 10
+  },
+  "bidirected minus pairs": {
+   "digraphs": 6,
+   "max_n": 11,
+   "max_h": 2,
+   "max_ctw": 20
+  }
+ },
+ "seconds": 3323.1,
+ "mode": "full"
+}

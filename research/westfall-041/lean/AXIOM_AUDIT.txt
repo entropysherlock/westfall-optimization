@@ -1,0 +1,18 @@
+# Axiom audit — Mission 041 (Lean 4.32.0, Mathlib v4.32.0)
+# command: lake env lean Audit041.lean
+'Westfall041.defect_rectangle' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.shifted_hyperbola' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.eq_of_mu_eq'' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.row_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.R_le_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.R_zero' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.card_kcuts_le_defect' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.card_kcuts_le_defect_pow' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.card_kcuts_le_defect_of_width_le_k' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.card_kcuts_le_semicomplete_recovered' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.hsemicomplete_zero_of_semicomplete' depends on axioms: [propext, Quot.sound]
+'Westfall041.mu_eq_zero_of_card_lt' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.card_kcuts_le_defect_poly' depends on axioms: [propext, Classical.choice, Quot.sound]
+'Westfall041.conjecture_041A' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+# scan: grep -rnE 'sorry|admit|^axiom' Westfall040/ Westfall041/ -> 0 matches

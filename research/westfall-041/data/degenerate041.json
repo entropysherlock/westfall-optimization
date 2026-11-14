@@ -1,0 +1,24 @@
+{
+ "digraphs": 1500,
+ "rect_checks": 3257448,
+ "shift_checks": 1652298,
+ "bound_checks": 6119,
+ "violations": [],
+ "max_ratio": 1.0,
+ "max_ratio_case": {
+  "n": 6,
+  "d": 0,
+  "k": 0,
+  "c": 0,
+  "N_k": 7,
+  "bound": 7
+ },
+ "by_d": {
+  "3": 131,
+  "2": 567,
+  "1": 770,
+  "0": 32
+ },
+ "n_violations": 0,
+ "seconds": 3.1
+}

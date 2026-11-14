@@ -1,0 +1,12 @@
+# Build log — 2026-11-13T22:16:51Z
+Lean (version 4.32.0, x86_64-unknown-linux-gnu, commit 8c9756b28d64dab099da31a4c09229a9e6a2ef35, Release)
+$ lake build Westfall041
+⚠ [761/810] Replayed Westfall040.CutCount
+✔ [808/810] Built Westfall041.DefectCount (3.8s)
+✔ [809/810] Built Westfall041 (820ms)
+Build completed successfully (810 jobs).
+$ lake env lean Westfall041/DefectCount.lean  (exit status: 0, no errors, no warnings)
+
+sha256:
+56be6fa1cf18ac123657717385388cef58874512d048c739651a5fc980fd5914  Westfall041/DefectCount.lean
+b08304dde02bd15de653390b1bc6a675be0d91954b75cdd3318188dfaba1d212  Westfall040/CutCount.lean
