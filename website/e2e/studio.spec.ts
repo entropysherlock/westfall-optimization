@@ -10,7 +10,7 @@ const fx = (f: string) => path.join(__dirname, "fixtures", f);
 
 async function open(page: Page) {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "WESTFALL Studio", exact: true })).toBeVisible();
 }
 
 /** Mission 039 workstation: the solver radios live in the Solver workspace, inputs in the Problem workspace. */
