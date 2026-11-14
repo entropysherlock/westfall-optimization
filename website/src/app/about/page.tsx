@@ -33,7 +33,7 @@ export default function About() {
           <li className="card p-5"><strong className="text-fog-100">Research:</strong> manuscripts are public and provisional. They have not been peer reviewed, and their novelty has not been independently assessed.</li>
           <li className="card p-5"><strong className="text-fog-100">Formal verification:</strong> eight flagship declarations are kernel-checked, with stated limits on the cost model.</li>
           <li className="card p-5"><strong className="text-fog-100">Software:</strong> the Studio runs publicly in the browser. The job service is implemented and tested but not yet deployed.</li>
-          <li className="card p-5"><strong className="text-fog-100">Commercial:</strong> licensing terms have not been set and there are no paid plans. The repository license is pending.</li>
+          <li className="card p-5"><strong className="text-fog-100">License:</strong> the code is open source under GPL-3.0. Terms other than the GPL are by arrangement; none are set yet, and there are no paid plans.</li>
         </ul>
         <div className="mt-8 flex flex-wrap gap-3"><ButtonLink href="/contact/" primary>Contact</ButtonLink><ButtonLink href={REPO} external>GitHub ↗</ButtonLink></div>
       </Section>

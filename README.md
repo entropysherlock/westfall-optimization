@@ -101,7 +101,7 @@ For benchmark-specific commands, toolchains, and datasets, use the [ATLAS-032 re
 
 Developed with AI-assisted research and programming. The project does not claim university affiliation, research funding, peer-reviewed acceptance, or independent confirmation of all originality claims.
 
-The repository currently contains the **GNU General Public License v3.0** ([LICENSE](LICENSE)), **not AGPLv3**. No separate commercial licensing agreement is published. The older [license-pending document](LICENSE-PENDING.md) is outdated.
+The repository currently contains the **GNU General Public License v3.0** ([LICENSE](LICENSE)), **not AGPLv3**. No separate commercial licensing agreement is published.
 
 ---
 
