@@ -1,0 +1,16 @@
+{
+  "mission": 45,
+  "method": "independent exact exhaustive four-vertex digraph enumeration",
+  "graphs": 4096,
+  "cutwidth_decisions": 28672,
+  "ola_decisions": 17556,
+  "constrained_mincut_oracle_cases": 331776,
+  "violations": 0,
+  "python_version": "3.11-compatible",
+  "ci_status": "not confirmed at time of commit",
+  "limitations": [
+    "tests use exact constrained-extension oracle, not production flow implementation",
+    "results do not replace mathematical correctness proof",
+    "algorithm and H analytic bound not Lean formalized"
+  ]
+}

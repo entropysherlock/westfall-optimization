@@ -1,0 +1,23 @@
+name: Mission 045 independent algorithm audit
+on:
+  push:
+    paths:
+      - 'research/westfall-045/**'
+      - '.github/workflows/research-045.yml'
+  pull_request:
+    paths:
+      - 'research/westfall-045/**'
+      - '.github/workflows/research-045.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-four-vertex-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Exhaustive independent CW/OLA and flow-oracle checks
+        run: python research/westfall-045/tests/independent_audit.py
