@@ -2,6 +2,7 @@ import Westfall044
 import Mathlib.Data.Sym.Card
 import Mathlib.Data.Nat.Choose.Bounds
 import Mathlib.Data.List.Sort
+import Mathlib.Tactic
 
 /-!
 WESTFALL Mission 044 — bounded Ferrers box cardinality via stars and bars.
@@ -22,7 +23,7 @@ theorem boxSym_inj_on (h : ℕ)
   have hm : (List.ofFn r : Multiset (Fin (h + 1))) =
       (List.ofFn s : Multiset (Fin (h + 1))) :=
     congrArg Subtype.val heq
-  have hp : List.ofFn r ~ List.ofFn s := Multiset.coe_eq_coe.mp hm
+  have hp : List.Perm (List.ofFn r) (List.ofFn s) := Multiset.coe_eq_coe.mp hm
   have hpr : (List.ofFn r).Pairwise (fun x y => y ≤ x) := by
     rw [List.pairwise_ofFn]
     intro i j hij
@@ -47,10 +48,10 @@ theorem B_le_choose (h : ℕ) : B h ≤ (2 * h).choose h := by
     _ = (2 * h).choose h := by
       rw [card_univ]
       have hc := Sym.card_sym_eq_choose (α := Fin (h + 1)) h
-      rw [Sym.card_sym_eq_choose]
-      simp only [Fintype.card_fin]
-      congr 1
-      omega
+      have he : Fintype.card (Fin (h + 1)) + h - 1 = 2 * h := by
+        simp only [Fintype.card_fin]
+        omega
+      simpa only [he] using hc
 
 /-- The central binomial coefficient is at most 4^h. -/
 theorem choose_le_four_pow (h : ℕ) : (2 * h).choose h ≤ 4 ^ h := by
