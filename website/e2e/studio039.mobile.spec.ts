@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 
 test("039 mobile: workspaces are reachable, nothing overflows, a run completes", async ({ page }) => {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "WESTFALL Studio", exact: true })).toBeVisible();
   for (const v of ["problem", "solver", "results", "analysis", "verification", "compare"]) {
     await page.getByTestId(`nav-${v}`).click();
     const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
