@@ -6,7 +6,11 @@
 
 Research-driven algorithms and verifiable software for sequencing, ranking, and weighted pairwise optimization.
 
-[**Launch Optimization Studio**](https://entropysherlock.github.io/westfall-optimization/studio/) · [Website](https://entropysherlock.github.io/westfall-optimization/) · [Research & Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/) · [Documentation](https://entropysherlock.github.io/westfall-optimization/docs/)
+### 🌐 [VISIT THE OFFICIAL WESTFALL OPTIMIZATION WEBSITE](https://entropysherlock.github.io/westfall-optimization/)
+
+**[OPEN WEBSITE →](https://entropysherlock.github.io/westfall-optimization/)**
+
+[Launch Optimization Studio](https://entropysherlock.github.io/westfall-optimization/studio/) · [Benchmarks](https://entropysherlock.github.io/westfall-optimization/benchmarks/) · [Research & Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/) · [Documentation](https://entropysherlock.github.io/westfall-optimization/docs/)
 
 </div>
 
