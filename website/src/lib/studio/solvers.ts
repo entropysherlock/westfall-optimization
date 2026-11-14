@@ -80,24 +80,61 @@ export function subsetDPExact(M: number[][], hooks: Hooks = {}): { order: number
   return { order, value: f[N - 1], states: N };
 }
 
+/** Deadline-aware equivalent of engine insertion search. Each completed move preserves a permutation.
+ * The original implementation remains the path when no deadline is supplied.
+ */
+function timedInsertion(M: number[][], start: number[], deadline: number): number[] {
+  let perm = start.slice();
+  let improved = true;
+  while (improved && now() < deadline) {
+    improved = false;
+    for (const v of start) {
+      if (now() >= deadline) return perm;
+      const i = perm.indexOf(v);
+      const rest = perm.slice(0, i).concat(perm.slice(i + 1));
+      let pref = 0, suf = 0;
+      for (const u of rest) suf += M[v][u];
+      let best = pref + suf, old = best, at = 0;
+      const values = [best];
+      for (let j = 0; j < rest.length; j++) {
+        const u = rest[j];
+        pref += M[u][v];
+        suf -= M[v][u];
+        const val = pref + suf;
+        values.push(val);
+        if (val > best) { best = val; at = j + 1; }
+      }
+      old = values[i];
+      if (best > old + 1e-9) {
+        perm = rest.slice(0, at).concat([v], rest.slice(at));
+        improved = true;
+      }
+    }
+  }
+  return perm;
+}
+
 /** Multi-start insertion local search. Deterministic for a fixed seed. */
 export function localSearch(M: number[][], start: number[], opts: { timeMs?: number; seed?: number; maxStarts?: number; onIncumbent?: (value: number, starts: number, ms: number) => void } & Hooks = {}) {
   const n = M.length;
   const t0 = now();
-  const budget = opts.timeMs ?? 1500;
+  const budget = Math.max(0, Math.min(opts.timeMs ?? 1500,
+    opts.deadline === undefined ? Infinity : opts.deadline - t0));
+  const stop = opts.deadline ?? Infinity;
+  const insert = (p: number[]) => opts.deadline === undefined ? insertionLocalSearch(M, p) : timedInsertion(M, p, stop);
   const rnd = mulberry32(opts.seed ?? 1);
-  let best = insertionLocalSearch(M, start);
+  let best = insert(start);
   let bestVal = scoreOf(M, best);
   let starts = 1;
   const maxStarts = opts.maxStarts ?? 10_000;
   // a Copeland-style start (sort by row sums) is usually strong
   const copeland = [...Array(n).keys()].sort((a, b) => M[b].reduce((s, x) => s + x, 0) - M[a].reduce((s, x) => s + x, 0) || a - b);
-  const c = insertionLocalSearch(M, copeland);
+  const c = now() < stop ? insert(copeland) : best;
   const cv = scoreOf(M, c);
   starts++;
   if (cv > bestVal) { best = c; bestVal = cv; }
   opts.onIncumbent?.(bestVal, starts, now() - t0);
-  while (starts < maxStarts && now() - t0 < budget) {
+  while (starts < maxStarts && now() - t0 < budget && now() < stop) {
     // perturb the incumbent: random segment reversal + a few random moves, then re-optimise
     const p = best.slice();
     const i = Math.floor(rnd() * n), j = Math.floor(rnd() * n);
@@ -108,7 +145,7 @@ export function localSearch(M: number[][], start: number[], opts: { timeMs?: num
       const [v] = p.splice(x, 1);
       p.splice(Math.floor(rnd() * n), 0, v);
     }
-    const q = insertionLocalSearch(M, p);
+    const q = insert(p);
     const qv = scoreOf(M, q);
     starts++;
     if (qv > bestVal) { best = q; bestVal = qv; opts.onIncumbent?.(bestVal, starts, now() - t0); }
