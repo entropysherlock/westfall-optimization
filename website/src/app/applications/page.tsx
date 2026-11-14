@@ -1,7 +1,15 @@
 import { ButtonLink, Callout, PageHeader, Section } from "@/components/ui";
+import Link from "next/link";
 import { Tex } from "@/components/Tex";
 
 export const metadata = { title: "Applications", description: "Where weighted linear ordering applies (and where it does not): production sequencing, rank aggregation, tournaments, preference ordering and research." };
+
+const EXAMPLE_IDS: Record<string, string> = {
+  "Single-machine job sequencing": "sequencing",
+  "Rank aggregation (Kemeny)": "kemeny",
+  "Tournament ranking from match margins": "tournament",
+  "Pairwise preference survey": "survey",
+};
 
 function App({ id, title, fits, model, notFit, example }: { id: string; title: string; fits: React.ReactNode; model: React.ReactNode; notFit: React.ReactNode; example?: string }) {
   return (
@@ -12,7 +20,9 @@ function App({ id, title, fits, model, notFit, example }: { id: string; title: s
         <div><p className="label">Model</p><div className="mt-2 text-[15px] leading-relaxed text-fog-300">{model}</div></div>
         <div><p className="label">When it does not</p><div className="mt-2 text-[15px] leading-relaxed text-fog-300">{notFit}</div></div>
       </div>
-      {example && <p className="mt-5 text-sm text-fog-500">Studio example: <span className="font-medium text-fog-300">{example}</span>.</p>}
+      {example && <p className="mt-5 text-sm text-fog-500">Studio example: {EXAMPLE_IDS[example]
+        ? <Link href={`/studio/?example=${EXAMPLE_IDS[example]}`} className="font-medium text-accent-600 underline">Try {example} in Studio</Link>
+        : <span className="font-medium text-fog-300">{example}</span>}.</p>}
     </section>
   );
 }
