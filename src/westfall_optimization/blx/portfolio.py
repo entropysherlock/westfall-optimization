@@ -62,12 +62,42 @@ def solve(A, mode: str = "auto", milp_time_limit: float = 30.0, restarts: int = 
     """Solve max_pi F_A(pi). Returns a dict with status in {PROVED_OPTIMAL, BEST_FOUND, UNRESOLVED}.
 
     mode: 'auto' (BLX 2.0 routing), 'blx' (hybrid exclusion DP), 'sldp' (packing exclusion DP),
-          'milp' (HiGHS), 'subset_dp' (unrestricted exact DP, n <= 24).
+          'milp' (HiGHS), 'subset_dp' (unrestricted exact DP, n <= 24), 'scc_milp' (SCC preprocessing + HiGHS), 'adaptive_milp' (incremental triangle MILP router).
     blocks: optional ordered partition (list of vertex lists) for mode 'blx'.
     """
     A = as_skew(A)
     n = A.shape[0]
     t0 = time.time()
+    if mode == "adaptive_milp":
+        # Avoid speculative heuristic-startup cost before the MILP router.
+        from ..solvers.milp_cuts import adaptive_milp_solve
+        m = adaptive_milp_solve(A, time_limit=milp_time_limit)
+        result = dict(n=n, mode=mode, route=m["strategy"], order=m["order"],
+                      preference_cycle_fraction=m["preference_cycle_fraction"],
+                      time=time.time() - t0)
+        if m["proved"]:
+            result.update(status=PROVED, OPT=m["OPT"], proved_by="adaptive_milp")
+        else:
+            result.update(status=UNRESOLVED, OPT=None, best_found=m.get("best_found"),
+                          upper_bound=m.get("upper_bound"))
+        return result
+
+    if mode == "scc_milp":
+        # Avoid computing an unnecessary heuristic incumbent before the
+        # decomposition: the fast preprocessing path must be end-to-end fast.
+        from ..solvers.scc_milp import scc_milp_solve
+        m = scc_milp_solve(A, time_limit=milp_time_limit)
+        result = dict(n=n, mode=mode, route=mode, order=m["order"],
+                      scc={k: m[k] for k in ("components", "component_sizes",
+                                            "largest_component", "subsolver_calls")},
+                      time=time.time() - t0)
+        if m["proved"]:
+            result.update(status=PROVED, OPT=m["OPT"], proved_by="scc_milp")
+        else:
+            result.update(status=UNRESOLVED, OPT=None, best_found=m["best_found"],
+                          upper_bound=m["upper_bound"])
+        return result
+
     order0 = best_of_restarts(A, restarts=restarts, seed=seed) if n > 1 else list(range(n))
     L = score(A, order0)
     out = dict(n=n, incumbent_order=order0, incumbent_score=L, mode=mode)
