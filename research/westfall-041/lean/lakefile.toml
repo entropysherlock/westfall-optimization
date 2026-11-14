@@ -1,12 +1,15 @@
 name = "Westfall041"
 version = "0.1.0"
-defaultTargets = ["Westfall040", "Westfall041"]
+defaultTargets = ["Westfall040", "Westfall041", "Westfall042"]
 
 [[lean_lib]]
 name = "Westfall040"
 
 [[lean_lib]]
 name = "Westfall041"
+
+[[lean_lib]]
+name = "Westfall042"
 
 [[require]]
 name = "mathlib"

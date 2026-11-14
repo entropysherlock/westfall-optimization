@@ -1,5 +1,8 @@
 # Mission 041 — Algorithms for h-semicomplete digraphs
 
+> **Mission 042 sharper complexity (research branch only; conditional paper derivation):** R_h(K) ≤ binomial(2h,h)H(K) ≤ 4^hH(K), improving the proposed h-semicomplete cutwidth runtime to 2^{O(√k+h)} n^{O(1)} and OLA to 2^{O(k^{1/3}+h)} n^{O(1)}. The argument is not yet Lean-checked and does not replace the original Mission 041 implementation. See ../westfall-042/MANUSCRIPT_ADDENDUM.md.
+
+
 **Input:** a digraph D on n vertices with at most h non-neighbours per vertex (h can be computed in O(n²)), and an
 integer k.
 
