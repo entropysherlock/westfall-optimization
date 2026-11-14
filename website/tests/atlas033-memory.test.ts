@@ -5,7 +5,7 @@ import { bruteForce, scoreOf } from "../src/lib/studio/solvers";
 
 describe("ATLAS-033 memory-safe interruptions", () => {
   it("returns an incumbent without claiming optimality when byte budget is exhausted", () => {
-    const M = generate("cyclic", 15, 1);
+    const M = generate("random-int", 15, 22);
     const r = solveAtlas(M, {
       subsetMax: 0, maxMemoryBytes: 1024,
       deadline: performance.now() + 20_000,
