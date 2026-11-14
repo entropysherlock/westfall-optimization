@@ -24,7 +24,8 @@ software are developed with AI-assisted research and programming tools.
 | Novelty relative to prior cut-DP methods | **Not independently assessed** |
 | Optimization Studio (browser solvers, exports, verification) | Released on the website. Unit, correspondence and end-to-end tests run in CI |
 | Job service (`service/`) for the Python BLX solver | Implemented and tested; **not deployed** (needs a container host) |
-| Commercial licensing, accounts, payments | **Not available**; the repository license is pending |
+| License | **GPL-3.0** ([LICENSE](LICENSE)). Terms other than the GPL are by arrangement with the owner; none are set yet |
+| Accounts, payments | **Not available** |
 
 The eight flagship Lean declarations are listed with their source locations on the
 [verification page](https://entropysherlock.github.io/westfall-optimization/formal-verification/). The browser solvers
@@ -85,5 +86,7 @@ npm run build && npx playwright install chromium && npm run test:e2e
 
 ## License
 
-**Pending the project owner's decision.** Until a license is selected, all rights are reserved; public source visibility
-is not a redistribution license. See [LICENSE-PENDING.md](LICENSE-PENDING.md).
+This repository is licensed under the **GNU General Public License v3.0**; see [LICENSE](LICENSE). You may use, study,
+modify and redistribute it under the GPL's terms, including its copyleft condition: distributed modified versions must
+also be released under GPL-3.0 with source. If you need different terms, for example to include the software in a
+closed-source product, contact the owner. No such terms have been set yet.

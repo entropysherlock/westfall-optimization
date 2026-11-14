@@ -8,7 +8,7 @@ export default function Contact() {
   return (
     <>
       <PageHeader kicker="Contact" title="Licensing, collaboration and technical inquiries">
-        We welcome inquiries about applying the solvers to your ordering problems, licensing the software, and research collaboration. Licensing terms have not yet been set, so we discuss each inquiry individually.
+        We welcome inquiries about applying the solvers to your ordering problems, licensing the software, and research collaboration. The code is open source under GPL-3.0. If you need other terms, for example for a closed-source product, we discuss each inquiry individually; no standard commercial terms are set yet.
       </PageHeader>
       <div className="mx-auto grid max-w-page gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[1.3fr_1fr]">
         <ContactForm />

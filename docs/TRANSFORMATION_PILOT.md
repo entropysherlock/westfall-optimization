@@ -4,7 +4,7 @@ Status: **proposal, not validated demand** · November 14, 2026 · No customer i
 
 ## Decision: specialize before broadening
 
-WESTFALL currently solves weighted linear-ordering objectives: for every pair `(i,j)`, a fixed benefit or cost depends on which item comes first. The browser Studio supports exact/heuristic solvers, exports and verification, and bounded locally computed workloads. It **does not** solve general constrained scheduling, route planning, or adjacency-only setup costs. Commercial rights remain undecided (see `LICENSE-PENDING.md`); the remote FastAPI job service is not deployed.
+WESTFALL currently solves weighted linear-ordering objectives: for every pair `(i,j)`, a fixed benefit or cost depends on which item comes first. The browser Studio supports exact/heuristic solvers, exports and verification, and bounded locally computed workloads. It **does not** solve general constrained scheduling, route planning, or adjacency-only setup costs. The code is licensed under GPL-3.0 (see `LICENSE`), and terms other than the GPL are not yet set; the remote FastAPI job service is not deployed.
 
 **Initial beachhead hypothesis:** research teams that aggregate pairwise human or model preferences into a small, auditable consensus ranking. Their problem maps to Kemeny-style weighted linear ordering, and a real 6-item example is included in Studio. We do **not** yet know whether they need this, how many would use it, or whether they would pay.
 
@@ -47,7 +47,7 @@ Before any production or paid offering:
 2. Independent checker accepts every claimed exact certificate; known malformed/tampered certificates are rejected.
 3. Clear size, precision, timeout, memory, privacy and browser execution limits.
 4. Specialist comparison against at least one dedicated linear-ordering solver on pre-registered, unseen cases, matched hardware and exact status criteria.
-5. User-approved license policy and privacy/data terms. The repository is currently rights-reserved pending a license decision.
+5. Privacy/data terms for any hosted service. The repository license is decided: GPL-3.0 (`LICENSE`).
 6. Secure remote-job architecture and cost assessment **before** deploying any backend; maintain local browser fallback.
 7. No user account collection or payments until interview evidence identifies a real need and the owner approves the model.
 

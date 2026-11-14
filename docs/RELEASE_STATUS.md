@@ -20,9 +20,9 @@ Updated: 2026-11-13
 ## Not done or not operational
 
 - The job service is not deployed. A container host and its configuration are required.
-- The contact form is disabled until a form-delivery endpoint is configured (`docs/deployment.md`).
+- The contact form delivers through FormSubmit; the owner must activate it once (`docs/deployment.md`).
 - There are no user accounts, saved projects, persistent job history, usage metering, payments or pricing.
-- The repository license requires the owner's decision.
+- The repository is licensed under GPL-3.0 (`LICENSE`). Terms other than the GPL have not been set.
 - Specialist novelty review and a comparison against a specialized LOP solver are outstanding.
 - The original AutoCut prototype code from the first report remains unrecovered. The verified AutoCut is a new
   implementation.

@@ -60,14 +60,14 @@ Fomin–Pilipczuk and more recent width-based methods remains under audit.
 - **Formal verification:** Lean foundations are in progress; all flagship
   theorem statements remain unverified until checked in CI.
 - **Publication:** There has been no peer review or third-party endorsement.
-- **License:** A software license has not been selected. Public source alone
-  does not grant redistribution rights.
+- **License:** The software is open source under GPL-3.0 (`LICENSE`). Terms
+  other than the GPL are by arrangement with the owner; none are set yet.
 
 ## Funding and eligibility
 
 No dollar amounts or eligibility claims are asserted here. Any actual funding
 proposal requires program-specific rules, a realistic budget, a checked
-timeline and a decision on intellectual-property/licensing terms.
+timeline and, if needed, terms for uses beyond the GPL.
 
 A useful funding narrative should be about independently verifiable
 AI-assisted mathematical discovery, with explicit proof-status tracking and
@@ -92,7 +92,7 @@ reproducibility, **not** an unsupported claim of faster optimization.
 - [ ] Flagship Lean theorem check status documented accurately
 - [ ] Source and raw benchmark log release
 - [ ] Specialized exact-solver comparison
-- [ ] License decision by the project owner
+- [x] License decision by the project owner (GPL-3.0)
 - [ ] Eligibility, timeline and budget tailored to a real call
 
 **The program's “Level 3” assessment is an internal research label, not an

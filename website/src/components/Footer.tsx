@@ -33,7 +33,7 @@ export default function Footer() {
       </div>
       <div className="border-t border-navy-800">
         <div className="mx-auto flex max-w-page flex-col gap-2 px-5 py-6 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-          <p>© 2026 Westfall Optimization · Caleb Westfall. Not peer reviewed; no institutional affiliation. Repository license selection pending.</p>
+          <p>© 2026 Westfall Optimization · Caleb Westfall. Not peer reviewed; no institutional affiliation. Code licensed under <a href={`${REPO}/blob/main/LICENSE`} className="underline hover:text-white">GPL-3.0</a>.</p>
           <p>Formal results refer to the Lean development on the research branch; see Verification for exact scope.</p>
         </div>
       </div>
