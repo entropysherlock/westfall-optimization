@@ -38,6 +38,8 @@ test("039: switching workspaces preserves edited data and settings", async ({ pa
 test("039: ATLAS streams measured telemetry and the bracket closes at the proved optimum", async ({ page }) => {
   await open(page);
   await generate(page, "random-int", 30, 3);
+  // Telemetry is intentionally housed in the inspector, which starts collapsed.
+  await page.getByRole("button", { name: "Show inspector" }).click();
   await page.getByTestId("run").click();
   await expect(page.getByTestId("run-monitor")).toBeVisible();
   await expect(page.getByTestId("job-state")).toHaveText("COMPLETED", { timeout: 90_000 });
