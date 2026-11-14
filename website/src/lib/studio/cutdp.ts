@@ -101,6 +101,8 @@ export function cutBoundedDP(
   incumbent: number[],
   opts: {
     maxStates?: number;
+    /** Conservative search working-memory budget (bytes). Stops cleanly, never claims optimality. */
+    maxBytes?: number;
     deadline?: number;
     /** ATLAS-032: admissible residual bound L(V∖S) from a global triangle packing (Lemma 2). */
     packing?: TrianglePacking | null;
@@ -117,7 +119,17 @@ export function cutBoundedDP(
 ): CutDPResult {
   const n = M.length;
   if (n === 0) return { order: [], beta: 0, value: 0, states: 1, expanded: 0, pruned: 0, maxLayer: 1, bound: 0 };
-  const maxStates = opts.maxStates ?? 2_000_000;
+  // The prefix DP stores 2-3 full O(n)-vectors per live state, plus
+  // reconstruction links and Map keys. Count-based limits alone are unsafe:
+  // four million states at n=100 can exhaust many gigabytes.
+  //
+  // This intentionally conservative *upper estimate* allows for simultaneous
+  // old/new layers and typed-array doubling. Reaching it interrupts the
+  // search and leaves the caller's feasible incumbent untouched.
+  const perStateBytes = 192 + (opts.packing ? 96 : 72) * n;
+  const byteStateLimit = opts.maxBytes === undefined
+    ? Infinity : Math.max(1, Math.floor(opts.maxBytes / perStateBytes));
+  const maxStates = Math.min(opts.maxStates ?? 2_000_000, byteStateLimit);
   const P: Float64Array[] = M.map((row) => Float64Array.from(row, (x) => (x > 0 ? x : 0)));
   const colP = new Float64Array(n);
   let W = 0;
@@ -152,7 +164,10 @@ export function cutBoundedDP(
   let states = 1, expanded = 0, pruned = 0, maxLayer = 1;
   const scratch = new Uint32Array(words);
   for (let t = 0; t < n; t++) {
-    const est = Math.min(curCount * 4, 1 << 16);
+    if (states >= maxStates) throw new Interrupted("search state/byte budget exhausted");
+    // Avoid preallocating an entire next frontier when only a small amount of
+    // working-memory budget remains.
+    const est = Math.max(1, Math.min(curCount * 4, 1 << 16, maxStates - states));
     const nMasks = new U32(est * words), nKeys = new F64(numericKeys ? est : 1);
     const nBeta = new F64(est), nCut = new F64(est), nLb = new F64(est);
     const nA = new F64(est * n), nB = new F64(est * n), nD = new F64(pk ? est * n : 1);
@@ -218,7 +233,11 @@ export function cutBoundedDP(
             }
             nD.len += n;
           }
-          if (++states > maxStates) throw new Interrupted(`state budget of ${maxStates.toLocaleString("en-US")} prefix states exhausted`);
+          if (++states > maxStates) throw new Interrupted(
+            opts.maxBytes === undefined
+              ? `state budget of ${maxStates.toLocaleString("en-US")} prefix states exhausted`
+              : `state/byte budget exhausted (limit ${maxStates.toLocaleString("en-US")} states, ${opts.maxBytes} bytes)`
+          );
         } else if (beta < nBeta.a[j]) {
           nBeta.a[j] = beta; nParent.a[j] = s; nAdded.a[j] = v;
         }
