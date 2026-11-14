@@ -9,7 +9,7 @@ import fs from "fs";
 const go = (page: Page, view: string) => page.getByTestId(`nav-${view}`).click();
 async function open(page: Page) {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "WESTFALL Studio", exact: true })).toBeVisible();
 }
 async function generate(page: Page, kind: string, n: number, seed = 1) {
   await go(page, "problem");
