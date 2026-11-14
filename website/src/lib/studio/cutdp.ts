@@ -119,17 +119,8 @@ export function cutBoundedDP(
 ): CutDPResult {
   const n = M.length;
   if (n === 0) return { order: [], beta: 0, value: 0, states: 1, expanded: 0, pruned: 0, maxLayer: 1, bound: 0 };
-  // The prefix DP stores 2-3 full O(n)-vectors per live state, plus
-  // reconstruction links and Map keys. Count-based limits alone are unsafe:
-  // four million states at n=100 can exhaust many gigabytes.
-  //
-  // This intentionally conservative *upper estimate* allows for simultaneous
-  // old/new layers and typed-array doubling. Reaching it interrupts the
-  // search and leaves the caller's feasible incumbent untouched.
-  const perStateBytes = 192 + (opts.packing ? 96 : 72) * n;
-  const byteStateLimit = opts.maxBytes === undefined
-    ? Infinity : Math.max(1, Math.floor(opts.maxBytes / perStateBytes));
-  const maxStates = Math.min(opts.maxStates ?? 2_000_000, byteStateLimit);
+  const maxStates = opts.maxStates ?? 2_000_000;
+  const maxBytes = opts.maxBytes ?? Infinity;
   const P: Float64Array[] = M.map((row) => Float64Array.from(row, (x) => (x > 0 ? x : 0)));
   const colP = new Float64Array(n);
   let W = 0;
@@ -162,18 +153,36 @@ export function cutBoundedDP(
   let lastBeta: Float64Array = curBeta;
 
   let states = 1, expanded = 0, pruned = 0, maxLayer = 1;
+  let retainedLinkBytes = parents[0].byteLength + addeds[0].byteLength;
   const scratch = new Uint32Array(words);
   for (let t = 0; t < n; t++) {
-    if (states >= maxStates) throw new Interrupted("search state/byte budget exhausted");
-    // Avoid preallocating an entire next frontier when only a small amount of
-    // working-memory budget remains.
-    const est = Math.max(1, Math.min(curCount * 4, 1 << 16, maxStates - states));
+    if (states >= maxStates) throw new Interrupted("state budget exhausted");
+    // Avoid constructing 65,536 full n-vectors for large n before there is
+    // evidence that the frontier is that wide.
+    const est = Math.max(1, Math.min(curCount * 4, n >= 100 ? 2048 : 1 << 16, maxStates - states));
     const nMasks = new U32(est * words), nKeys = new F64(numericKeys ? est : 1);
     const nBeta = new F64(est), nCut = new F64(est), nLb = new F64(est);
     const nA = new F64(est * n), nB = new F64(est * n), nD = new F64(pk ? est * n : 1);
     const nParent = new I32(est), nAdded = new I32(est);
     const seen = new Map<number | string, number>();
     let count = 0;
+    const oldLayerBytes = curMasks.byteLength + curKeys.byteLength + curBeta.byteLength +
+      curCut.byteLength + curLb.byteLength + curA.byteLength + curB.byteLength + curD.byteLength;
+    const predictedBytes = (array: F64 | I32 | U32, additional: number) => {
+      let capacity = array.a.length;
+      while (array.len + additional > capacity) capacity *= 2;
+      return capacity * array.a.BYTES_PER_ELEMENT;
+    };
+    // Upper bound on retained arrays + working frontier + approximate Map
+    // allocations. Check *before* any reserve/doubling operation.
+    const projectedMemory = () => retainedLinkBytes + oldLayerBytes +
+      predictedBytes(nMasks, words) + predictedBytes(nKeys, numericKeys ? 1 : 0) +
+      predictedBytes(nBeta, 1) + predictedBytes(nCut, 1) +
+      predictedBytes(nLb, 1) + predictedBytes(nA, n) +
+      predictedBytes(nB, n) + predictedBytes(nD, pk ? n : 0) +
+      predictedBytes(nParent, 1) + predictedBytes(nAdded, 1) +
+      128 * (count + 1) + 8 * (states + 1);
+
     for (let s = 0; s < curCount; s++) {
       if ((expanded & 1023) === 0) {
         if (opts.deadline !== undefined && now() > opts.deadline) throw new Interrupted("time limit reached during the cut-bounded DP");
@@ -201,6 +210,9 @@ export function cutBoundedDP(
         }
         const j = seen.get(k);
         if (j === undefined) {
+          if (projectedMemory() > maxBytes) throw new Interrupted(
+            `estimated exact-search byte budget exhausted (${Math.round(maxBytes / 1048576)} MiB)`
+          );
           const idx = count++;
           seen.set(k, idx);
           // mask
@@ -233,11 +245,7 @@ export function cutBoundedDP(
             }
             nD.len += n;
           }
-          if (++states > maxStates) throw new Interrupted(
-            opts.maxBytes === undefined
-              ? `state budget of ${maxStates.toLocaleString("en-US")} prefix states exhausted`
-              : `state/byte budget exhausted (limit ${maxStates.toLocaleString("en-US")} states, ${opts.maxBytes} bytes)`
-          );
+          if (++states > maxStates) throw new Interrupted(`state budget of ${maxStates.toLocaleString("en-US")} prefix states exhausted`);
         } else if (beta < nBeta.a[j]) {
           nBeta.a[j] = beta; nParent.a[j] = s; nAdded.a[j] = v;
         }
@@ -252,6 +260,7 @@ export function cutBoundedDP(
     }
     // the previous layer's per-state data is released here; only parent/added links are kept
     parents.push(nParent.a.slice(0, count)); addeds.push(nAdded.a.slice(0, count));
+    retainedLinkBytes += 8 * count;
     curCount = count;
     curMasks = nMasks.a; curKeys = nKeys.a; curBeta = nBeta.a; curCut = nCut.a; curLb = nLb.a; curA = nA.a; curB = nB.a; curD = nD.a;
     lastBeta = curBeta;
