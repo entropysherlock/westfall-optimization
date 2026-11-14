@@ -1,92 +1,112 @@
-# Westfall Optimization
+<div align="center">
 
-**Structural algorithms. Exact optimization. Verifiable results.**
+# WESTFALL Optimization
 
-Research-driven optimization software for weighted ordering problems (sequencing, ranking and prioritization driven by
-pairwise costs or preferences), built on exact algorithms and structural decomposition, with machine-checked proofs for the core structural theorem.
+**Exact optimization for complex ordering decisions.**
 
-- **Website:** https://entropysherlock.github.io/westfall-optimization/
-- **Optimization Studio (runs in the browser):** https://entropysherlock.github.io/westfall-optimization/studio/
-- **Formal verification status:** https://entropysherlock.github.io/westfall-optimization/formal-verification/
-- **Documentation:** https://entropysherlock.github.io/westfall-optimization/docs/
+Research-driven algorithms and verifiable software for sequencing, ranking, and weighted pairwise optimization.
 
-Westfall Optimization is an independent research and software initiative founded by **Caleb Westfall**. It has no
-university or institute affiliation and no research funding, and it claims no peer-reviewed publication. Research and
-software are developed with AI-assisted research and programming tools.
+[**Launch Optimization Studio**](https://entropysherlock.github.io/westfall-optimization/studio/) · [Website](https://entropysherlock.github.io/westfall-optimization/) · [Research & Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/) · [Documentation](https://entropysherlock.github.io/westfall-optimization/docs/)
 
-## Status — November 2026
+</div>
 
-| Component | Status |
-|---|---|
-| Structural decomposition theorem: λ(A), partition recovery, AutoCut correctness | **Lean kernel-checked** (branch `formal/westfall-theorem`, commit `5de1b5b`, [CI run](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867)) |
-| AutoCut running time `poly(n)·2^{O(√λ)}` (≤ 1 728 000 (n+1)¹⁸ 2^{45(⌊√λ⌋+1)} operations) | **Lean kernel-checked**, in a declared unit-cost arithmetic model |
-| Sharper `poly(n)·P(6λ)²`, bit complexity, memory bound | **Not established** |
-| Novelty relative to prior cut-DP methods | **Not independently assessed** |
-| Optimization Studio (browser solvers, exports, verification) | Released on the website. Unit, correspondence and end-to-end tests run in CI |
-| Job service (`service/`) for the Python BLX solver | Implemented and tested; **not deployed** (needs a container host) |
-| License | **GPL-3.0** ([LICENSE](LICENSE)). Terms other than the GPL are by arrangement with the owner; none are set yet |
-| Accounts, payments | **Not available** |
+---
 
-The eight flagship Lean declarations are listed with their source locations on the
-[verification page](https://entropysherlock.github.io/westfall-optimization/formal-verification/). The browser solvers
-are TypeScript programs, not the Lean executable. The browser AutoCut is tested for exact output equality with the Lean
-executable on 103 archived instances (`website/tests/autocut.test.ts`).
+## Overview
 
-### Negative results
+WESTFALL Optimization is an independent, AI-assisted research and software project developing exact algorithms for weighted ordering problems. It combines structural decomposition, combinatorial search, rigorous lower bounds, and reproducible optimality evidence.
 
-- In the original report, the AutoCut prototype proved 7 of 20 benchmark cases, while BLX 2.0 and packing SLDP each
-  proved 20 of 20.
-- The verified AutoCut completed 103 of 119 adversarial instances within 3600 s; the other 16 hit the time limit.
-- HiGHS MILP beats BLX on some published benchmarks.
-- No comparison with a specialized linear-ordering solver has been made, so no claim of superiority is made.
+The project has three complementary parts:
 
-## Repository layout
+| Component | Purpose |
+|:--|:--|
+| **ATLAS / Optimization Studio** | Solve and inspect ordering problems in a browser, with exact and heuristic modes, progress reporting, and exports. |
+| **BLX and AutoCut** | Python optimization algorithms, structural methods, and independently checkable solution certificates. |
+| **Mathematical foundations** | Lean-formalized structural and cut-counting results, alongside paper proofs and explicitly identified open problems. |
 
-| Path | Content |
-|---|---|
-| `website/` | Next.js 16 static site and the Optimization Studio (`src/lib/studio`: parsing, model, solvers, AutoCut port) |
-| `service/` | FastAPI job service: queue, time and memory limits, cancellation, API keys, rate limits |
-| `src/westfall_optimization/` | Python package: BLX 2.0 portfolio, exclusion DP, subset DP, MILP, local search, exact certificates, CLI |
-| `lean/` | Lean foundations on `main`. The full development is on branch `formal/westfall-theorem` |
-| `papers/`, `research/` | Manuscripts and the original research records (historical file names kept for reproducibility) |
-| `benchmarks/` | Raw benchmark logs for the historical BLX series |
-| `docs/` | Architecture, deployment, security, certificates, verification protocol, release status |
+### Measured results
 
-## Running things
+| Benchmark | Recorded result |
+|:--|--:|
+| ATLAS-032, exact instances solved within 30 s | **85 / 88** |
+| HiGHS 1.16.0, same instances and time limit | **83 / 88** |
+| ATLAS-032 on 50 LOLIB input-output instances | **50 / 50** proved optimal |
+| 40-item synthetic near-transitive instance | **1.287 s** to certified optimality |
+
+The 40-item instance (seed 1) attained objective **1,647** and backward penalty **319**. The ATLAS-032 study used an Intel Xeon 2.1 GHz machine with two vCPUs and 8 GB RAM; HiGHS used a zero relative MIP gap. These are **specific benchmark results**, not a claim of general superiority over HiGHS or commercial optimization software. The study documents cases where HiGHS was faster and cases ATLAS did not prove within the limit.
+
+[**Read the benchmark report**](benchmarks/atlas-032/ATLAS_032_REPORT.md) · [Detailed results](benchmarks/atlas-032/RESULTS.md) · [Raw records](benchmarks/atlas-032/results_E.json) · [Reproduction instructions](benchmarks/atlas-032/REPRODUCE.md)
+
+## Optimization Studio
+
+[**Open the browser application**](https://entropysherlock.github.io/westfall-optimization/studio/)
+
+The Studio accepts CSV, TSV, JSON, and edge-list data. It provides input validation, multiple solving strategies, solver progress and cancellation, result inspection, and export formats. Exact modes are subject to problem-size and computational budgets.
+
+The website runs TypeScript solver implementations in the browser. The full Python BLX system is separate, and the browser code should not be confused with the Lean-verified mathematical programs.
+
+[Studio performance measurements](benchmarks/studio-039/README.md) · [Release status](docs/RELEASE_STATUS.md)
+
+## Research and formal verification
+
+The project maintains mathematical proofs, formal verification artifacts, and computational experiments as separate forms of evidence.
+
+| Research line | Verified or established scope | Source |
+|:--|:--|:--|
+| **Structural decomposition & AutoCut** | Eight selected flagship Lean declarations covering structural bounds, partition recovery, correctness, and a unit-cost operation bound. | [Formal verification record](docs/formal-verification.md) |
+| **Semicomplete digraphs (040)** | Lean-checked bound on the number of bounded cuts via hyperbola partitions. | [Formal status](research/westfall-040/FORMAL_STATUS.md) |
+| **Bounded defect (041)** | Lean-checked defect and shifted-hyperbola results. | [Formal status](research/westfall-041/FORMAL_STATUS.md) |
+| **Sharpened cut counting (044)** | Five audited Lean declarations, including the bound \(N_k\le(n+1)4^h H(c+k)^2\). | [Verification and CI](research/westfall-044/VERIFICATION.md) |
+| **Bounded independence (046–047)** | Paper-level pivot and core-decomposition arguments, computational investigations, and unresolved extremal conjectures. | [Research report](research/westfall-046/REPORT.md) |
+
+The **eight flagship declarations** describe the original AutoCut formalization, **not** the total number of Lean-checked results across subsequent missions. The original audit reports 963 declarations including supporting lemmas; that number must not be interpreted as 963 independent new theorems.
+
+[Original Lean CI](https://github.com/entropysherlock/westfall-optimization/actions/runs/43419080867) · [Mission 044 Lean CI](https://github.com/entropysherlock/westfall-optimization/actions/runs/43533991215) · [Research directory](research/)
+
+### Scope and limitations
+
+Formal verification applies to the statements and models in the linked Lean files. It does not establish mathematical novelty, verify the entire browser solver, or prove commercial performance advantages. The full AutoCut bit-complexity and memory bounds remain unestablished; the broader independence-two cut-counting conjecture remains open. Independent specialist review of novelty is still needed.
+
+## Installation and reproducibility
 
 ```bash
-# Python solvers and certificates
-python -m pip install -e ".[test]" && python -m pytest
+# Python package and tests
+python -m pip install -e ".[test]"
+python -m pytest
+
+# Solve and independently verify a result
 westfall-opt solve examples/paley11.json --mode sldp --certificate cert.json --out result.json
 westfall-opt verify cert.json --instance examples/paley11.json
 
-# Job service
-python -m pip install -e . -e "./service[test]" && python -m pytest service/tests
-uvicorn westfall_service.app:app --port 8000 --workers 1
-
-# Website and Studio
-cd website && npm ci
-npm run typecheck && npm run lint && npm test && npm run check:links
-npm run build && npx playwright install chromium && npm run test:e2e
+# Web application
+cd website
+npm ci
+npm run typecheck && npm run lint && npm test
+npm run build
 ```
 
-## Documentation
+For benchmark-specific commands, toolchains, and datasets, use the [ATLAS-032 reproduction guide](benchmarks/atlas-032/REPRODUCE.md). The optional FastAPI job service is implemented but **not deployed**; there are no hosted accounts, billing, or persistent jobs.
 
-- [Architecture](docs/architecture.md) · [Deployment](docs/deployment.md) · [Security](docs/security.md) · [Release status](docs/RELEASE_STATUS.md)
-- [Formal verification protocol](docs/formal-verification.md) · [Certificates](docs/certificates.md) · [Prior-art audit](docs/novelty-audit.md)
-- [Original theorem report](research/discovery-022/WESTFALL_Discovery_022_Report.md) · [Square-root block localization](papers/square-root-block-localization-v2.md)
-- [Grant application draft](docs/grant-application-draft.md) (**not submitted**) · [Contributing](CONTRIBUTING.md)
+## Project structure
 
-## Key prior art
+- [`website/`](website/) — Next.js site, Optimization Studio, frontend tests
+- [`src/westfall_optimization/`](src/westfall_optimization/) — Python solvers, CLI, verification
+- [`research/`](research/) and [`papers/`](papers/) — manuscripts, Lean developments, proof audits
+- [`benchmarks/`](benchmarks/) — datasets, scripts, raw results
+- [`docs/`](docs/) — architecture, deployment, formal verification, release notes
 
-- [Fomin & Pilipczuk: cut enumeration / FAST](https://arxiv.org/abs/1301.7314)
-- [Karpinski & Schudy: subexponential weighted FAST](https://arxiv.org/abs/1006.4396)
-- [Feige: Faster FAST](https://arxiv.org/abs/0911.5094)
-- [Kawashima & Sukegawa: Condorcet structure](https://arxiv.org/abs/2609.19593)
+## About and licensing
 
-## License
+**Caleb Westfall · Independent Researcher**
 
-This repository is licensed under the **GNU General Public License v3.0**; see [LICENSE](LICENSE). You may use, study,
-modify and redistribute it under the GPL's terms, including its copyleft condition: distributed modified versions must
-also be released under GPL-3.0 with source. If you need different terms, for example to include the software in a
-closed-source product, contact the owner. No such terms have been set yet.
+Developed with AI-assisted research and programming. The project does not claim university affiliation, research funding, peer-reviewed acceptance, or independent confirmation of all originality claims.
+
+The repository currently contains the **GNU General Public License v3.0** ([LICENSE](LICENSE)), **not AGPLv3**. No separate commercial licensing agreement is published.
+
+---
+
+<div align="center">
+
+[**Optimization Studio**](https://entropysherlock.github.io/westfall-optimization/studio/) · [Full Website](https://entropysherlock.github.io/westfall-optimization/) · [Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/)
+
+</div>
