@@ -1,0 +1,82 @@
+[
+ {
+  "K": 1,
+  "n": 2,
+  "f_lower_found": 4,
+  "two_tournaments": 4,
+  "trivial_2^2K": 4,
+  "H(K)^2": 4,
+  "log f / sqrt K": 1.386,
+  "f / ((K+1)^2 H(K)^2)": 0.25
+ },
+ {
+  "K": 2,
+  "n": 4,
+  "f_lower_found": 16,
+  "two_tournaments": 16,
+  "trivial_2^2K": 16,
+  "H(K)^2": 25,
+  "log f / sqrt K": 1.961,
+  "f / ((K+1)^2 H(K)^2)": 0.0711
+ },
+ {
+  "K": 3,
+  "n": 6,
+  "f_lower_found": 60,
+  "two_tournaments": 60,
+  "trivial_2^2K": 64,
+  "H(K)^2": 100,
+  "log f / sqrt K": 2.364,
+  "f / ((K+1)^2 H(K)^2)": 0.0375
+ },
+ {
+  "K": 4,
+  "n": 8,
+  "f_lower_found": 202,
+  "two_tournaments": 202,
+  "trivial_2^2K": 256,
+  "H(K)^2": 676,
+  "log f / sqrt K": 2.654,
+  "f / ((K+1)^2 H(K)^2)": 0.012
+ },
+ {
+  "K": 5,
+  "n": 10,
+  "f_lower_found": 592,
+  "two_tournaments": 592,
+  "trivial_2^2K": 1024,
+  "H(K)^2": 1764,
+  "log f / sqrt K": 2.855,
+  "f / ((K+1)^2 H(K)^2)": 0.0093
+ },
+ {
+  "K": 6,
+  "n": 12,
+  "f_lower_found": 1595,
+  "two_tournaments": 1595,
+  "trivial_2^2K": 4096,
+  "H(K)^2": 13924,
+  "log f / sqrt K": 3.011,
+  "f / ((K+1)^2 H(K)^2)": 0.0023
+ },
+ {
+  "K": 7,
+  "n": 14,
+  "f_lower_found": 3912,
+  "two_tournaments": 3912,
+  "trivial_2^2K": 16384,
+  "H(K)^2": 29241,
+  "log f / sqrt K": 3.126,
+  "f / ((K+1)^2 H(K)^2)": 0.0021
+ },
+ {
+  "K": 8,
+  "n": 16,
+  "f_lower_found": 9030,
+  "two_tournaments": 9030,
+  "trivial_2^2K": 65536,
+  "H(K)^2": 151321,
+  "log f / sqrt K": 3.22,
+  "f / ((K+1)^2 H(K)^2)": 0.0007
+ }
+]

@@ -1,0 +1,36 @@
+{
+ "digraphs": 310,
+ "kcuts_checked": 72914,
+ "roundtrip_failures": 0,
+ "pivot_failures": 0,
+ "clique_failures": 0,
+ "max_core_over_2K_plus_2": -2,
+ "by_family": {
+  "two-tournaments-block": {
+   "digraphs": 10,
+   "kcuts": 3151
+  },
+  "two-tournaments-inter": {
+   "digraphs": 10,
+   "kcuts": 2105
+  },
+  "cyclic-tournament": {
+   "digraphs": 10,
+   "kcuts": 15462
+  },
+  "complement-matching+bidirected": {
+   "digraphs": 10,
+   "kcuts": 887
+  },
+  "C5-blowup": {
+   "digraphs": 10,
+   "kcuts": 1672
+  },
+  "random-alpha<=2": {
+   "digraphs": 260,
+   "kcuts": 49637
+  }
+ },
+ "max_core_size_seen": 11,
+ "seconds": 1.3
+}

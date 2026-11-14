@@ -1,0 +1,11 @@
+{
+ "digraphs": 60,
+ "kcuts": 66550,
+ "roundtrip_failures": 0,
+ "pivot_failures": 0,
+ "max_core_minus_2K2": -2,
+ "branch_far0": 19959,
+ "branch_far1": 19351,
+ "branch_both": 6384,
+ "seconds": 1.5
+}
