@@ -32,7 +32,7 @@ for iid in wanted:
         run=subprocess.run(cmd,text=True,capture_output=True,timeout=33)
         status="RETURNED" if run.returncode==0 else "PROCESS_ERROR"
         result=json.loads(run.stdout.splitlines()[-1]) if run.returncode==0 and run.stdout.strip() else {}
-        rss_matches=re.findall(r"MAX_RSS_KIB=(\\d+)",run.stderr)
+        rss_matches=re.findall(r"MAX_RSS_KIB=(\d+)",run.stderr)
         rss=int(rss_matches[-1]) * 1024 if rss_matches else None
     except subprocess.TimeoutExpired:
         status="HARD_TIMEOUT"
