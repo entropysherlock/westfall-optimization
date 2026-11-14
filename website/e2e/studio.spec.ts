@@ -8,9 +8,15 @@ import path from "path";
 
 const fx = (f: string) => path.join(__dirname, "fixtures", f);
 
+async function chooseExample(page: Page, name: RegExp) {
+  // Examples are intentionally inside an accessible disclosure in Studio 039.
+  await page.getByTestId("examples-disclosure").locator("summary").click();
+  await page.getByTestId("examples-disclosure").getByRole("button", { name }).click();
+}
+
 async function open(page: Page) {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "WESTFALL Studio", exact: true })).toBeVisible();
 }
 
 /** Mission 039 workstation: the solver radios live in the Solver workspace, inputs in the Problem workspace. */
@@ -98,7 +104,7 @@ test("5: export JSON and CSV, re-import, and reproduce the result", async ({ pag
 
 test("6: exact case with negative weights, fractions and ties", async ({ page }) => {
   await open(page);
-  await page.getByRole("button", { name: /Negative weights and ties/ }).click();
+  await chooseExample(page, /Negative weights and ties/);
   await expect(page.getByTestId("validation-ok")).toContainText("5 items");
   await runAndWait(page, "autocut");
   await expect(page.getByTestId("status-badge")).toHaveText("Proven optimal");
@@ -121,7 +127,7 @@ function randomMatrix(n: number, seed: number) {
 test("9a: a running job can be cancelled", async ({ page }) => {
   await open(page);
   // the heuristic keeps improving until its time budget (here 60 s), so it is reliably still running
-  await page.getByRole("button", { name: /Large instance/ }).click();
+  await chooseExample(page, /Large instance/);
   await expect(page.getByTestId("validation-ok")).toContainText("60 items");
   await go(page, "solver");
   await page.getByTestId("mode-advanced").click();
@@ -164,7 +170,7 @@ test("measured: exact subset DP runtime at n = 15 and n = 20 in this browser", a
 
 test("9c: size limits are enforced per solver", async ({ page }) => {
   await open(page);
-  await page.getByRole("button", { name: /Large instance/ }).click();
+  await chooseExample(page, /Large instance/);
   await expect(page.getByTestId("validation-ok")).toContainText("60 items");
   await go(page, "solver");
   await page.check("input[name=solver][value=subset-dp]");
