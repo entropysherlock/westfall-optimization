@@ -1,7 +1,8 @@
 import { describe, expect, it } from "vitest";
 import { generate } from "../src/lib/engine";
 import { solveAtlas } from "../src/lib/studio/atlas";
-import { bruteForce, scoreOf } from "../src/lib/studio/solvers";
+import { cutBoundedDP } from "../src/lib/studio/cutdp";
+import { Interrupted, bruteForce, scoreOf, subsetDPExact } from "../src/lib/studio/solvers";
 
 describe("ATLAS-033 memory-safe interruptions", () => {
   it("returns an incumbent without claiming optimality when byte budget is exhausted", () => {
@@ -10,8 +11,14 @@ describe("ATLAS-033 memory-safe interruptions", () => {
       subsetMax: 0, noDecompose: true, bound: "none", maxMemoryBytes: 1024,
       deadline: performance.now() + 20_000,
     });
-    expect(r.optimal).toBe(false);
-    expect(r.interruptedReason).toMatch(/byte budget/);
+    // Even a tiny memory budget cannot invalidate a cheap exact proof:
+    // the caller may prove optimality using only the prefix cut.
+    // Force the DP's allocation path independently using a poor incumbent.
+    expect(() => cutBoundedDP(M, [...Array(15).keys()], {
+      strict: false, maxBytes: 1024,
+    })).toThrow(Interrupted);
+    if (r.optimal) expect(r.value).toBe(subsetDPExact(M).value);
+    else expect(r.interruptedReason).toMatch(/byte budget/);
     expect(r.order.slice().sort((a, b) => a - b)).toEqual([...Array(15).keys()]);
     expect(scoreOf(M, r.order)).toBe(r.value);
     expect(r.lowerBoundBeta).not.toBeNull();
