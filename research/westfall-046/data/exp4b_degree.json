@@ -1,0 +1,9 @@
+{
+ "kcuts": 105171,
+ "dstar_distribution": {
+  "0": 104794,
+  "1": 377
+ },
+ "examples_dstar_ge_2": [],
+ "seconds": 0.8
+}
