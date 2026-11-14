@@ -41,7 +41,7 @@ test("all internal links resolve", async ({ page, request }) => {
 
 test("navigation works from the menu (desktop links or mobile menu)", async ({ page, isMobile }) => {
   await page.goto("/");
-  const targets: [string, RegExp][] = [["Technology", /Exact algorithms/], ["Research", /Structure and exactness/], ["Verification", /Eight flagship/], ["Documentation", /Westfall Optimization Studio/]];
+  const targets: [string, RegExp][] = [["Technology", /Exact algorithms/], ["Research", /Structure and exactness/], ["Docs", /Westfall Optimization Studio/]];
   for (const [label, heading] of targets) {
     if (isMobile) {
       await page.getByRole("button", { name: "Menu" }).click();
