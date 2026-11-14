@@ -9,10 +9,11 @@ import fs from "fs";
 const go = (page: Page, view: string) => page.getByTestId(`nav-${view}`).click();
 async function open(page: Page) {
   await page.goto("/studio/");
-  await expect(page.getByRole("heading", { name: "Optimization Studio" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "WESTFALL Studio", exact: true })).toBeVisible();
 }
 async function generate(page: Page, kind: string, n: number, seed = 1) {
   await go(page, "problem");
+  await page.getByTestId("generator-disclosure").locator("summary").click();
   await page.selectOption('select[aria-label="Generator"]', kind);
   await page.fill('input[aria-label="Number of items"]', String(n));
   await page.fill('input[aria-label="Generator seed"]', String(seed));
@@ -133,10 +134,12 @@ test("039: local sessions save, restore and delete (browser storage only)", asyn
   await open(page);
   await page.getByTestId("data-input").fill("0,4\n-4,0\n");
   await page.selectOption("#interp", "skew");
+  await page.getByTestId("sessions-disclosure").locator("summary").click();
   await page.fill('input[aria-label="Session name"]', "two items");
   await page.getByTestId("save-session").click();
   await expect(page.getByTestId("session-list")).toContainText("two items");
-  await page.getByRole("button", { name: /Rank aggregation/ }).click();
+  await page.getByTestId("examples-disclosure").locator("summary").click();
+  await page.getByTestId("examples-disclosure").getByRole("button", { name: /Rank aggregation/ }).click();
   await page.getByTestId("session-list").getByRole("button", { name: "Restore" }).click();
   await expect(page.getByTestId("data-input")).toHaveValue("0,4\n-4,0\n");
   await page.getByRole("button", { name: "Delete session two items" }).click();
