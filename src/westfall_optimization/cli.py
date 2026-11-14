@@ -31,7 +31,7 @@ def _cmd_solve(A, args):
     H = res.pop("_H", None)
     sol = {k: v for k, v in res.items() if k not in ("features",) or True}
     if args.certificate:
-        if res["status"] != "PROVED_OPTIMAL" or res.get("proved_by") in ("milp", "scc_milp"):
+        if res["status"] != "PROVED_OPTIMAL" or res.get("proved_by") in ("milp", "scc_milp", "adaptive_milp"):
             print("certificate: only produced for exclusion-DP routes (sldp/blx); MILP proofs are not certificates",
                   file=sys.stderr)
         else:
@@ -58,7 +58,7 @@ def main(argv=None):
     for name in ("solve", "lolib"):
         s = sub.add_parser(name)
         s.add_argument("path")
-        s.add_argument("--mode", default="auto", choices=["auto", "blx", "sldp", "milp", "scc_milp", "subset_dp"])
+        s.add_argument("--mode", default="auto", choices=["auto", "blx", "sldp", "milp", "scc_milp", "adaptive_milp", "subset_dp"])
         s.add_argument("--milp-time-limit", type=float, default=30.0)
         s.add_argument("--certificate")
         s.add_argument("--out")
