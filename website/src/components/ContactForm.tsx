@@ -4,11 +4,16 @@ import { CONTACT_ENDPOINT } from "@/lib/site";
 
 /**
  * Commercial inquiry form. It submits to a form-processing endpoint configured at build time
- * (NEXT_PUBLIC_CONTACT_ENDPOINT, e.g. a Formspree form URL; only the public endpoint, never a secret).
- * Without one, the form is shown disabled with an explanation; it never pretends to send.
+ * (NEXT_PUBLIC_CONTACT_ENDPOINT, e.g. a FormSubmit AJAX URL https://formsubmit.co/ajax/<address-or-alias>
+ * or a Formspree form URL; only the public endpoint, never a secret). Without one, the form is shown
+ * disabled with an explanation; it never pretends to send. FormSubmit answers HTTP 200 even when it
+ * rejects a message (e.g. before the inbox owner has activated the form), so the JSON `success`
+ * field is checked as well as the status code.
  */
 export default function ContactForm() {
   const configured = Boolean(CONTACT_ENDPOINT);
+  let serviceHost = "";
+  try { serviceHost = configured ? new URL(CONTACT_ENDPOINT).hostname : ""; } catch { serviceHost = ""; }
   const [state, setState] = useState<"idle" | "sending" | "sent" | "error">("idle");
   const [error, setError] = useState("");
 
@@ -25,9 +30,13 @@ export default function ContactForm() {
         body: JSON.stringify({
           name: fd.get("name"), email: fd.get("email"), organization: fd.get("organization"),
           topic: fd.get("topic"), message: fd.get("message"), _subject: `Westfall Optimization inquiry: ${fd.get("topic")}`,
+          _replyto: fd.get("email"), _template: "table", _captcha: "false", _honey: "",
         }),
       });
+      const body = await r.json().catch(() => ({}) as Record<string, unknown>);
       if (!r.ok) throw new Error(`the form service returned ${r.status}`);
+      if (body && (body.success === false || body.success === "false"))
+        throw new Error(typeof body.message === "string" && body.message ? body.message : "the form service did not accept the message");
       setState("sent");
     } catch (err) {
       setError((err as Error).message);
@@ -69,7 +78,7 @@ export default function ContactForm() {
           <button type="submit" className="btn-primary">{state === "sending" ? "Sending…" : "Send inquiry"}</button>
           {state === "error" && <span className="text-sm text-signal-red" role="alert">Not sent: {error}. Please try again or use GitHub.</span>}
         </div>
-        <p className="text-xs text-fog-500">Your message is delivered by the configured form service and used only to reply to you.</p>
+        <p className="text-xs text-fog-500">Your message is delivered by email{serviceHost ? ` through ${serviceHost}` : ""} and used only to reply to you.</p>
       </fieldset>
     </form>
   );
