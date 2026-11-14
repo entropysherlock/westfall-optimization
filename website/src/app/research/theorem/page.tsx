@@ -20,7 +20,7 @@ export default function Theorem() {
   return (
     <>
       <PageHeader kicker="Structural decomposition theorem · Lean-checked · not peer reviewed" title="Automatic structural decomposition for exact weighted linear ordering">
-        The theorem identifies an intrinsic parameter λ(A) of a weighted ordering instance and gives an algorithm that recovers a partition attaining it and solves the instance exactly, in time subexponential in √λ. Its correctness and its operation-count bound are kernel-checked in Lean. The original manuscript is published in full. Novelty and significance have not been externally reviewed.
+        The theorem identifies an intrinsic parameter λ(A) of a weighted ordering instance and gives an algorithm that recovers a partition attaining it and solves the instance exactly, in {"poly(n)·2^{O(√λ)}"} time, which is polynomial in n and subexponential in λ. Its correctness and its operation-count bound are kernel-checked in Lean. The original manuscript is published in full. Novelty and significance have not been externally reviewed.
         <div className="mt-5 flex flex-wrap gap-2"><EvidenceTag kind="lean" /><EvidenceTag kind="provisional" /></div>
         <div className="mt-6 flex flex-wrap gap-3">
           <ButtonLink href="/research/manuscript/" primary>Full manuscript</ButtonLink>
