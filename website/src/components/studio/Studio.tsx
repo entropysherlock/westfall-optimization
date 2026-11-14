@@ -127,6 +127,17 @@ export default function Studio() {
     const t = kv()?.getItem(THEME_KEY);
     if (t === "light" || t === "dark") setTheme(t);
     const s = kv(); if (s) setSessions(listSessions(s));
+    // Static-export-friendly demo links: only explicitly bundled examples are accepted.
+    // Parse on the client after hydration; never use the URL as untrusted model data.
+    const exampleKey = new URLSearchParams(window.location.search).get("example");
+    const linkedExample = EXAMPLES.find((ex) => ex.id === exampleKey);
+    if (linkedExample) {
+      setTextRaw(linkedExample.text);
+      setFormat(linkedExample.format);
+      setInterp(linkedExample.interpretation);
+      setExampleId(linkedExample.id);
+      setOriginal({ text: linkedExample.text, format: linkedExample.format, interp: linkedExample.interpretation, title: linkedExample.title });
+    }
     const dm = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
     if (dm && dm <= 2) { setAtlasCfg((c) => ({ ...c, maxStates: Math.min(c.maxStates, 600_000) })); setMemoryNote(`This device reports ${dm} GB of memory, so the default budget was lowered to 600,000 states.`); }
     }, 0);
