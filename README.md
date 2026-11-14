@@ -101,7 +101,7 @@ For benchmark-specific commands, toolchains, and datasets, use the [ATLAS-032 re
 
 Developed with AI-assisted research and programming. The project does not claim university affiliation, research funding, peer-reviewed acceptance, or independent confirmation of all originality claims.
 
-The repository currently contains the **GNU General Public License v3.0** ([LICENSE](LICENSE)), **not AGPLv3**. No separate commercial licensing agreement is published.
+**Licensing notice:** Original material owned by Caleb J. Westfall in versions first released with the current [LICENSE](LICENSE) notice is reserved for proprietary commercial development, subject to the limitations stated in that notice. Earlier versions distributed under **GPL-3.0** remain licensed to their recipients under the terms applicable to those versions; the change does not revoke those rights. Third-party material and dependencies retain their own licensing terms. This public repository is source-visible, **not confidential**. Contact the project for commercial permissions.
 
 ---
 

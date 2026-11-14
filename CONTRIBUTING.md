@@ -2,7 +2,9 @@
 
 Thank you for your interest. Westfall Optimization is an independent research initiative led by Caleb Westfall.
 
-**License:** the project is licensed under GPL-3.0 (see LICENSE). Because the owner may also offer the software under separate terms, please open an issue before sending substantial code so the terms for contributions can be agreed.
+**License:** See [LICENSE](LICENSE) for the current prospective proprietary notice and its express preservation of rights granted to recipients of earlier GPL-3.0 versions. Existing GPL rights remain intact. The repository is publicly visible; do not submit confidential or unreleased commercial source code.
+
+**Contributions:** Please open an issue before submitting substantive code. A contributor agreement or separately agreed license may be necessary; submissions are not automatically assigned to the repository owner. Do not submit third-party code unless you have the right to do so.
 
 ## Most valuable contributions
 1. **Mathematical review** of `papers/square-root-block-localization-v2.md` — errors, gaps, and missing prior art. Please open an issue with the section and line.
