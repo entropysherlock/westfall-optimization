@@ -5,7 +5,7 @@ export const dynamic = "force-static";
 
 // Canonical, indexable pages only. /lab and /research/discovery-022 are redirects and are left out.
 const ROUTES = [
-  "", "studio/", "research/", "research/theorem/", "research/manuscript/", "research/paper/", "formal-verification/",
+  "", "studio/", "case-studies/forty-items/", "research/", "research/theorem/", "research/manuscript/", "research/paper/", "formal-verification/",
   "verify/", "benchmarks/", "technology/", "applications/", "explainer/", "docs/", "docs/api/", "roadmap/", "about/", "contact/",
 ];
 

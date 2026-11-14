@@ -5,7 +5,7 @@
 import { expect, test } from "@playwright/test";
 
 const ROUTES = ["/", "/technology/", "/research/", "/research/theorem/", "/research/manuscript/", "/research/paper/", "/formal-verification/",
-  "/studio/", "/benchmarks/", "/applications/", "/docs/", "/docs/api/", "/about/", "/contact/", "/verify/", "/explainer/", "/roadmap/"];
+  "/studio/", "/case-studies/forty-items/", "/benchmarks/", "/applications/", "/docs/", "/docs/api/", "/about/", "/contact/", "/verify/", "/explainer/", "/roadmap/"];
 
 test("every page renders with one h1, no console errors and no horizontal overflow", async ({ page }) => {
   for (const r of ROUTES) {

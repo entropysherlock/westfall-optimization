@@ -3,7 +3,7 @@ import { REPO, RESEARCH_CI } from "@/lib/site";
 import { Wordmark } from "./Logo";
 
 const cols: [string, [string, string][]][] = [
-  ["Product", [["/studio/", "Optimization Studio"], ["/docs/", "Documentation"], ["/docs/api/", "Job API"], ["/verify/", "Certificate verifier"], ["/benchmarks/", "Benchmarks"]]],
+  ["Product", [["/studio/", "Optimization Studio"], ["/case-studies/forty-items/", "Case study: 40 items"], ["/docs/", "Documentation"], ["/docs/api/", "Job API"], ["/verify/", "Certificate verifier"], ["/benchmarks/", "Benchmarks"]]],
   ["Research", [["/research/", "Research program"], ["/research/theorem/", "Structural theorem"], ["/research/manuscript/", "Manuscripts"], ["/formal-verification/", "Formal verification"], ["/roadmap/", "Open questions"]]],
   ["Company", [["/technology/", "Technology"], ["/applications/", "Applications"], ["/about/", "About"], ["/contact/", "Contact & licensing"]]],
 ];
