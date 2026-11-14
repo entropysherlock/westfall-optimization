@@ -101,7 +101,7 @@ export default function Benchmarks() {
             <li><strong>Time</strong>: wall-clock time of a native Lean binary, with the two generations run concurrently on separate cores.</li>
             <li>Inputs are fixed by the seeds 23023 and 24024 (<span className="font-mono">memo_instances.json</span>).</li>
           </ul>
-          <pre className="overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 text-[12.5px] leading-relaxed text-fog-300">{`# ATLAS-032 (section A): see benchmarks/atlas-032/REPRODUCE.md
+          <pre tabIndex={0} className="overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 text-[12.5px] leading-relaxed text-fog-300">{`# ATLAS-032 (section A): see benchmarks/atlas-032/REPRODUCE.md
 cd website && npm ci && npx vitest run
 python3 ../benchmarks/atlas-032/fetch_lolib_io.py
 npx vitest run --config bench/vitest.config.ts bench/atlas032.bench.test.ts

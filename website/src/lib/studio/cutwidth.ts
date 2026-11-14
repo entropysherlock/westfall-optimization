@@ -9,11 +9,12 @@
  * intermediate set S has cut(S) ≤ k (the prefixes of a width-≤k ordering are such a chain, and any
  * such chain is an ordering of width ≤ k). Search is layered by |S| with exact deduplication.
  *
- * State cap (semicomplete inputs only). Theorem A (Missions 027–029; exhaustively tested, not yet
- * Lean-verified): if D is semicomplete and ctw(D) ≤ k then D has at most (n+1)·H(2k) k-cuts. So
- * when more than that many distinct reachable k-cuts are generated, ctw(D) > k is certified and
- * the search stops. The cap is only applied when the input is semicomplete. Because the theorem is
- * not yet formally verified, results that rely on the cap are flagged (`capUsed`).
+ * State cap (semicomplete inputs only). Theorem A, Lean kernel-checked as
+ * Westfall040.card_kcuts_le_of_width_le_k (Mission 040, research/westfall-040/lean): if D is
+ * semicomplete and ctw(D) ≤ k then D has at most (n+1)·H(2k) k-cuts, with H computed exactly below.
+ * So when more than that many distinct reachable k-cuts are generated, ctw(D) > k is certified and
+ * the search stops. The cap is only applied when the input is semicomplete. This TypeScript code is
+ * not itself verified, so results that rely on the cap are still flagged (`capUsed`).
  */
 import { Interrupted } from "./solvers";
 

@@ -5,7 +5,7 @@ import { blob, STUDIO_API_URL, tree } from "@/lib/site";
 export const metadata = { title: "Job API", description: "HTTP API of the Westfall Optimization job service: endpoints, limits, authentication and deployment." };
 
 function Code({ children }: { children: string }) {
-  return <pre className="my-4 overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 font-mono text-[12.5px] leading-relaxed text-fog-300">{children}</pre>;
+  return <pre tabIndex={0} className="my-4 overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 font-mono text-[12.5px] leading-relaxed text-fog-300">{children}</pre>;
 }
 
 export default function ApiDocs() {

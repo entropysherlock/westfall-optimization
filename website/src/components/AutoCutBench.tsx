@@ -62,7 +62,7 @@ export function BenchTable({ rows }: { rows: BenchRow[] }) {
         </select>
         <span className="self-center text-sm text-fog-500">{shown.length} rows</span>
       </div>
-      <div className="mt-3 max-h-[520px] overflow-auto rounded-xl border border-line bg-white">
+      <div className="mt-3 max-h-[520px] overflow-auto rounded-xl border border-line bg-white" tabIndex={0} role="region" aria-label="AutoCut benchmark results table">
         <table className="table-clean">
           <thead className="sticky top-0"><tr><th>#</th><th>Family</th><th>n</th><th>Outcome</th><th>λ(A)</th><th>k</th><th>Reachable cuts</th><th>Counted cost</th><th>autoCutC</th><th>autoCutM</th><th>Same output</th></tr></thead>
           <tbody>

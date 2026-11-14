@@ -23,6 +23,7 @@ export default function Home() {
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/studio/" className="btn bg-white text-navy-900 hover:bg-slate-100">Open the Optimization Studio</Link>
+              <Link href="/studio/?example=kemeny" className="btn border border-white/25 text-white hover:border-white/60">Try a 6-item ranking example</Link>
               <Link href="/technology/" className="btn border border-white/25 text-white hover:border-white/60">How it works</Link>
             </div>
             <dl className="mt-12 grid max-w-xl grid-cols-1 gap-5 border-t border-white/10 pt-6 text-sm sm:grid-cols-3 sm:gap-6">

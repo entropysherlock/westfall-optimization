@@ -61,6 +61,11 @@ body { @apply bg-ink-950 text-fog-100 antialiased; font-feature-settings: "ss01"
 .prose-research hr { @apply my-10 border-line; }
 .prose-research blockquote { @apply border-l-2 border-accent-500/50 pl-4 italic text-fog-400; }
 
+.prose-research a { overflow-wrap: anywhere; }
+/* Grid children default to min-width:auto, so one wide equation, table or URL can widen an implicit
+   single-column (mobile) grid past the viewport. Let them shrink; wide content scrolls inside its own box. */
+@layer base { .grid > * { min-width: 0; } }   /* base layer: explicit min-w-* utilities still win */
+
 .katex { font-size: 1.04em; }
 .katex-display { overflow-x: auto; overflow-y: hidden; padding: .35rem 0; }
 :focus-visible { outline: 2px solid #0d9488; outline-offset: 2px; border-radius: 6px; }
@@ -142,6 +147,12 @@ select { max-width: 100%; }
 .ws-tab { padding: 8px 12px; font-size: 13px; font-weight: 500; color: var(--ws-muted); border-bottom: 2px solid transparent; margin-bottom: -1px; }
 .ws-tab:hover { color: var(--ws-text); }
 .ws-tab[aria-selected="true"] { color: var(--ws-text); border-bottom-color: var(--ws-accent); }
+/* Mobile workspace tabs scroll sideways: fade the right edge so it is visible that more tabs follow;
+   the end padding lets the last tab scroll fully clear of the fade. */
+@media (max-width: 1023px) {
+  .ws-tabs-fade { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent);
+                  mask-image: linear-gradient(to right, #000 calc(100% - 40px), transparent); padding-right: 40px; }
+}
 .ws-rail-item { display: flex; align-items: center; gap: 10px; width: 100%; border-radius: 8px; padding: 8px 10px; font-size: 13px; font-weight: 500; color: var(--ws-muted); text-align: left; border: 1px solid transparent; }
 .ws-rail-item:hover { color: var(--ws-text); background: var(--ws-raised); }
 .ws-rail-item[aria-current="page"] { color: var(--ws-text); background: var(--ws-raised); border-color: var(--ws-line-strong); }

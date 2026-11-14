@@ -28,7 +28,7 @@ function H({ id, children }: { id: string; children: React.ReactNode }) {
   return <h2 id={id} className="scroll-mt-24 border-t border-line pt-10 text-2xl font-semibold tracking-tight text-fog-100 first:border-0 first:pt-0">{children}</h2>;
 }
 function Code({ children }: { children: string }) {
-  return <pre className="my-4 overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 font-mono text-[12.5px] leading-relaxed text-fog-300">{children}</pre>;
+  return <pre tabIndex={0} className="my-4 overflow-x-auto rounded-lg border border-line bg-ink-900 p-4 font-mono text-[12.5px] leading-relaxed text-fog-300">{children}</pre>;
 }
 
 export default function Docs() {
@@ -37,7 +37,7 @@ export default function Docs() {
       <PageHeader kicker="Documentation" title="Westfall Optimization Studio">
         Everything needed to prepare data, choose a solver and interpret the result. For programmatic access to the remote solver service, see the <Link className="text-accent-600 underline" href="/docs/api/">job API</Link>.
       </PageHeader>
-      <div className="mx-auto grid max-w-page gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[220px_minmax(0,1fr)]">
+      <div className="mx-auto grid max-w-page grid-cols-[minmax(0,1fr)] gap-10 px-5 py-14 sm:px-8 lg:grid-cols-[220px_minmax(0,1fr)]">
         <nav aria-label="Documentation contents" className="lg:sticky lg:top-24 lg:self-start">
           <p className="label">Contents</p>
           <ol className="mt-3 space-y-1.5 text-sm">{toc.map(([id, t]) => <li key={id}><a href={`#${id}`} className="text-fog-400 hover:text-accent-600">{t}</a></li>)}</ol>

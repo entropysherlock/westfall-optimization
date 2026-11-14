@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import { BASE } from "@/lib/site";
 
 const description =
   "Research-driven optimization software for weighted ordering problems: exact algorithms, structural decomposition, and formally verified correctness results that can be independently examined.";
@@ -17,8 +18,9 @@ export const metadata: Metadata = {
     title: "Westfall Optimization — The mathematics of better decisions",
     description,
     url: "https://entropysherlock.github.io/westfall-optimization/",
+    images: [{ url: `${BASE}/og.png`, width: 1200, height: 630, alt: "Westfall Optimization: the mathematics of better decisions" }],
   },
-  twitter: { card: "summary", title: "Westfall Optimization", description },
+  twitter: { card: "summary_large_image", title: "Westfall Optimization", description, images: [`${BASE}/og.png`] },
 };
 
 export const viewport: Viewport = { themeColor: "#0b1a2e", width: "device-width", initialScale: 1 };

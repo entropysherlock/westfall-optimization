@@ -76,7 +76,7 @@ export default function VerifyCenter({ items }: { items: Item[] }) {
           ))}
         </fieldset>
         <div className="mt-5 flex flex-wrap items-center gap-3">
-          <button onClick={runPreset} disabled={busy} className="rounded-lg bg-cyan-400 px-4 py-2 text-sm font-semibold text-ink-950 hover:bg-cyan-300 disabled:opacity-50">{busy ? "Verifying…" : "Verify in browser"}</button>
+          <button onClick={runPreset} disabled={busy} className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white hover:bg-accent-700 disabled:opacity-50">{busy ? "Verifying…" : "Verify in browser"}</button>
           <a href={asset(items.find((x) => x.id === sel)!.reference.certificate)} download className="text-sm text-cyan-300 underline">download certificate</a>
         </div>
       </div>

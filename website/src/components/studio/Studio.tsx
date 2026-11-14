@@ -127,6 +127,17 @@ export default function Studio() {
     const t = kv()?.getItem(THEME_KEY);
     if (t === "light" || t === "dark") setTheme(t);
     const s = kv(); if (s) setSessions(listSessions(s));
+    // Static-export-friendly demo links: only explicitly bundled examples are accepted.
+    // Parse on the client after hydration; never use the URL as untrusted model data.
+    const exampleKey = new URLSearchParams(window.location.search).get("example");
+    const linkedExample = EXAMPLES.find((ex) => ex.id === exampleKey);
+    if (linkedExample) {
+      setTextRaw(linkedExample.text);
+      setFormat(linkedExample.format);
+      setInterp(linkedExample.interpretation);
+      setExampleId(linkedExample.id);
+      setOriginal({ text: linkedExample.text, format: linkedExample.format, interp: linkedExample.interpretation, title: linkedExample.title });
+    }
     const dm = (navigator as Navigator & { deviceMemory?: number }).deviceMemory;
     if (dm && dm <= 2) { setAtlasCfg((c) => ({ ...c, maxStates: Math.min(c.maxStates, 600_000) })); setMemoryNote(`This device reports ${dm} GB of memory, so the default budget was lowered to 600,000 states.`); }
     }, 0);
@@ -371,7 +382,7 @@ export default function Studio() {
       <div className="flex flex-col lg:flex-row">
         {/* ------------------------------------------------------------ rail */}
         <nav aria-label="Studio workspaces" className="ws-noprint shrink-0 border-b px-2 py-2 lg:sticky lg:top-[64px] lg:h-[calc(100vh-128px)] lg:w-[188px] lg:border-b-0 lg:border-r lg:px-2.5 lg:py-4" style={{ borderColor: "var(--ws-line)" }}>
-          <ul className="ws-scroll flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible">
+          <ul className="ws-scroll ws-tabs-fade flex gap-1 overflow-x-auto lg:flex-col lg:overflow-visible">
             {VIEWS.map((v) => {
               const d = dot(v.id);
               return (
