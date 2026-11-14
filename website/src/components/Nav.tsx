@@ -5,12 +5,13 @@ import { useState } from "react";
 import { Wordmark } from "./Logo";
 
 /**
- * Top navigation is deliberately short: three sections plus Contact and the Studio button. Every other page is
+ * Top navigation is deliberately short: four sections plus Contact and the Studio button. Every other page is
  * linked from its section and from the footer. `match` lists the routes that belong to a section, so its tab stays
  * highlighted there (e.g. Research on the verification pages).
  */
 export const NAV_LINKS: { href: string; label: string; match: string[] }[] = [
-  { href: "/technology/", label: "Technology", match: ["/technology/", "/benchmarks/", "/applications/", "/explainer/"] },
+  { href: "/technology/", label: "Technology", match: ["/technology/", "/applications/", "/explainer/"] },
+  { href: "/benchmarks/", label: "Benchmarks", match: ["/benchmarks/", "/case-studies/"] },
   { href: "/research/", label: "Research", match: ["/research/", "/formal-verification/", "/verify/", "/roadmap/"] },
   { href: "/docs/", label: "Docs", match: ["/docs/"] },
 ];

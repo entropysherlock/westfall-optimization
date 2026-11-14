@@ -1,0 +1,20 @@
+{"inst": "round1_20items", "tl": 30, "solver": "ATLAS-032 (LOLIB settings, 4M states)", "wall": 0.58, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": null, "states": 268}
+{"inst": "round1_20items", "tl": 30, "solver": "ATLAS-032 (Studio settings, 1.5M states)", "wall": 0.33, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": null, "states": 268}
+{"inst": "round1_20items", "tl": 30, "solver": "ATLAS-060", "wall": 0.89, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": "atlas-060 root certificate", "states": null}
+{"inst": "round1_20items", "tl": 30, "solver": "HiGHS 1.16", "wall": 0.18, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288.0, "method": null, "states": null}
+{"inst": "round1_20items", "tl": 30, "solver": "SCIP 10", "wall": 0.21, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288.0, "method": null, "states": null}
+{"inst": "round1_20items", "tl": 120, "solver": "ATLAS-032 (LOLIB settings, 4M states)", "wall": 0.35, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": null, "states": 268}
+{"inst": "round1_20items", "tl": 120, "solver": "ATLAS-032 (Studio settings, 1.5M states)", "wall": 0.28, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": null, "states": 268}
+{"inst": "round1_20items", "tl": 120, "solver": "ATLAS-060", "wall": 0.12, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288, "method": "atlas-060 root certificate", "states": null}
+{"inst": "round1_20items", "tl": 120, "solver": "HiGHS 1.16", "wall": 0.13, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288.0, "method": null, "states": null}
+{"inst": "round1_20items", "tl": 120, "solver": "SCIP 10", "wall": 0.15, "proved": true, "F": 7288, "F_reported": 7288, "perm": true, "upper": 7288.0, "method": null, "states": null}
+{"inst": "round2_50items", "tl": 30, "solver": "ATLAS-032 (LOLIB settings, 4M states)", "wall": 32.96, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38856, "method": null, "states": 0}
+{"inst": "round2_50items", "tl": 30, "solver": "ATLAS-032 (Studio settings, 1.5M states)", "wall": 23.93, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38856, "method": null, "states": 0}
+{"inst": "round2_50items", "tl": 30, "solver": "ATLAS-060", "wall": 28.78, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38464, "method": "atlas-060", "states": null}
+{"inst": "round2_50items", "tl": 30, "solver": "HiGHS 1.16", "wall": 30.1, "proved": false, "F": 32616, "F_reported": 32616, "perm": true, "upper": 38463.99999999999, "method": null, "states": null}
+{"inst": "round2_50items", "tl": 30, "solver": "SCIP 10", "wall": 30.22, "proved": false, "F": 20056, "F_reported": 20056, "perm": true, "upper": 38278.97952851193, "method": null, "states": null}
+{"inst": "round2_50items", "tl": 120, "solver": "ATLAS-032 (LOLIB settings, 4M states)", "wall": 44.86, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38856, "method": null, "states": 0}
+{"inst": "round2_50items", "tl": 120, "solver": "ATLAS-032 (Studio settings, 1.5M states)", "wall": 23.62, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38856, "method": null, "states": 0}
+{"inst": "round2_50items", "tl": 120, "solver": "ATLAS-060", "wall": 48.41, "proved": false, "F": 33214, "F_reported": 33214, "perm": true, "upper": 38464, "method": "atlas-060", "states": null}
+{"inst": "round2_50items", "tl": 120, "solver": "HiGHS 1.16", "wall": 120.08, "proved": false, "F": 32616, "F_reported": 32616, "perm": true, "upper": 38463.99999999999, "method": null, "states": null}
+{"inst": "round2_50items", "tl": 120, "solver": "SCIP 10", "wall": 120.23, "proved": false, "F": 27986, "F_reported": 27986, "perm": true, "upper": 38208.63058272977, "method": null, "states": null}
