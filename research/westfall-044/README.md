@@ -31,6 +31,6 @@ The conditional algorithmic bounds would be CW 2^{O(sqrt(k)+h)} poly(n), OLA 2^{
 
 ## Integrity
 
-Compilation and axiom checks are authoritative only when the GitHub Actions run for the exact commit is successful. No `sorry`, `admit`, or custom axioms are intentional. Do not merge into main or claim a verified sharp theorem before a successful build.
+**SUCCESSFUL LEAN KERNEL AUDIT:** GitHub Actions run https://github.com/entropysherlock/westfall-optimization/actions/runs/43533991215 compiled all four modules and checked the main theorem at code commit `043dcfc129c06046911fa7eb7ef4628cb34cace2`. See VERIFICATION.md. The theorem is fully Lean verified; the analytic H estimate and full algorithms are not. Do not merge into main without further review.
 
 Novelty and peer-review status: open; the combinatorial proof alone does not establish Level 4.
