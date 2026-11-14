@@ -149,12 +149,12 @@ function scaledCaps(M: number[][], D: number): boolean {
 }
 
 /** Greedy integral packing: repeatedly take y_T = min residual capacity, triangles in a fixed order. */
-export function greedyPacking(M: number[][]): TrianglePacking {
+export function greedyPacking(M: number[][], opts: { deadline?: number; maxTriangles?: number } = {}): TrianglePacking {
   const t0 = now();
   const n = M.length;
   const D = 1;
   if (!scaledCaps(M, D)) throw new Error("triangle packing requires an integral matrix (exact arithmetic)");
-  const { verts, arcs } = directedTriangles(M);
+  const { verts, arcs } = directedTriangles(M, opts);
   const res = new Map<number, number>();
   for (const a of arcs) for (const e of a) res.set(e, M[Math.floor(e / n)][e % n]);
   // order: smallest bottleneck first tends to leave more capacity for others
@@ -163,6 +163,7 @@ export function greedyPacking(M: number[][]): TrianglePacking {
   idx.sort((a, b) => bott(a) - bott(b) || a - b);
   const y = new Array(verts.length).fill(0);
   for (const t of idx) {
+    if ((t & 1023) === 0 && opts.deadline !== undefined && now() >= opts.deadline) throw new Interrupted("greedy packing deadline");
     const m = Math.min(res.get(arcs[t][0])!, res.get(arcs[t][1])!, res.get(arcs[t][2])!);
     if (m > 0) { y[t] = m; for (const e of arcs[t]) res.set(e, res.get(e)! - m); }
   }
