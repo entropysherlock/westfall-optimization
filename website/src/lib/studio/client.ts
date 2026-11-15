@@ -7,6 +7,7 @@ import type { Problem } from "./model";
 import { instanceJson, type SolveResult } from "./report";
 import { fromWire, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./config";
 import type { SolverId } from "./catalog";
+import { startGitHubActionsSolve } from "./githubActions";
 import type { CertificateLike, Verdict } from "./certverify";
 
 export interface JobCallbacks {
