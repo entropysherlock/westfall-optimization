@@ -6,11 +6,13 @@
 
 Research-driven algorithms and verifiable software for sequencing, ranking, and weighted pairwise optimization.
 
-### 🌐 [VISIT THE OFFICIAL WESTFALL OPTIMIZATION WEBSITE](https://entropysherlock.github.io/westfall-optimization/)
+## 🌐 [OPEN THE OFFICIAL WESTFALL WEBSITE](https://entropysherlock.github.io/westfall-optimization/)
 
-**[OPEN WEBSITE →](https://entropysherlock.github.io/westfall-optimization/)**
+### 🚀 [LAUNCH THE OPTIMIZATION STUDIO — ATLAS-032 + ATLAS-060](https://entropysherlock.github.io/westfall-optimization/studio/)
 
-[Launch Optimization Studio](https://entropysherlock.github.io/westfall-optimization/studio/) · [Benchmarks](https://entropysherlock.github.io/westfall-optimization/benchmarks/) · [Research & Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/) · [Documentation](https://entropysherlock.github.io/westfall-optimization/docs/)
+**[OPEN WEBSITE](https://entropysherlock.github.io/westfall-optimization/)** · **[RUN ATLAS-060 IN THE STUDIO](https://entropysherlock.github.io/westfall-optimization/studio/)**
+
+[Optimization Studio](https://entropysherlock.github.io/westfall-optimization/studio/) · [Benchmarks](https://entropysherlock.github.io/westfall-optimization/benchmarks/) · [Research & Verification](https://entropysherlock.github.io/westfall-optimization/formal-verification/) · [Documentation](https://entropysherlock.github.io/westfall-optimization/docs/)
 
 </div>
 
