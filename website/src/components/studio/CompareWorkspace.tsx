@@ -8,6 +8,7 @@ import { download } from "@/lib/studio/client";
 import { comparabilityStatement, comparisonCsv, comparisonMarkdown, comparisonPlan } from "@/lib/studio/compare";
 import type { Problem } from "@/lib/studio/model";
 import { ATLAS_DEFAULTS } from "@/lib/studio/config";
+import { SOLVERS } from "@/lib/studio/catalog";
 import type { StudioSettings } from "@/lib/studio/session";
 import { Empty, Panel, fmtInt, fmtMs } from "./ui";
 
@@ -23,7 +24,7 @@ export default function CompareWorkspace({ p, fingerprint, cmp, settings, stale 
   const { c } = cmp;
   useEffect(() => { if (!c.running) return; const id = setInterval(() => setNow(performance.now()), 250); return () => clearInterval(id); }, [c.running]);
   if (!p) return <Empty title="Nothing to compare yet">Load a valid problem first.</Empty>;
-  const selected = plan.filter((x) => x.applicable && (chosen[x.solver] ?? true)).map((x) => x.solver);
+  const selected = plan.filter((x) => x.applicable && (chosen[x.solver] ?? !SOLVERS.find(s => s.id === x.solver)?.remote)).map((x) => x.solver);
   const rows = c.rows;
   const cond = c.conditions;
   const statement = cond ? comparabilityStatement(cond, rows) : null;
@@ -37,7 +38,7 @@ export default function CompareWorkspace({ p, fingerprint, cmp, settings, stale 
           <div className="grid gap-1.5 sm:grid-cols-2">
             {plan.map((x) => (
               <label key={x.solver} className="flex items-start gap-2.5 rounded-md border p-2.5 text-[13px]" style={{ borderColor: "var(--ws-line)", opacity: x.applicable ? 1 : 0.72 }}>
-                <input type="checkbox" className="ws-check mt-0.5" disabled={!x.applicable} checked={x.applicable && (chosen[x.solver] ?? true)} onChange={(e) => setChosen((m) => ({ ...m, [x.solver]: e.target.checked }))} data-testid={`cmp-${x.solver}`} />
+                <input type="checkbox" className="ws-check mt-0.5" disabled={!x.applicable} checked={x.applicable && (chosen[x.solver] ?? !SOLVERS.find(s => s.id === x.solver)?.remote)} onChange={(e) => setChosen((m) => ({ ...m, [x.solver]: e.target.checked }))} data-testid={`cmp-${x.solver}`} />
                 <span><span className="font-medium ws-text">{x.label}</span> <span className={`ws-chip ${x.exact ? "ws-green" : "ws-amber"}`}>{x.exact ? "exact" : "heuristic"}</span><span className="ws-sub block">{x.reason}</span></span>
               </label>
             ))}
