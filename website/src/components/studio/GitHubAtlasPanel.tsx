@@ -17,7 +17,7 @@ export default function GitHubAtlasPanel() {
       <p className="ws-sub mt-2">
         Your research Studio still runs in the browser. This solver runs privately on GitHub Actions
         in your separate private repository. No paid hosting or Codespaces required, but private
-        Actions jobs use your GitHub account's available minutes.
+        Actions jobs use your GitHub account&apos;s available minutes.
       </p>
       <p className="ws-sub mt-2">
         To authorize your own runs, create a{" "}
