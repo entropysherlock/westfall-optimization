@@ -7,6 +7,7 @@ import type { Problem } from "./model";
 import { instanceJson, type SolveResult } from "./report";
 import { fromWire, type SolveConfig, type Telemetry, type WireJob, type WireResult } from "./config";
 import type { SolverId } from "./catalog";
+import { startGitHubActionsSolve } from "./githubActions";
 import type { CertificateLike, Verdict } from "./certverify";
 
 export interface JobCallbacks {
@@ -19,6 +20,7 @@ export interface JobCallbacks {
 let seq = 0;
 
 export function startSolve(p: Problem, solver: SolverId, config: SolveConfig, cb: JobCallbacks): { cancel: () => void } {
+  if (solver === "atlas-060") return startGitHubActionsSolve(p, solver, config, cb);
   const w = new Worker(new URL("./studio.worker.ts", import.meta.url));
   const t0 = performance.now();
   let finished = false;
