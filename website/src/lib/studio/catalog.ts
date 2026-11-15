@@ -3,7 +3,7 @@
  * solver choices and limits without bundling the engines into the main thread (Mission 039); the engines run
  * in the worker. solvers.ts re-exports these names.
  */
-export type SolverId = "subset-dp" | "exclusion" | "autocut" | "atlas" | "heuristic";
+export type SolverId = "subset-dp" | "exclusion" | "autocut" | "atlas" | "heuristic" | "atlas-060";
 
 export interface SolverInfo {
   id: SolverId;
@@ -11,6 +11,7 @@ export interface SolverInfo {
   exact: boolean;
   maxN: number;
   summary: string;
+  remote?: boolean;
 }
 
 export const SOLVERS: SolverInfo[] = [
@@ -22,6 +23,8 @@ export const SOLVERS: SolverInfo[] = [
     summary: "Browser port of the Lean-verified AutoCut algorithm: recovers a partition attaining λ(A) and an optimal ordering. The port is tested against the Lean executable, not itself formally verified." },
   { id: "atlas", label: "ATLAS adaptive exact (components + cut-bounded DP)", exact: true, maxN: 400,
     summary: "Splits the instance into strongly connected components (exact), solves each with the subset DP or a cut-bounded prefix DP, and concatenates. Optimal when every component completes; otherwise the result is reported as interrupted with the best ordering found." },
+  { id: "atlas-060", label: "ATLAS-060 — Private certified LP branch-and-bound", exact: true, maxN: 60, remote: true,
+    summary: "Runs the original Python ATLAS-060 in your private GitHub Actions repository, not in your browser. Requires your own GitHub authorization; may use included Actions minutes. Optimality is shown only after independent certificate verification." },
   { id: "heuristic", label: "Local search (heuristic)", exact: false, maxN: 400,
     summary: "Multi-start insertion local search. Returns a good feasible ordering; it does not establish optimality." },
 ];
