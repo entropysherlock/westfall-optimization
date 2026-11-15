@@ -49,7 +49,8 @@ function resultFromActions(p: Problem, solver: SolverId, config: SolveConfig, jo
     config: { timeLimitMs: config.timeLimitMs, seed: config.seed },
     verification: proofChecked ? { crossCheck: { method: "private independent integer certificate checker", agrees: true } } : {},
   });
-  if (!r.objective.eq(parseQ(report.objective))) throw Error("Result failed exact objective recomputation; discarded");
+  const claimedObjective = parseQ(report.objective);
+  if (!claimedObjective || !r.objective.eq(claimedObjective)) throw Error("Result failed exact objective recomputation; discarded");
   return r;
 }
 function headers(token: string): Record<string, string> {
