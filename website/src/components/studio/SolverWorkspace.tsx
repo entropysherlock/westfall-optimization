@@ -10,6 +10,7 @@ import { ATLAS_DEFAULTS } from "@/lib/studio/config";
 import type { Recommendation } from "@/lib/studio/select";
 import type { StudioSettings } from "@/lib/studio/session";
 import { SOLVERS, type SolverId } from "@/lib/studio/catalog";
+import GitHubAtlasPanel from "./GitHubAtlasPanel";
 import RemotePanel from "./RemotePanel";
 import { Metric, Panel, Term, Toggle, fmtInt } from "./ui";
 
@@ -40,6 +41,7 @@ const PLAIN: Record<SolverId, string> = {
   autocut: "Exact solver for up to 9 items that also finds the problem's block structure.",
   atlas: "Splits the problem into independent parts and solves each exactly; reports a proven gap if it runs out of time.",
   heuristic: "Quickly finds a good ordering by repeated local improvement. Never proves it is the best.",
+  "atlas-060": "Runs original ATLAS-060 privately through your GitHub Actions. Needs a fine-grained GitHub token and available Actions minutes; only independently checked certificates establish optimality.",
 };
 
 export default function SolverWorkspace(props: SolverProps) {
@@ -48,6 +50,7 @@ export default function SolverWorkspace(props: SolverProps) {
   return (
     <div className="grid gap-4 2xl:grid-cols-[minmax(0,1fr)_minmax(0,400px)]">
       <div className="space-y-4 min-w-0">
+        {solver === "atlas-060" ? <GitHubAtlasPanel /> : null}
         {profile && rec ? <Profile profile={profile} rec={rec} solver={solver} useRecommended={props.useRecommended} /> : <Panel title="Problem profile"><p className="ws-sub">Load a valid problem to see its structure and a recommended solver.</p></Panel>}
         <Panel id="control" title="Solver control center" sub={props.mode === "beginner" ? "The recommended exact method is selected for you. Switch to Advanced for every engine option." : "Every option below is passed to the engine as shown and recorded in exports."}
           actions={
