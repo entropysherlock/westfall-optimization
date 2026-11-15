@@ -19,6 +19,7 @@ export interface JobCallbacks {
 let seq = 0;
 
 export function startSolve(p: Problem, solver: SolverId, config: SolveConfig, cb: JobCallbacks): { cancel: () => void } {
+  if (solver === "atlas-060") return startGitHubActionsSolve(p, solver, config, cb);
   const w = new Worker(new URL("./studio.worker.ts", import.meta.url));
   const t0 = performance.now();
   let finished = false;
