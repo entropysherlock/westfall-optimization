@@ -17,6 +17,7 @@
 /* AdaptivePair web client — ATLAS-075. Always uses real API results; never invents confidence intervals. */
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
+const HOSTED_API='https://adaptivepair-atlas075.onrender.com';
 const items=['Speed','Reliability','Ease of use','Support'];
 let votes=[], current=null, connected=false, busy=false, revision=0, baseUrl='', blocked=[], respondentNumber=1, policy='guarded';
 const nextRespondent=()=>`demo-respondent-${respondentNumber}`;
@@ -60,9 +61,10 @@ $('policy').onchange=()=>{policy=$('policy').value;refresh()};
 $('sample').onclick=()=>{if(busy)return;votes=[];blocked=[];respondentNumber=1;let seed=29410;const random=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296};const theta=[1.05,.62,.15,-.25];const pairs=[];for(let i=0;i<items.length;i++)for(let j=i+1;j<items.length;j++)pairs.push([i,j]);for(let k=0;k<90;k++){const [i,j]=pairs[k%pairs.length],prob=1/(1+Math.exp(theta[j]-theta[i]));votes.push({a:items[i],b:items[j],winner:random()<prob?items[i]:items[j],respondent_id:`sample-${k+1}`})}respondentNumber=91;refresh()};
 $('connect').onclick=connect;
 $('api-url').addEventListener('keydown',e=>{if(e.key==='Enter')connect()});
-// Same-origin local FastAPI UI connects automatically; the static site never sends
-// survey data to a remote endpoint without a conscious Connect action.
-if(location.hostname==='localhost'||location.hostname==='127.0.0.1'){$('api-url').value=location.origin;connect()}else{setConnected(false);$('api-url').value='';$('connection-state').textContent='API hosting required';message('The Python API has not been deployed to a public server. GitHub Pages hosts only this interface. Connect only after you have a working HTTPS API URL.');$('warnings').textContent='The confidence engine is not connected. No real confidence figures can be displayed. Use synthetic data only until private deployment and access controls exist.';}
+// The public browser demo uses only synthetic/sample data; API health and
+// confidence results are fetched from the hosted ATLAS-075 service.
+if(location.hostname==='localhost'||location.hostname==='127.0.0.1'){$('api-url').value=location.origin;}else{$('api-url').value=HOSTED_API;$('warnings').textContent='Public research demo only. Do not submit private survey/customer data: this endpoint has no authentication. Bootstrap intervals are exploratory, not calibrated for adaptive sampling.';}
+connect();
 })();
 
 </script></body></html>
